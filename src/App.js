@@ -9,14 +9,17 @@ function App() {
         <p>
           Aplication "Movie Browser" will be available soon 😉
         </p>
-        <a
-          className="App-link"
-          href="https://youcode.pl"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          youcode.pl
-        </a>
+        <p>
+          Powered by
+          <a
+            className="App-link"
+            href="https://youcode.pl"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+             youcode.pl
+          </a>
+        </p>
       </header>
     </div>
   );
