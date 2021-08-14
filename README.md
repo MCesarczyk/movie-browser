@@ -1,6 +1,6 @@
 # Movie Browser
 
-This is group project created under partonate of the programming school [Youcode](youcode.pl).
+This is group project created under partonate of the programming school [Youcode](https://youcode.pl/).
 
 ## Team members:
 - Michał Cesarczyk [Github](https://github.com/MCesarczyk)
