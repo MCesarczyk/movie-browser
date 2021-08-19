@@ -4,7 +4,7 @@ This is group project created under partonate of the programming school [Youcode
 
 ## Team members:
 - Michał Cesarczyk [Github](https://github.com/MCesarczyk)
-- Justyna Pawlik
+- Justyna Pawlik [Github](https://github.com/JustynaPawlik)
 - Kamil Stawik [Github](https://github.com/KamilStawik)
 
 ## Demo:
