@@ -30,5 +30,23 @@ export const SubTitle = styled.span`
     font-weight: 400; 
     font-size: 22px;
     line-height: 1.2;
-    margin-top: 24px;
+    margin: 24px 0px;
 `;
+
+export const Details = styled.div`
+    display: flex;
+`;
+
+export const DetailTitle = styled.span`
+    font-size: 18px;
+    line-height: 1.2;
+    color: ${({ theme }) => theme.color.stormGrey};
+`;
+
+export const DetailContent = styled.span`
+    font-size: 18px;
+    line-height: 1.2;
+    color: ${({ theme }) => theme.color.black};
+    margin-left: 10px;
+`;
+

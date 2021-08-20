@@ -1,5 +1,14 @@
 import poster from "../../images/poster.jpg"
-import { StyledTile, Image, Title, SubTitle, TileContent } from "./styled";
+import {
+    StyledTile,
+    Image,
+    Title,
+    SubTitle,
+    TileContent,
+    Details,
+    DetailTitle,
+    DetailContent,
+} from "./styled";
 
 const Tile = () => (
     <StyledTile>
@@ -7,6 +16,14 @@ const Tile = () => (
         <TileContent>
             <Title>Mulan</Title>
             <SubTitle>2020</SubTitle>
+            <Details>
+                <DetailTitle>Production: </DetailTitle>
+                <DetailContent>China, United States of America</DetailContent>
+            </Details>
+            <Details>
+                <DetailTitle>Release date: </DetailTitle>
+                <DetailContent>24.10.2020</DetailContent>
+            </Details>
         </TileContent>
     </StyledTile>
 );
