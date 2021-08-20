@@ -1,5 +1,6 @@
 import React from 'react';
 import { HashRouter, Switch, Route, Redirect, NavLink } from "react-router-dom";
+import { Header } from './features/Header';
 import { MovieList } from './features/movies/MoviesPage/MovieList';
 import PeopleList from './features/people/PeoplePage/PeopleList';
 
@@ -7,6 +8,7 @@ function App() {
 
   return (
     <HashRouter>
+      <Header />
       <nav>
         <ul>
           <li>
