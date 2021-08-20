@@ -46,7 +46,6 @@ export const DetailTitle = styled.span`
 export const DetailContent = styled.span`
     font-size: 18px;
     line-height: 1.2;
-    color: ${({ theme }) => theme.color.black};
     margin-left: 10px;
 `;
 
@@ -62,3 +61,31 @@ export const Tag = styled.span`
     background-color: ${({ theme }) => theme.color.mystic};
     color: ${({ theme }) => theme.color.woodsmoke};
 `;
+
+export const ExtraContent = styled.div`
+    display: flex;
+`;
+
+export const Rating = styled.span`
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1.3;
+    margin-left: 8px;
+`;
+
+export const RatingScale = styled.span`
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.2;
+    margin-left: 8px;
+    align-self: flex-end;
+`;
+
+export const Votes = styled.span`
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.2;
+    margin-left: 12px;
+    align-self: flex-end;
+`;
+

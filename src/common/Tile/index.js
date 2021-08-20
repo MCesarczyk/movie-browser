@@ -1,4 +1,5 @@
 import poster from "../../images/poster.jpg"
+import RatingStar from "./RatingStar";
 import {
     StyledTile,
     Image,
@@ -10,6 +11,10 @@ import {
     DetailContent,
     Tags,
     Tag,
+    ExtraContent,
+    Rating,
+    RatingScale,
+    Votes,
 } from "./styled";
 
 const Tile = () => (
@@ -31,7 +36,14 @@ const Tile = () => (
                 <Tag>Adventure</Tag>
                 <Tag>Drama</Tag>
             </Tags>
+            <ExtraContent>
+                <RatingStar />
+                <Rating>7,8</Rating>
+                <RatingScale>/ 10</RatingScale>
+                <Votes>335 votes</Votes>
+            </ExtraContent>
         </TileContent>
+
     </StyledTile>
 );
 
