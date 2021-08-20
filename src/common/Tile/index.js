@@ -1,10 +1,10 @@
 import poster from "../../images/poster.jpg"
-import { StyledTile, Image } from "./styled";
+import { StyledTile, Image, Title } from "./styled";
 
 const Tile = () => (
     <StyledTile>
         <Image src={poster} alt="movie poster" />
-        test
+        <Title>Mulan</Title>
     </StyledTile>
 );
 
