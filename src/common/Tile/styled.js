@@ -20,3 +20,15 @@ export const Title = styled.header`
     line-height: 1.2;
     margin-top: 8px;
 `;
+
+export const TileContent = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+export const SubTitle = styled.span`
+    font-weight: 400; 
+    font-size: 22px;
+    line-height: 1.2;
+    margin-top: 24px;
+`;
