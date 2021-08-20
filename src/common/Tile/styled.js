@@ -50,3 +50,15 @@ export const DetailContent = styled.span`
     margin-left: 10px;
 `;
 
+export const Tags = styled.div`
+    display: flex;
+`;
+
+export const Tag = styled.span`
+    padding: 8px 16px;
+    margin: 24px 16px 24px 0px;
+    font-size: 14px;
+    border-radius: 5px;
+    background-color: ${({ theme }) => theme.color.mystic};
+    color: ${({ theme }) => theme.color.woodsmoke};
+`;

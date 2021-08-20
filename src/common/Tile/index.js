@@ -8,6 +8,8 @@ import {
     Details,
     DetailTitle,
     DetailContent,
+    Tags,
+    Tag,
 } from "./styled";
 
 const Tile = () => (
@@ -24,6 +26,11 @@ const Tile = () => (
                 <DetailTitle>Release date: </DetailTitle>
                 <DetailContent>24.10.2020</DetailContent>
             </Details>
+            <Tags>
+                <Tag>Action</Tag>
+                <Tag>Adventure</Tag>
+                <Tag>Drama</Tag>
+            </Tags>
         </TileContent>
     </StyledTile>
 );
