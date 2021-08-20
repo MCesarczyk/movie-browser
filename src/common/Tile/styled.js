@@ -89,3 +89,9 @@ export const Votes = styled.span`
     align-self: flex-end;
 `;
 
+export const Description = styled.p`
+    font-size: 20px;
+    line-height: 1.6;
+    margin: 24px 0px;
+    font-weight: 400;
+`;
