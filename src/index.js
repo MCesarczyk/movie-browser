@@ -10,10 +10,11 @@ import { theme } from './theme';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}></ThemeProvider>
+    <ThemeProvider theme={theme}>
     <Normalize />
       <GlobalStyle />
     <App />
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
