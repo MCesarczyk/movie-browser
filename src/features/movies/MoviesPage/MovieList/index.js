@@ -1,5 +1,11 @@
-export const MovieList = () => {
+import Tile from "../../../../common/Tile"
+
+const MovieList = () => {
     return (
-        <div title="Movies"> </div>
+        <div title="Movies">
+            <Tile />
+        </div>
     )
-}
+};
+
+export default MovieList;
