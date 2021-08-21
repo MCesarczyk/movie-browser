@@ -8,10 +8,6 @@ list-style: none;
 margin: 0;
 `;
 
-export const Item =styled.li`
-margin: 20px;
-`;
-
 export const StyledNavLink = styled.a`
 color: ${({ theme }) => theme.color.white};
 text-decoration: none;
@@ -22,4 +18,10 @@ text-decoration: none;
         text-decoration: underline;
        
     }
+`;
+
+export const Item = styled.li`
+margin: 20px;
+text-transform: uppercase;
+text-decoration: none;
 `;
