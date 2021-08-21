@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Switch, Route, Redirect, NavLink } from "react-router-dom";
+import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
 import { MovieList } from './features/movies/MoviesPage/MovieList';
 import { Container } from './common/Container';
 import PeopleList from './features/people/PeoplePage/PeopleList';
