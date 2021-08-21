@@ -6,6 +6,7 @@ display: flex;
 background-color: ${({ theme }) => theme.color.black};
 list-style: none;
 margin: 0;
+
 `;
 
 const activeClassName = "active";
@@ -21,8 +22,6 @@ padding: 10px;
         border: 1px solid ${({ theme }) => theme.color.white};
     }
     &:hover {
-        text-decoration: underline;
-       
     }
 `;
 
@@ -30,4 +29,5 @@ export const Item = styled.li`
 margin: 20px;
 text-transform: uppercase;
 text-decoration: none;
+
 `;
