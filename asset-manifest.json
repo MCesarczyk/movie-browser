@@ -1,23 +1,21 @@
 {
   "files": {
-    "main.css": "/movie-browser/static/css/main.d69b5482.chunk.css",
-    "main.js": "/movie-browser/static/js/main.eecb368d.chunk.js",
-    "main.js.map": "/movie-browser/static/js/main.eecb368d.chunk.js.map",
-    "runtime-main.js": "/movie-browser/static/js/runtime-main.06543ade.js",
-    "runtime-main.js.map": "/movie-browser/static/js/runtime-main.06543ade.js.map",
-    "static/js/2.693c3b21.chunk.js": "/movie-browser/static/js/2.693c3b21.chunk.js",
-    "static/js/2.693c3b21.chunk.js.map": "/movie-browser/static/js/2.693c3b21.chunk.js.map",
-    "static/js/3.2eb5739f.chunk.js": "/movie-browser/static/js/3.2eb5739f.chunk.js",
-    "static/js/3.2eb5739f.chunk.js.map": "/movie-browser/static/js/3.2eb5739f.chunk.js.map",
+    "main.js": "/movie-browser/static/js/main.b619a42c.chunk.js",
+    "main.js.map": "/movie-browser/static/js/main.b619a42c.chunk.js.map",
+    "runtime-main.js": "/movie-browser/static/js/runtime-main.c95b2592.js",
+    "runtime-main.js.map": "/movie-browser/static/js/runtime-main.c95b2592.js.map",
+    "static/js/2.4b4482b6.chunk.js": "/movie-browser/static/js/2.4b4482b6.chunk.js",
+    "static/js/2.4b4482b6.chunk.js.map": "/movie-browser/static/js/2.4b4482b6.chunk.js.map",
+    "static/js/3.a81b634e.chunk.js": "/movie-browser/static/js/3.a81b634e.chunk.js",
+    "static/js/3.a81b634e.chunk.js.map": "/movie-browser/static/js/3.a81b634e.chunk.js.map",
     "index.html": "/movie-browser/index.html",
-    "static/css/main.d69b5482.chunk.css.map": "/movie-browser/static/css/main.d69b5482.chunk.css.map",
-    "static/js/2.693c3b21.chunk.js.LICENSE.txt": "/movie-browser/static/js/2.693c3b21.chunk.js.LICENSE.txt",
-    "static/media/logo.6ce24c58.svg": "/movie-browser/static/media/logo.6ce24c58.svg"
+    "static/js/2.4b4482b6.chunk.js.LICENSE.txt": "/movie-browser/static/js/2.4b4482b6.chunk.js.LICENSE.txt",
+    "static/media/poster.b3414696.jpg": "/movie-browser/static/media/poster.b3414696.jpg",
+    "static/media/ratingStar.6666ab69.svg": "/movie-browser/static/media/ratingStar.6666ab69.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.06543ade.js",
-    "static/js/2.693c3b21.chunk.js",
-    "static/css/main.d69b5482.chunk.css",
-    "static/js/main.eecb368d.chunk.js"
+    "static/js/runtime-main.c95b2592.js",
+    "static/js/2.4b4482b6.chunk.js",
+    "static/js/main.b619a42c.chunk.js"
   ]
 }
