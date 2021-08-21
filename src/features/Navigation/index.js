@@ -9,10 +9,14 @@ export const Navigation = () => {
             <List>
             <Header />
                 <Item>
-                    <StyledNavLink to="/movies">Movies</StyledNavLink>
+                    <StyledNavLink to="/movies">
+                        Movies
+                    </StyledNavLink>
                 </Item>
                 <Item>
-                    <StyledNavLink to="/people">People</StyledNavLink>
+                    <StyledNavLink to="/people">
+                        People
+                    </StyledNavLink>
                 </Item>
                 <Search />
             </List>
