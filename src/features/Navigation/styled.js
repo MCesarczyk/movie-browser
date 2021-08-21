@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 export const List = styled.ul`
 display: flex;
-justify-content: center;
 background-color: ${({ theme }) => theme.color.black};
 list-style: none;
 margin: 0;
@@ -16,8 +15,10 @@ export const StyledNavLink = styled(NavLink).attrs(() => ({
 }))`
 color: ${({ theme }) => theme.color.white};
 text-decoration: none;
+border-radius: 33px;
+padding: 10px;
     &.${activeClassName} {
-        font-weight: bold;;
+        border: 1px solid ${({ theme }) => theme.color.white};
     }
     &:hover {
         text-decoration: underline;
