@@ -1,10 +1,10 @@
-  import React from "react";
-
 const PeopleList = () => {
 
-    return (
-      <div title="People"> </div>
-    );
+  return (
+    <div title="People">
+      People list
+    </div>
+  );
 };
 
 export default PeopleList;
