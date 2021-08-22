@@ -5,6 +5,8 @@ export const List = styled.ul`
 display: flex;
 list-style: none;
 margin: 0;
+align-items: center;
+flex-basis: 50%;
 `;
 
 const activeClassName = "active";
@@ -36,14 +38,16 @@ export const HeaderWrapper = styled.div`
   width: 90%;
   `;
 
-  export const NavigationWrapper = styled.nav`
+export const NavigationWrapper = styled.nav`
   max-width: 1368px;
   display: flex;
   align-items: center;
   justify-content: space-around;
   `;
 
-  export const NavigationContainer = styled.div`
+export const NavigationContainer = styled.div`
   color: ${({ theme }) => theme.color.white};
   background: ${({ theme }) => theme.color.black};
+  min-height: 94px;
+  padding: 15px;
 `;

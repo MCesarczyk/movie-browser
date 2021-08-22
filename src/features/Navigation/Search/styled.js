@@ -23,5 +23,4 @@ border: none;
     font-size: 16px;
     color: ${({ theme }) => theme.color.darkGrey};
 }
-
 `;
