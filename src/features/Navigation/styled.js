@@ -39,7 +39,7 @@ export const HeaderWrapper = styled.div`
   `;
 
 export const NavigationWrapper = styled.nav`
-  max-width: 1368px;
+
   display: flex;
   align-items: center;
   justify-content: space-around;
