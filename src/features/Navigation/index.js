@@ -1,21 +1,24 @@
 import { Header } from "./Header";
 import { Search } from "./Search";
-import { StyledNavLink, Item, List } from "./styled"
+import { StyledNavLink, Item, List, Wrapper } from "./styled"
 
 export const Navigation = () => {
     return (
         <>
         <nav>
-            <List>
-            <Header />
-                <Item>
-                    <StyledNavLink to="/movies">Movies</StyledNavLink>
-                </Item>
-                <Item>
-                    <StyledNavLink to="/people">People</StyledNavLink>
-                </Item>
+           <Wrapper>
+                <List>
+                    <Header />
+                        <Item>
+                            <StyledNavLink to="/movies">Movies</StyledNavLink>
+                        </Item>
+                        <Item>
+                            <StyledNavLink to="/people">People</StyledNavLink>
+                        </Item>
+                    
+                    </List>
                 <Search />
-            </List>
+            </Wrapper>
         </nav>
   
         </>
