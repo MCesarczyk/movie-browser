@@ -1,10 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialState = {
+    movies: [],
+    state: "idle"
+};
+
 const moviesSlice = createSlice({
     name: 'movies',
-    initialState: {
-        state: "loading",
-    },
+    initialState,
     reducers: {
         fetchPopularMovies: () => { },
         setMovies: (state, { payload: movies }) => {
@@ -23,5 +26,6 @@ export const {
 } = moviesSlice.actions;
 
 export const selectMovies = state => state.movies;
+export const selectMoviesState = state => state.movies.state;
 
 export default moviesSlice.reducer;
