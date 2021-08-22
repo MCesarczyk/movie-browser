@@ -32,7 +32,7 @@ text-decoration: none;
 
 `;
 
-export const Wrapper = styled.div`
+export const HeaderWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
