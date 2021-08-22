@@ -3,10 +3,8 @@ import styled from "styled-components";
 
 export const List = styled.ul`
 display: flex;
-background-color: ${({ theme }) => theme.color.black};
 list-style: none;
 margin: 0;
-
 `;
 
 const activeClassName = "active";
@@ -29,7 +27,6 @@ export const Item = styled.li`
 margin: 20px;
 text-transform: uppercase;
 text-decoration: none;
-
 `;
 
 export const HeaderWrapper = styled.div`
@@ -45,3 +42,8 @@ export const HeaderWrapper = styled.div`
   align-items: center;
   justify-content: space-around;
   `;
+
+  export const NavigationContainer = styled.div`
+  color: ${({ theme }) => theme.color.white};
+  background: ${({ theme }) => theme.color.black};
+`;
