@@ -1,11 +1,11 @@
 import { Header } from "./Header";
 import { Search } from "./Search";
-import { StyledNavLink, Item, List, Wrapper } from "./styled"
+import { StyledNavLink, Item, List, Wrapper, NavigationWrapper } from "./styled"
 
 export const Navigation = () => {
     return (
         <>
-        <nav>
+        <NavigationWrapper>
            <Wrapper>
                 <List>
                     <Header />
@@ -19,7 +19,7 @@ export const Navigation = () => {
                     </List>
                 <Search />
             </Wrapper>
-        </nav>
+        </NavigationWrapper>
   
         </>
     );

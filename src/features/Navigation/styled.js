@@ -38,3 +38,10 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   width: 90%;
   `;
+
+  export const NavigationWrapper = styled.nav`
+  max-width: 1368px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  `;
