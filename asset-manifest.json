@@ -1,21 +1,24 @@
 {
   "files": {
-    "main.js": "/movie-browser/static/js/main.b619a42c.chunk.js",
-    "main.js.map": "/movie-browser/static/js/main.b619a42c.chunk.js.map",
-    "runtime-main.js": "/movie-browser/static/js/runtime-main.c95b2592.js",
-    "runtime-main.js.map": "/movie-browser/static/js/runtime-main.c95b2592.js.map",
-    "static/js/2.4b4482b6.chunk.js": "/movie-browser/static/js/2.4b4482b6.chunk.js",
-    "static/js/2.4b4482b6.chunk.js.map": "/movie-browser/static/js/2.4b4482b6.chunk.js.map",
-    "static/js/3.a81b634e.chunk.js": "/movie-browser/static/js/3.a81b634e.chunk.js",
-    "static/js/3.a81b634e.chunk.js.map": "/movie-browser/static/js/3.a81b634e.chunk.js.map",
+    "main.css": "/movie-browser/static/css/main.2ae47eeb.chunk.css",
+    "main.js": "/movie-browser/static/js/main.46c7564e.chunk.js",
+    "main.js.map": "/movie-browser/static/js/main.46c7564e.chunk.js.map",
+    "runtime-main.js": "/movie-browser/static/js/runtime-main.bec33a3c.js",
+    "runtime-main.js.map": "/movie-browser/static/js/runtime-main.bec33a3c.js.map",
+    "static/js/2.48093b80.chunk.js": "/movie-browser/static/js/2.48093b80.chunk.js",
+    "static/js/2.48093b80.chunk.js.map": "/movie-browser/static/js/2.48093b80.chunk.js.map",
+    "static/js/3.003f864b.chunk.js": "/movie-browser/static/js/3.003f864b.chunk.js",
+    "static/js/3.003f864b.chunk.js.map": "/movie-browser/static/js/3.003f864b.chunk.js.map",
     "index.html": "/movie-browser/index.html",
-    "static/js/2.4b4482b6.chunk.js.LICENSE.txt": "/movie-browser/static/js/2.4b4482b6.chunk.js.LICENSE.txt",
-    "static/media/poster.b3414696.jpg": "/movie-browser/static/media/poster.b3414696.jpg",
-    "static/media/ratingStar.6666ab69.svg": "/movie-browser/static/media/ratingStar.6666ab69.svg"
+    "static/css/main.2ae47eeb.chunk.css.map": "/movie-browser/static/css/main.2ae47eeb.chunk.css.map",
+    "static/js/2.48093b80.chunk.js.LICENSE.txt": "/movie-browser/static/js/2.48093b80.chunk.js.LICENSE.txt",
+    "static/media/camera.b470e4d1.svg": "/movie-browser/static/media/camera.b470e4d1.svg",
+    "static/media/search.d40a7fee.svg": "/movie-browser/static/media/search.d40a7fee.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.c95b2592.js",
-    "static/js/2.4b4482b6.chunk.js",
-    "static/js/main.b619a42c.chunk.js"
+    "static/js/runtime-main.bec33a3c.js",
+    "static/js/2.48093b80.chunk.js",
+    "static/css/main.2ae47eeb.chunk.css",
+    "static/js/main.46c7564e.chunk.js"
   ]
 }
