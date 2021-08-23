@@ -1,8 +1,10 @@
 import { Header } from "./Header";
+import { Search } from "./Search";
 import { StyledNavLink, Item, List } from "./styled"
 
 const Navigation = ({ moviesPath, peoplePath }) => {
     return (
+        <>
         <nav>
             <List>
                 <Header />
@@ -16,8 +18,11 @@ const Navigation = ({ moviesPath, peoplePath }) => {
                         People
                     </StyledNavLink>
                 </Item>
+                <Search />
             </List>
         </nav>
+  
+        </>
     );
 };
 
