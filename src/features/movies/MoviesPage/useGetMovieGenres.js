@@ -7,14 +7,10 @@ export const useGetMovieGenres = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        const getMovieGenres = () => {
+        fetch(apiURL)
+            .then(response => response.json())
+            .then(genres => dispatch(setGenres(genres)))
 
-            fetch(apiURL)
-                .then(response => response.json())
-                .then(genres => dispatch(setGenres(genres)))
-        };
-
-        setTimeout(getMovieGenres, 2_000);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 };
