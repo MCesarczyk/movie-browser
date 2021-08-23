@@ -7,6 +7,8 @@ list-style: none;
 margin: 0;
 align-items: center;
 flex-basis: 50%;
+@media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
+  flex-basis: 100%;
 `;
 
 const activeClassName = "active";
@@ -23,6 +25,9 @@ padding: 10px;
     }
     &:hover {
     }
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
+      font-size: 16px;
+    }
 `;
 
 export const Item = styled.li`
@@ -36,13 +41,18 @@ export const HeaderWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 90%;
+  flex-wrap: wrap; 
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
+    width: 100%;
+  }
   `;
 
-export const NavigationWrapper = styled.nav`
 
+export const NavigationWrapper = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-around;
+  flex-wrap: wrap;
   `;
 
 export const NavigationContainer = styled.div`

@@ -5,6 +5,6 @@ export const theme = {
     darkGrey: "#7E839A",
 },
 breakpoint: {
-    mobile : "767px",
+    mobile : "767",
     },
 };
