@@ -8,7 +8,6 @@ export const useGetPopularMovies = () => {
 
     useEffect(() => {
         const getPopularMovies = () => {
-            dispatch(setMoviesState("loading"));
 
             fetch(apiURL)
                 .then(response => response.json())
