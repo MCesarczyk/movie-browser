@@ -1,6 +1,6 @@
 import React from "react";
 import Tile from "../../../common/Tile"
-import { Wrapper } from "./styled";
+import Wrapper from "../../../common/Wrapper";
 
 const MoviePage = () => {
 

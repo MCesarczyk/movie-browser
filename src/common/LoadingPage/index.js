@@ -1,9 +1,14 @@
-import { LoadingPageWrapper } from "./styled";
+import Wrapper from "../Wrapper";
+import LoadingCircle from "./LoadingCircle";
+import { Header } from "./styled";
 
-const LoadingPage = () => (
-    <LoadingPageWrapper>
-        LoadingPage
-    </LoadingPageWrapper>
-);
+const LoadingPage = () => {
+    return (
+        <Wrapper>
+            <Header>Search results for “Mulan”</Header>
+            <LoadingCircle />
+        </Wrapper>
+    );
+};
 
 export default LoadingPage;

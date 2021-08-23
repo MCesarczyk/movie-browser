@@ -7,6 +7,7 @@ export const theme = {
         stormGrey: "#74788B",
         darkGrey: "#7E839A",
         black: "#000000",
+        whisper: "#F5F5FA",
     },
     breakpoint: {
         mobile: "767",
