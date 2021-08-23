@@ -5,11 +5,13 @@ import Tile from "../../../common/Tile"
 import { MoviesList } from "./styled";
 import LoadingPage from "../../../common/LoadingPage";
 import ErrorPage from "../../../common/ErrorPage";
+import { useGetMovieGenres } from "./useGetMovieGenres";
 
 const MoviesPage = () => {
     useGetPopularMovies();
     const moviesState = useSelector(selectMoviesState);
     const movies = useSelector(selectMovies);
+    useGetMovieGenres();
 
     return (
         <MoviesList title="Movies">
@@ -24,6 +26,7 @@ const MoviesPage = () => {
                             key={movies.movies[index].id}
                             title={movies.movies[index].title}
                             releaseDate={movies.movies[index].release_date}
+                            genreIds={movies.movies[index].genre_ids}
                             rating={movies.movies[index].vote_average}
                             votes={movies.movies[index].vote_count}
                             overview={movies.movies[index].overview}
