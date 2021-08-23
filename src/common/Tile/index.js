@@ -21,6 +21,7 @@ import {
 
 const Tile = ({
     title,
+    subtitle,
     posterUrl,
     releaseDate,
     genreIds,
@@ -35,7 +36,7 @@ const Tile = ({
             <Image src={posterUrl} alt="movie poster" />
             <TileContent>
                 <Title>{title}</Title>
-                <SubTitle>2020</SubTitle>
+                <SubTitle>{subtitle}</SubTitle>
                 <Details>
                     <DetailTitle>Production: </DetailTitle>
                     <DetailContent>China, United States of America</DetailContent>
