@@ -1,4 +1,4 @@
-import poster from "../../images/poster.jpg"
+// import poster from "../../images/poster.jpg"
 import RatingStar from "./RatingStar";
 import {
     StyledTile,
@@ -18,11 +18,11 @@ import {
     Description,
 } from "./styled";
 
-const Tile = () => (
+const Tile = ({ title, posterUrl }) => (
     <StyledTile>
-        <Image src={poster} alt="movie poster" />
+        <Image src={posterUrl} alt="movie poster" />
         <TileContent>
-            <Title>Mulan</Title>
+            <Title>{title}</Title>
             <SubTitle>2020</SubTitle>
             <Details>
                 <DetailTitle>Production: </DetailTitle>

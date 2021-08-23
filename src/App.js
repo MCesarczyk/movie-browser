@@ -4,12 +4,12 @@ import { useSelector } from 'react-redux';
 import { selectMovies } from './features/movies/moviesSlice';
 import { Container } from './common/Container';
 import Navigation from './features/Navigation';
-import MovieList from './features/movies/MoviesPage/MovieList';
-import PeopleList from './features/people/PeoplePage/PeopleList';
+import MoviesPage from './features/movies/MoviesPage';
+import PeopleList from './features/people/PeoplePage';
 
 function App() {
   const movies = useSelector(selectMovies);
-  
+
   return (
     <HashRouter>
       <Container>
@@ -19,7 +19,7 @@ function App() {
         />
         <Switch>
           <Route path="/movies">
-            <MovieList />
+            <MoviesPage />
           </Route>
           <Route path="/people">
             <PeopleList />
