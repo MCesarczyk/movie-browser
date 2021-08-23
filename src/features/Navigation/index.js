@@ -9,7 +9,7 @@ import {
     NavigationContainer
 } from "./styled"
 
-export const Navigation = () => {
+const Navigation = ({ moviesPath, peoplePath }) => {
     return (
         <NavigationContainer>
             <NavigationWrapper>
@@ -33,3 +33,5 @@ export const Navigation = () => {
         </NavigationContainer>
     );
 };
+
+export default Navigation;

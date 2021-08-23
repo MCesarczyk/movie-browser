@@ -13,18 +13,19 @@ const activeClassName = "active";
 
 export const StyledNavLink = styled(NavLink).attrs(() => ({
     activeClassName,
-}))`
-    color: ${({ theme }) => theme.color.white};
-    text-decoration: none;
-    border-radius: 33px;
-    padding: 10px;
-    
-    &.${activeClassName} {
-        border: 1px solid ${({ theme }) => theme.color.white};
-    }
-    
-    &:hover {
-    }
+  }))`
+  
+  color: ${({ theme }) => theme.color.white};
+  text-decoration: none;
+  border-radius: 33px;
+  padding: 10px;
+  
+  &.${activeClassName} {
+    border: 1px solid ${({ theme }) => theme.color.white};
+  }
+  
+  &:hover {
+  }
 `;
 
 export const Item = styled.li`
