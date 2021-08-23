@@ -47,7 +47,7 @@ const Tile = ({
                 </Details>
                 <Tags>
                     {genreIds.map(genreId => (
-                        <Tag>
+                        <Tag key={genreId}>
                             {genres.genres[genres.genres.findIndex(
                                 ({ id }) => id === genreId
                             )].name}
