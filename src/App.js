@@ -1,15 +1,11 @@
 import React from 'react';
 import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
-import { useSelector } from 'react-redux';
-import { selectMovies } from './features/movies/moviesSlice';
 import { Container } from './common/Container';
 import Navigation from './features/Navigation';
 import MoviesPage from './features/movies/MoviesPage';
 import PeopleList from './features/people/PeoplePage';
 
 function App() {
-  const movies = useSelector(selectMovies);
-
   return (
     <HashRouter>
       <Container>
