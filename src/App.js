@@ -1,21 +1,24 @@
 import React from 'react';
 import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
-import { MovieList } from './features/movies/MoviesPage/MovieList';
 import { Container } from './common/Container';
-import PeopleList from './features/people/PeoplePage/PeopleList';
-import { Navigation } from './features/Navigation';
+import Navigation from './features/Navigation';
+import MoviesPage from './features/movies/MoviesPage';
+import PeopleList from './features/people/PeoplePage';
 
 function App() {
   return (
     <HashRouter>
-      <Container>  
-        <Navigation />
-          <Switch>
+      <Container>
+        <Navigation
+          moviesPath={"/movies"}
+          peoplePath={"/people"}
+        />
+        <Switch>
           <Route path="/movies">
-            <MovieList/>
+            <MoviesPage />
           </Route>
           <Route path="/people">
-            <PeopleList/>
+            <PeopleList />
           </Route>
           <Route path="/">
             <Redirect to="/movies" />
