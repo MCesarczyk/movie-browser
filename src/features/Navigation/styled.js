@@ -2,10 +2,11 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const List = styled.ul`
-  display: flex;
-  background-color: ${({ theme }) => theme.color.black};
-  list-style: none;
-  margin: 0;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    align-items: center;
+    flex-basis: 50%;
 `;
 
 const activeClassName = "active";
@@ -28,7 +29,27 @@ export const StyledNavLink = styled(NavLink).attrs(() => ({
 `;
 
 export const Item = styled.li`
-  margin: 20px;
-  text-transform: uppercase;
-  text-decoration: none;
+    margin: 20px;
+    text-transform: uppercase;
+    text-decoration: none;
+`;
+
+export const HeaderWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+`;
+
+export const NavigationWrapper = styled.nav`
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+`;
+
+export const NavigationContainer = styled.div`
+    color: ${({ theme }) => theme.color.white};
+    background: ${({ theme }) => theme.color.black};
+    min-height: 94px;
+    padding: 15px;
 `;
