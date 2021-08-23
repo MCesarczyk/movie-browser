@@ -25,7 +25,7 @@ const MoviesPage = () => {
                         <Tile
                             key={movies.movies[index].id}
                             title={movies.movies[index].title}
-                            subtitle={new Date(Date.parse(movies.movies[index].release_date)).getFullYear()}
+                            subtitle="2021"
                             releaseDate={movies.movies[index].release_date}
                             genreIds={movies.movies[index].genre_ids}
                             rating={movies.movies[index].vote_average}
