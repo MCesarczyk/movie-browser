@@ -14,7 +14,7 @@ export const useGetMovieGenres = () => {
                 .then(genres => dispatch(setGenres(genres)))
         };
 
-        setTimeout(getMovieGenres, 2_000);
+        getMovieGenres();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 };

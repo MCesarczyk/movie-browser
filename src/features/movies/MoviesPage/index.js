@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { useGetPopularMovies } from "./useGetPopularMovies";
-import { selectMovies, selectMoviesState } from "../moviesSlice";
+import { selectMovies, selectMoviesState, selectGenres } from "../moviesSlice";
 import Tile from "../../../common/Tile"
 import { MoviesList } from "./styled";
 import LoadingPage from "../../../common/LoadingPage";
@@ -9,9 +9,10 @@ import { useGetMovieGenres } from "./useGetMovieGenres";
 
 const MoviesPage = () => {
     useGetPopularMovies();
+    useGetMovieGenres();
     const moviesState = useSelector(selectMoviesState);
     const movies = useSelector(selectMovies);
-    useGetMovieGenres();
+    const genres = useSelector(selectGenres);
 
     return (
         <MoviesList title="Movies">
