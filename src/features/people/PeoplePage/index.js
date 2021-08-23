@@ -2,7 +2,7 @@ const PeopleList = () => {
 
   return (
     <div title="People">
-      People list
+      People page
     </div>
   );
 };
