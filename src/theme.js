@@ -9,6 +9,6 @@ export const theme = {
         black: "#000000",
     },
     breakpoint: {
-        mobile: "767px",
+        mobile: "767",
     },
 };
