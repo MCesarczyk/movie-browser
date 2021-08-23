@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Normalize } from 'styled-normalize';
@@ -11,9 +10,9 @@ import { theme } from './theme';
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-    <Normalize />
+      <Normalize />
       <GlobalStyle />
-    <App />
+      <App />
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
