@@ -1,4 +1,3 @@
-// import poster from "../../images/poster.jpg"
 import RatingStar from "./RatingStar";
 import {
     StyledTile,
@@ -18,7 +17,7 @@ import {
     Description,
 } from "./styled";
 
-const Tile = ({ title, posterUrl }) => (
+const Tile = ({ title, posterUrl, releaseDate, rating, votes, overview }) => (
     <StyledTile>
         <Image src={posterUrl} alt="movie poster" />
         <TileContent>
@@ -30,7 +29,7 @@ const Tile = ({ title, posterUrl }) => (
             </Details>
             <Details>
                 <DetailTitle>Release date: </DetailTitle>
-                <DetailContent>24.10.2020</DetailContent>
+                <DetailContent>{releaseDate}</DetailContent>
             </Details>
             <Tags>
                 <Tag>Action</Tag>
@@ -39,12 +38,12 @@ const Tile = ({ title, posterUrl }) => (
             </Tags>
             <ExtraContent>
                 <RatingStar />
-                <Rating>7,8</Rating>
+                <Rating>{rating}</Rating>
                 <RatingScale>/ 10</RatingScale>
-                <Votes>335 votes</Votes>
+                <Votes>{votes} votes</Votes>
             </ExtraContent>
             <Description>
-                A young Chinese maiden disguises herself as a male warrior in order to save her father. Disguises herself as a male warrior in order to save her father. A young Chinese maiden disguises herself as a male warrior in order to save her father.
+                {overview}
             </Description>
         </TileContent>
     </StyledTile>
