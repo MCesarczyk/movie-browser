@@ -9,7 +9,7 @@ const ErrorPage = () => (
                 Please, check your network connection <br />
                 and try again
                 </Section>
-                <ButtonLink to="/movies">Back to Home page</ButtonLink>
+                <ButtonLink to="/">Back to Home page</ButtonLink>
     </ErrorPageWrapper>
 );
 
