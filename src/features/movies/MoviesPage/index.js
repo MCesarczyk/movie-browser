@@ -14,7 +14,7 @@ const MoviesPage = () => {
     useGetConfig();
     useGetMovieGenres();
     useGetPopularMovies();
-    useGetMovieDetails();
+    useGetMovieDetails(497698);
     const imgURL = useSelector(selectImagesBaseURL);
     const posterSizes = useSelector(selectPosterSizes);
     const moviesState = useSelector(selectMoviesState);
