@@ -20,19 +20,23 @@ const MoviesPage = () => {
     const posterSize = useSelector(selectPosterSize);
     const dispatch = useDispatch();
 
-    const maxwidth = window.innerWidth;
-    if (maxwidth > "1280") {
-        dispatch(setPosterSize(posterSizes[4]))
-    } else if (maxwidth > "768") {
-        dispatch(setPosterSize(posterSizes[3]))
-    } else if (maxwidth > "480") {
-        dispatch(setPosterSize(posterSizes[2]))
-    } else {
-        dispatch(setPosterSize(posterSizes[1]))
+    const onPageResize = () => {
+        const maxwidth = window.innerWidth;
+        if (maxwidth > "1280") {
+            dispatch(setPosterSize(posterSizes[4]))
+        } else if (maxwidth > "768") {
+            dispatch(setPosterSize(posterSizes[3]))
+        } else if (maxwidth > "480") {
+            dispatch(setPosterSize(posterSizes[2]))
+        } else {
+            dispatch(setPosterSize(posterSizes[1]))
+        };
     };
 
+    window.addEventListener("resize", onPageResize);
+
     return (
-        <MoviesList title="Movies">
+        <MoviesList title="Movies" >
             {moviesState === "loading" ? (
                 <LoadingPage />
             ) : (
