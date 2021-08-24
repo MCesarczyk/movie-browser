@@ -1,10 +1,14 @@
-import { ErrorIcon, ErrorPageWrapper } from "./styled";
+import { ErrorIcon, ErrorPageWrapper, Header, Section } from "./styled";
 import error from "./error.svg";
 
 const ErrorPage = () => (
     <ErrorPageWrapper>
         <ErrorIcon src={error} alt=""/>
-        Error page
+            <Header>Oooops! Something went&nbsp;wrong...</Header>
+                <Section>
+                Please, check your network connection <br />
+                and try again
+                </Section>
     </ErrorPageWrapper>
 );
 
