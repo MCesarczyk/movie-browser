@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Tile from "../../../common/Tile"
 import LoadingPage from "../../../common/LoadingPage";
 import ErrorPage from "../../../common/ErrorPage";
@@ -7,16 +7,29 @@ import { useGetConfig } from "../../../useGetConfig";
 import { useGetMovieGenres } from "./useGetMovieGenres";
 import { useGetPopularMovies } from "./useGetPopularMovies";
 import { selectMovies, selectMoviesState } from "../moviesSlice";
-import { selectImagesBaseURL } from "../../../configSlice";
+import { selectImagesBaseURL, selectPosterSizes, selectPosterSize, setPosterSize } from "../../../configSlice";
 
 const MoviesPage = () => {
     useGetConfig();
     useGetMovieGenres();
     useGetPopularMovies();
     const imgURL = useSelector(selectImagesBaseURL);
+    const posterSizes = useSelector(selectPosterSizes);
     const moviesState = useSelector(selectMoviesState);
     const movies = useSelector(selectMovies);
-    const posterResolution = "w780";
+    const posterSize = useSelector(selectPosterSize);
+    const dispatch = useDispatch();
+
+    const maxwidth = window.innerWidth;
+    if (maxwidth > "1280") {
+        dispatch(setPosterSize(posterSizes[4]))
+    } else if (maxwidth > "768") {
+        dispatch(setPosterSize(posterSizes[3]))
+    } else if (maxwidth > "480") {
+        dispatch(setPosterSize(posterSizes[2]))
+    } else {
+        dispatch(setPosterSize(posterSizes[1]))
+    };
 
     return (
         <MoviesList title="Movies">
@@ -36,7 +49,7 @@ const MoviesPage = () => {
                             rating={movies.movies[index].vote_average}
                             votes={movies.movies[index].vote_count}
                             overview={movies.movies[index].overview}
-                            posterUrl={`${imgURL}/${posterResolution}${movies.movies[index].poster_path}`}
+                            posterUrl={`${imgURL}${posterSize}${movies.movies[index].poster_path}`}
                         />
                     ))))}
         </MoviesList>
