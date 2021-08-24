@@ -7,3 +7,5 @@ export const ErrorIcon = styled.img``;
 export const Header = styled.header``;
 
 export const Section = styled.p``;
+
+export const ButtonLink = styled.button``;

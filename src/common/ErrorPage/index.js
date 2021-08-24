@@ -1,4 +1,4 @@
-import { ErrorIcon, ErrorPageWrapper, Header, Section } from "./styled";
+import { ButtonLink, ErrorIcon, ErrorPageWrapper, Header, Section } from "./styled";
 import error from "./error.svg";
 
 const ErrorPage = () => (
@@ -9,6 +9,7 @@ const ErrorPage = () => (
                 Please, check your network connection <br />
                 and try again
                 </Section>
+                <ButtonLink>Back to Home page</ButtonLink>
     </ErrorPageWrapper>
 );
 
