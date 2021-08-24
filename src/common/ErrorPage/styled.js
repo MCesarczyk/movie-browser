@@ -4,7 +4,13 @@ export const ErrorPageWrapper = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
-padding: 0px;
+justify-content: center;
+text-align: center;
+position: absolute;
+top: 50%;
+left: 50%;
+margin-right: -50%;
+transform: translate(-50%, -50%)
 `;
 
 export const ErrorIcon = styled.img``;
@@ -16,6 +22,7 @@ line-height: 120%;
 
 export const Section = styled.p`
 font-size: 22px;
+
 
   `;
 
