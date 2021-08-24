@@ -16,7 +16,7 @@ const MoviesPage = () => {
     const imgURL = useSelector(selectImagesBaseURL);
     const moviesState = useSelector(selectMoviesState);
     const movies = useSelector(selectMovies);
-    const resolution = "w780";
+    const posterResolution = "w780";
 
     return (
         <MoviesList title="Movies">
@@ -36,7 +36,7 @@ const MoviesPage = () => {
                             rating={movies.movies[index].vote_average}
                             votes={movies.movies[index].vote_count}
                             overview={movies.movies[index].overview}
-                            posterUrl={`${imgURL}/${resolution}${movies.movies[index].poster_path}`}
+                            posterUrl={`${imgURL}/${posterResolution}${movies.movies[index].poster_path}`}
                         />
                     ))))}
         </MoviesList>
