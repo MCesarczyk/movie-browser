@@ -1,8 +1,12 @@
-import { Wrapper } from "./styled";
+import { Wrapper, Button } from "./styled";
 
 const Pager = () => (
     <Wrapper>
-        Pager
+        <Button>First</Button>
+        <Button>Previous</Button>
+        Page 1 of 500
+        <Button>Next</Button>
+        <Button>Last</Button>
     </Wrapper>
 );
 
