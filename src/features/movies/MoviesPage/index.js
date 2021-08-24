@@ -4,15 +4,17 @@ import LoadingPage from "../../../common/LoadingPage";
 import ErrorPage from "../../../common/ErrorPage";
 import { MoviesList } from "./styled";
 import { useGetConfig } from "../../../useGetConfig";
-import { useGetMovieGenres } from "./useGetMovieGenres";
-import { useGetPopularMovies } from "./useGetPopularMovies";
+import { useGetMovieGenres } from "../useGetMovieGenres";
+import { useGetPopularMovies } from "../useGetPopularMovies";
 import { selectMovies, selectMoviesState } from "../moviesSlice";
 import { selectImagesBaseURL, selectPosterSizes, selectPosterSize, setPosterSize } from "../../../configSlice";
+import { useGetMovieDetails } from "../useGetMovieDetails";
 
 const MoviesPage = () => {
     useGetConfig();
     useGetMovieGenres();
     useGetPopularMovies();
+    useGetMovieDetails();
     const imgURL = useSelector(selectImagesBaseURL);
     const posterSizes = useSelector(selectPosterSizes);
     const moviesState = useSelector(selectMoviesState);
