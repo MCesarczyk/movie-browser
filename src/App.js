@@ -8,7 +8,7 @@ import PeopleList from './features/people/PeoplePage';
 function App() {
   return (
     <HashRouter>
-      <Container>
+        <Container>
         <Navigation
           moviesPath={"/movies"}
           peoplePath={"/people"}
@@ -25,7 +25,7 @@ function App() {
           </Route>
         </Switch>
       </Container>
-    </HashRouter>
+    </HashRouter> 
   );
 };
 

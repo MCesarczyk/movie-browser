@@ -8,8 +8,10 @@ export const theme = {
         darkGrey: "#7E839A",
         black: "#000000",
         whisper: "#F5F5FA",
+        blue: "#0044CC",
     },
     breakpoint: {
         mobile: "767",
+        mobileMin: "320",
     },
 };
