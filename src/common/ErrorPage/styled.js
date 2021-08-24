@@ -27,7 +27,6 @@ line-height: 120%;
 }
 `;
 
-
 export const Section = styled.p`
 font-size: 22px;
 @media(max-width: ${({theme}) => theme.breakpoint.mobileMin}px) {
@@ -36,7 +35,6 @@ font-size: 22px;
 @media(max-width: ${({theme}) => theme.breakpoint.mobile}px) {
   font-size: 16px;
 `;
-
 
 export const ButtonLink = styled(NavLink)`
 font-size: 14px;
