@@ -4,10 +4,12 @@ import { Container } from './common/Container';
 import Navigation from './features/Navigation';
 import MoviesPage from './features/movies/MoviesPage';
 import PeopleList from './features/people/PeoplePage';
+import ErrorPage from './common/ErrorPage';
 
 function App() {
   return (
     <HashRouter>
+        <ErrorPage />
       <Container>
         <Navigation
           moviesPath={"/movies"}
