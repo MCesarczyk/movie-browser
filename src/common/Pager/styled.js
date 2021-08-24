@@ -16,6 +16,21 @@ export const Button = styled.button`
     color: ${({ theme }) => theme.color.woodsmoke};
 `;
 
+export const PagerText = styled.span`
+    font-size: 16px;
+    line-height: 1.5;
+    color: ${({ theme }) => theme.color.darkGrey};
+    margin: 0px 8px;
+`;
+
+export const PageNumberText = styled.span`
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: ${({ theme }) => theme.color.woodsmoke};
+    margin: 0px 8px;
+`;
+
 // export const Header = styled.header`
 //     font-weight: 600;
 //     font-size: 36px;
