@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setMovies, setMoviesState } from "../moviesSlice";
+import { setMovies, setMoviesState } from "./moviesSlice";
 
 export const useGetPopularMovies = () => {
     const apiURL = "https://api.themoviedb.org/3/movie/popular?api_key=768f7875782193f5e4797762314da0b7";
