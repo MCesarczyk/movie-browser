@@ -10,6 +10,7 @@ export const theme = {
         whisper: "#F5F5FA",
         cornflowerBlue: "#D6E4FF",
         mineShaft: "#333333",
+        scienceBlue: "#0044CC",
     },
     breakpoint: {
         mobile: "767",
