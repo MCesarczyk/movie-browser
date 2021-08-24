@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const ErrorPageWrapper = styled.div`
@@ -26,10 +27,16 @@ font-size: 22px;
 
   `;
 
-export const ButtonLink = styled.button`
+export const ButtonLink = styled(NavLink)`
 font-size: 14px;
 font-weight: bold;
 line-height: 19px;
 color: ${({ theme }) => theme.color.white};
 background: ${({ theme }) => theme.color.blue};
+text-decoration: none;
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 16px 24px;
+border-radius: 5px;
 `;

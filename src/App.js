@@ -1,16 +1,16 @@
 import React from 'react';
-// import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
-// import { Container } from './common/Container';
-// import Navigation from './features/Navigation';
-// import MoviesPage from './features/movies/MoviesPage';
-// import PeopleList from './features/people/PeoplePage';
+import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
+import { Container } from './common/Container';
+import Navigation from './features/Navigation';
+import MoviesPage from './features/movies/MoviesPage';
+import PeopleList from './features/people/PeoplePage';
 import ErrorPage from './common/ErrorPage';
 
 function App() {
   return (
-    // <HashRouter>
+    <HashRouter>
         <ErrorPage />
-      /* <Container>
+        <Container>
         <Navigation
           moviesPath={"/movies"}
           peoplePath={"/people"}
@@ -27,7 +27,7 @@ function App() {
           </Route>
         </Switch>
       </Container>
-    </HashRouter> */
+    </HashRouter> 
   );
 };
 
