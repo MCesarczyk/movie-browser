@@ -9,6 +9,7 @@ export const theme = {
         black: "#000000",
         whisper: "#F5F5FA",
         cornflowerBlue: "#D6E4FF",
+        mineShaft: "#333333",
     },
     breakpoint: {
         mobile: "767",
