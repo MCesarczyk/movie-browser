@@ -1,18 +1,21 @@
 import { useSelector } from "react-redux";
-import { useGetPopularMovies } from "./useGetPopularMovies";
-import { selectMovies, selectMoviesState, selectGenres } from "../moviesSlice";
 import Tile from "../../../common/Tile"
-import { MoviesList } from "./styled";
 import LoadingPage from "../../../common/LoadingPage";
 import ErrorPage from "../../../common/ErrorPage";
+import { MoviesList } from "./styled";
+import { useGetConfig } from "../../../useGetConfig";
 import { useGetMovieGenres } from "./useGetMovieGenres";
+import { useGetPopularMovies } from "./useGetPopularMovies";
+import { selectMovies, selectMoviesState } from "../moviesSlice";
+import { selectImagesBaseURL } from "../../../configSlice";
 
 const MoviesPage = () => {
-    useGetPopularMovies();
+    useGetConfig();
     useGetMovieGenres();
+    useGetPopularMovies();
+    const imgURL = useSelector(selectImagesBaseURL);
     const moviesState = useSelector(selectMoviesState);
     const movies = useSelector(selectMovies);
-    const genres = useSelector(selectGenres);
 
     return (
         <MoviesList title="Movies">
@@ -32,7 +35,7 @@ const MoviesPage = () => {
                             rating={movies.movies[index].vote_average}
                             votes={movies.movies[index].vote_count}
                             overview={movies.movies[index].overview}
-                            posterUrl={`https://image.tmdb.org/t/p/w500${movies.movies[index].poster_path}`}
+                            posterUrl={`${imgURL}/w500${movies.movies[index].poster_path}`}
                         />
                     ))))}
         </MoviesList>
