@@ -51,16 +51,16 @@ const MoviesPage = () => {
                 ) : (
                     movieList.map((movie, index) => (
                         <Tile
-                            key={movieList[index].id}
-                            posterUrl={`${imgURL}${posterSize}${movieList[index].poster_path}`}
-                            title={movieList[index].title}
-                            subtitle={new Date(Date.parse(movieList[index].release_date)).getFullYear()}
-                            countries={moviesDetails[index].production_countries}
-                            releaseDate={movieList[index].release_date}
-                            genreIds={movieList[index].genre_ids}
-                            rating={movieList[index].vote_average}
-                            votes={movieList[index].vote_count}
-                            overview={movieList[index].overview}
+                            key={movieList && movieList[index].id}
+                            posterUrl={movieList && `${imgURL}${posterSize}${movieList[index].poster_path}`}
+                            title={movieList && movieList[index].title}
+                            subtitle={movieList && new Date(Date.parse(movieList[index].release_date)).getFullYear()}
+                            countries={movieList && moviesDetails[index].production_countries}
+                            releaseDate={movieList && movieList[index].release_date}
+                            genreIds={movieList && movieList[index].genre_ids}
+                            rating={movieList && movieList[index].vote_average}
+                            votes={movieList && movieList[index].vote_count}
+                            overview={movieList && movieList[index].overview}
                         />
                     ))))}
         </MoviesList>
