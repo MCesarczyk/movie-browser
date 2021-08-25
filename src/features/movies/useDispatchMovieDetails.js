@@ -19,9 +19,7 @@ export const useGetMoviesDetails = (movieList) => {
     };
 
     useEffect(() => {
-        setTimeout(() => {
-            getMoviesDetails();
-        }, 1_000);
+        getMoviesDetails();
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [movieList]);
