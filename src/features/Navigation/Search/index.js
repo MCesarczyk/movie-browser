@@ -1,6 +1,6 @@
 import { SearchIcon, SearchInput, SearchWrapper } from "./styled";
 import search from "../images/search.svg";
-import { useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 export const Search = () => {
     const location = useLocation();
