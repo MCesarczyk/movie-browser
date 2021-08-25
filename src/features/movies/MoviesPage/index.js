@@ -4,12 +4,12 @@ import LoadingPage from "../../../common/LoadingPage";
 import ErrorPage from "../../../common/ErrorPage";
 import { MoviesList } from "./styled";
 import { useGetConfig } from "../../../useGetConfig";
-import { useGetMovieGenres } from "../useGetMovieGenres";
 import { useGetPopularMovies } from "../useGetPopularMovies";
+import { useGetMovieGenres } from "../useGetMovieGenres";
 import { useGetMoviesDetails } from "../useDispatchMovieDetails";
+import { useSetStatus } from "../../../useSetStatus";
 import { selectMovieList, selectMoviesDetails, selectMoviesState } from "../moviesSlice";
 import { selectImagesBaseURL, selectPosterSizes, selectPosterSize, setPosterSize } from "../../../configSlice";
-import { useSetStatus } from "../../../useSetStatus";
 
 const MoviesPage = () => {
     const dispatch = useDispatch();
