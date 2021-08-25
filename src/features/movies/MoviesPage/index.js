@@ -7,7 +7,7 @@ import { useGetConfig } from "../../../useGetConfig";
 import { useGetMovieGenres } from "../useGetMovieGenres";
 import { useGetPopularMovies } from "../useGetPopularMovies";
 import { useGetMoviesDetails } from "../useDispatchMovieDetails";
-import { selectMovieList, selectMovies, selectMoviesDetails, selectMoviesState } from "../moviesSlice";
+import { selectMovieList, selectMoviesDetails, selectMoviesState } from "../moviesSlice";
 import { selectImagesBaseURL, selectPosterSizes, selectPosterSize, setPosterSize } from "../../../configSlice";
 import { useSetStatus } from "../../../useSetStatus";
 
@@ -16,8 +16,6 @@ const MoviesPage = () => {
     const imgURL = useSelector(selectImagesBaseURL);
     const posterSizes = useSelector(selectPosterSizes);
     const moviesState = useSelector(selectMoviesState);
-    // eslint-disable-next-line
-    const movies = useSelector(selectMovies);
     const movieList = useSelector(selectMovieList);
     const posterSize = useSelector(selectPosterSize);
     const moviesDetails = useSelector(selectMoviesDetails);

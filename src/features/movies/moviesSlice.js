@@ -34,7 +34,6 @@ export const {
     setAppendMovieDetails,
 } = moviesSlice.actions;
 
-export const selectMovies = state => state.movies;
 export const selectMoviesState = state => state.movies.state;
 export const selectGenres = state => state.movies.genres;
 export const selectMoviesDetails = state => state.movies.details;
