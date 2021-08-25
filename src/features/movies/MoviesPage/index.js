@@ -7,7 +7,7 @@ import { useGetConfig } from "../../../useGetConfig";
 import { useGetMovieGenres } from "../useGetMovieGenres";
 import { useGetPopularMovies } from "../useGetPopularMovies";
 import { useGetMoviesDetails } from "../useDispatchMovieDetails";
-import { selectMovieList, selectMovies, selectMoviesState } from "../moviesSlice";
+import { selectMovieList, selectMovies, selectMoviesDetails, selectMoviesState } from "../moviesSlice";
 import { selectImagesBaseURL, selectPosterSizes, selectPosterSize, setPosterSize } from "../../../configSlice";
 
 const MoviesPage = () => {
@@ -18,6 +18,7 @@ const MoviesPage = () => {
     const movies = useSelector(selectMovies);
     const movieList = useSelector(selectMovieList);
     const posterSize = useSelector(selectPosterSize);
+    const moviesDetails = useSelector(selectMoviesDetails);
 
     useGetConfig();
     useGetMovieGenres();
@@ -47,17 +48,17 @@ const MoviesPage = () => {
                 moviesState === "Error" ? (
                     <ErrorPage />
                 ) : (
-                    movies.movies.map((movie, index) => (
+                    movieList.map((movie, index) => (
                         <Tile
-                            key={movies.movies[index].id}
-                            title={movies.movies[index].title}
-                            subtitle={new Date(Date.parse(movies.movies[index].release_date)).getFullYear()}
-                            releaseDate={movies.movies[index].release_date}
-                            genreIds={movies.movies[index].genre_ids}
-                            rating={movies.movies[index].vote_average}
-                            votes={movies.movies[index].vote_count}
-                            overview={movies.movies[index].overview}
-                            posterUrl={`${imgURL}${posterSize}${movies.movies[index].poster_path}`}
+                            key={movieList[index].id}
+                            posterUrl={`${imgURL}${posterSize}${movieList[index].poster_path}`}
+                            title={movieList[index].title}
+                            subtitle={new Date(Date.parse(movieList[index].release_date)).getFullYear()}
+                            releaseDate={movieList[index].release_date}
+                            genreIds={movieList[index].genre_ids}
+                            rating={movieList[index].vote_average}
+                            votes={movieList[index].vote_count}
+                            overview={movieList[index].overview}
                         />
                     ))))}
         </MoviesList>
