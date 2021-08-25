@@ -35,7 +35,7 @@ export const {
 } = moviesSlice.actions;
 
 export const selectMoviesState = state => state.movies.state;
-export const selectGenres = state => state.movies.genres;
+export const selectGenres = state => state.movies.genres.genres;
 export const selectMoviesDetails = state => state.movies.details;
 export const selectMovieList = state => state.movies.movies;
 

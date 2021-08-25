@@ -41,7 +41,7 @@ const Tile = ({
                 <Details>
                     <DetailTitle>Production: </DetailTitle>
                     <DetailContent>
-                        {countries.map(({name}) => `${name}, `)}
+                        {countries && countries.map(({name}) => `${name}, `)}
                     </DetailContent>
                 </Details>
                 <Details>
@@ -49,9 +49,9 @@ const Tile = ({
                     <DetailContent>{releaseDate}</DetailContent>
                 </Details>
                 <Tags>
-                    {genreIds.map(genreId => (
+                    {genreIds && genreIds.map(genreId => (
                         <Tag key={genreId}>
-                            {genres.genres[genres.genres.findIndex(
+                            {genres[genres.findIndex(
                                 ({ id }) => id === genreId
                             )].name}
                         </Tag>
