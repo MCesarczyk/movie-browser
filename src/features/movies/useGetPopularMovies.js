@@ -15,7 +15,7 @@ export const useGetPopularMovies = () => {
                 .then(() => dispatch(setMoviesState("success")))
         };
 
-        setTimeout(getPopularMovies, 2_000);
+        setTimeout(getPopularMovies, 0);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 };

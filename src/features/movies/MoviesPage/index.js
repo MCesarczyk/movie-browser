@@ -6,22 +6,28 @@ import { MoviesList } from "./styled";
 import { useGetConfig } from "../../../useGetConfig";
 import { useGetMovieGenres } from "../useGetMovieGenres";
 import { useGetPopularMovies } from "../useGetPopularMovies";
-import { selectMovies, selectMoviesState } from "../moviesSlice";
+import { selectMovieList, selectMovies, selectMoviesState, setMovieDetails } from "../moviesSlice";
 import { selectImagesBaseURL, selectPosterSizes, selectPosterSize, setPosterSize } from "../../../configSlice";
 import { useGetMovieDetails } from "../useGetMovieDetails";
+import { useEffect } from "react";
+import { useDispatchMovieDetails } from "../useDispatchMovieDetails";
 
 const MoviesPage = () => {
-    useGetConfig();
-    useGetMovieGenres();
-    useGetPopularMovies();
-    useGetMovieDetails(497698);
-    const imgURL = useSelector(selectImagesBaseURL);
-    const posterSizes = useSelector(selectPosterSizes);
-    const moviesState = useSelector(selectMoviesState);
-    const movies = useSelector(selectMovies);
-    const posterSize = useSelector(selectPosterSize);
-    const dispatch = useDispatch();
+        useGetConfig();
+        useGetMovieGenres();
+        useGetPopularMovies();
+        const dispatch = useDispatch();
+        const imgURL = useSelector(selectImagesBaseURL);
+        const posterSizes = useSelector(selectPosterSizes);
+        const moviesState = useSelector(selectMoviesState);
+        const movies = useSelector(selectMovies);
+        const movieList = useSelector(selectMovieList);
+        const posterSize = useSelector(selectPosterSize);
 
+        useDispatchMovieDetails(movieList);
+
+        // useGetMovieDetails(497698);
+    
     const onPageResize = () => {
         const maxwidth = window.innerWidth;
         if (maxwidth > "1280") {
