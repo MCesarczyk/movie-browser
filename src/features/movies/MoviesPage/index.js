@@ -54,6 +54,7 @@ const MoviesPage = () => {
                             posterUrl={`${imgURL}${posterSize}${movieList[index].poster_path}`}
                             title={movieList[index].title}
                             subtitle={new Date(Date.parse(movieList[index].release_date)).getFullYear()}
+                            countries={moviesDetails[index].production_countries}
                             releaseDate={movieList[index].release_date}
                             genreIds={movieList[index].genre_ids}
                             rating={movieList[index].vote_average}

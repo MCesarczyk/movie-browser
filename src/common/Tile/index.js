@@ -20,9 +20,10 @@ import {
 } from "./styled";
 
 const Tile = ({
+    posterUrl,
     title,
     subtitle,
-    posterUrl,
+    countries,
     releaseDate,
     genreIds,
     rating,
@@ -39,7 +40,9 @@ const Tile = ({
                 <SubTitle>{subtitle}</SubTitle>
                 <Details>
                     <DetailTitle>Production: </DetailTitle>
-                    <DetailContent>China, United States of America</DetailContent>
+                    <DetailContent>
+                        {countries.map(({name}) => `${name}, `)}
+                    </DetailContent>
                 </Details>
                 <Details>
                     <DetailTitle>Release date: </DetailTitle>
