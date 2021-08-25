@@ -20,8 +20,8 @@ const moviesSlice = createSlice({
         setGenres: (state, { payload: genres }) => {
             state.genres = genres;
         },
-        setMovieDetails: (state, {payload: details}) => {
-            state.details = details;
+        setAppendMovieDetails: (state, {payload: details}) => {
+            state.details.push(details);
         },
     },
 });
@@ -31,7 +31,7 @@ export const {
     setMovies,
     setMoviesState,
     setGenres,
-    setMovieDetails,
+    setAppendMovieDetails,
 } = moviesSlice.actions;
 
 export const selectMovies = state => state.movies;
