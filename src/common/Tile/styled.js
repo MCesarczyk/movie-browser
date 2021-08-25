@@ -14,7 +14,7 @@ export const Image = styled.img`
     height: 464px;
 `;
 
-export const Title = styled.header`
+export const Title = styled.h2`
     font-weight: 600;
     font-size: 36px;
     line-height: 1.2;
