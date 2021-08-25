@@ -1,9 +1,11 @@
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { setMovies } from "./moviesSlice";
+import { selectPage, setMovies } from "./moviesSlice";
 
 export const useGetPopularMovies = () => {
-    const apiURL = "https://api.themoviedb.org/3/movie/popular?api_key=768f7875782193f5e4797762314da0b7";
+    const page = useSelector(selectPage);
+    const apiURL = `https://api.themoviedb.org/3/movie/popular?api_key=768f7875782193f5e4797762314da0b7&page=${page}`;
     const dispatch = useDispatch();
 
     useEffect(() => {
