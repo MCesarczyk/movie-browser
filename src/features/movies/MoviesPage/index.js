@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import Tile from "../../../common/Tile"
+import Pager from "../../../common/Pager";
 import LoadingPage from "../../../common/LoadingPage";
 import ErrorPage from "../../../common/ErrorPage";
 import { MoviesList } from "./styled";
@@ -42,14 +43,15 @@ const MoviesPage = () => {
     window.addEventListener("resize", onPageResize);
 
     return (
-        <MoviesList title="Movies" >
-            {moviesState === "loading" ? (
-                <LoadingPage />
-            ) : (
-                moviesState === "Error" ? (
-                    <ErrorPage />
+        <>
+            <MoviesList title="Movies">
+                {moviesState === "loading" ? (
+                    <LoadingPage />
                 ) : (
-                    movieList.map((movie, index) => (
+                    moviesState === "Error" ? (
+                        <ErrorPage />
+                    ) : (
+                        movieList.map((movie, index) => (
                         <Tile
                             movieId={movieList && movieList[index].id}
                             key={movieList && movieList[index].id}
@@ -64,7 +66,9 @@ const MoviesPage = () => {
                             overview={movieList && movieList[index].overview}
                         />
                     ))))}
-        </MoviesList>
+            </MoviesList>
+            <Pager />
+        </>
     )
 };
 

@@ -1,6 +1,10 @@
 export const theme = {
     color: {
         white: "#FFFFFF",
+        blue: "#0044CC",
+        cornflowerBlue: "#D6E4FF",
+        mineShaft: "#333333",
+        scienceBlue: "#0044CC",
         mystic: "#E4E6F0",
         mercury: "#E5E5E5",
         woodsmoke: "#18181B",
@@ -8,7 +12,6 @@ export const theme = {
         darkGrey: "#7E839A",
         black: "#000000",
         whisper: "#F5F5FA",
-        blue: "#0044CC",
     },
     breakpoint: {
         mobile: "767",
