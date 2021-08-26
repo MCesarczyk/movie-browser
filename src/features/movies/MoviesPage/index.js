@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
+import Wrapper from "../../../common/Wrapper";
 import Tile from "../../../common/Tile"
 import Pager from "../../../common/Pager";
 import LoadingPage from "../../../common/LoadingPage";
@@ -9,9 +10,17 @@ import { useGetPopularMovies } from "../useGetPopularMovies";
 import { useGetMovieGenres } from "../useGetMovieGenres";
 import { useGetMoviesDetails } from "../useDispatchMovieDetails";
 import { useSetState } from "../../../useSetState";
-import { selectMovieList, selectMoviesDetails, selectMoviesState } from "../moviesSlice";
-import { selectImagesBaseURL, selectPosterSizes, selectPosterSize, setPosterSize } from "../../../configSlice";
-import { Container } from "../../../common/Container";
+import {
+    selectMovieList,
+    selectMoviesDetails,
+    selectMoviesState
+} from "../moviesSlice";
+import {
+    selectImagesBaseURL,
+    selectPosterSizes,
+    selectPosterSize,
+    setPosterSize
+} from "../../../configSlice";
 
 const MoviesPage = () => {
     const dispatch = useDispatch();
@@ -44,35 +53,35 @@ const MoviesPage = () => {
     window.addEventListener("resize", onPageResize);
 
     return (
-    <>
-      <Container>
-        <MoviesList title="Movies" >
-            {moviesState === "loading" ? (
-                <LoadingPage />
-            ) : (
-                moviesState === "Error" ? (
-                    <ErrorPage />
+        <>
+            <Wrapper>
+                <MoviesList title="Movies" >
+                    {moviesState === "loading" ? (
+                        <LoadingPage />
                     ) : (
-                        movieList.map((movie, index) => (
-                        <Tile
-                            movieId={movieList && movieList[index].id}
-                            key={movieList && movieList[index].id}
-                            posterUrl={movieList && `${imgURL}${posterSize}${movieList[index].poster_path}`}
-                            title={movieList && movieList[index].title}
-                            subtitle={movieList && new Date(Date.parse(movieList[index].release_date)).getFullYear()}
-                            countries={movieList && moviesDetails[index].production_countries}
-                            releaseDate={movieList && movieList[index].release_date}
-                            genreIds={movieList && movieList[index].genre_ids}
-                            rating={movieList && movieList[index].vote_average}
-                            votes={movieList && movieList[index].vote_count}
-                            overview={movieList && movieList[index].overview}
-                        />
-                    ))))}
-        </MoviesList>
-        <Pager />
-      </Container>
-    </>
-  )
+                        moviesState === "Error" ? (
+                            <ErrorPage />
+                        ) : (
+                            movieList.map((movie, index) => (
+                                <Tile
+                                    movieId={movieList && movieList[index].id}
+                                    key={movieList && movieList[index].id}
+                                    posterUrl={movieList && `${imgURL}${posterSize}${movieList[index].poster_path}`}
+                                    title={movieList && movieList[index].title}
+                                    subtitle={movieList && new Date(Date.parse(movieList[index].release_date)).getFullYear()}
+                                    countries={movieList && moviesDetails[index].production_countries}
+                                    releaseDate={movieList && movieList[index].release_date}
+                                    genreIds={movieList && movieList[index].genre_ids}
+                                    rating={movieList && movieList[index].vote_average}
+                                    votes={movieList && movieList[index].vote_count}
+                                    overview={movieList && movieList[index].overview}
+                                />
+                            ))))}
+                </MoviesList>
+                <Pager />
+            </Wrapper>
+        </>
+    )
 };
 
 export default MoviesPage;

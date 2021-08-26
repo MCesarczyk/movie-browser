@@ -1,13 +1,18 @@
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Tile from "../../../common/Tile"
 import Wrapper from "../../../common/Wrapper";
+import Tile from "../../../common/Tile"
 import Backdrop from "./Backdrop";
 import { SectionContainer, SectionTitle } from "./styled";
-import { selectImagesBaseURL, selectPosterSize, selectPosterSizes, setPosterSize } from "../../../configSlice";
 import { selectMovieDetails } from "../moviesSlice";
 import { useGetConfig } from "../../../useGetConfig";
 import { useGetMovieDetails } from "../useGetMovieDetails";
-import { useParams } from "react-router-dom";
+import {
+    selectImagesBaseURL,
+    selectPosterSize,
+    selectPosterSizes,
+    setPosterSize
+} from "../../../configSlice";
 
 const MoviePage = () => {
     const { id } = useParams();
@@ -37,36 +42,34 @@ const MoviePage = () => {
     window.addEventListener("resize", onPageResize);
 
     return (
-      <>
-        <Container>
-          <Backdrop />
+        <>
+            <Backdrop />
             <Wrapper>
-            <Tile
-                key={movieId}
-                posterUrl={movieDetails && `${imgURL}${posterSize}${movieDetails.poster_path}`}
-                title={movieDetails && movieDetails.title}
-                // subtitle={movieDetails && new Date(Date.parse(movieDetails.release_date)).getFullYear()}
-                countries={movieDetails && movieDetails.production_countries}
-                releaseDate={movieDetails && movieDetails.release_date}
-                genreIds={movieDetails && movieDetails.genre_ids}
-                rating={movieDetails && movieDetails.vote_average}
-                votes={movieDetails && movieDetails.vote_count}
-                overview={movieDetails && movieDetails.overview}
-            />
-            <section>
-                <SectionTitle>Cast</SectionTitle>
-                <SectionContainer>
-                    <Tile
-                        key={""}
-                        posterUrl={""}
-                        title={""}
-                        subtitle={""}
-                    />
-                </SectionContainer>
-            </section>
-          </Wrapper>
-        </Container>
-      </>
+                <Tile
+                    key={movieId}
+                    posterUrl={movieDetails && `${imgURL}${posterSize}${movieDetails.poster_path}`}
+                    title={movieDetails && movieDetails.title}
+                    // subtitle={movieDetails && new Date(Date.parse(movieDetails.release_date)).getFullYear()}
+                    countries={movieDetails && movieDetails.production_countries}
+                    releaseDate={movieDetails && movieDetails.release_date}
+                    genreIds={movieDetails && movieDetails.genre_ids}
+                    rating={movieDetails && movieDetails.vote_average}
+                    votes={movieDetails && movieDetails.vote_count}
+                    overview={movieDetails && movieDetails.overview}
+                />
+                <section>
+                    <SectionTitle>Cast</SectionTitle>
+                    <SectionContainer>
+                        <Tile
+                            key={""}
+                            posterUrl={""}
+                            title={""}
+                            subtitle={""}
+                        />
+                    </SectionContainer>
+                </section>
+            </Wrapper>
+        </>
     );
 };
 
