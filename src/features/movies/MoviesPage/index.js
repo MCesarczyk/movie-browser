@@ -1,25 +1,32 @@
 import { useSelector, useDispatch } from "react-redux";
 import Tile from "../../../common/Tile"
+import Pager from "../../../common/Pager";
 import LoadingPage from "../../../common/LoadingPage";
 import ErrorPage from "../../../common/ErrorPage";
 import { MoviesList } from "./styled";
 import { useGetConfig } from "../../../useGetConfig";
-import { useGetMovieGenres } from "./useGetMovieGenres";
-import { useGetPopularMovies } from "./useGetPopularMovies";
-import { selectMovies, selectMoviesState } from "../moviesSlice";
+import { useGetPopularMovies } from "../useGetPopularMovies";
+import { useGetMovieGenres } from "../useGetMovieGenres";
+import { useGetMoviesDetails } from "../useDispatchMovieDetails";
+import { useSetState } from "../../../useSetState";
+import { selectMovieList, selectMoviesDetails, selectMoviesState } from "../moviesSlice";
 import { selectImagesBaseURL, selectPosterSizes, selectPosterSize, setPosterSize } from "../../../configSlice";
 import { Container } from "../../../common/Container";
 
 const MoviesPage = () => {
+    const dispatch = useDispatch();
+    const movieList = useSelector(selectMovieList);
+    const moviesState = useSelector(selectMoviesState);
+    const imgURL = useSelector(selectImagesBaseURL);
+    const posterSizes = useSelector(selectPosterSizes);
+    const posterSize = useSelector(selectPosterSize);
+    const moviesDetails = useSelector(selectMoviesDetails);
+
     useGetConfig();
     useGetMovieGenres();
     useGetPopularMovies();
-    const imgURL = useSelector(selectImagesBaseURL);
-    const posterSizes = useSelector(selectPosterSizes);
-    const moviesState = useSelector(selectMoviesState);
-    const movies = useSelector(selectMovies);
-    const posterSize = useSelector(selectPosterSize);
-    const dispatch = useDispatch();
+    useGetMoviesDetails(movieList);
+    useSetState();
 
     const onPageResize = () => {
         const maxwidth = window.innerWidth;
@@ -37,30 +44,35 @@ const MoviesPage = () => {
     window.addEventListener("resize", onPageResize);
 
     return (
-        <Container>
+    <>
+      <Container>
         <MoviesList title="Movies" >
             {moviesState === "loading" ? (
                 <LoadingPage />
             ) : (
                 moviesState === "Error" ? (
                     <ErrorPage />
-                ) : (
-                    movies.movies.map((movie, index) => (
+                    ) : (
+                        movieList.map((movie, index) => (
                         <Tile
-                            key={movies.movies[index].id}
-                            title={movies.movies[index].title}
-                            subtitle={new Date(Date.parse(movies.movies[index].release_date)).getFullYear()}
-                            releaseDate={movies.movies[index].release_date}
-                            genreIds={movies.movies[index].genre_ids}
-                            rating={movies.movies[index].vote_average}
-                            votes={movies.movies[index].vote_count}
-                            overview={movies.movies[index].overview}
-                            posterUrl={`${imgURL}${posterSize}${movies.movies[index].poster_path}`}
+                            movieId={movieList && movieList[index].id}
+                            key={movieList && movieList[index].id}
+                            posterUrl={movieList && `${imgURL}${posterSize}${movieList[index].poster_path}`}
+                            title={movieList && movieList[index].title}
+                            subtitle={movieList && new Date(Date.parse(movieList[index].release_date)).getFullYear()}
+                            countries={movieList && moviesDetails[index].production_countries}
+                            releaseDate={movieList && movieList[index].release_date}
+                            genreIds={movieList && movieList[index].genre_ids}
+                            rating={movieList && movieList[index].vote_average}
+                            votes={movieList && movieList[index].vote_count}
+                            overview={movieList && movieList[index].overview}
                         />
                     ))))}
         </MoviesList>
-        </Container>
-    )
+        <Pager />
+      </Container>
+    </>
+  )
 };
 
 export default MoviesPage;

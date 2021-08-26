@@ -18,12 +18,15 @@ import {
     RatingScale,
     Votes,
     Description,
+    ActiveTitle,
 } from "./styled";
 
 const Tile = ({
+    movieId,
+    posterUrl,
     title,
     subtitle,
-    posterUrl,
+    countries,
     releaseDate,
     genreIds,
     rating,
@@ -37,20 +40,24 @@ const Tile = ({
         <StyledTile>
             <Image src={posterUrl} alt="movie poster" />
             <TileContent>
-                <Title>{title}</Title>
+                <ActiveTitle to={`/movies/${movieId}`} >
+                    <Title>{title}</Title>
+                </ActiveTitle>
                 <SubTitle>{subtitle}</SubTitle>
                 <Details>
                     <DetailTitle>Production: </DetailTitle>
-                    <DetailContent>China, United States of America</DetailContent>
+                    <DetailContent>
+                        {countries && countries.map(({ name }) => `${name}, `)}
+                    </DetailContent>
                 </Details>
                 <Details>
                     <DetailTitle>Release date: </DetailTitle>
                     <DetailContent>{releaseDate}</DetailContent>
                 </Details>
                 <Tags>
-                    {genreIds.map(genreId => (
+                    {genreIds && genreIds.map(genreId => (
                         <Tag key={genreId}>
-                            {genres.genres[genres.genres.findIndex(
+                            {genres[genres.findIndex(
                                 ({ id }) => id === genreId
                             )].name}
                         </Tag>

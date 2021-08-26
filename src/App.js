@@ -3,15 +3,20 @@ import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
 import Navigation from './features/Navigation';
 import MoviesPage from './features/movies/MoviesPage';
 import PeopleList from './features/people/PeoplePage';
+import MoviePage from './features/movies/MoviePage';
 
 function App() {
   return (
     <HashRouter>
+      <Container>
         <Navigation
           moviesPath={"/movies"}
           peoplePath={"/people"}
         />
         <Switch>
+          <Route path="/movies/:id">
+            <MoviePage />
+          </Route>
           <Route path="/movies">
             <MoviesPage />
           </Route>
@@ -22,7 +27,8 @@ function App() {
             <Redirect to="/movies" />
           </Route>
         </Switch>
-    </HashRouter> 
+      </Container>
+    </HashRouter>
   );
 };
 

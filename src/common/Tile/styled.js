@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const StyledTile = styled.div`
@@ -15,7 +16,20 @@ export const Image = styled.img`
     max-height: 464px;
 `;
 
-export const Title = styled.header`
+export const ActiveTitle = styled(Link)`
+    text-decoration: none;
+    color: currentColor;
+
+    &:hover {
+        color: darkred;
+    }
+    
+    &:active {
+        color: crimson;
+    }
+`;
+
+export const Title = styled.h2`
     font-weight: 600;
     font-size: 36px;
     line-height: 1.2;
