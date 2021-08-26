@@ -1,4 +1,5 @@
-import { BackdropPoster, WrapperBackdrop, Title, WrapperContent } from "./styled";
+import RatingStar from "../../../../common/Tile/RatingStar";
+import { BackdropPoster, WrapperBackdrop, Title, WrapperContent, RatingScale, Votes } from "./styled";
 
 
 const Backdrop = () => {
@@ -8,6 +9,9 @@ const Backdrop = () => {
          <WrapperBackdrop >
              <WrapperContent>
                 <Title>tytuł</Title>
+                <RatingStar />
+                    <RatingScale> 10</RatingScale>
+                    <Votes>335 votes</Votes>
             </WrapperContent>
          </WrapperBackdrop>
   </BackdropPoster>

@@ -25,7 +25,24 @@ font-size: 64px;
 `;
 
 export const WrapperContent = styled.div`
-height: 176px;
-width: 503px;
-position: absolute;
+max-width: 1368px;
+color: ${({ theme }) => theme.color.white};
 `;
+
+export const RatingScale = styled.p`
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.2;
+    margin-left: 8px;
+    align-self: flex-end;
+`;
+
+export const Votes = styled.p`
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 1.3;
+    margin-left: 12px;
+    display: flex;
+    align-items: center;
+`;
+
