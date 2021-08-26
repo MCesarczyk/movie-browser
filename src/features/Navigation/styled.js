@@ -39,12 +39,14 @@ export const HeaderWrapper = styled.div`
     align-items: center;
     justify-content: space-between;
     width: 90%;
+    
 `;
 
 export const NavigationWrapper = styled.nav`
     display: flex;
     align-items: center;
     justify-content: space-around;
+    
 `;
 
 export const NavigationContainer = styled.div`

@@ -8,6 +8,7 @@ import { useGetMovieGenres } from "./useGetMovieGenres";
 import { useGetPopularMovies } from "./useGetPopularMovies";
 import { selectMovies, selectMoviesState } from "../moviesSlice";
 import { selectImagesBaseURL, selectPosterSizes, selectPosterSize, setPosterSize } from "../../../configSlice";
+import { Container } from "../../../common/Container";
 
 const MoviesPage = () => {
     useGetConfig();
@@ -36,6 +37,7 @@ const MoviesPage = () => {
     window.addEventListener("resize", onPageResize);
 
     return (
+        <Container>
         <MoviesList title="Movies" >
             {moviesState === "loading" ? (
                 <LoadingPage />
@@ -57,6 +59,7 @@ const MoviesPage = () => {
                         />
                     ))))}
         </MoviesList>
+        </Container>
     )
 };
 

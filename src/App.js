@@ -1,6 +1,5 @@
 import React from 'react';
 import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
-import { Container } from './common/Container';
 import Navigation from './features/Navigation';
 import MoviesPage from './features/movies/MoviesPage';
 import PeopleList from './features/people/PeoplePage';
@@ -8,7 +7,6 @@ import PeopleList from './features/people/PeoplePage';
 function App() {
   return (
     <HashRouter>
-        <Container>
         <Navigation
           moviesPath={"/movies"}
           peoplePath={"/people"}
@@ -24,7 +22,6 @@ function App() {
             <Redirect to="/movies" />
           </Route>
         </Switch>
-      </Container>
     </HashRouter> 
   );
 };
