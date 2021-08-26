@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import Tile from "../../../common/Tile"
 import { SectionContainer, SectionTitle } from "./styled";
-import { selectImagesBaseURL, selectPosterSizes, setPosterSize } from "../../../configSlice";
+import { selectImagesBaseURL, selectPosterSize, selectPosterSizes, setPosterSize } from "../../../configSlice";
 import { selectMovieDetails } from "../moviesSlice";
 import { useGetConfig } from "../../../useGetConfig";
 import { useGetMovieDetails } from "../useGetMovieDetails";
@@ -12,7 +12,7 @@ const MoviePage = () => {
     const movieDetails = useSelector(selectMovieDetails);
     const imgURL = useSelector(selectImagesBaseURL);
     const posterSizes = useSelector(selectPosterSizes);
-    const posterSize = "w500";
+    const posterSize = useSelector(selectPosterSize);
 
     useGetConfig();
     useGetMovieDetails(id);
