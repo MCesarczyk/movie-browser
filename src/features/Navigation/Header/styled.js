@@ -6,8 +6,9 @@ export const Title = styled.h1`
     line-height: 40px;
     flex-wrap: nowrap; 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
-    font-size: 16px;
-    line-height: 20px;
+        font-size: 16px;
+        line-height: 20px;
+    }
 `;
 
 
@@ -15,17 +16,20 @@ export const Icon = styled.img`
     width: 34px;
     @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
         width: 20px;
+    }
 `;
 
 
 export const Wrapper = styled.div`
-display: flex;
-align-items: center;
-justify-content: center;
-flex-basis: 50%;
-flex-wrap: nowrap;
-max-width: 1368px;
-@media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
-    flex-basis: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-basis: 50%;
+    flex-wrap: nowrap;
+    width: 100%;
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
+        flex-basis: 100%;
+    }
 `;
 

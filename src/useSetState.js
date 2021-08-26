@@ -8,7 +8,7 @@ export const useSetState = () => {
     useEffect(() => {
         setTimeout(() => {
             dispatch(setState("success"))
-        }, 2_000);
+        }, 1_000);
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
