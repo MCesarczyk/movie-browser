@@ -1,19 +1,40 @@
-import { useSelector } from "react-redux";
-import { useGetPopularMovies } from "./useGetPopularMovies";
-import { selectMovies, selectMoviesState, selectGenres } from "../moviesSlice";
+import { useSelector, useDispatch } from "react-redux";
 import Tile from "../../../common/Tile"
-import { MoviesList } from "./styled";
+import Pager from "../../../common/Pager";
 import LoadingPage from "../../../common/LoadingPage";
 import ErrorPage from "../../../common/ErrorPage";
+import { MoviesList } from "./styled";
+import { useGetConfig } from "../../../useGetConfig";
 import { useGetMovieGenres } from "./useGetMovieGenres";
-import Pager from "../../../common/Pager";
+import { useGetPopularMovies } from "./useGetPopularMovies";
+import { selectMovies, selectMoviesState } from "../moviesSlice";
+import { selectImagesBaseURL, selectPosterSizes, selectPosterSize, setPosterSize } from "../../../configSlice";
 
 const MoviesPage = () => {
-    useGetPopularMovies();
+    useGetConfig();
     useGetMovieGenres();
+    useGetPopularMovies();
+    const imgURL = useSelector(selectImagesBaseURL);
+    const posterSizes = useSelector(selectPosterSizes);
     const moviesState = useSelector(selectMoviesState);
     const movies = useSelector(selectMovies);
-    const genres = useSelector(selectGenres);
+    const posterSize = useSelector(selectPosterSize);
+    const dispatch = useDispatch();
+
+    const onPageResize = () => {
+        const maxwidth = window.innerWidth;
+        if (maxwidth > "1280") {
+            dispatch(setPosterSize(posterSizes[4]))
+        } else if (maxwidth > "768") {
+            dispatch(setPosterSize(posterSizes[3]))
+        } else if (maxwidth > "480") {
+            dispatch(setPosterSize(posterSizes[2]))
+        } else {
+            dispatch(setPosterSize(posterSizes[1]))
+        };
+    };
+
+    window.addEventListener("resize", onPageResize);
 
     return (
         <>
@@ -34,9 +55,9 @@ const MoviesPage = () => {
                                 rating={movies.movies[index].vote_average}
                                 votes={movies.movies[index].vote_count}
                                 overview={movies.movies[index].overview}
-                                posterUrl={`https://image.tmdb.org/t/p/w500${movies.movies[index].poster_path}`}
-                            />
-                        ))))}
+                            posterUrl={`${imgURL}${posterSize}${movies.movies[index].poster_path}`}
+                        />
+                    ))))}
             </MoviesList>
             <Pager />
         </>

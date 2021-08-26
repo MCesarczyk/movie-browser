@@ -10,7 +10,6 @@ const moviesSlice = createSlice({
     name: 'movies',
     initialState,
     reducers: {
-        fetchPopularMovies: () => { },
         setMovies: (state, { payload: movies }) => {
             state.movies = movies;
         },
