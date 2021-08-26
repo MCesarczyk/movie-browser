@@ -14,4 +14,18 @@ background: linear-gradient(270deg, #000000 14.11%, rgba(0, 0, 0, 0.873268) 15.0
 max-width: 1920px;
 height: 770px;
 background-repeat: no-repeat;
+display:flex;
+flex-direction: column;
+justify-content: flex-end;
+`;
+
+export const Title = styled.h1`
+color: ${({ theme }) => theme.color.white};
+font-size: 64px;
+`;
+
+export const WrapperContent = styled.div`
+height: 176px;
+width: 503px;
+position: absolute;
 `;

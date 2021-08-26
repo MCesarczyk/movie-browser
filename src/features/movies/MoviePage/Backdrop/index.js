@@ -1,12 +1,15 @@
-import { BackdropPoster, WrapperBackdrop } from "./styled";
+import { BackdropPoster, WrapperBackdrop, Title, WrapperContent } from "./styled";
 
 
 const Backdrop = () => {
 
     return (
-     
     <BackdropPoster>
-        <WrapperBackdrop />
+         <WrapperBackdrop >
+             <WrapperContent>
+                <Title>tytuł</Title>
+            </WrapperContent>
+         </WrapperBackdrop>
   </BackdropPoster>
     );
 };
