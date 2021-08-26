@@ -1,4 +1,5 @@
 import { Wrapper, Button, PagerText, PageNumberText } from "./styled";
+import NextIcon from "./NextIcon";
 
 const Pager = () => {
     const pageNumber = 1;
@@ -12,8 +13,14 @@ const Pager = () => {
             <PageNumberText>{pageNumber}</PageNumberText>
             <PagerText>of</PagerText>
             <PageNumberText>{lastPageNumber}</PageNumberText>
-            <Button disabled={pageNumber === lastPageNumber ? true : false}>Next</Button>
-            <Button disabled={pageNumber === lastPageNumber ? true : false}>Last</Button>
+            <Button disabled={pageNumber === lastPageNumber ? true : false}>
+                Next
+                <NextIcon />
+            </Button>
+            <Button disabled={pageNumber === lastPageNumber ? true : false}>
+                Last
+                <NextIcon />
+            </Button>
         </Wrapper>
     );
 };
