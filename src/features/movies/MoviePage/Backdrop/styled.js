@@ -27,6 +27,7 @@ font-size: 64px;
 export const WrapperContent = styled.div`
 max-width: 1368px;
 color: ${({ theme }) => theme.color.white};
+padding-left: 56px;  
 `;
 
 export const RatingScale = styled.p`

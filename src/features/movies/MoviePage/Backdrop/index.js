@@ -1,10 +1,10 @@
 import RatingStar from "../../../../common/Tile/RatingStar";
 import { BackdropPoster, WrapperBackdrop, Title, WrapperContent, RatingScale, Votes } from "./styled";
 
-
 const Backdrop = () => {
 
     return (
+        
     <BackdropPoster>
          <WrapperBackdrop >
              <WrapperContent>
@@ -15,6 +15,7 @@ const Backdrop = () => {
             </WrapperContent>
          </WrapperBackdrop>
   </BackdropPoster>
+
     );
 };
 
