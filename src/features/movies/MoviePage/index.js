@@ -41,7 +41,7 @@ const MoviePage = () => {
                 key={movieId}
                 posterUrl={movieDetails && `${imgURL}${posterSize}${movieDetails.poster_path}`}
                 title={movieDetails && movieDetails.title}
-                subtitle={movieDetails && new Date(Date.parse(movieDetails.release_date)).getFullYear()}
+                // subtitle={movieDetails && new Date(Date.parse(movieDetails.release_date)).getFullYear()}
                 countries={movieDetails && movieDetails.production_countries}
                 releaseDate={movieDetails && movieDetails.release_date}
                 genreIds={movieDetails && movieDetails.genre_ids}
