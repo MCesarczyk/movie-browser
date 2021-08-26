@@ -13,10 +13,10 @@ import { selectImagesBaseURL, selectPosterSizes, selectPosterSize, setPosterSize
 
 const MoviesPage = () => {
     const dispatch = useDispatch();
+    const movieList = useSelector(selectMovieList);
+    const moviesState = useSelector(selectMoviesState);
     const imgURL = useSelector(selectImagesBaseURL);
     const posterSizes = useSelector(selectPosterSizes);
-    const moviesState = useSelector(selectMoviesState);
-    const movieList = useSelector(selectMovieList);
     const posterSize = useSelector(selectPosterSize);
     const moviesDetails = useSelector(selectMoviesDetails);
 
