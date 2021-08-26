@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const StyledTile = styled.div`
@@ -12,6 +13,19 @@ export const StyledTile = styled.div`
 export const Image = styled.img`
     width: 312px;
     height: 464px;
+`;
+
+export const ActiveTitle = styled(Link)`
+    text-decoration: none;
+    color: currentColor;
+
+    &:hover {
+        color: darkred;
+    }
+    
+    &:active {
+        color: crimson;
+    }
 `;
 
 export const Title = styled.h2`

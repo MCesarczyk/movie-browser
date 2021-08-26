@@ -17,9 +17,11 @@ import {
     RatingScale,
     Votes,
     Description,
+    ActiveTitle,
 } from "./styled";
 
 const Tile = ({
+    key,
     posterUrl,
     title,
     subtitle,
@@ -36,12 +38,14 @@ const Tile = ({
         <StyledTile>
             <Image src={posterUrl} alt="movie poster" />
             <TileContent>
-                <Title>{title}</Title>
+                <ActiveTitle to={`/movies/${key}`} >
+                    <Title>{title}</Title>
+                </ActiveTitle>
                 <SubTitle>{subtitle}</SubTitle>
                 <Details>
                     <DetailTitle>Production: </DetailTitle>
                     <DetailContent>
-                        {countries && countries.map(({name}) => `${name}, `)}
+                        {countries && countries.map(({ name }) => `${name}, `)}
                     </DetailContent>
                 </Details>
                 <Details>
