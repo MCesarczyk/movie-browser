@@ -7,7 +7,7 @@ import { useGetConfig } from "../../../useGetConfig";
 import { useGetPopularMovies } from "../useGetPopularMovies";
 import { useGetMovieGenres } from "../useGetMovieGenres";
 import { useGetMoviesDetails } from "../useDispatchMovieDetails";
-import { useSetStatus } from "../../../useSetStatus";
+import { useSetState } from "../../../useSetState";
 import { selectMovieList, selectMoviesDetails, selectMoviesState } from "../moviesSlice";
 import { selectImagesBaseURL, selectPosterSizes, selectPosterSize, setPosterSize } from "../../../configSlice";
 
@@ -24,7 +24,7 @@ const MoviesPage = () => {
     useGetMovieGenres();
     useGetPopularMovies();
     useGetMoviesDetails(movieList);
-    useSetStatus();
+    useSetState();
 
     const onPageResize = () => {
         const maxwidth = window.innerWidth;
@@ -51,6 +51,7 @@ const MoviesPage = () => {
                 ) : (
                     movieList.map((movie, index) => (
                         <Tile
+                            movieId={movieList && movieList[index].id}
                             key={movieList && movieList[index].id}
                             posterUrl={movieList && `${imgURL}${posterSize}${movieList[index].poster_path}`}
                             title={movieList && movieList[index].title}

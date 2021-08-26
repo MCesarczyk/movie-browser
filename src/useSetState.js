@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setStatus } from "./features/movies/moviesSlice";
+import { setState } from "./features/movies/moviesSlice";
 
-export const useSetStatus = () => {
+export const useSetState = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
         setTimeout(() => {
-            dispatch(setStatus("success"))
+            dispatch(setState("success"))
         }, 2_000);
 
         // eslint-disable-next-line react-hooks/exhaustive-deps

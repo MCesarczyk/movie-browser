@@ -28,7 +28,7 @@ const moviesSlice = createSlice({
         setPage: (state, { payload: page }) => {
             state.page = page;
         },
-        setStatus: (state, { payload: stateName }) => {
+        setState: (state, { payload: stateName }) => {
             state.state = stateName;
         },
     },
@@ -40,14 +40,14 @@ export const {
     setGenres,
     setAppendMovieDetails,
     setPage,
-    setStatus,
+    setState,
 } = moviesSlice.actions;
 
 export const selectMovieList = state => state.movies.movies;
 export const selectGenres = state => state.movies.genres.genres;
 export const selectMoviesDetails = state => state.movies.details;
 export const selectMovieDetails = state => state.movies.movie;
-export const selectMoviesState = state => state.movies.state;
 export const selectPage = state => state.movies.page;
+export const selectMoviesState = state => state.movies.state;
 
 export default moviesSlice.reducer;
