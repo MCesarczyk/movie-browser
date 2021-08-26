@@ -21,7 +21,7 @@ import {
 } from "./styled";
 
 const Tile = ({
-    key,
+    movieId,
     posterUrl,
     title,
     subtitle,
@@ -38,7 +38,7 @@ const Tile = ({
         <StyledTile>
             <Image src={posterUrl} alt="movie poster" />
             <TileContent>
-                <ActiveTitle to={`/movies/${key}`} >
+                <ActiveTitle to={`/movies/${movieId}`} >
                     <Title>{title}</Title>
                 </ActiveTitle>
                 <SubTitle>{subtitle}</SubTitle>

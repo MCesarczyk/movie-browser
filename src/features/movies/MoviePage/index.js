@@ -5,17 +5,19 @@ import { selectImagesBaseURL, selectPosterSize, selectPosterSizes, setPosterSize
 import { selectMovieDetails } from "../moviesSlice";
 import { useGetConfig } from "../../../useGetConfig";
 import { useGetMovieDetails } from "../useGetMovieDetails";
+import { useParams } from "react-router-dom";
 
 const MoviePage = () => {
+    const { id } = useParams();
     const dispatch = useDispatch();
-    const id = 436969;
+    const movieId = id;
     const movieDetails = useSelector(selectMovieDetails);
     const imgURL = useSelector(selectImagesBaseURL);
     const posterSizes = useSelector(selectPosterSizes);
     const posterSize = useSelector(selectPosterSize);
 
     useGetConfig();
-    useGetMovieDetails(id);
+    useGetMovieDetails(movieId);
 
     const onPageResize = () => {
         const maxwidth = window.innerWidth;
@@ -36,7 +38,7 @@ const MoviePage = () => {
         <>
             <div>Backdrop</div>
             <Tile
-                key={movieDetails && movieDetails.id}
+                key={movieId}
                 posterUrl={movieDetails && `${imgURL}${posterSize}${movieDetails.poster_path}`}
                 title={movieDetails && movieDetails.title}
                 subtitle={movieDetails && new Date(Date.parse(movieDetails.release_date)).getFullYear()}
