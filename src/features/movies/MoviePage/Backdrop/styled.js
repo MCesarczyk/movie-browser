@@ -5,7 +5,8 @@ export const BackdropPoster = styled.div`
 max-width: 1920px;
 max-height: 770px;
 background-image: url("${backdrop}");
-background-repeat: no-repeat;
+background-repeat: no-repeat; 
+background-position: center;
 
 @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
 `;
@@ -15,4 +16,5 @@ background: linear-gradient(270deg, #000000 14.11%, rgba(0, 0, 0, 0.873268) 15.0
 max-width: 1920px;
 height: 770px;
 background-repeat: no-repeat;
+
 `;
