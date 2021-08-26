@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
-import { ReactComponent as Next } from "./images/next.svg";
+import { ReactComponent as Previous } from "./images/prev.svg";
 
-export const Icon = styled(Next)`
-    margin-left: 8px;
+export const Icon = styled(Previous)`
+    margin-right: 8px;
     color: ${({ theme }) => theme.color.scienceBlue};
 
     ${({ disabled }) => disabled && css`

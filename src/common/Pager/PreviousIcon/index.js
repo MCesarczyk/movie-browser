@@ -1,7 +1,7 @@
 import { Icon } from "./styled";
 
-const NextIcon = ({ disabled }) => (
+const PreviousIcon = ({ disabled }) => (
     <Icon disabled={disabled} />
 );
 
-export default NextIcon;
+export default PreviousIcon;
