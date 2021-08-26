@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { selectGenres } from "../../features/movies/moviesSlice";
+import { Container } from "../Container";
 import RatingStar from "./RatingStar";
 import {
     StyledTile,
@@ -35,6 +36,7 @@ const Tile = ({
     const genres = useSelector(selectGenres);
 
     return (
+        <Container>
         <StyledTile>
             <Image src={posterUrl} alt="movie poster" />
             <TileContent>
@@ -72,6 +74,7 @@ const Tile = ({
                 </Description>
             </TileContent>
         </StyledTile>
+        </Container>
     );
 };
 

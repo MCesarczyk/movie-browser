@@ -54,3 +54,5 @@ border-radius: 5px;
 @media(max-width: ${({theme}) => theme.breakpoint.mobile}px) {
   font-size: 12px;
 `;
+
+

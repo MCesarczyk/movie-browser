@@ -11,6 +11,7 @@ import { useGetMoviesDetails } from "../useDispatchMovieDetails";
 import { useSetState } from "../../../useSetState";
 import { selectMovieList, selectMoviesDetails, selectMoviesState } from "../moviesSlice";
 import { selectImagesBaseURL, selectPosterSizes, selectPosterSize, setPosterSize } from "../../../configSlice";
+import { Container } from "../../../common/Container";
 
 const MoviesPage = () => {
     const dispatch = useDispatch();
@@ -43,13 +44,14 @@ const MoviesPage = () => {
     window.addEventListener("resize", onPageResize);
 
     return (
-        <>
-            <MoviesList title="Movies">
-                {moviesState === "loading" ? (
-                    <LoadingPage />
-                ) : (
-                    moviesState === "Error" ? (
-                        <ErrorPage />
+    <>
+      <Container>
+        <MoviesList title="Movies" >
+            {moviesState === "loading" ? (
+                <LoadingPage />
+            ) : (
+                moviesState === "Error" ? (
+                    <ErrorPage />
                     ) : (
                         movieList.map((movie, index) => (
                         <Tile
@@ -66,10 +68,11 @@ const MoviesPage = () => {
                             overview={movieList && movieList[index].overview}
                         />
                     ))))}
-            </MoviesList>
-            <Pager />
-        </>
-    )
+        </MoviesList>
+        <Pager />
+      </Container>
+    </>
+  )
 };
 
 export default MoviesPage;

@@ -1,5 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import Tile from "../../../common/Tile"
+import Wrapper from "../../../common/Wrapper";
+import Backdrop from "./Backdrop";
 import { SectionContainer, SectionTitle } from "./styled";
 import { selectImagesBaseURL, selectPosterSize, selectPosterSizes, setPosterSize } from "../../../configSlice";
 import { selectMovieDetails } from "../moviesSlice";
@@ -35,8 +37,10 @@ const MoviePage = () => {
     window.addEventListener("resize", onPageResize);
 
     return (
-        <>
-            <div>Backdrop</div>
+      <>
+        <Container>
+          <Backdrop />
+            <Wrapper>
             <Tile
                 key={movieId}
                 posterUrl={movieDetails && `${imgURL}${posterSize}${movieDetails.poster_path}`}
@@ -60,7 +64,9 @@ const MoviePage = () => {
                     />
                 </SectionContainer>
             </section>
-        </>
+          </Wrapper>
+        </Container>
+      </>
     );
 };
 

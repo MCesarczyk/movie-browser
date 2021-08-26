@@ -24,6 +24,7 @@ align-items: center;
 justify-content: center;
 flex-basis: 50%;
 flex-wrap: nowrap;
+max-width: 1368px;
 @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
     flex-basis: 100%;
 `;

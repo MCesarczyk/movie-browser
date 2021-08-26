@@ -39,12 +39,15 @@ export const HeaderWrapper = styled.div`
     align-items: center;
     justify-content: space-between;
     width: 90%;
+    
 `;
 
 export const NavigationWrapper = styled.nav`
     display: flex;
     align-items: center;
     justify-content: space-around;
+    max-width: 1368px;
+    margin: 0 auto;
 `;
 
 export const NavigationContainer = styled.div`
