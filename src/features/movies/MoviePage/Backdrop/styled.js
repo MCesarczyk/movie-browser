@@ -56,6 +56,7 @@ export const WrapperBackdrop = styled.div`
 export const Title = styled.h1`
     color: ${({ theme }) => theme.color.white};
     font-size: 64px;
+    margin-bottom: 24px;
 `;
 
 export const WrapperContent = styled.div`
@@ -63,6 +64,8 @@ export const WrapperContent = styled.div`
     color: ${({ theme }) => theme.color.white};
     margin-left: 276px;  
     margin-bottom: 56px;
+   
+    
     `;
 
 export const RatingScale = styled.p`
