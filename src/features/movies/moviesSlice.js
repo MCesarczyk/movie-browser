@@ -1,25 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-    movies: [],
-    genres: [],
-    state: "idle"
-};
-
 const moviesSlice = createSlice({
     name: 'movies',
-    initialState,
+    initialState: {
+        movies: [],
+        genres: [],
+        state: "idle"
+    },
     reducers: {
         applicationStart: (state) => {
             state.state = "loading";
         },
+        fetchPopularMovies: () => { },
         setMovies: (state, { payload: movies }) => {
             state.movies = movies;
         },
         setGenres: (state, { payload: genres }) => {
             state.genres = genres;
         },
-        setMoviesState: (state, { payload: stateName }) => {
+        setState: (state, { payload: stateName }) => {
             state.state = stateName;
         },
     },
@@ -27,9 +26,10 @@ const moviesSlice = createSlice({
 
 export const {
     applicationStart,
+    fetchPopularMovies,
     setMovies,
     setGenres,
-    setMoviesState,
+    setState,
 } = moviesSlice.actions;
 
 export const selectMovies = state => state.movies;
