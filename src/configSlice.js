@@ -14,6 +14,7 @@ const initialState = {
         },
     },
     posterSize: "w500",
+    backdropSize: "w1280",
 };
 
 const configSlice = createSlice({
@@ -26,12 +27,16 @@ const configSlice = createSlice({
         setPosterSize: (state, { payload: newSize }) => {
             state.posterSize = newSize;
         },
+        setBackdropSize: (state, { payload: newSize }) => {
+            state.backdropSize = newSize;
+        },
     },
 });
 
 export const {
     setConfig,
     setPosterSize,
+    setBackdropSize,
 } = configSlice.actions;
 
 export const selectConfig = state => state.config;
@@ -40,5 +45,6 @@ export const selectImagesBaseURL = state => state.config.config.images.secure_ba
 export const selectPosterSizes = state => state.config.config.images.poster_sizes;
 export const selectBackdropSizes = state => state.config.config.images.backdrop_sizes;
 export const selectPosterSize = state => state.config.posterSize;
+export const selectBackdropSize = state => state.config.backdropSize;
 
 export default configSlice.reducer;
