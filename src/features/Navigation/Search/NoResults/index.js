@@ -2,8 +2,8 @@
 
 export const NoResults = () => {
     return (
-<Conent>
+<Content>
     Sorry, there are no results for "Muan"
-</Conent>
+</Content>
     );
 };
