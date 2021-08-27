@@ -39,6 +39,7 @@ export const HeaderWrapper = styled.div`
     align-items: center;
     justify-content: space-between;
     width: 90%;
+    flex-wrap: wrap; 
     
 `;
 
@@ -48,6 +49,7 @@ export const NavigationWrapper = styled.nav`
     justify-content: space-around;
     max-width: 1368px;
     margin: 0 auto;
+    flex-wrap: wrap;
 `;
 
 export const NavigationContainer = styled.div`
