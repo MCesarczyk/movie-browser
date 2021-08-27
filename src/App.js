@@ -3,7 +3,7 @@ import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
 import { Container } from './common/Container';
 import Navigation from './features/Navigation';
 import MoviesPage from './features/movies/MoviesPage';
-import PeopleList from './features/people/PeoplePage';
+// import PeopleList from './features/people/PeoplePage';
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
             <MoviesPage />
           </Route>
           <Route path="/people">
-            <PeopleList />
+            {/* <PeopleList /> */}
           </Route>
           <Route path="/">
             <Redirect to="/movies" />
