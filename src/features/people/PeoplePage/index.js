@@ -1,4 +1,3 @@
-import Backdrop from "../../movies/MoviePage/Backdrop";
 
 const PeopleList = () => {
 
