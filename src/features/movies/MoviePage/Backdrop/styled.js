@@ -62,22 +62,26 @@ export const WrapperContent = styled.div`
     max-width: 1368px;
     color: ${({ theme }) => theme.color.white};
     margin-left: 276px;  
-    
+    ;
+
+
+   
+  
 `;
 
 export const RatingScale = styled.p`
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 1.2;
-    margin-left: 8px;
-    align-self: flex-end;
+    font-weight: 500;
     font-size: 30px;
+    line-height: 1.3;
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
 `;
 
 export const Votes = styled.p`
     font-weight: 500;
-    font-size: 30px;
-    line-height: 1.3;
+    font-size: 16px;
+    line-height: 1.2;
     margin-left: 12px;
     display: flex;
     align-items: center;
