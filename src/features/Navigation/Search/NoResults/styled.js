@@ -9,4 +9,6 @@ line-height: 1.2;
 export const NoResultsLogo = styled.img`
 margin: 0 auto;
 display: block;
+Width: 668px;
+Height: 508px;
 `;
