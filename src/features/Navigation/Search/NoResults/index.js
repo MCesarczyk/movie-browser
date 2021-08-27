@@ -1,3 +1,4 @@
+import { Content } from "./styled";
 
 
 export const NoResults = () => {
