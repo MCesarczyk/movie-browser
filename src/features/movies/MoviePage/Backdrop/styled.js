@@ -83,5 +83,7 @@ export const Votes = styled.p`
 `;
 
 export const WrapperRating = styled.div`
+display: flex;
+flex-direction: row;
   `;
 
