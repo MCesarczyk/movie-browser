@@ -3,7 +3,7 @@ import { BackdropPoster, WrapperBackdrop, Title, WrapperContent, RatingScale, Vo
 
 const Backdrop = ({ backdropUrl, title, rating, votes }) => {
     return (
-        <BackdropPoster >
+        <BackdropPoster style={{ backgroundImage: `url("${backdropUrl}")` }}>
             <WrapperBackdrop >
                 <WrapperContent>
                     <Title>{title}</Title>

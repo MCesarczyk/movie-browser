@@ -49,7 +49,6 @@ const MoviePage = () => {
     };
 
     window.addEventListener("resize", onPageResize);
-    console.log(`${imgURL}${backdropSize}${movieDetails.backdrop_path}`);
 
     return (
         <>

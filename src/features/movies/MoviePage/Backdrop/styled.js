@@ -1,10 +1,8 @@
 import styled from "styled-components";
-import backdrop from "./backdrop.png";
 
 export const BackdropPoster = styled.div`
     max-width: 1920px;
     max-height: 770px;
-    background-image: url("${backdrop}");
     background-repeat: no-repeat; 
     background-position: center;
     margin: 0 auto;
