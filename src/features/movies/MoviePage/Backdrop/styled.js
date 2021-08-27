@@ -71,6 +71,7 @@ export const RatingScale = styled.p`
     line-height: 1.2;
     margin-left: 8px;
     align-self: flex-end;
+    font-size: 30px;
 `;
 
 export const Votes = styled.p`
@@ -85,5 +86,6 @@ export const Votes = styled.p`
 export const WrapperRating = styled.div`
 display: flex;
 flex-direction: row;
+align-items: center;
   `;
 

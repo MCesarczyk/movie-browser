@@ -10,7 +10,7 @@ const Backdrop = ({ backdropUrl, title, rating, votes }) => {
                         <Title>{title}</Title>
                             <WrapperRating>
                                 <RatingStar />
-                                    <RatingScale> {rating}</RatingScale>
+                                    <RatingScale>{rating}</RatingScale>&nbsp;/&nbsp;10
                             </WrapperRating>
                                 <Votes>{votes} votes</Votes>
                     </WrapperContent>
