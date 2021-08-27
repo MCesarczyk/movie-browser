@@ -25,8 +25,6 @@ const MoviePage = () => {
     const imgURL = useSelector(selectImagesBaseURL);
     const posterSizes = useSelector(selectPosterSizes);
     const posterSize = useSelector(selectPosterSize);
-    const backdropSizes = useSelector(selectBackdropSizes);
-    const backdropSize = useSelector(selectBackdropSize);
 
     useGetConfig();
     useGetMovieDetails(movieId);
@@ -35,16 +33,12 @@ const MoviePage = () => {
         const maxwidth = window.innerWidth;
         if (maxwidth > "1280") {
             dispatch(setPosterSize(posterSizes[4]))
-            dispatch(setBackdropSize(backdropSizes[4]))
         } else if (maxwidth > "768") {
             dispatch(setPosterSize(posterSizes[3]))
-            dispatch(setBackdropSize(backdropSizes[3]))
         } else if (maxwidth > "480") {
             dispatch(setPosterSize(posterSizes[2]))
-            dispatch(setBackdropSize(backdropSizes[2]))
         } else {
             dispatch(setPosterSize(posterSizes[1]))
-            dispatch(setBackdropSize(backdropSizes[1]))
         };
     };
 
@@ -53,7 +47,7 @@ const MoviePage = () => {
     return (
         <>
             <Backdrop
-                backdropUrl={`${imgURL}${backdropSize}${movieDetails.backdrop_path}`}
+                backdropUrl={`${imgURL}original${movieDetails.backdrop_path}`}
                 title={movieDetails && movieDetails.original_title}
                 rating={movieDetails && movieDetails.vote_average}
                 votes={movieDetails && movieDetails.vote_count}

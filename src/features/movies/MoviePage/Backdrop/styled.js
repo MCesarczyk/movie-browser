@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+export const BackdropContainer = styled.div`
+    background-color: ${({theme}) => theme.color.black};
+    width: 100%;
+`;
+
 export const BackdropPoster = styled.div`
     max-width: 1920px;
     max-height: 770px;
