@@ -7,7 +7,13 @@ export const List = styled.ul`
     margin: 0;
     align-items: center;
     flex-basis: 50%;
-`;
+    @media(max-width: ${({theme}) => theme.breakpoint.mobileMin}px) {
+        flex-basis: 100%;
+      }
+      @media(max-width: ${({theme}) => theme.breakpoint.mobile}px) {
+        flex-basis: 100%;
+      }
+      `;
 
 const activeClassName = "active";
 
@@ -26,7 +32,14 @@ export const StyledNavLink = styled(NavLink).attrs(() => ({
   
   &:hover {
   }
+  @media(max-width: ${({theme}) => theme.breakpoint.mobileMin}px) {
+    padding: 3px;
+  }
+  @media(max-width: ${({theme}) => theme.breakpoint.mobile}px) {
+    padding: 5px;
+  }
 `;
+
 
 export const Item = styled.li`
     margin: 20px;
