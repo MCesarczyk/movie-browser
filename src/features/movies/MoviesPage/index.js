@@ -7,6 +7,7 @@ const MoviesPage = () => {
 
     useEffect(() => {
         dispatch(applicationStart());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
