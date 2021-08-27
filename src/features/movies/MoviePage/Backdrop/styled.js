@@ -62,12 +62,8 @@ export const WrapperContent = styled.div`
     max-width: 1368px;
     color: ${({ theme }) => theme.color.white};
     margin-left: 276px;  
-    ;
-
-
-   
-  
-`;
+    margin-bottom: 56px;
+    `;
 
 export const RatingScale = styled.p`
     font-weight: 500;
