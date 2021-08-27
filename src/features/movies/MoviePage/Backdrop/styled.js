@@ -5,6 +5,7 @@ export const BackdropPoster = styled.div`
     max-height: 770px;
     background-repeat: no-repeat; 
     background-position: center;
+    background-size: cover;
     margin: 0 auto;
 `;
 
