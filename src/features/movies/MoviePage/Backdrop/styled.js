@@ -82,3 +82,6 @@ export const Votes = styled.p`
     align-items: center;
 `;
 
+export const WrapperRating = styled.div`
+  `;
+
