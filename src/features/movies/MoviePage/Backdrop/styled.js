@@ -61,7 +61,8 @@ export const Title = styled.h1`
 export const WrapperContent = styled.div`
     max-width: 1368px;
     color: ${({ theme }) => theme.color.white};
-    padding-left: 56px;  
+    margin-left: 276px;  
+    
 `;
 
 export const RatingScale = styled.p`
