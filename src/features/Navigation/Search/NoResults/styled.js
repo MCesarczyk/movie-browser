@@ -20,4 +20,11 @@ display: block;
 Width: 668px;
 Height: 508px;
 margin-top: 50px;
-`;
+@media(max-width: ${({theme}) => theme.breakpoint.mobileMin}px) {
+    Width: 150px;
+    Height: 105px;
+  }
+  @media(max-width: ${({theme}) => theme.breakpoint.mobile}px) {
+    Width: 270px;
+    Height: 205px;
+  `;
