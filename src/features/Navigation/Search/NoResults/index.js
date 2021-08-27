@@ -7,7 +7,7 @@ export const NoResults = () => {
     <Content>
         Sorry, there are no results for "Muan"
     </Content>
-    <NoResultsLogo src={noResults} alt="" />
+        <NoResultsLogo src={noResults} alt="" />
 </>
     );
 };

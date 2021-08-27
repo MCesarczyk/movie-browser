@@ -6,4 +6,7 @@ font-size: 36px;
 line-height: 1.2;
 `;
 
-export const NoResultsLogo = styled.img``;
+export const NoResultsLogo = styled.img`
+margin: 0 auto;
+display: block;
+`;
