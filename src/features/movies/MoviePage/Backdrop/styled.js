@@ -89,3 +89,8 @@ flex-direction: row;
 align-items: center;
   `;
 
+export const RatingStar = styled.img`
+width: 40px;
+height: 38px;
+`;
+
