@@ -1,9 +1,14 @@
+import { useSelector, useDispatch } from "react-redux";
+import { setPage } from "../../features/movies/moviesSlice";
+import { selectPage } from "../../features/movies/moviesSlice"
 import { Wrapper, Button, PagerText, PageNumberText } from "./styled";
 import NextIcon from "./NextIcon";
 import PreviousIcon from "./PreviousIcon";
 
 const Pager = () => {
-    const pageNumber = 1;
+
+    const dispatch = useDispatch();
+    const pageNumber = useSelector(selectPage);
     const lastPageNumber = 500;
 
     const checkIfPreviousIsDisabled = () => pageNumber === 1 ? true : false;
