@@ -14,9 +14,13 @@ export const Title = styled.h1`
 
 export const Icon = styled.img`
     width: 34px;
+    @media(max-width: ${({theme}) => theme.breakpoint.mobileMin}px) {
+        width: 14px;
+      }
     @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
         width: 20px;
     }
+     
 `;
 
 
@@ -24,10 +28,12 @@ export const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-basis: 50%;
+
     flex-wrap: nowrap;
     width: 100%;
-
+    @media(max-width: ${({theme}) => theme.breakpoint.mobileMin}px) {
+        flex-basis: 100%;
+      }
     @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
         flex-basis: 100%;
     }

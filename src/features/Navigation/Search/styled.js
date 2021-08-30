@@ -13,14 +13,35 @@ max-width: 432px;
 border: 1px solid;
 margin-top: 10px;
 margin-bottom: 10px;
+
+
 `;
 
 export const SearchInput = styled.input` 
-width: 90vw;
+max-width: 90vw;
+width: 432px;
 border-radius: 33px;
 border: none;
+padding: 0;
+padding-left: 64px;
+height: 48px;
 &::placeholder {
     font-size: 16px;
     color: ${({ theme }) => theme.color.darkGrey};
 }
+@media(max-width: ${({theme}) => theme.breakpoint.mobile}px) {
+    font-size: 14px;
+
+    width: 432px;
+    height: 44px;
+  }
+  @media(max-width: ${({theme}) => theme.breakpoint.mobileMin}px) {
+    font-size: 12px;
+
+    width: 288px;
+    height: 44px;
+ 
+ 
+  }
 `;
+

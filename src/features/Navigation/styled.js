@@ -6,13 +6,6 @@ export const List = styled.ul`
     list-style: none;
     margin: 0;
     align-items: center;
-    flex-basis: 50%;
-    @media(max-width: ${({theme}) => theme.breakpoint.mobileMin}px) {
-        flex-basis: 100%;
-      }
-      @media(max-width: ${({theme}) => theme.breakpoint.mobile}px) {
-        flex-basis: 100%;
-      }
       `;
 
 const activeClassName = "active";
@@ -33,7 +26,7 @@ export const StyledNavLink = styled(NavLink).attrs(() => ({
   &:hover {
   }
   @media(max-width: ${({theme}) => theme.breakpoint.mobileMin}px) {
-    padding: 3px;
+    padding: 2px;
   }
   @media(max-width: ${({theme}) => theme.breakpoint.mobile}px) {
     padding: 5px;
@@ -45,15 +38,21 @@ export const Item = styled.li`
     margin: 20px;
     text-transform: uppercase;
     text-decoration: none;
+    
+    @media(max-width: ${({theme}) => theme.breakpoint.mobile}px) {
+      margin: 2px;
+    }
+    @media(max-width: ${({theme}) => theme.breakpoint.mobileMin}px) {
+      margin: 5px;
+    }
 `;
 
 export const HeaderWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 90%;
+    width: 100%;
     flex-wrap: wrap; 
-    
 `;
 
 export const NavigationWrapper = styled.nav`
@@ -63,6 +62,8 @@ export const NavigationWrapper = styled.nav`
     max-width: 1368px;
     margin: 0 auto;
     flex-wrap: wrap;
+    
+    }
 `;
 
 export const NavigationContainer = styled.div`
@@ -70,4 +71,15 @@ export const NavigationContainer = styled.div`
     background: ${({ theme }) => theme.color.black};
     min-height: 94px;
     padding: 15px;
+    
+ 
+  
+    @media(max-width: ${({theme}) => theme.breakpoint.mobile}px) {
+      padding: 5px;
+   
+    }
+    @media(max-width: ${({theme}) => theme.breakpoint.mobileMin}px) {
+      padding: 3px;
+     
+    }
 `;
