@@ -15,7 +15,7 @@ const Pager = () => {
     const page = (params.page ? params.page : 1);
 
     const checkIfPreviousIsDisabled = () => page === 1 ? true : false;
-    const checkIfNextIsDisabled = () => page === totalPages ? true : false;
+    const checkIfNextIsDisabled = () => +page === +totalPages ? true : false;
 
     // const onClickNext = () => dispatch(setPage(page + 1));
     // const onClickLast = () => dispatch(setPage(totalPages));
@@ -28,24 +28,20 @@ const Pager = () => {
             </Button>
             <Button disabled={checkIfPreviousIsDisabled()}>
                 <PreviousIcon disabled={checkIfPreviousIsDisabled()} />
-                Previous</Button>
+                Previous</Button> */}
             <PagerText>Page</PagerText>
             <PageNumberText>{page}</PageNumberText>
             <PagerText>of</PagerText>
             <PageNumberText>{totalPages}</PageNumberText>
-            <Button onClick={onClickNext} disabled={checkIfNextIsDisabled()}>
-                Next
-                <NextIcon disabled={checkIfNextIsDisabled()} />
-            </Button> */}
-            <StyledLink to={`/movies/${+page + 1}`}>
+
+            <StyledLink to={`/movies/${+page === +totalPages ? +page : +page + 1}`} disabled={checkIfNextIsDisabled()}>
                 Next
                 <NextIcon disabled={checkIfNextIsDisabled()} />
             </StyledLink>
-
-            {/* <Button onClick={onClickLast} disabled={checkIfNextIsDisabled()}>
+            <StyledLink to={`/movies/${totalPages}`} disabled={checkIfNextIsDisabled()}>
                 Last
                 <NextIcon disabled={checkIfNextIsDisabled()} />
-            </Button> */}
+            </StyledLink>
         </Wrapper>
     );
 };
