@@ -48,9 +48,10 @@ export const Title = styled.h2`
 export const SubTitle = styled.span`
     font-weight: 400; 
     text-align: ${({ minimal }) => minimal ? "center" : "left"};
-    font-size: ${({ oversize }) => oversize ? "36px" : "18px"};
+    font-size: ${({ oversize }) => oversize ? "36px" : "16px"};
+    font-size: ${({ minimal }) => minimal ? "18px" : "16px"};
     line-height: 1.2;
-    margin-bottom: ${({ oversize }) => oversize ? "24px" : "8px"};
+    margin-bottom: ${({ oversize }) => oversize ? "24px" : "12px"};
 `;
 
 export const Details = styled.div`
