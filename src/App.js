@@ -12,8 +12,11 @@ function App() {
         peoplePath={"/people"}
       />
       <Switch>
-        <Route path="/movies/:id">
+        <Route path="/movie/:id">
           <MoviePage />
+        </Route>
+        <Route path="/movies/:page">
+          <MoviesPage />
         </Route>
         <Route path="/movies">
           <MoviesPage />
