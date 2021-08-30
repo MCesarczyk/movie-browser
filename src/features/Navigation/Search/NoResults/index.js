@@ -6,7 +6,7 @@ export const NoResults = () => {
     return (
     <Wrapper>
         <Content>
-            Sorry, there are no results for "Muan"
+            Sorry, the page not found...
         </Content>
             <NoResultsLogo src={noResults} alt="" />
     </Wrapper>
