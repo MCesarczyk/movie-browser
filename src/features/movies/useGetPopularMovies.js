@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { selectPage, setMovies } from "./moviesSlice";
+import { selectPage, setMovies, setTotalPages } from "./moviesSlice";
 
 export const useGetPopularMovies = () => {
     const page = useSelector(selectPage);
@@ -11,8 +11,9 @@ export const useGetPopularMovies = () => {
     useEffect(() => {
         fetch(apiURL)
             .then(response => response.json())
-            .then(movies => dispatch(setMovies(movies.results)))
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+            .then(movies => {
+                dispatch(setMovies(movies.results))
+                dispatch(setTotalPages(movies.total_pages))
+            });
     }, []);
 };
