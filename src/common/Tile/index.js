@@ -22,6 +22,7 @@ import {
 
 const Tile = ({
     oversize,
+    minimal,
     imageWidth,
     titleUrl,
     imageUrl,
@@ -42,9 +43,9 @@ const Tile = ({
             <Image src={imageUrl} width={imageWidth} alt="image" />
             <TileContent>
                 <ActiveTitle to={titleUrl} >
-                    <Title oversize={oversize} >{title}</Title>
+                    <Title oversize={oversize} minimal={minimal} >{title}</Title>
                 </ActiveTitle>
-                <SubTitle oversize={oversize} >{subtitle}</SubTitle>
+                <SubTitle oversize={oversize} minimal={minimal} >{subtitle}</SubTitle>
                 {countries &&
                     <Details>
                         <DetailTitle>Production: </DetailTitle>

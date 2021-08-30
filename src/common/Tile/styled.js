@@ -21,7 +21,6 @@ export const TileContent = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 `;
 
 export const ActiveTitle = styled(Link)`
@@ -39,6 +38,7 @@ export const ActiveTitle = styled(Link)`
 
 export const Title = styled.h2`
     font-weight: 600;
+    text-align: ${({ minimal }) => minimal ? "center" : "left"};
     font-size: ${({ oversize }) => oversize ? "36px" : "22px"};
     line-height: 1.2;
     margin-top: 8px;
@@ -47,13 +47,13 @@ export const Title = styled.h2`
 
 export const SubTitle = styled.span`
     font-weight: 400; 
+    text-align: ${({ minimal }) => minimal ? "center" : "left"};
     font-size: ${({ oversize }) => oversize ? "36px" : "18px"};
     line-height: 1.2;
     margin-bottom: ${({ oversize }) => oversize ? "24px" : "8px"};
 `;
 
 export const Details = styled.div`
-    display: flex;
     margin-bottom: 8px;
 `;
 
@@ -73,7 +73,7 @@ export const Tags = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: ${({ oversize }) => oversize ? "16px" : "8px"};
-    margin-bottom:10px;
+    margin-bottom: 10px;
 `;
 
 export const Tag = styled.span`
