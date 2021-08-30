@@ -42,9 +42,10 @@ export const {
 export const selectConfig = state => state.config;
 export const selectImagesConfig = state => state.config.config.images;
 export const selectImagesBaseURL = state => state.config.config.images.secure_base_url;
-export const selectPosterSizes = state => state.config.config.images.poster_sizes;
 export const selectBackdropSizes = state => state.config.config.images.backdrop_sizes;
-export const selectPosterSize = state => state.config.posterSize;
 export const selectBackdropSize = state => state.config.backdropSize;
+export const selectPosterSizes = state => state.config.config.images.poster_sizes;
+export const selectPosterSize = state => state.config.posterSize;
+export const selectProfileSizes = state => state.config.profile_sizes;
 
 export default configSlice.reducer;

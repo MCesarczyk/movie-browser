@@ -11,6 +11,7 @@ import {
     selectImagesBaseURL,
     selectPosterSize,
     selectPosterSizes,
+    selectProfileSizes,
     setPosterSize
 } from "../../../configSlice";
 import { useGetConfig } from "../../../useGetConfig";
@@ -29,8 +30,9 @@ const MoviePage = () => {
     const movieId = id;
     const movieDetails = useSelector(selectMovieDetails);
     const imgURL = useSelector(selectImagesBaseURL);
-    const posterSizes = useSelector(selectPosterSizes);
     const posterSize = useSelector(selectPosterSize);
+    const posterSizes = useSelector(selectPosterSizes);
+    const profileSizes = useSelector(selectProfileSizes);
     const movieCast = useSelector(selectMovieCast);
     const movieCrew = useSelector(selectMovieCrew);
     const genresList = useSelector(selectGenresList);
@@ -91,7 +93,7 @@ const MoviePage = () => {
                                 minimal
                                 key={movieCast[index].credit_id}
                                 titleUrl={`/people/${movieCast[index].id}`}
-                                imageUrl={`${imgURL}${posterSize}${movieCast[index].profile_path}`}
+                                imageUrl={`${imgURL}${profileSizes[1]}${movieCast[index].profile_path}`}
                                 title={movieCast[index].name}
                                 subtitle={movieCast[index].character}
                             />
@@ -104,7 +106,7 @@ const MoviePage = () => {
                                 minimal
                                 key={movieCrew[index].credit_id}
                                 titleUrl={`/people/${movieCrew[index].id}`}
-                                imageUrl={`${imgURL}${posterSize}${movieCrew[index].profile_path}`}
+                                imageUrl={`${imgURL}${profileSizes[1]}${movieCrew[index].profile_path}`}
                                 title={movieCrew[index].name}
                                 subtitle={movieCrew[index].job}
                             />
