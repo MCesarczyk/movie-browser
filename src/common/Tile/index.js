@@ -45,13 +45,13 @@ const Tile = ({
                     </ActiveTitle>
                     <SubTitle>{subtitle}</SubTitle>
                     <Details>
-                        <DetailTitle>Production: </DetailTitle>
+                        <DetailTitle>{countries && "Production: "}</DetailTitle>
                         <DetailContent>
                             {countries && countries.map(({ name }) => `${name}, `)}
                         </DetailContent>
                     </Details>
                     <Details>
-                        <DetailTitle>Release date: </DetailTitle>
+                        <DetailTitle>{releaseDate && "Release date: "}</DetailTitle>
                         <DetailContent>{releaseDate}</DetailContent>
                     </Details>
                     <Tags>
@@ -64,10 +64,10 @@ const Tile = ({
                         ))}
                     </Tags>
                     <ExtraContent>
-                        <RatingStar />
+                        {rating && <RatingStar />}
                         <Rating>{rating}</Rating>
-                        <RatingScale>/ 10</RatingScale>
-                        <Votes>{votes} votes</Votes>
+                        <RatingScale>{rating && "/ 10"}</RatingScale>
+                        <Votes>{votes}{votes && " votes"}</Votes>
                     </ExtraContent>
                     <Description>
                         {overview}
