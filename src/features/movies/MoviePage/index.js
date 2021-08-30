@@ -5,6 +5,7 @@ import {
     selectMovieDetails,
     selectMovieCast,
     selectMovieCrew,
+    selectGenresList,
 } from "../moviesSlice";
 import {
     selectImagesBaseURL,
@@ -31,6 +32,7 @@ const MoviePage = () => {
     const posterSize = useSelector(selectPosterSize);
     const movieCast = useSelector(selectMovieCast);
     const movieCrew = useSelector(selectMovieCrew);
+    const genresList = useSelector(selectGenresList);
 
     useGetConfig();
     useGetMovieDetails(movieId);
@@ -69,7 +71,7 @@ const MoviePage = () => {
                     subtitle={movieDetails && new Date(Date.parse(movieDetails.release_date)).getFullYear().toString()}
                     countries={movieDetails.production_countries}
                     releaseDate={movieDetails.release_date}
-                    genreIds={movieDetails.genre_ids}
+                    genresList={genresList}
                     rating={movieDetails.vote_average}
                     votes={movieDetails.vote_count}
                     overview={movieDetails.overview}

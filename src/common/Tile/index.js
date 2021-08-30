@@ -30,6 +30,7 @@ const Tile = ({
     countries,
     releaseDate,
     genreIds,
+    genresList,
     rating,
     votes,
     overview
@@ -65,6 +66,15 @@ const Tile = ({
                                 {genres[genres.findIndex(
                                     ({ id }) => id === genreId
                                 )].name}
+                            </Tag>
+                        ))}
+                    </Tags>
+                }
+                {genresList &&
+                    <Tags>
+                        {genresList.map((item, index) => (
+                            <Tag key={genresList[index].id}>
+                                {genresList[index].name}
                             </Tag>
                         ))}
                     </Tags>
