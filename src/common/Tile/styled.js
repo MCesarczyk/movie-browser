@@ -19,6 +19,7 @@ export const Image = styled.img`
 
 export const TileContent = styled.div`
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
 `;
@@ -74,7 +75,7 @@ export const Tags = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: ${({ oversize }) => oversize ? "16px" : "8px"};
-    margin-bottom: 10px;
+    margin-bottom: 16px;
 `;
 
 export const Tag = styled.span`
