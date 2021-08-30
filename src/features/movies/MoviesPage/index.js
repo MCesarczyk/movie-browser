@@ -66,7 +66,7 @@ const MoviesPage = () => {
                                 <Tile
                                     movieId={movieList && movieList[index].id}
                                     key={movieList && movieList[index].id}
-                                    posterUrl={movieList && `${imgURL}${posterSize}${movieList[index].poster_path}`}
+                                    imageUrl={movieList && `${imgURL}${posterSize}${movieList[index].poster_path}`}
                                     title={movieList && movieList[index].title}
                                     subtitle={movieList && new Date(Date.parse(movieList[index].release_date)).getFullYear()}
                                     countries={movieList && moviesDetails[index].production_countries}

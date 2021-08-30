@@ -4,16 +4,16 @@ import styled from "styled-components";
 export const StyledTile = styled.div`
     background-color: ${({ theme }) => theme.color.white};
     box-shadow: 0px 4px 12px rgba(186, 199, 213, 0.5);
-    padding: 40px;
+    padding: ${({ oversize }) => oversize ? "40px" : "16px"};
     display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: auto 1fr;
-    grid-gap: 40px;
+    grid-template-columns: ${({ oversize }) => oversize ? "auto 1fr" : "auto"};
+    grid-gap: ${({ oversize }) => oversize ? "40px" : "8px"};
 `;
 
 export const Image = styled.img`
-    max-width: 312px;
-    max-height: 464px;
+    display: block;
+    width: ${props => props.width ? props.width : "100%"};
+    border-radius: 5px;
 `;
 
 export const ActiveTitle = styled(Link)`
@@ -31,21 +31,23 @@ export const ActiveTitle = styled(Link)`
 
 export const Title = styled.h2`
     font-weight: 600;
-    font-size: 36px;
+    font-size: ${({ oversize }) => oversize ? "36px" : "22px"};
     line-height: 1.2;
     margin-top: 8px;
+    margin-bottom: ${({ oversize }) => oversize ? "24px" : "8px"};
 `;
 
 export const TileContent = styled.div`
+    width: 100%;
     display: flex;
     flex-direction: column;
 `;
 
 export const SubTitle = styled.span`
     font-weight: 400; 
-    font-size: 22px;
+    font-size: ${({ oversize }) => oversize ? "36px" : "18px"};
     line-height: 1.2;
-    margin: 24px 0px;
+    margin-bottom: ${({ oversize }) => oversize ? "24px" : "8px"};
 `;
 
 export const Details = styled.div`

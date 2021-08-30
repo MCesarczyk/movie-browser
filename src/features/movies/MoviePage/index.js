@@ -62,7 +62,9 @@ const MoviePage = () => {
             <Wrapper>
                 <Tile
                     key={movieId}
-                    posterUrl={movieDetails && `${imgURL}${posterSize}${movieDetails.poster_path}`}
+                    oversize
+                    imageWidth="312px"
+                    imageUrl={movieDetails && `${imgURL}${posterSize}${movieDetails.poster_path}`}
                     title={movieDetails.title}
                     subtitle={movieDetails && new Date(Date.parse(movieDetails.release_date)).getFullYear().toString()}
                     countries={movieDetails.production_countries}
@@ -77,8 +79,9 @@ const MoviePage = () => {
                         title="Cast"
                         body={movieCast && movieCast.map((person, index) => (
                             <Tile
-                                key={movieCast[index].id}
-                                posterUrl={`${imgURL}${posterSize}${movieCast[index].profile_path}`}
+                                imageWidth="177px"
+                                key={movieCast[index].credit_id}
+                                imageUrl={`${imgURL}${posterSize}${movieCast[index].profile_path}`}
                                 title={movieCast[index].name}
                                 subtitle={movieCast[index].character}
                             />
@@ -88,8 +91,8 @@ const MoviePage = () => {
                         title="Crew"
                         body={movieCrew && movieCrew.map((person, index) => (
                             <Tile
-                                key={movieCrew[index].id}
-                                posterUrl={`${imgURL}${posterSize}${movieCrew[index].profile_path}`}
+                                key={movieCrew[index].credit_id}
+                                imageUrl={`${imgURL}${posterSize}${movieCrew[index].profile_path}`}
                                 title={movieCrew[index].name}
                                 subtitle={movieCrew[index].job}
                             />
