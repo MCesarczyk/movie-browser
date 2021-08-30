@@ -1,34 +1,30 @@
-import { useSelector, useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
-import { setPage, selectPage, selectTotalPages } from "../../features/movies/moviesSlice";
-import { Wrapper, StyledLink, Button, PagerText, PageNumberText } from "./styled";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { selectTotalPages } from "../../features/movies/moviesSlice";
+import { Wrapper, StyledLink, PagerText, PageNumberText } from "./styled";
 import NextIcon from "./NextIcon";
 import PreviousIcon from "./PreviousIcon";
 
 const Pager = () => {
 
-    const dispatch = useDispatch();
-
-    // const page = useSelector(selectPage);
     const totalPages = useSelector(selectTotalPages);
     const params = useParams();
     const page = (params.page ? params.page : 1);
 
-    const checkIfPreviousIsDisabled = () => page === 1 ? true : false;
+    const checkIfPreviousIsDisabled = () => +page === 1 ? true : false;
     const checkIfNextIsDisabled = () => +page === +totalPages ? true : false;
-
-    // const onClickNext = () => dispatch(setPage(page + 1));
-    // const onClickLast = () => dispatch(setPage(totalPages));
 
     return (
         <Wrapper>
-            {/* <Button disabled={checkIfPreviousIsDisabled()}>
+            <StyledLink to={`/movies/1`} disabled={checkIfPreviousIsDisabled()}>
                 <PreviousIcon disabled={checkIfPreviousIsDisabled()} />
                 First
-            </Button>
-            <Button disabled={checkIfPreviousIsDisabled()}>
+            </StyledLink>
+            <StyledLink to={`/movies/${+page === 1 ? 1 : +page - 1}`} disabled={checkIfPreviousIsDisabled()}>
                 <PreviousIcon disabled={checkIfPreviousIsDisabled()} />
-                Previous</Button> */}
+                Previous
+            </StyledLink>
+
             <PagerText>Page</PagerText>
             <PageNumberText>{page}</PageNumberText>
             <PagerText>of</PagerText>
