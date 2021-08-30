@@ -60,17 +60,17 @@ const MoviesPage = () => {
                         moviesState === "Error" ? (
                             <ErrorPage />
                         ) : (
-                            movieList.map((movie, index) => (
+                            movieList && movieList.map((movie, index) => (
                                 <Tile
-                                    key={movieList && movieList[index].id}
+                                    key={movieList[index].id}
                                     titleUrl={`/movies/${movieList[index].id}`}
                                     imageWidth="292px"
-                                    imageUrl={movieList && `${imgURL}${posterSize}${movieList[index].poster_path}`}
-                                    title={movieList && movieList[index].title}
-                                    subtitle={movieList && new Date(Date.parse(movieList[index].release_date)).getFullYear()}
-                                    genreIds={movieList && movieList[index].genre_ids}
-                                    rating={movieList && movieList[index].vote_average}
-                                    votes={movieList && movieList[index].vote_count}
+                                    imageUrl={`${imgURL}${posterSize}${movieList[index].poster_path}`}
+                                    title={movieList[index].title}
+                                    subtitle={new Date(Date.parse(movieList[index].release_date)).getFullYear()}
+                                    genreIds={movieList[index].genre_ids}
+                                    rating={movieList[index].vote_average}
+                                    votes={movieList[index].vote_count}
                                 />
                             ))))}
                 </MoviesList>

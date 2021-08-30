@@ -13,7 +13,7 @@ export const useGetMoviesDetails = (movieList) => {
     };
 
     const getMoviesDetails = () => {
-        movieList.forEach((element, index) => {
+        movieList && movieList.forEach((element, index) => {
             getMovieDetails(movieList[index].id);
         });
     };
