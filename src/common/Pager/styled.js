@@ -1,8 +1,24 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Wrapper = styled.div`
     width: 640px;
     margin: 40px auto;
+`;
+
+export const StyledLink = styled(Link)`
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    background-color: ${({ theme }) => theme.color.cornflowerBlue};
+    margin: 0px 12px;
+    font-size: 14px;
+    color: ${({ theme }) => theme.color.mineShaft};
+
+    &:disabled {
+        background-color: ${({ theme }) => theme.color.mystic};
+        color: ${({ theme }) => theme.color.woodsmoke};
+    }
 `;
 
 export const Button = styled.button`
