@@ -52,6 +52,7 @@ export const SubTitle = styled.span`
 
 export const Details = styled.div`
     display: flex;
+    margin-bottom: 8px;
 `;
 
 export const DetailTitle = styled.span`
@@ -68,11 +69,15 @@ export const DetailContent = styled.span`
 
 export const Tags = styled.div`
     display: flex;
+    flex-wrap: wrap;
+    gap: ${({ oversize }) => oversize ? "16px" : "8px"};
+    margin-bottom:10px;
 `;
 
 export const Tag = styled.span`
     padding: 8px 16px;
-    margin: 24px 16px 24px 0px;
+    margin-top: ${({ oversize }) => oversize ? "24px" : "0px"};
+    margin-bottom: ${({ oversize }) => oversize ? "24px" : "0px"};
     font-size: 14px;
     border-radius: 5px;
     background-color: ${({ theme }) => theme.color.mystic};
@@ -81,6 +86,7 @@ export const Tag = styled.span`
 
 export const ExtraContent = styled.div`
     display: flex;
+    justify-self: flex-end;
 `;
 
 export const Rating = styled.span`

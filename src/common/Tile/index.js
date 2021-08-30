@@ -42,9 +42,9 @@ const Tile = ({
             <Image src={imageUrl} width={imageWidth} alt="image" />
             <TileContent>
                 <ActiveTitle to={`/movies/${movieId}`} >
-                    <Title>{title}</Title>
+                    <Title oversize={oversize} >{title}</Title>
                 </ActiveTitle>
-                <SubTitle>{subtitle}</SubTitle>
+                <SubTitle oversize={oversize} >{subtitle}</SubTitle>
                 {countries &&
                     <Details>
                         <DetailTitle>Production: </DetailTitle>
@@ -71,9 +71,9 @@ const Tile = ({
                     </Tags>
                 }
                 {genresList &&
-                    <Tags>
+                    <Tags oversize >
                         {genresList.map((item, index) => (
-                            <Tag key={genresList[index].id}>
+                            <Tag oversize key={genresList[index].id}>
                                 {genresList[index].name}
                             </Tag>
                         ))}
