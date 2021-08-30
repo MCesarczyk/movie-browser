@@ -12,7 +12,7 @@ import {
     DetailContent,
     Tags,
     Tag,
-    ExtraContent,
+    TileExtraContent,
     Rating,
     RatingScale,
     Votes,
@@ -23,7 +23,6 @@ import {
 const Tile = ({
     oversize,
     imageWidth,
-    movieId,
     titleUrl,
     imageUrl,
     title,
@@ -81,18 +80,19 @@ const Tile = ({
                     </Tags>
                 }
                 {rating && votes &&
-                    <ExtraContent>
+                    <TileExtraContent>
                         <RatingStar />
                         <Rating>{rating}</Rating>
                         <RatingScale>/ 10</RatingScale>
                         <Votes>{votes} votes</Votes>
-                    </ExtraContent>
+                    </TileExtraContent>
                 }
                 {overview &&
                     <Description>
                         {overview}
                     </Description>
                 }
+
             </TileContent>
         </StyledTile>
     );

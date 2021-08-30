@@ -5,15 +5,23 @@ export const StyledTile = styled.div`
     background-color: ${({ theme }) => theme.color.white};
     box-shadow: 0px 4px 12px rgba(186, 199, 213, 0.5);
     padding: ${({ oversize }) => oversize ? "40px" : "16px"};
-    display: grid;
-    grid-template-columns: ${({ oversize }) => oversize ? "auto 1fr" : "auto"};
-    grid-gap: ${({ oversize }) => oversize ? "40px" : "8px"};
+    display: flex;
+    flex-direction: ${({ oversize }) => oversize ? "row" : "column"};
+    gap: ${({ oversize }) => oversize ? "40px" : "8px"};
 `;
 
 export const Image = styled.img`
     display: block;
+    aspect-ratio: 2/3;
     width: ${props => props.width ? props.width : "100%"};
     border-radius: 5px;
+`;
+
+export const TileContent = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 `;
 
 export const ActiveTitle = styled(Link)`
@@ -35,12 +43,6 @@ export const Title = styled.h2`
     line-height: 1.2;
     margin-top: 8px;
     margin-bottom: ${({ oversize }) => oversize ? "24px" : "8px"};
-`;
-
-export const TileContent = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
 `;
 
 export const SubTitle = styled.span`
@@ -84,9 +86,8 @@ export const Tag = styled.span`
     color: ${({ theme }) => theme.color.woodsmoke};
 `;
 
-export const ExtraContent = styled.div`
-    display: flex;
-    justify-self: flex-end;
+export const TileExtraContent = styled.div`
+    margin-top: auto;
 `;
 
 export const Rating = styled.span`
