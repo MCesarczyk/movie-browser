@@ -50,6 +50,7 @@ export const {
 
 export const selectMovieList = state => state.movies.movies;
 export const selectGenres = state => state.movies.genres.genres;
+export const selectGenresList = state => state.movies.movie.genres;
 export const selectMoviesDetails = state => state.movies.details;
 export const selectMovieDetails = state => state.movies.movie;
 export const selectMovieCast = state => state.movies.credits.cast;
