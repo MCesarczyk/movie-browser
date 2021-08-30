@@ -20,6 +20,7 @@ import Wrapper from "../../../common/Wrapper";
 import Backdrop from "./Backdrop";
 import Tile from "../../../common/Tile"
 import LoadingCircle from "../../../common/LoadingPage/LoadingCircle";
+import { useEffect } from "react";
 const Section = React.lazy(() => import('../../../common/Section'));
 
 const MoviePage = () => {
@@ -37,6 +38,10 @@ const MoviePage = () => {
     useGetConfig();
     useGetMovieDetails(movieId);
     useGetMovieCredits(movieId);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     const onPageResize = () => {
         const maxwidth = window.innerWidth;

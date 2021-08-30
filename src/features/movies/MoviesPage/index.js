@@ -20,6 +20,7 @@ import {
     selectPosterSize,
     setPosterSize
 } from "../../../configSlice";
+import { useEffect } from "react";
 
 const MoviesPage = () => {
     const dispatch = useDispatch();
@@ -34,6 +35,10 @@ const MoviesPage = () => {
     useGetPopularMovies();
     useGetMoviesDetails(movieList);
     useSetState();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     const onPageResize = () => {
         const maxwidth = window.innerWidth;
