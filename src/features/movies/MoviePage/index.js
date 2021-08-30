@@ -23,8 +23,8 @@ import LoadingCircle from "../../../common/LoadingPage/LoadingCircle";
 const Section = React.lazy(() => import('../../../common/Section'));
 
 const MoviePage = () => {
-    const { id } = useParams();
     const dispatch = useDispatch();
+    const { id } = useParams();
     const movieId = id;
     const movieDetails = useSelector(selectMovieDetails);
     const imgURL = useSelector(selectImagesBaseURL);
@@ -64,8 +64,10 @@ const MoviePage = () => {
             <Wrapper>
                 <Tile
                     key={movieId}
+                    movieId={movieId}
                     oversize
                     imageWidth="312px"
+                    titleUrl={`/movies/${movieId}`}
                     imageUrl={movieDetails && `${imgURL}${posterSize}${movieDetails.poster_path}`}
                     title={movieDetails.title}
                     subtitle={movieDetails && new Date(Date.parse(movieDetails.release_date)).getFullYear().toString()}
@@ -81,8 +83,8 @@ const MoviePage = () => {
                         title="Cast"
                         body={movieCast && movieCast.map((person, index) => (
                             <Tile
-                                imageWidth="177px"
                                 key={movieCast[index].credit_id}
+                                titleUrl={`/people/${movieCast[index].id}`}
                                 imageUrl={`${imgURL}${posterSize}${movieCast[index].profile_path}`}
                                 title={movieCast[index].name}
                                 subtitle={movieCast[index].character}
@@ -94,6 +96,7 @@ const MoviePage = () => {
                         body={movieCrew && movieCrew.map((person, index) => (
                             <Tile
                                 key={movieCrew[index].credit_id}
+                                titleUrl={`/people/${movieCrew[index].id}`}
                                 imageUrl={`${imgURL}${posterSize}${movieCrew[index].profile_path}`}
                                 title={movieCrew[index].name}
                                 subtitle={movieCrew[index].job}

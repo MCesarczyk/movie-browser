@@ -12,7 +12,6 @@ import { useGetMoviesDetails } from "../useDispatchMovieDetails";
 import { useSetState } from "../../../useSetState";
 import {
     selectMovieList,
-    selectMoviesDetails,
     selectMoviesState
 } from "../moviesSlice";
 import {
@@ -29,7 +28,6 @@ const MoviesPage = () => {
     const imgURL = useSelector(selectImagesBaseURL);
     const posterSizes = useSelector(selectPosterSizes);
     const posterSize = useSelector(selectPosterSize);
-    const moviesDetails = useSelector(selectMoviesDetails);
 
     useGetConfig();
     useGetMovieGenres();
@@ -64,9 +62,9 @@ const MoviesPage = () => {
                         ) : (
                             movieList.map((movie, index) => (
                                 <Tile
-                                    imageWidth="292px"
-                                    movieId={movieList && movieList[index].id}
                                     key={movieList && movieList[index].id}
+                                    titleUrl={`/movies/${movieList[index].id}`}
+                                    imageWidth="292px"
                                     imageUrl={movieList && `${imgURL}${posterSize}${movieList[index].poster_path}`}
                                     title={movieList && movieList[index].title}
                                     subtitle={movieList && new Date(Date.parse(movieList[index].release_date)).getFullYear()}

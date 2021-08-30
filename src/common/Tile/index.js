@@ -24,6 +24,7 @@ const Tile = ({
     oversize,
     imageWidth,
     movieId,
+    titleUrl,
     imageUrl,
     title,
     subtitle,
@@ -41,7 +42,7 @@ const Tile = ({
         <StyledTile oversize={oversize} >
             <Image src={imageUrl} width={imageWidth} alt="image" />
             <TileContent>
-                <ActiveTitle to={`/movies/${movieId}`} >
+                <ActiveTitle to={titleUrl} >
                     <Title oversize={oversize} >{title}</Title>
                 </ActiveTitle>
                 <SubTitle oversize={oversize} >{subtitle}</SubTitle>
