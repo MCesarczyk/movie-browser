@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
-import { setPage } from "../../features/movies/moviesSlice";
-import { selectPage } from "../../features/movies/moviesSlice"
+import { Link } from "react-router-dom";
+import { setPage, selectPage, selectTotalPages } from "../../features/movies/moviesSlice";
 import { Wrapper, Button, PagerText, PageNumberText } from "./styled";
 import NextIcon from "./NextIcon";
 import PreviousIcon from "./PreviousIcon";
@@ -8,11 +8,14 @@ import PreviousIcon from "./PreviousIcon";
 const Pager = () => {
 
     const dispatch = useDispatch();
-    const pageNumber = useSelector(selectPage);
-    const lastPageNumber = 500;
+    const page = useSelector(selectPage);
+    const totalPages = useSelector(selectTotalPages);
 
-    const checkIfPreviousIsDisabled = () => pageNumber === 1 ? true : false;
-    const checkIfNextIsDisabled = () => pageNumber === lastPageNumber ? true : false;
+    const checkIfPreviousIsDisabled = () => page === 1 ? true : false;
+    const checkIfNextIsDisabled = () => page === totalPages ? true : false;
+
+    const onClickNext = () => dispatch(setPage(page + 1));
+    const onClickLast = () => dispatch(setPage(totalPages));
 
     return (
         <Wrapper>
@@ -24,14 +27,16 @@ const Pager = () => {
                 <PreviousIcon disabled={checkIfPreviousIsDisabled()} />
                 Previous</Button>
             <PagerText>Page</PagerText>
-            <PageNumberText>{pageNumber}</PageNumberText>
+            <PageNumberText>{page}</PageNumberText>
             <PagerText>of</PagerText>
-            <PageNumberText>{lastPageNumber}</PageNumberText>
-            <Button disabled={checkIfNextIsDisabled()}>
+            <PageNumberText>{totalPages}</PageNumberText>
+            <Button onClick={onClickNext} disabled={checkIfNextIsDisabled()}>
                 Next
                 <NextIcon disabled={checkIfNextIsDisabled()} />
             </Button>
-            <Button disabled={checkIfNextIsDisabled()}>
+            <Link to={`/movies/${page + 1}`} onClick={onClickNext}>NEXT!!</Link>
+
+            <Button onClick={onClickLast} disabled={checkIfNextIsDisabled()}>
                 Last
                 <NextIcon disabled={checkIfNextIsDisabled()} />
             </Button>
