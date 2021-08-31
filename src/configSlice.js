@@ -46,6 +46,5 @@ export const selectBackdropSizes = state => state.config.config.images.backdrop_
 export const selectBackdropSize = state => state.config.backdropSize;
 export const selectPosterSizes = state => state.config.config.images.poster_sizes;
 export const selectPosterSize = state => state.config.posterSize;
-export const selectProfileSizes = state => state.config.profile_sizes;
 
 export default configSlice.reducer;
