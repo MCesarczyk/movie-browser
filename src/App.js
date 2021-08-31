@@ -3,6 +3,7 @@ import Navigation from './features/Navigation';
 import MoviesPage from './features/movies/MoviesPage';
 import MoviePage from './features/movies/MoviePage';
 import PeopleList from './features/people/PeoplePage';
+import { NoResults } from "./features/Navigation/Search/NoResults";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
           <MoviesPage />
         </Route>
         <Route path="/people">
-          <PeopleList />
+          <NoResults />
         </Route>
         <Route path="/">
           <Redirect to="/movies" />

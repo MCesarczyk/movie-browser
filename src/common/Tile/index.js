@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import { selectGenres } from "../../features/movies/moviesSlice";
-import Wrapper from "../Wrapper";
 import RatingStar from "./RatingStar";
 import {
     StyledTile,
@@ -13,7 +12,7 @@ import {
     DetailContent,
     Tags,
     Tag,
-    ExtraContent,
+    TileExtraContent,
     Rating,
     RatingScale,
     Votes,
@@ -22,13 +21,17 @@ import {
 } from "./styled";
 
 const Tile = ({
-    movieId,
-    posterUrl,
+    oversize,
+    minimal,
+    imageWidth,
+    titleUrl,
+    imageUrl,
     title,
     subtitle,
     countries,
     releaseDate,
     genreIds,
+    genresList,
     rating,
     votes,
     overview
@@ -36,26 +39,30 @@ const Tile = ({
     const genres = useSelector(selectGenres);
 
     return (
-        <Wrapper>
-            <StyledTile>
-                <Image src={posterUrl} alt="movie poster" />
-                <TileContent>
-                    <ActiveTitle to={`/movies/${movieId}`} >
-                        <Title>{title}</Title>
-                    </ActiveTitle>
-                    <SubTitle>{subtitle}</SubTitle>
+        <StyledTile oversize={oversize} >
+            <Image src={imageUrl} width={imageWidth} alt="image" />
+            <TileContent>
+                <ActiveTitle to={titleUrl} >
+                    <Title oversize={oversize} minimal={minimal} >{title}</Title>
+                </ActiveTitle>
+                <SubTitle oversize={oversize} minimal={minimal} >{subtitle}</SubTitle>
+                {countries &&
                     <Details>
                         <DetailTitle>Production: </DetailTitle>
                         <DetailContent>
                             {countries && countries.map(({ name }) => `${name}, `)}
                         </DetailContent>
                     </Details>
+                }
+                {releaseDate &&
                     <Details>
                         <DetailTitle>Release date: </DetailTitle>
                         <DetailContent>{releaseDate}</DetailContent>
                     </Details>
+                }
+                {genreIds &&
                     <Tags>
-                        {genreIds && genreIds.map(genreId => (
+                        {genreIds.map(genreId => (
                             <Tag key={genreId}>
                                 {genres[genres.findIndex(
                                     ({ id }) => id === genreId
@@ -63,18 +70,32 @@ const Tile = ({
                             </Tag>
                         ))}
                     </Tags>
-                    <ExtraContent>
+                }
+                {genresList &&
+                    <Tags oversize >
+                        {genresList.map((item, index) => (
+                            <Tag oversize key={genresList[index].id}>
+                                {genresList[index].name}
+                            </Tag>
+                        ))}
+                    </Tags>
+                }
+                {rating && votes &&
+                    <TileExtraContent>
                         <RatingStar />
                         <Rating>{rating}</Rating>
                         <RatingScale>/ 10</RatingScale>
                         <Votes>{votes} votes</Votes>
-                    </ExtraContent>
+                    </TileExtraContent>
+                }
+                {overview &&
                     <Description>
                         {overview}
                     </Description>
-                </TileContent>
-            </StyledTile>
-        </Wrapper>
+                }
+
+            </TileContent>
+        </StyledTile>
     );
 };
 

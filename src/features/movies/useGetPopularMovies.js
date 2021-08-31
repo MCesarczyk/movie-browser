@@ -5,7 +5,7 @@ import { selectPage, setMovies } from "./moviesSlice";
 
 export const useGetPopularMovies = () => {
     const page = useSelector(selectPage);
-    const apiURL = `https://api.themoviedb.org/3/movie/popular?api_key=768f7875782193f5e4797762314da0b7&page=${page}`;
+    const apiURL = `https://api.themoviedb.org/3/movie/popular?api_key=768f7875782193f5e4797762314da0b7&page=${page}&language=en-US`;
     const dispatch = useDispatch();
 
     useEffect(() => {
