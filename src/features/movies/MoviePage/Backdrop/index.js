@@ -1,5 +1,5 @@
 
-import { BackdropPoster, WrapperBackdrop, Title, WrapperContent, RatingScale, Votes, BackdropContainer, WrapperRating, RatingStar } from "./styled";
+import { BackdropPoster, WrapperBackdrop, Title, WrapperContent, RatingScale, Votes, BackdropContainer, WrapperRating, RatingStar, Rating } from "./styled";
 import ratingStar from "../../../../images/ratingStar.svg";
 
 const Backdrop = ({ backdropUrl, title, rating, votes }) => {
@@ -11,7 +11,8 @@ const Backdrop = ({ backdropUrl, title, rating, votes }) => {
                         <Title>{title}</Title>
                             <WrapperRating>
                                 <RatingStar src={ratingStar} alt="" />
-                                    <RatingScale>{rating}</RatingScale>&nbsp;/&nbsp;10
+                                    <Rating>{rating}</Rating>
+                                    <RatingScale>/ 10</RatingScale>
                             </WrapperRating>
                                 <Votes>{votes} votes</Votes>
                     </WrapperContent>

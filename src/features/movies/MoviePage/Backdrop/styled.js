@@ -64,17 +64,13 @@ export const WrapperContent = styled.div`
     color: ${({ theme }) => theme.color.white};
     margin-left: 276px;  
     margin-bottom: 56px;
-   
-    
     `;
 
-export const RatingScale = styled.p`
+export const Rating = styled.span`
     font-weight: 500;
     font-size: 30px;
     line-height: 1.3;
     margin-left: 8px;
-    display: flex;
-    align-items: center;
 `;
 
 export const Votes = styled.p`
@@ -82,8 +78,6 @@ export const Votes = styled.p`
     font-size: 16px;
     line-height: 1.2;
     margin-left: 12px;
-    display: flex;
-    align-items: center;
 `;
 
 export const WrapperRating = styled.div`
@@ -96,4 +90,14 @@ export const RatingStar = styled.img`
 width: 40px;
 height: 38px;
 `;
+
+
+export const RatingScale = styled.span`
+font-weight: 400;
+font-size: 16px;
+line-height: 1.2;
+margin-left: 8px;
+`;
+
+
 
