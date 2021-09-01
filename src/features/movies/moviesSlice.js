@@ -5,7 +5,7 @@ const initialState = {
     movie: [],
     genres: [],
     totalPages: 1,
-    state: "loading",
+    state: "idle",
 };
 
 const moviesSlice = createSlice({
