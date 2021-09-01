@@ -4,7 +4,6 @@ import Wrapper from "../../../common/Wrapper";
 import Tile from "../../../common/Tile"
 import Backdrop from "./Backdrop";
 import { SectionContainer, SectionTitle } from "./styled";
-import { selectMovieDetails } from "../moviesSlice";
 import { useGetConfig } from "../../../useGetConfig";
 import { useGetMovieDetails } from "../useGetMovieDetails";
 import {
@@ -12,7 +11,8 @@ import {
     selectPosterSize,
     selectPosterSizes,
     setPosterSize
-} from "../../../configSlice";
+} from "../../../globalSlice";
+import { selectMovieDetails } from "../moviesSlice";
 
 const MoviePage = () => {
     const dispatch = useDispatch();

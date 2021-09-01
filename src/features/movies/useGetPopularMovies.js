@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { setMovies, setTotalPages, setState } from "./moviesSlice";
+import { setState, setTotalPages } from "../../globalSlice";
+import { setMovies } from "./moviesSlice";
 
 export const useGetPopularMovies = () => {
 
@@ -27,8 +28,8 @@ export const useGetPopularMovies = () => {
             })
             .then(response => response.json())
             .then(movies => {
-                dispatch(setMovies(movies.results))
                 dispatch(setTotalPages(movies.total_pages))
+                dispatch(setMovies(movies.results))
             })
             .then(retardPageLoading())
             .catch(error => {

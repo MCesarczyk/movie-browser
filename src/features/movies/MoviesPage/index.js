@@ -9,15 +9,15 @@ import { useGetConfig } from "../../../useGetConfig";
 import { useGetPopularMovies } from "../useGetPopularMovies";
 import { useGetMovieGenres } from "../useGetMovieGenres";
 import {
-    selectMovieList,
-    selectState
-} from "../moviesSlice";
-import {
     selectImagesBaseURL,
     selectPosterSizes,
     selectPosterSize,
-    setPosterSize
-} from "../../../configSlice";
+    setPosterSize,
+    selectState
+} from "../../../globalSlice";
+import {
+    selectMovieList
+} from "../moviesSlice";
 
 const MoviesPage = () => {
     const dispatch = useDispatch();
@@ -50,7 +50,7 @@ const MoviesPage = () => {
         <>
             <Wrapper>
                 <MoviesList title="Movies" >
-                    {moviesState === "loading" && <LoadingPage />}
+                    {moviesState === "loading" && <LoadingPage message="Loading movies list..." />}
                     {moviesState === "error" && <ErrorPage />}
                     {moviesState === "success" && movieList.map((movie, index) => (
                         <Tile
