@@ -2,10 +2,10 @@ import Wrapper from "../Wrapper";
 import LoadingCircle from "./LoadingCircle";
 import { Header } from "./styled";
 
-const LoadingPage = () => {
+const LoadingPage = ({ message }) => {
     return (
         <Wrapper>
-            <Header>Search results for “Mulan”</Header>
+            <Header>{message}</Header>
             <LoadingCircle />
         </Wrapper>
     );
