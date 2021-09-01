@@ -47,7 +47,7 @@ const Tile = ({
                     <Details>
                         <DetailTitle>Production: </DetailTitle>
                         <DetailContent>
-                            {countries && countries.map(({ name }) => `${name}, `)}
+                            {countries && countries.map(({ name }) => name).join(", ")}
                         </DetailContent>
                     </Details>
                     <Details>
