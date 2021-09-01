@@ -1,15 +1,17 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { selectTotalPages } from "../../features/movies/moviesSlice";
+import { selectTotalPages, setState } from "../../globalSlice";
 import { Wrapper, StyledLink, PagerText, PageNumberText } from "./styled";
 import NextIcon from "./NextIcon";
 import PreviousIcon from "./PreviousIcon";
 
 const Pager = () => {
-
-    const totalPages = useSelector(selectTotalPages);
+    const dispatch = useDispatch();
     const { page } = useParams();
     const currentPage = (page ? page : 1);
+
+    const totalPages = useSelector(selectTotalPages);
+    currentPage > totalPages && dispatch(setState("error"));
 
     const checkIfPreviousIsDisabled = () => +currentPage === 1 ? true : false;
     const checkIfNextIsDisabled = () => +currentPage === +totalPages ? true : false;
