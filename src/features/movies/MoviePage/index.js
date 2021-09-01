@@ -18,8 +18,8 @@ import {
 } from "../../../configSlice";
 
 const MoviePage = () => {
-    const { id } = useParams();
     const dispatch = useDispatch();
+    const { id } = useParams();
     const movieId = id;
     const movieDetails = useSelector(selectMovieDetails);
     const imgURL = useSelector(selectImagesBaseURL);
@@ -54,6 +54,7 @@ const MoviePage = () => {
             />
             <Wrapper>
                 <Tile
+                    movieId={movieId}
                     key={movieId}
                     posterUrl={movieDetails && `${imgURL}${posterSize}${movieDetails.poster_path}`}
                     title={movieDetails && movieDetails.title}
