@@ -17,4 +17,7 @@ export const theme = {
         mobile: "767",
         mobileMin: "320",
     },
+    dimension: {
+        maxWidth: "1368px",
+    },
 };
