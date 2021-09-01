@@ -36,6 +36,6 @@ export const useGetPopularMovies = () => {
                 console.error("Unfortunately, something went wrong...", error)
             });
 
-                    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [page]);
 };
