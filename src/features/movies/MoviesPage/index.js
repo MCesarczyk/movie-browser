@@ -8,7 +8,6 @@ import { MoviesList } from "./styled";
 import { useGetConfig } from "../../../useGetConfig";
 import { useGetPopularMovies } from "../useGetPopularMovies";
 import { useGetMovieGenres } from "../useGetMovieGenres";
-// import { useSetState } from "../../../useSetState";
 import {
     selectMovieList,
     selectMoviesState
@@ -31,7 +30,6 @@ const MoviesPage = () => {
     useGetConfig();
     useGetMovieGenres();
     useGetPopularMovies();
-    // useSetState();
 
     const onPageResize = () => {
         const maxwidth = window.innerWidth;
