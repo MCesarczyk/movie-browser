@@ -40,7 +40,7 @@ const Tile = ({
             <StyledTile>
                 <Image src={posterUrl} alt="movie poster" />
                 <TileContent>
-                    <ActiveTitle to={`/movies/${movieId}`} >
+                    <ActiveTitle to={`/movie/${movieId}`} >
                         <Title>{title}</Title>
                     </ActiveTitle>
                     <SubTitle>{subtitle}</SubTitle>
