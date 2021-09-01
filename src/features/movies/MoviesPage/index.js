@@ -51,7 +51,7 @@ const MoviesPage = () => {
             <Wrapper>
                 <MoviesList title="Movies" >
                     {moviesState === "loading" && <LoadingPage />}
-                    {moviesState === "Error" && <ErrorPage />}
+                    {moviesState === "error" && <ErrorPage />}
                     {moviesState === "success" && movieList.map((movie, index) => (
                         <Tile
                             movieId={movieList && movieList[index].id}

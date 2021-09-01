@@ -32,7 +32,7 @@ export const useGetPopularMovies = () => {
             })
             .then(retardPageLoading())
             .catch(error => {
-                dispatch(setState("Error"))
+                dispatch(setState("error"))
                 console.error("Unfortunately, something went wrong...", error)
             });
 
