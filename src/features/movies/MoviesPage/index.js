@@ -10,7 +10,7 @@ import { useGetPopularMovies } from "../useGetPopularMovies";
 import { useGetMovieGenres } from "../useGetMovieGenres";
 import {
     selectMovieList,
-    selectMoviesState
+    selectState
 } from "../moviesSlice";
 import {
     selectImagesBaseURL,
@@ -22,7 +22,7 @@ import {
 const MoviesPage = () => {
     const dispatch = useDispatch();
     const movieList = useSelector(selectMovieList);
-    const moviesState = useSelector(selectMoviesState);
+    const moviesState = useSelector(selectState);
     const imgURL = useSelector(selectImagesBaseURL);
     const posterSizes = useSelector(selectPosterSizes);
     const posterSize = useSelector(selectPosterSize);
