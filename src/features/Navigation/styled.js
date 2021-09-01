@@ -59,11 +59,9 @@ export const NavigationWrapper = styled.nav`
     display: flex;
     align-items: center;
     justify-content: space-around;
-    max-width: 1368px;
+    max-width: ${({ theme }) => theme.dimension.maxWidth};
     margin: 0 auto;
     flex-wrap: wrap;
-    
-    }
 `;
 
 export const NavigationContainer = styled.div`
