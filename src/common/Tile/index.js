@@ -50,7 +50,7 @@ const Tile = ({
                     <Details>
                         <DetailTitle>Production: </DetailTitle>
                         <DetailContent>
-                            {countries && countries.map(({ name }) => `${name}, `)}
+                            {countries && countries.map(({ name }) => name).join(", ")}
                         </DetailContent>
                     </Details>
                 }
@@ -62,7 +62,7 @@ const Tile = ({
                 }
                 {genreIds &&
                     <Tags>
-                        {genreIds.map(genreId => (
+                        {genres && genreIds && genreIds.map(genreId => (
                             <Tag key={genreId}>
                                 {genres[genres.findIndex(
                                     ({ id }) => id === genreId

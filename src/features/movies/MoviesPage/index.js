@@ -8,24 +8,22 @@ import { MoviesList } from "./styled";
 import { useGetConfig } from "../../../useGetConfig";
 import { useGetPopularMovies } from "../useGetPopularMovies";
 import { useGetMovieGenres } from "../useGetMovieGenres";
-import { useGetMoviesDetails } from "../useDispatchMovieDetails";
-import { useSetState } from "../../../useSetState";
 import {
     selectMovieList,
-    selectMoviesState
 } from "../moviesSlice";
 import {
     selectImagesBaseURL,
     selectPosterSizes,
     selectPosterSize,
-    setPosterSize
-} from "../../../configSlice";
+    setPosterSize,
+    selectState
+} from "../../../globalSlice";
 import { useEffect } from "react";
 
 const MoviesPage = () => {
     const dispatch = useDispatch();
     const movieList = useSelector(selectMovieList);
-    const moviesState = useSelector(selectMoviesState);
+    const moviesState = useSelector(selectState);
     const imgURL = useSelector(selectImagesBaseURL);
     const posterSizes = useSelector(selectPosterSizes);
     const posterSize = useSelector(selectPosterSize);
@@ -33,8 +31,6 @@ const MoviesPage = () => {
     useGetConfig();
     useGetMovieGenres();
     useGetPopularMovies();
-    useGetMoviesDetails(movieList);
-    useSetState();
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -59,25 +55,22 @@ const MoviesPage = () => {
         <>
             <Wrapper>
                 <MoviesList title="Movies" >
-                    {moviesState === "loading" ? (
-                        <LoadingPage />
-                    ) : (
-                        moviesState === "Error" ? (
-                            <ErrorPage />
-                        ) : (
-                            movieList && movieList.map((movie, index) => (
-                                <Tile
-                                    key={movieList[index].id}
-                                    titleUrl={`/movies/${movieList[index].id}`}
-                                    imageWidth="292px"
-                                    imageUrl={`${imgURL}${posterSize}${movieList[index].poster_path}`}
-                                    title={movieList[index].title}
-                                    subtitle={new Date(Date.parse(movieList[index].release_date)).getFullYear()}
-                                    genreIds={movieList[index].genre_ids}
-                                    rating={movieList[index].vote_average}
-                                    votes={movieList[index].vote_count}
-                                />
-                            ))))}
+                    {moviesState === "loading" && <LoadingPage message="Loading movies list..." />}
+                    {moviesState === "error" && <ErrorPage />}
+                    {moviesState === "success" && movieList && movieList.map((movie, index) => (
+                        <Tile
+                            movieId={movieList[index].id}
+                            key={movieList[index].id}
+                            titleUrl={`/movie/${movieList[index].id}`}
+                            imageWidth="292px"
+                            imageUrl={`${imgURL}${posterSize}${movieList[index].poster_path}`}
+                            title={movieList[index].title}
+                            subtitle={new Date(Date.parse(movieList[index].release_date)).getFullYear()}
+                            genreIds={movieList[index].genre_ids}
+                            rating={movieList[index].vote_average}
+                            votes={movieList[index].vote_count}
+                        />
+                    ))}
                 </MoviesList>
                 <Pager />
             </Wrapper>

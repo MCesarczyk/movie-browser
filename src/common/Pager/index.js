@@ -1,35 +1,45 @@
-import { Wrapper, Button, PagerText, PageNumberText } from "./styled";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { selectTotalPages, setState } from "../../globalSlice";
+import { Wrapper, StyledLink, PagerText, PageNumberText } from "./styled";
 import NextIcon from "./NextIcon";
 import PreviousIcon from "./PreviousIcon";
 
 const Pager = () => {
-    const pageNumber = 1;
-    const lastPageNumber = 500;
+    const dispatch = useDispatch();
+    const { page } = useParams();
+    const currentPage = (page ? page : 1);
 
-    const checkIfPreviousIsDisabled = () => pageNumber === 1 ? true : false;
-    const checkIfNextIsDisabled = () => pageNumber === lastPageNumber ? true : false;
+    const totalPages = useSelector(selectTotalPages);
+    currentPage > totalPages && dispatch(setState("error"));
+
+    const checkIfPreviousIsDisabled = () => +currentPage === 1 ? true : false;
+    const checkIfNextIsDisabled = () => +currentPage === +totalPages ? true : false;
 
     return (
         <Wrapper>
-            <Button disabled={checkIfPreviousIsDisabled()}>
+            <StyledLink to={`/movies/1`} disabled={checkIfPreviousIsDisabled()}>
                 <PreviousIcon disabled={checkIfPreviousIsDisabled()} />
                 First
-            </Button>
-            <Button disabled={checkIfPreviousIsDisabled()}>
+            </StyledLink>
+            <StyledLink to={`/movies/${+currentPage === 1 ? 1 : +currentPage - 1}`} disabled={checkIfPreviousIsDisabled()}>
                 <PreviousIcon disabled={checkIfPreviousIsDisabled()} />
-                Previous</Button>
+                Previous
+            </StyledLink>
+
             <PagerText>Page</PagerText>
-            <PageNumberText>{pageNumber}</PageNumberText>
+            <PageNumberText>{currentPage}</PageNumberText>
             <PagerText>of</PagerText>
-            <PageNumberText>{lastPageNumber}</PageNumberText>
-            <Button disabled={checkIfNextIsDisabled()}>
+            <PageNumberText>{totalPages}</PageNumberText>
+
+            <StyledLink to={`/movies/${+currentPage === +totalPages ? +currentPage : +currentPage + 1}`} disabled={checkIfNextIsDisabled()}>
                 Next
                 <NextIcon disabled={checkIfNextIsDisabled()} />
-            </Button>
-            <Button disabled={checkIfNextIsDisabled()}>
+            </StyledLink>
+            <StyledLink to={`/movies/${totalPages}`} disabled={checkIfNextIsDisabled()}>
                 Last
                 <NextIcon disabled={checkIfNextIsDisabled()} />
-            </Button>
+            </StyledLink>
         </Wrapper>
     );
 };

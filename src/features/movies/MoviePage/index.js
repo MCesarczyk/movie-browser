@@ -1,6 +1,10 @@
 import React, { Suspense } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import Wrapper from "../../../common/Wrapper";
+import Tile from "../../../common/Tile"
+import Backdrop from "./Backdrop";
+import LoadingCircle from "../../../common/LoadingPage/LoadingCircle";
 import {
     selectMovieDetails,
     selectMovieCast,
@@ -12,14 +16,10 @@ import {
     selectPosterSize,
     selectPosterSizes,
     setPosterSize
-} from "../../../configSlice";
+} from "../../../globalSlice";
 import { useGetConfig } from "../../../useGetConfig";
 import { useGetMovieDetails } from "../useGetMovieDetails";
 import { useGetMovieCredits } from "../useGetMovieCredits";
-import Wrapper from "../../../common/Wrapper";
-import Backdrop from "./Backdrop";
-import Tile from "../../../common/Tile"
-import LoadingCircle from "../../../common/LoadingPage/LoadingCircle";
 import { useEffect } from "react";
 const Section = React.lazy(() => import('../../../common/Section'));
 
@@ -72,7 +72,7 @@ const MoviePage = () => {
                     key={movieId}
                     movieId={movieId}
                     imageWidth="312px"
-                    titleUrl={`/movies/${movieId}`}
+                    titleUrl={`/movie/${movieId}`}
                     imageUrl={movieDetails && `${imgURL}${posterSize}${movieDetails.poster_path}`}
                     title={movieDetails.title}
                     subtitle={movieDetails && new Date(Date.parse(movieDetails.release_date)).getFullYear().toString()}
