@@ -35,5 +35,7 @@ export const useGetPopularMovies = () => {
                 dispatch(setState("Error"))
                 console.error("Niestety coś się zepsuło", error)
             });
+
+                    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [page]);
 };
