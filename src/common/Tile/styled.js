@@ -4,16 +4,24 @@ import styled from "styled-components";
 export const StyledTile = styled.div`
     background-color: ${({ theme }) => theme.color.white};
     box-shadow: 0px 4px 12px rgba(186, 199, 213, 0.5);
-    padding: 40px;
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: auto 1fr;
-    grid-gap: 40px;
+    padding: ${({ oversize }) => oversize ? "40px" : "16px"};
+    display: flex;
+    flex-direction: ${({ oversize }) => oversize ? "row" : "column"};
+    gap: ${({ oversize }) => oversize ? "40px" : "8px"};
 `;
 
 export const Image = styled.img`
-    max-width: 312px;
-    max-height: 464px;
+    display: block;
+    aspect-ratio: 2/3;
+    width: ${props => props.width ? props.width : "100%"};
+    border-radius: 5px;
+`;
+
+export const TileContent = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 `;
 
 export const ActiveTitle = styled(Link)`
@@ -31,25 +39,24 @@ export const ActiveTitle = styled(Link)`
 
 export const Title = styled.h2`
     font-weight: 600;
-    font-size: 36px;
+    text-align: ${({ minimal }) => minimal ? "center" : "left"};
+    font-size: ${({ oversize }) => oversize ? "36px" : "22px"};
     line-height: 1.2;
     margin-top: 8px;
-`;
-
-export const TileContent = styled.div`
-    display: flex;
-    flex-direction: column;
+    margin-bottom: ${({ oversize }) => oversize ? "24px" : "8px"};
 `;
 
 export const SubTitle = styled.span`
     font-weight: 400; 
-    font-size: 22px;
+    text-align: ${({ minimal }) => minimal ? "center" : "left"};
+    font-size: ${({ oversize }) => oversize ? "36px" : "16px"};
+    font-size: ${({ minimal }) => minimal ? "18px" : "16px"};
     line-height: 1.2;
-    margin: 24px 0px;
+    margin-bottom: ${({ oversize }) => oversize ? "24px" : "12px"};
 `;
 
 export const Details = styled.div`
-    display: flex;
+    margin-bottom: 8px;
 `;
 
 export const DetailTitle = styled.span`
@@ -66,19 +73,23 @@ export const DetailContent = styled.span`
 
 export const Tags = styled.div`
     display: flex;
+    flex-wrap: wrap;
+    gap: ${({ oversize }) => oversize ? "16px" : "8px"};
+    margin-bottom: 16px;
 `;
 
 export const Tag = styled.span`
     padding: 8px 16px;
-    margin: 24px 16px 24px 0px;
+    margin-top: ${({ oversize }) => oversize ? "24px" : "0px"};
+    margin-bottom: ${({ oversize }) => oversize ? "24px" : "0px"};
     font-size: 14px;
     border-radius: 5px;
     background-color: ${({ theme }) => theme.color.mystic};
     color: ${({ theme }) => theme.color.woodsmoke};
 `;
 
-export const ExtraContent = styled.div`
-    display: flex;
+export const TileExtraContent = styled.div`
+    margin-top: auto;
 `;
 
 export const Rating = styled.span`

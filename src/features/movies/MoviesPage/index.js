@@ -9,15 +9,16 @@ import { useGetConfig } from "../../../useGetConfig";
 import { useGetPopularMovies } from "../useGetPopularMovies";
 import { useGetMovieGenres } from "../useGetMovieGenres";
 import {
+    selectMovieList,
+} from "../moviesSlice";
+import {
     selectImagesBaseURL,
     selectPosterSizes,
     selectPosterSize,
     setPosterSize,
     selectState
 } from "../../../globalSlice";
-import {
-    selectMovieList
-} from "../moviesSlice";
+import { useEffect } from "react";
 
 const MoviesPage = () => {
     const dispatch = useDispatch();
@@ -30,6 +31,10 @@ const MoviesPage = () => {
     useGetConfig();
     useGetMovieGenres();
     useGetPopularMovies();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     const onPageResize = () => {
         const maxwidth = window.innerWidth;
@@ -52,17 +57,18 @@ const MoviesPage = () => {
                 <MoviesList title="Movies" >
                     {moviesState === "loading" && <LoadingPage message="Loading movies list..." />}
                     {moviesState === "error" && <ErrorPage />}
-                    {moviesState === "success" && movieList.map((movie, index) => (
+                    {moviesState === "success" && movieList && movieList.map((movie, index) => (
                         <Tile
-                            movieId={movieList && movieList[index].id}
-                            key={movieList && movieList[index].id}
-                            posterUrl={movieList && `${imgURL}${posterSize}${movieList[index].poster_path}`}
-                            title={movieList && movieList[index].title}
-                            subtitle={movieList && new Date(Date.parse(movieList[index].release_date)).getFullYear()}
-                            genreIds={movieList && movieList[index].genre_ids}
-                            rating={movieList && movieList[index].vote_average}
-                            votes={movieList && movieList[index].vote_count}
-                            overview={movieList && movieList[index].overview}
+                            movieId={movieList[index].id}
+                            key={movieList[index].id}
+                            titleUrl={`/movie/${movieList[index].id}`}
+                            imageWidth="292px"
+                            imageUrl={`${imgURL}${posterSize}${movieList[index].poster_path}`}
+                            title={movieList[index].title}
+                            subtitle={new Date(Date.parse(movieList[index].release_date)).getFullYear()}
+                            genreIds={movieList[index].genre_ids}
+                            rating={movieList[index].vote_average}
+                            votes={movieList[index].vote_count}
                         />
                     ))}
                 </MoviesList>

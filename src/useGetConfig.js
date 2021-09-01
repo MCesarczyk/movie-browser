@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { setConfig } from "./globalSlice";
 
 export const useGetConfig = () => {
-    const apiURL = "https://api.themoviedb.org/3/configuration?api_key=768f7875782193f5e4797762314da0b7";
+    const apiURL = "https://api.themoviedb.org/3/configuration?api_key=768f7875782193f5e4797762314da0b7&language=en-US";
     const dispatch = useDispatch();
 
     useEffect(() => {

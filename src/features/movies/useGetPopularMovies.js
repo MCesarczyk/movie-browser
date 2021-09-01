@@ -1,15 +1,14 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { setState, setTotalPages } from "../../globalSlice";
 import { setMovies } from "./moviesSlice";
+import { setState, setTotalPages } from "../../globalSlice";
 
 export const useGetPopularMovies = () => {
-
     const dispatch = useDispatch();
     const params = useParams();
     const page = (params.page ? params.page : 1);
-    const apiURL = `https://api.themoviedb.org/3/movie/popular?api_key=768f7875782193f5e4797762314da0b7&page=${page}`;
+    const apiURL = `https://api.themoviedb.org/3/movie/popular?api_key=768f7875782193f5e4797762314da0b7&page=${page}&language=en-US`;
 
     const retardPageLoading = () => {
         setTimeout(() => {
