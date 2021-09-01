@@ -50,25 +50,21 @@ const MoviesPage = () => {
         <>
             <Wrapper>
                 <MoviesList title="Movies" >
-                    {moviesState === "loading" ? (
-                        <LoadingPage />
-                    ) : (
-                        moviesState === "Error" ? (
-                            <ErrorPage />
-                        ) : (
-                            movieList.map((movie, index) => (
-                                <Tile
-                                    movieId={movieList && movieList[index].id}
-                                    key={movieList && movieList[index].id}
-                                    posterUrl={movieList && `${imgURL}${posterSize}${movieList[index].poster_path}`}
-                                    title={movieList && movieList[index].title}
-                                    subtitle={movieList && new Date(Date.parse(movieList[index].release_date)).getFullYear()}
-                                    genreIds={movieList && movieList[index].genre_ids}
-                                    rating={movieList && movieList[index].vote_average}
-                                    votes={movieList && movieList[index].vote_count}
-                                    overview={movieList && movieList[index].overview}
-                                />
-                            ))))}
+                    {moviesState === "loading" && <LoadingPage />}
+                    {moviesState === "Error" && <ErrorPage />}
+                    {moviesState === "success" && movieList.map((movie, index) => (
+                        <Tile
+                            movieId={movieList && movieList[index].id}
+                            key={movieList && movieList[index].id}
+                            posterUrl={movieList && `${imgURL}${posterSize}${movieList[index].poster_path}`}
+                            title={movieList && movieList[index].title}
+                            subtitle={movieList && new Date(Date.parse(movieList[index].release_date)).getFullYear()}
+                            genreIds={movieList && movieList[index].genre_ids}
+                            rating={movieList && movieList[index].vote_average}
+                            votes={movieList && movieList[index].vote_count}
+                            overview={movieList && movieList[index].overview}
+                        />
+                    ))}
                 </MoviesList>
                 <Pager />
             </Wrapper>
