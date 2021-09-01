@@ -8,11 +8,9 @@ import { MoviesList } from "./styled";
 import { useGetConfig } from "../../../useGetConfig";
 import { useGetPopularMovies } from "../useGetPopularMovies";
 import { useGetMovieGenres } from "../useGetMovieGenres";
-import { useGetMoviesDetails } from "../useDispatchMovieDetails";
 // import { useSetState } from "../../../useSetState";
 import {
     selectMovieList,
-    selectMoviesDetails,
     selectMoviesState
 } from "../moviesSlice";
 import {
@@ -29,12 +27,10 @@ const MoviesPage = () => {
     const imgURL = useSelector(selectImagesBaseURL);
     const posterSizes = useSelector(selectPosterSizes);
     const posterSize = useSelector(selectPosterSize);
-    const moviesDetails = useSelector(selectMoviesDetails);
 
     useGetConfig();
     useGetMovieGenres();
     useGetPopularMovies();
-    useGetMoviesDetails(movieList);
     // useSetState();
 
     const onPageResize = () => {
@@ -69,8 +65,6 @@ const MoviesPage = () => {
                                     posterUrl={movieList && `${imgURL}${posterSize}${movieList[index].poster_path}`}
                                     title={movieList && movieList[index].title}
                                     subtitle={movieList && new Date(Date.parse(movieList[index].release_date)).getFullYear()}
-                                    // countries={movieList && moviesDetails[index].production_countries}
-                                    releaseDate={movieList && movieList[index].release_date}
                                     genreIds={movieList && movieList[index].genre_ids}
                                     rating={movieList && movieList[index].vote_average}
                                     votes={movieList && movieList[index].vote_count}
