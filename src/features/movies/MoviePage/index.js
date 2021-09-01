@@ -4,22 +4,19 @@ import Wrapper from "../../../common/Wrapper";
 import Tile from "../../../common/Tile"
 import Backdrop from "./Backdrop";
 import { SectionContainer, SectionTitle } from "./styled";
-import { selectMovieDetails } from "../moviesSlice";
 import { useGetConfig } from "../../../useGetConfig";
 import { useGetMovieDetails } from "../useGetMovieDetails";
 import {
-    selectBackdropSize,
-    selectBackdropSizes,
     selectImagesBaseURL,
     selectPosterSize,
     selectPosterSizes,
-    setBackdropSize,
     setPosterSize
-} from "../../../configSlice";
+} from "../../../globalSlice";
+import { selectMovieDetails } from "../moviesSlice";
 
 const MoviePage = () => {
-    const { id } = useParams();
     const dispatch = useDispatch();
+    const { id } = useParams();
     const movieId = id;
     const movieDetails = useSelector(selectMovieDetails);
     const imgURL = useSelector(selectImagesBaseURL);
@@ -54,10 +51,11 @@ const MoviePage = () => {
             />
             <Wrapper>
                 <Tile
+                    movieId={movieId}
                     key={movieId}
                     posterUrl={movieDetails && `${imgURL}${posterSize}${movieDetails.poster_path}`}
                     title={movieDetails && movieDetails.title}
-                    // subtitle={movieDetails && new Date(Date.parse(movieDetails.release_date)).getFullYear()}
+                    subtitle={movieDetails && new Date(Date.parse(movieDetails.release_date)).getFullYear()}
                     countries={movieDetails && movieDetails.production_countries}
                     releaseDate={movieDetails && movieDetails.release_date}
                     // genreIds={movieDetails && movieDetails.genre_ids}
