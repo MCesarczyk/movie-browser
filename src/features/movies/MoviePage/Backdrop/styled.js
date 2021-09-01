@@ -51,6 +51,15 @@ export const WrapperBackdrop = styled.div`
     display:flex;
     flex-direction: column;
     justify-content: flex-end;
+    align-items: center;
+`;
+
+export const WrapperContent = styled.div`
+    max-width: ${({ theme }) => theme.dimension.maxWidth};
+    color: ${({ theme }) => theme.color.white};
+    margin: 0 auto;  
+    margin-bottom: 56px;
+    width: 100%;
 `;
 
 export const Title = styled.h1`
@@ -58,13 +67,6 @@ export const Title = styled.h1`
     font-size: 64px;
     margin-bottom: 24px;
 `;
-
-export const WrapperContent = styled.div`
-    max-width: 1368px;
-    color: ${({ theme }) => theme.color.white};
-    margin-left: 276px;  
-    margin-bottom: 56px;
-    `;
 
 export const Rating = styled.span`
     font-weight: 500;
