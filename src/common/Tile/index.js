@@ -55,7 +55,7 @@ const Tile = ({
                         <DetailContent>{releaseDate}</DetailContent>
                     </Details>
                     <Tags>
-                        {genreIds && genreIds.map(genreId => (
+                        {genres && genreIds && genreIds.map(genreId => (
                             <Tag key={genreId}>
                                 {genres[genres.findIndex(
                                     ({ id }) => id === genreId
