@@ -54,9 +54,9 @@ const MoviesPage = () => {
     return (
         <>
             <Wrapper>
+                {moviesState === "loading" && <LoadingPage message="Loading movies list..." />}
+                {moviesState === "error" && <ErrorPage />}
                 <MoviesList title="Movies" >
-                    {moviesState === "loading" && <LoadingPage message="Loading movies list..." />}
-                    {moviesState === "error" && <ErrorPage />}
                     {moviesState === "success" && movieList && movieList.map((movie, index) => (
                         <Tile
                             movieId={movieList[index].id}
@@ -72,7 +72,7 @@ const MoviesPage = () => {
                         />
                     ))}
                 </MoviesList>
-                <Pager />
+                {moviesState === "success" && <Pager />}
             </Wrapper>
         </>
     )
