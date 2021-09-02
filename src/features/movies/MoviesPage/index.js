@@ -1,10 +1,11 @@
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Wrapper from "../../../common/Wrapper";
 import Tile from "../../../common/Tile"
 import Pager from "../../../common/Pager";
 import LoadingPage from "../../../common/LoadingPage";
 import ErrorPage from "../../../common/ErrorPage";
-import { MoviesList } from "./styled";
+import { TileList } from "../../../common/TileList";
 import { useGetConfig } from "../../../useGetConfig";
 import { useGetPopularMovies } from "../useGetPopularMovies";
 import { useGetMovieGenres } from "../useGetMovieGenres";
@@ -18,7 +19,6 @@ import {
     setPosterSize,
     selectState
 } from "../../../globalSlice";
-import { useEffect } from "react";
 
 const MoviesPage = () => {
     const dispatch = useDispatch();
@@ -54,7 +54,7 @@ const MoviesPage = () => {
     return (
         <>
             <Wrapper>
-                <MoviesList title="Movies" >
+                <TileList >
                     {moviesState === "loading" && <LoadingPage message="Loading movies list..." />}
                     {moviesState === "error" && <ErrorPage />}
                     {moviesState === "success" && movieList && movieList.map((movie, index) => (
@@ -71,7 +71,7 @@ const MoviesPage = () => {
                             votes={movieList[index].vote_count}
                         />
                     ))}
-                </MoviesList>
+                </TileList>
                 <Pager />
             </Wrapper>
         </>
