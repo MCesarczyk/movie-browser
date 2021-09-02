@@ -1,17 +1,17 @@
 import styled from "styled-components";
 
 export const BackdropContainer = styled.div`
-    background-color: ${({theme}) => theme.color.black};
+    background-color: ${({ theme }) => theme.color.black};
     width: 100%;
 `;
 
 export const BackdropPoster = styled.div`
-    max-width: 1920px;
-    max-height: 770px;
     background-repeat: no-repeat; 
     background-position: center;
     background-size: cover;
     margin: 0 auto;
+    aspect-ratio: 2;
+    width: 100%;
 `;
 
 export const WrapperBackdrop = styled.div`
@@ -46,7 +46,7 @@ export const WrapperBackdrop = styled.div`
                     rgba(0, 0, 0, 0.492821) 78.08%, 
                     rgba(0, 0, 0, 0.740286) 85.86%, #000000 92.87%
                     );
-    height: 770px;
+    height: 100%;
     background-repeat: no-repeat;
     display:flex;
     flex-direction: column;
@@ -60,46 +60,83 @@ export const WrapperContent = styled.div`
     margin: 0 auto;  
     margin-bottom: 56px;
     width: 100%;
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+        margin-bottom: 8px;
+    }
 `;
 
 export const Title = styled.h1`
     color: ${({ theme }) => theme.color.white};
     font-size: 64px;
     margin-bottom: 24px;
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+        font-size: 24px;
+        margin-bottom: 4px;
+        margin-left: 16px;
+    };
+`;
+
+export const WrapperExtraContent = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+    }
+`;
+
+export const WrapperRating = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+        margin-left: 16px;
+    }
 `;
 
 export const Rating = styled.span`
     font-weight: 500;
     font-size: 30px;
-    line-height: 1.3;
     margin-left: 8px;
-`;
 
-export const Votes = styled.p`
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 1.2;
-    margin-left: 12px;
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+        font-size: 14px;
+        margin-left: 2px;
+    }
 `;
-
-export const WrapperRating = styled.div`
-display: flex;
-flex-direction: row;
-align-items: center;
-  `;
 
 export const RatingStar = styled.img`
-width: 40px;
-height: 38px;
+    width: 40px;
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+        width: 16px;
+    }    
 `;
 
 
 export const RatingScale = styled.span`
-font-weight: 400;
-font-size: 16px;
-line-height: 1.2;
-margin-left: 8px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.2;
+    margin-left: 8px;
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+        font-size: 10px;
+    }
 `;
 
-
+export const Votes = styled.span`
+    font-weight: 500;
+    font-size: 16px;
+    
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+        font-size: 10px;
+    }
+`;
 
