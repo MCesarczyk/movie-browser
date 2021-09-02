@@ -81,7 +81,7 @@ const Tile = ({
                         ))}
                     </Tags>
                 }
-                {votes > 1 ?
+                {votes > 0 ?
                     <TileExtraContent>
                         <RatingStar />
                         <Rating>{rating}</Rating>
