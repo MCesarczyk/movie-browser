@@ -8,12 +8,9 @@ import { selectMovieDetails } from "../moviesSlice";
 import { useGetConfig } from "../../../useGetConfig";
 import { useGetMovieDetails } from "../useGetMovieDetails";
 import {
-    selectBackdropSize,
-    selectBackdropSizes,
     selectImagesBaseURL,
     selectPosterSize,
     selectPosterSizes,
-    setBackdropSize,
     setPosterSize
 } from "../../../configSlice";
 
