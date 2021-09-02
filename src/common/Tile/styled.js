@@ -121,3 +121,10 @@ export const Description = styled.p`
     margin: 24px 0px;
     font-weight: 400;
 `;
+
+export const NoVotesText = styled.p`
+    margin:0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: ${({ theme }) => theme.color.darkGrey};
+`;
