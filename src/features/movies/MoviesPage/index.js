@@ -39,13 +39,13 @@ const MoviesPage = () => {
     const onPageResize = () => {
         const maxwidth = window.innerWidth;
         if (maxwidth > "1280") {
-            dispatch(setPosterSize(posterSizes[4]))
+            dispatch(setPosterSize(posterSizes[3]));
         } else if (maxwidth > "768") {
-            dispatch(setPosterSize(posterSizes[3]))
+            dispatch(setPosterSize(posterSizes[2]));
         } else if (maxwidth > "480") {
-            dispatch(setPosterSize(posterSizes[2]))
+            dispatch(setPosterSize(posterSizes[1]));
         } else {
-            dispatch(setPosterSize(posterSizes[1]))
+            dispatch(setPosterSize(posterSizes[0]));
         };
     };
 
@@ -62,7 +62,7 @@ const MoviesPage = () => {
                             movieId={movieList[index].id}
                             key={movieList[index].id}
                             titleUrl={`/movie/${movieList[index].id}`}
-                            imageWidth="292px"
+                            imageWidth="normal"
                             imageUrl={`${imgURL}${posterSize}${movieList[index].poster_path}`}
                             title={movieList[index].title}
                             subtitle={new Date(Date.parse(movieList[index].release_date)).getFullYear()}
