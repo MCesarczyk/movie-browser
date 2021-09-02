@@ -8,13 +8,22 @@ export const StyledTile = styled.div`
     display: flex;
     flex-direction: ${({ oversize }) => oversize ? "row" : "column"};
     gap: ${({ oversize }) => oversize ? "40px" : "8px"};
+
+    @media (max-width: ${({theme})=>theme.breakpoint.mobileMax}) {
+        flex-direction: row;
+        align-items: flex-start;
+    }    
 `;
 
 export const Image = styled.img`
     display: block;
     aspect-ratio: 2/3;
-    width: ${props => props.width ? props.width : "100%"};
+    width: ${({width}) => width === "normal" && "292px"};
     border-radius: 5px;
+
+    @media (max-width: ${({theme})=>theme.breakpoint.mobileMax}) {
+        width: ${({width}) => width === "normal" && "114px"};
+    }
 `;
 
 export const TileContent = styled.div`
@@ -44,6 +53,10 @@ export const Title = styled.h2`
     line-height: 1.2;
     margin-top: 8px;
     margin-bottom: ${({ oversize }) => oversize ? "24px" : "8px"};
+
+    @media (max-width: ${({theme})=>theme.breakpoint.mobileMax}) {
+        font-size: 16px;
+    }    
 `;
 
 export const SubTitle = styled.span`
@@ -53,6 +66,10 @@ export const SubTitle = styled.span`
     font-size: ${({ minimal }) => minimal ? "18px" : "16px"};
     line-height: 1.2;
     margin-bottom: ${({ oversize }) => oversize ? "24px" : "12px"};
+
+    @media (max-width: ${({theme})=>theme.breakpoint.mobileMax}) {
+        font-size: 13px;
+    }    
 `;
 
 export const Details = styled.div`
@@ -76,6 +93,11 @@ export const Tags = styled.div`
     flex-wrap: wrap;
     gap: ${({ oversize }) => oversize ? "16px" : "8px"};
     margin-bottom: 16px;
+
+    @media (max-width: ${({theme})=>theme.breakpoint.mobileMax}) {
+        margin-bottom: 12px;
+        gap: 8px;
+    }
 `;
 
 export const Tag = styled.span`
@@ -86,10 +108,19 @@ export const Tag = styled.span`
     border-radius: 5px;
     background-color: ${({ theme }) => theme.color.mystic};
     color: ${({ theme }) => theme.color.woodsmoke};
+
+    @media (max-width: ${({theme})=>theme.breakpoint.mobileMax}) {
+        font-size: 10px;
+        padding: 4px 8px;
+    }    
 `;
 
 export const TileExtraContent = styled.div`
     margin-top: auto;
+
+    @media (max-width: ${({theme})=>theme.breakpoint.mobileMax}) {
+        margin-top: 0px;
+    }
 `;
 
 export const Rating = styled.span`
@@ -97,6 +128,10 @@ export const Rating = styled.span`
     font-size: 22px;
     line-height: 1.3;
     margin-left: 8px;
+
+    @media (max-width: ${({theme})=>theme.breakpoint.mobileMax}) {
+        font-size: 13px;
+    }    
 `;
 
 export const RatingScale = styled.span`
@@ -109,10 +144,14 @@ export const RatingScale = styled.span`
 
 export const Votes = styled.span`
     font-weight: 400;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.2;
     margin-left: 12px;
     align-self: flex-end;
+
+    @media (max-width: ${({theme})=>theme.breakpoint.mobileMax}) {
+        font-size: 13px;
+    }
 `;
 
 export const Description = styled.p`
