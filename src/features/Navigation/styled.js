@@ -2,17 +2,17 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const List = styled.ul`
-    display: flex;
-    list-style: none;
-    margin: 0;
-    align-items: center;
-      `;
+  display: flex;
+  list-style: none;
+  margin: 0;
+  align-items: center;
+`;
 
 const activeClassName = "active";
 
 export const StyledNavLink = styled(NavLink).attrs(() => ({
-    activeClassName,
-  }))`
+  activeClassName,
+}))`
   
   color: ${({ theme }) => theme.color.white};
   text-decoration: none;
@@ -25,10 +25,12 @@ export const StyledNavLink = styled(NavLink).attrs(() => ({
   
   &:hover {
   }
-  @media(max-width: ${({theme}) => theme.breakpoint.mobileMin}px) {
+
+  @media(max-width: ${({ theme }) => theme.breakpoint.mobileMin}) {
     padding: 2px;
   }
-  @media(max-width: ${({theme}) => theme.breakpoint.mobile}px) {
+
+  @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
     padding: 5px;
   }
 `;
@@ -39,45 +41,43 @@ export const Item = styled.li`
     text-transform: uppercase;
     text-decoration: none;
     
-    @media(max-width: ${({theme}) => theme.breakpoint.mobile}px) {
+    @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
       margin: 2px;
     }
-    @media(max-width: ${({theme}) => theme.breakpoint.mobileMin}px) {
+
+    @media(max-width: ${({ theme }) => theme.breakpoint.mobileMin}) {
       margin: 5px;
     }
 `;
 
 export const HeaderWrapper = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    flex-wrap: wrap; 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  flex-wrap: wrap; 
 `;
 
 export const NavigationWrapper = styled.nav`
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    max-width: ${({ theme }) => theme.dimension.maxWidth};
-    margin: 0 auto;
-    flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  max-width: ${({ theme }) => theme.dimension.maxWidth};
+  margin: 0 auto;
+  flex-wrap: wrap;
 `;
 
 export const NavigationContainer = styled.div`
-    color: ${({ theme }) => theme.color.white};
-    background: ${({ theme }) => theme.color.black};
-    min-height: 94px;
-    padding: 15px;
-    
- 
+  color: ${({ theme }) => theme.color.white};
+  background: ${({ theme }) => theme.color.black};
+  min-height: 94px;
+  padding: 15px;
   
-    @media(max-width: ${({theme}) => theme.breakpoint.mobile}px) {
+    @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
       padding: 5px;
-   
     }
-    @media(max-width: ${({theme}) => theme.breakpoint.mobileMin}px) {
+
+    @media(max-width: ${({ theme }) => theme.breakpoint.mobileMin}) {
       padding: 3px;
-     
     }
 `;
