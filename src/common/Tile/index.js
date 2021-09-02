@@ -18,6 +18,7 @@ import {
     Votes,
     Description,
     ActiveTitle,
+    NoVotesText,
 } from "./styled";
 
 const Tile = ({
@@ -80,12 +81,16 @@ const Tile = ({
                         ))}
                     </Tags>
                 }
-                {rating && votes &&
+                {votes > 0 ?
                     <TileExtraContent>
                         <RatingStar />
                         <Rating>{rating}</Rating>
                         <RatingScale>/ 10</RatingScale>
                         <Votes>{votes} votes</Votes>
+                    </TileExtraContent>
+                    :
+                    <TileExtraContent>
+                        <NoVotesText>No votes yet</NoVotesText>
                     </TileExtraContent>
                 }
                 {overview &&
