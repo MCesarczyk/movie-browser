@@ -1,9 +1,8 @@
-import { ReactComponent as Ellipse } from "./images/Ellipse.svg";
-import { Wrapper } from "./images/styled";
+import { Wrapper, LoadingIcon } from "./images/styled";
 
 const LoadingCircle = () => (
     <Wrapper>
-        <Ellipse />
+        <LoadingIcon />
     </Wrapper>
 );
 
