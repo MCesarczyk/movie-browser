@@ -21,6 +21,8 @@ import {
 } from "./styled";
 
 const Tile = ({
+    width,
+    mobile,
     oversize,
     minimal,
     imageWidth,
@@ -37,12 +39,13 @@ const Tile = ({
     overview
 }) => {
     const genres = useSelector(selectGenres);
-
+    
     return (
         <StyledTile oversize={oversize} >
             <Image
+                width={width}
+                mobile={mobile}
                 src={imageUrl}
-                width={imageWidth}
                 alt="image"
             />
             <TileContent>

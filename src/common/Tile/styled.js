@@ -9,20 +9,23 @@ export const StyledTile = styled.div`
     flex-direction: ${({ oversize }) => oversize ? "row" : "column"};
     gap: ${({ oversize }) => oversize ? "40px" : "8px"};
 
-    @media (max-width: ${({theme})=>theme.breakpoint.mobileMax}) {
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
         flex-direction: row;
         align-items: flex-start;
     }    
 `;
 
-export const Image = styled.img`
+export const Image = styled.img.attrs(props => ({
+    width: props.width || 177,
+    mobile: props.mobile || 120,
+}))`
     display: block;
     aspect-ratio: 2/3;
-    width: ${({width}) => width === "normal" && "292px"};
+    width: ${props => props.width};
     border-radius: 5px;
 
-    @media (max-width: ${({theme})=>theme.breakpoint.mobileMax}) {
-        width: ${({width}) => width === "normal" && "114px"};
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+        width: ${props => props.mobile};
     }
 `;
 
@@ -54,7 +57,7 @@ export const Title = styled.h2`
     margin-top: 8px;
     margin-bottom: ${({ oversize }) => oversize ? "24px" : "8px"};
 
-    @media (max-width: ${({theme})=>theme.breakpoint.mobileMax}) {
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
         font-size: 16px;
     }    
 `;
@@ -67,7 +70,7 @@ export const SubTitle = styled.span`
     line-height: 1.2;
     margin-bottom: ${({ oversize }) => oversize ? "24px" : "12px"};
 
-    @media (max-width: ${({theme})=>theme.breakpoint.mobileMax}) {
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
         font-size: 13px;
     }    
 `;
@@ -94,7 +97,7 @@ export const Tags = styled.div`
     gap: ${({ oversize }) => oversize ? "16px" : "8px"};
     margin-bottom: 16px;
 
-    @media (max-width: ${({theme})=>theme.breakpoint.mobileMax}) {
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
         margin-bottom: 12px;
         gap: 8px;
     }
@@ -109,7 +112,7 @@ export const Tag = styled.span`
     background-color: ${({ theme }) => theme.color.mystic};
     color: ${({ theme }) => theme.color.woodsmoke};
 
-    @media (max-width: ${({theme})=>theme.breakpoint.mobileMax}) {
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
         font-size: 10px;
         padding: 4px 8px;
     }    
@@ -118,7 +121,7 @@ export const Tag = styled.span`
 export const TileExtraContent = styled.div`
     margin-top: auto;
 
-    @media (max-width: ${({theme})=>theme.breakpoint.mobileMax}) {
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
         margin-top: 0px;
     }
 `;
@@ -129,7 +132,7 @@ export const Rating = styled.span`
     line-height: 1.3;
     margin-left: 8px;
 
-    @media (max-width: ${({theme})=>theme.breakpoint.mobileMax}) {
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
         font-size: 13px;
     }    
 `;
@@ -149,7 +152,7 @@ export const Votes = styled.span`
     margin-left: 12px;
     align-self: flex-end;
 
-    @media (max-width: ${({theme})=>theme.breakpoint.mobileMax}) {
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
         font-size: 13px;
     }
 `;

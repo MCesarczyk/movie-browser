@@ -68,10 +68,10 @@ const MoviePage = () => {
             />
             <Wrapper>
                 <Tile
-                    oversize
+                    width="312"
+                    mobile="114"
                     key={movieId}
                     movieId={movieId}
-                    imageWidth="312px"
                     titleUrl={`/movie/${movieId}`}
                     imageUrl={movieDetails && `${imgURL}${posterSize}${movieDetails.poster_path}`}
                     title={movieDetails.title}
@@ -88,7 +88,8 @@ const MoviePage = () => {
                         title="Cast"
                         body={movieCast && movieCast.map((person, index) => (
                             <Tile
-                                minimal
+                                width="177"
+                                mobile="120"
                                 key={movieCast[index].credit_id}
                                 titleUrl={`/people/${movieCast[index].id}`}
                                 imageUrl={`${imgURL}${posterSize}${movieCast[index].profile_path}`}
@@ -101,7 +102,8 @@ const MoviePage = () => {
                         title="Crew"
                         body={movieCrew && movieCrew.map((person, index) => (
                             <Tile
-                                minimal
+                                width="177"
+                                mobile="120"
                                 key={movieCrew[index].credit_id}
                                 titleUrl={`/people/${movieCrew[index].id}`}
                                 imageUrl={`${imgURL}${posterSize}${movieCrew[index].profile_path}`}

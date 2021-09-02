@@ -59,10 +59,11 @@ const MoviesPage = () => {
                     {moviesState === "error" && <ErrorPage />}
                     {moviesState === "success" && movieList && movieList.map((movie, index) => (
                         <Tile
+                            width="292"
+                            mobile="114"
                             movieId={movieList[index].id}
                             key={movieList[index].id}
                             titleUrl={`/movie/${movieList[index].id}`}
-                            imageWidth="normal"
                             imageUrl={`${imgURL}${posterSize}${movieList[index].poster_path}`}
                             title={movieList[index].title}
                             subtitle={new Date(Date.parse(movieList[index].release_date)).getFullYear()}
