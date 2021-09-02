@@ -14,7 +14,7 @@ export const theme = {
         whisper: "#F5F5FA",
     },
     breakpoint: {
-        mobile: "767",
-        mobileMin: "320",
+        mobileMax: "767px",
+        mobileMin: "320px",
     },
 };

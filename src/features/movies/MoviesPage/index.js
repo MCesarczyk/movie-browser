@@ -54,7 +54,7 @@ const MoviesPage = () => {
     return (
         <>
             <Wrapper>
-                <TileList >
+                <TileList>
                     {moviesState === "loading" && <LoadingPage message="Loading movies list..." />}
                     {moviesState === "error" && <ErrorPage />}
                     {moviesState === "success" && movieList && movieList.map((movie, index) => (
