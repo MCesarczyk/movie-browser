@@ -33,7 +33,7 @@ export const {
     setGenres,
 } = peopleSlice.actions;
 
-export const selectPersonList = state => state.people.people;
+export const selectPeopleList = state => state.people.people;
 export const selectGenres = state => state.people.genres.genres;
 export const selectGenresList = state => state.people.person.genres;
 export const selectPersonDetails = state => state.people.person;
