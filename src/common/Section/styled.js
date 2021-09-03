@@ -12,14 +12,24 @@ export const SectionTitle = styled.h2`
     margin-top: 8px;
 `;
 
-export const SectionContainer = styled.div`
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
+export const SectionListContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
     gap: 24px;
 
+    @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
+        gap: 22px;
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}) {
+        gap: 20px;
+    }
+
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
-        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
         gap: 16px;
     }
 `;
