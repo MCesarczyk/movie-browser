@@ -5,14 +5,15 @@ font-weight: 600;
 font-size: 36px;
 line-height: 1.2;
 margin-top: 50px;
-@media(max-width: ${({theme}) => theme.breakpoint.mobileMin}px) {
+@media(max-width: ${({theme}) => theme.breakpoint.mobileMin}) {
     font-size: 20px;
     margin-top: 20px;
   }
-  @media(max-width: ${({theme}) => theme.breakpoint.mobile}px) {
+  @media(max-width: ${({theme}) => theme.breakpoint.mobileMax}) {
     font-size: 26px;
     margin-top: 30px;
-  `;
+  }
+`;
 
 export const NoResultsLogo = styled.img`
 margin: 0 auto;
@@ -20,11 +21,12 @@ display: block;
 Width: 668px;
 Height: 508px;
 margin-top: 50px;
-@media(max-width: ${({theme}) => theme.breakpoint.mobileMin}px) {
+@media(max-width: ${({theme}) => theme.breakpoint.mobileMin}) {
     Width: 150px;
     Height: 105px;
   }
-  @media(max-width: ${({theme}) => theme.breakpoint.mobile}px) {
+  @media(max-width: ${({theme}) => theme.breakpoint.mobileMax}) {
     Width: 270px;
     Height: 205px;
-  `;
+  }
+`;
