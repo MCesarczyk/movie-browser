@@ -219,3 +219,10 @@ export const Description = styled.p`
         font-size: 14px;
     }
 `;
+
+export const NoVotesText = styled.p`
+    margin:0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: ${({ theme }) => theme.color.darkGrey};
+`;

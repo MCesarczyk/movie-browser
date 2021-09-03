@@ -1,5 +1,18 @@
-import RatingStar from "../../../../common/Tile/RatingStar";
-import { BackdropPoster, WrapperBackdrop, Title, WrapperContent, RatingScale, Votes, BackdropContainer } from "./styled";
+
+import {
+    BackdropPoster,
+    WrapperBackdrop,
+    Title,
+    WrapperContent,
+    RatingScale,
+    Votes,
+    BackdropContainer,
+    WrapperRating,
+    RatingStar,
+    Rating,
+    WrapperExtraContent
+} from "./styled";
+import ratingStar from "../../../../common/Tile/RatingStar/ratingStar.svg";
 
 const Backdrop = ({ backdropUrl, title, rating, votes }) => {
     return (
@@ -8,9 +21,14 @@ const Backdrop = ({ backdropUrl, title, rating, votes }) => {
                 <WrapperBackdrop >
                     <WrapperContent>
                         <Title>{title}</Title>
-                        <RatingStar />
-                        <RatingScale> {rating}</RatingScale>
-                        <Votes>{votes} votes</Votes>
+                        <WrapperExtraContent>
+                            <WrapperRating>
+                                <RatingStar src={ratingStar} alt="" />
+                                <Rating>{rating}</Rating>
+                                <RatingScale>/ 10</RatingScale>
+                            </WrapperRating>
+                            <Votes>{votes} votes</Votes>
+                        </WrapperExtraContent>
                     </WrapperContent>
                 </WrapperBackdrop>
             </BackdropPoster>

@@ -4,8 +4,8 @@ import camera from "../images/camera.svg";
 export const Header = () => {
     return (
         <Wrapper>
-            <Icon src={camera} alt="" />&nbsp;
-            <Title>Movies Browser</Title>
+            <Icon src={camera} alt="" />
+            <Title>Movies&nbsp;Browser</Title>
         </Wrapper>  
     );
 };

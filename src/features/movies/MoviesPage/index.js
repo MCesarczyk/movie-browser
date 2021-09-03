@@ -57,23 +57,25 @@ const MoviesPage = () => {
                 <TileList>
                     {moviesState === "loading" && <LoadingPage message="Loading movies list..." />}
                     {moviesState === "error" && <ErrorPage />}
-                    {moviesState === "success" && movieList && movieList.map((movie, index) => (
-                        <Tile
-                            imageWidth="100%"
-                            mobile="114"
-                            movieId={movieList[index].id}
-                            key={movieList[index].id}
-                            titleUrl={`/movie/${movieList[index].id}`}
-                            imageUrl={`${imgURL}${posterSize}${movieList[index].poster_path}`}
-                            title={movieList[index].title}
-                            subtitle={new Date(Date.parse(movieList[index].release_date)).getFullYear()}
-                            genreIds={movieList[index].genre_ids}
-                            rating={movieList[index].vote_average}
-                            votes={movieList[index].vote_count}
-                        />
-                    ))}
+                        <MoviesList title="Movies" >
+                            {moviesState === "success" && movieList && movieList.map((movie, index) => (
+                                <Tile
+                                    imageWidth="100%"
+                                    mobile="114"
+                                    movieId={movieList[index].id}
+                                    key={movieList[index].id}
+                                    titleUrl={`/movie/${movieList[index].id}`}
+                                    imageUrl={`${imgURL}${posterSize}${movieList[index].poster_path}`}
+                                    title={movieList[index].title}
+                                    subtitle={new Date(Date.parse(movieList[index].release_date)).getFullYear()}
+                                    genreIds={movieList[index].genre_ids}
+                                    rating={movieList[index].vote_average}
+                                    votes={movieList[index].vote_count}
+                                />
+                            ))}
+                        </MoviesList>
                 </TileList>
-                <Pager />
+                    {moviesState === "success" && <Pager />}
             </Wrapper>
         </>
     )

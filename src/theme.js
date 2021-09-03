@@ -20,4 +20,7 @@ export const theme = {
         oldIphone: "480px",
         mobileMin: "320px",
     },
+    dimension: {
+        maxWidth: "1368px",
+    },
 };
