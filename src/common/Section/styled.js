@@ -17,4 +17,9 @@ export const SectionContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 24px;
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
 `;
