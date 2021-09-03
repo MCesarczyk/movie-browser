@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 // import { setMovies } from "./moviesSlice";
 import { setState, setTotalPages } from "../../globalSlice";
+import { setPeople } from "./peopleSlice";
 
 export const useGetPopularPeople = () => {
     const dispatch = useDispatch();

@@ -19,7 +19,7 @@ import {
   setSlideWidth
 } from "../../../globalSlice";
 import { useEffect } from "react";
-import SlidesSection from "../../../common/SlidesSection copy";
+import Section from "../../../common/Section";
 
 const PeoplePage = () => {
   const dispatch = useDispatch();
@@ -31,7 +31,6 @@ const PeoplePage = () => {
   const slideWidth = useSelector(selectSlideWidth);
 
   useGetConfig();
-  useGetMovieGenres();
   useGetPopularPeople();
 
   // eslint-disable-next-line
@@ -73,17 +72,17 @@ const PeoplePage = () => {
           <ErrorPage />
         }
         {peopleState === "success" && peopleList &&
-          <SlidesSection
+          <Section
             title="Popular people"
             body={peopleList.map((person, index) => (
               <Tile
-                width={slidWidth}
+                width={slideWidth}
                 imageWidth="100%"
                 personId={peopleList[index].id}
                 key={peopleList[index].id}
                 personUrl={`/person/${peopleList[index].id}`}
                 imageUrl={`${imgURL}${profileSize}${peopleList[index].profile_path}`}
-              // title={peopleList[index].title}
+                title={peopleList[index].name}
               />
             ))}
           />

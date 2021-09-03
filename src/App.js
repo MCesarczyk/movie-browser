@@ -2,7 +2,7 @@ import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
 import Navigation from './features/Navigation';
 import MoviesPage from './features/movies/MoviesPage';
 import MoviePage from './features/movies/MoviePage';
-import { NoResults } from "./features/Navigation/Search/NoResults";
+import PeoplePage from "./features/people/PeoplePage";
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
           <MoviesPage />
         </Route>
         <Route path="/people">
-          <NoResults />
+          <PeoplePage />
         </Route>
         <Route path="/">
           <Redirect to="/movies" />
