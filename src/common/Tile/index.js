@@ -21,10 +21,11 @@ import {
 } from "./styled";
 
 const Tile = ({
+    width,
     imageWidth,
     mobile,
     oversize,
-    minimal,
+    slide,
     titleUrl,
     imageUrl,
     title,
@@ -40,8 +41,9 @@ const Tile = ({
     const genres = useSelector(selectGenres);
 
     return (
-        <StyledTile oversize={oversize} minimal={minimal} >
+        <StyledTile width={width} oversize={oversize} slide={slide} >
             <Image
+                slide={slide}
                 width={imageWidth}
                 mobile={mobile}
                 src={imageUrl}
@@ -51,14 +53,14 @@ const Tile = ({
                 <ActiveTitle to={titleUrl} >
                     <Title
                         oversize={oversize}
-                        minimal={minimal}
+                        slide={slide}
                     >
                         {title}
                     </Title>
                 </ActiveTitle>
                 <SubTitle
                     oversize={oversize}
-                    minimal={minimal}
+                    slide={slide}
                 >
                     {subtitle}
                 </SubTitle>

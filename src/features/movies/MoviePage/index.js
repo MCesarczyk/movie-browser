@@ -18,11 +18,11 @@ import {
     selectPosterWidth,
     selectProfileSize,
     selectProfileSizes,
-    selectProfileWidth,
+    selectSlideWidth,
     setPosterSize,
     setPosterWidth,
     setProfileSize,
-    setProfileWidth
+    setSlideWidth
 } from "../../../globalSlice";
 import { useGetConfig } from "../../../useGetConfig";
 import { useGetMovieDetails } from "../useGetMovieDetails";
@@ -41,7 +41,7 @@ const MoviePage = () => {
     const posterWidth = useSelector(selectPosterWidth);
     const profileSizes = useSelector(selectProfileSizes);
     const profileSize = useSelector(selectProfileSize);
-    const profileWidth = useSelector(selectProfileWidth);
+    const slideWidth = useSelector(selectSlideWidth);
     const movieCast = useSelector(selectMovieCast);
     const movieCrew = useSelector(selectMovieCrew);
     const genresList = useSelector(selectGenresList);
@@ -57,22 +57,22 @@ const MoviePage = () => {
             dispatch(setPosterSize(posterSizes[4]));
             dispatch(setPosterWidth("312"));
             dispatch(setProfileSize(profileSizes[2]));
-            dispatch(setProfileWidth("177"));
+            dispatch(setSlideWidth("208px"));
         } else if (maxwidth > "768") {
             dispatch(setPosterSize(posterSizes[3]))
             dispatch(setPosterWidth("312"));
             dispatch(setProfileSize(profileSizes[1]));
-            dispatch(setProfileWidth("120"));
+            dispatch(setSlideWidth("184px"));
         } else if (maxwidth > "480") {
             dispatch(setPosterSize(posterSizes[2]))
             dispatch(setPosterWidth("180"));
             dispatch(setProfileSize(profileSizes[1]));
-            dispatch(setProfileWidth("120"));
+            dispatch(setSlideWidth("160px"));
         } else {
             dispatch(setPosterSize(posterSizes[1]))
             dispatch(setPosterWidth("114"));
             dispatch(setProfileSize(profileSizes[1]));
-            dispatch(setProfileWidth("120"));
+            dispatch(setSlideWidth("136px"));
         };
     };
 
@@ -116,8 +116,8 @@ const MoviePage = () => {
                         title="Cast"
                         body={movieCast && movieCast.map((person, index) => (
                             <Tile
-                                minimal
-                                imageWidth={profileWidth}
+                                slide
+                                width={slideWidth}
                                 key={movieCast[index].credit_id}
                                 titleUrl={`/people/${movieCast[index].id}`}
                                 imageUrl={`${imgURL}${profileSize}${movieCast[index].profile_path}`}
@@ -130,8 +130,8 @@ const MoviePage = () => {
                         title="Crew"
                         body={movieCrew && movieCrew.map((person, index) => (
                             <Tile
-                                minimal
-                                imageWidth={profileWidth}
+                                slide
+                                width={slideWidth}
                                 key={movieCrew[index].credit_id}
                                 titleUrl={`/people/${movieCrew[index].id}`}
                                 imageUrl={`${imgURL}${profileSize}${movieCrew[index].profile_path}`}
