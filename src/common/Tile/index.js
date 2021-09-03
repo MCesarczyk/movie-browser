@@ -25,7 +25,6 @@ const Tile = ({
     mobile,
     oversize,
     minimal,
-    imageWidth,
     titleUrl,
     imageUrl,
     title,
@@ -39,7 +38,7 @@ const Tile = ({
     overview
 }) => {
     const genres = useSelector(selectGenres);
-    
+
     return (
         <StyledTile oversize={oversize} >
             <Image
@@ -105,13 +104,12 @@ const Tile = ({
                         <Votes>{votes} votes</Votes>
                     </TileExtraContent>
                 }
-                {overview &&
-                    <Description>
-                        {overview}
-                    </Description>
-                }
-
             </TileContent>
+            {overview &&
+                <Description>
+                    {overview}
+                </Description>
+            }
         </StyledTile>
     );
 };
