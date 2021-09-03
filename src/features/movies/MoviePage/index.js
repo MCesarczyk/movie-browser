@@ -50,11 +50,7 @@ const MoviePage = () => {
     useGetMovieDetails(movieId);
     useGetMovieCredits(movieId);
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
-
-    const onPageResize = () => {
+    const adjustPhotoSizes = () => {
         const maxwidth = window.innerWidth;
         if (maxwidth > "1280") {
             dispatch(setPosterSize(posterSizes[4]));
@@ -79,7 +75,12 @@ const MoviePage = () => {
         };
     };
 
-    window.addEventListener("resize", onPageResize);
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        adjustPhotoSizes();
+    }, [adjustPhotoSizes]);
+
+    window.addEventListener("resize", adjustPhotoSizes);
 
     return (
         <>
