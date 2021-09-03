@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-export const StyledTile = styled.div`
+export const StyledTile = styled.div.attrs(props => ({
+    width: props.width || undefined,
+}))`
+    width: ${props => props.width};
     background-color: ${({ theme }) => theme.color.white};
     box-shadow: 0px 4px 12px rgba(186, 199, 213, 0.5);
     padding: ${({ oversize }) => oversize ? "40px" : "16px"};
@@ -12,14 +15,14 @@ export const StyledTile = styled.div`
         "content desc";
     grid-template-columns: auto 1fr;
     grid-template-rows: auto auto 1fr;
-    flex-direction: ${({ oversize }) => oversize ? "row" : "column"};
-    gap: ${({ oversize }) => oversize ? "40px" : "8px"};
+    gap: ${({ oversize }) => oversize ? "24px 40px" : "8px"};
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
         grid-template-areas: 
             "image content"
             "image content"
             "image desc";
+        gap: 16px;
     }    
 
     ${({ oversize }) => oversize && css`
@@ -36,17 +39,18 @@ export const StyledTile = styled.div`
         }    
     `}
 
-    ${({ minimal }) => minimal && css`
+    ${({ slide }) => slide && css`
         grid-template-areas: 
             "image image"
             "image image"
-            "content desc";
+            "content content";
+        gap: 16px 24px;
 
         @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
             grid-template-areas: 
             "image image"
             "image image"
-            "content desc";
+            "content content";
         }
     `}  
 `;
@@ -60,10 +64,15 @@ export const Image = styled.img.attrs(props => ({
     aspect-ratio: 2/3;
     width: ${props => props.width};
     border-radius: 5px;
+    transition: width 1s ease-in-out, left 1.5s ease-in-out;
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
         width: ${props => props.mobile};
     }
+
+    ${({ slide }) => slide && css`
+        width: 100%;
+    `}
 `;
 
 export const TileContent = styled.div`
@@ -89,7 +98,7 @@ export const ActiveTitle = styled(Link)`
 
 export const Title = styled.h2`
     font-weight: 600;
-    text-align: ${({ minimal }) => minimal ? "center" : "left"};
+    text-align: ${({ slide }) => slide ? "center" : "left"};
     font-size: ${({ oversize }) => oversize ? "36px" : "22px"};
     line-height: 1.2;
     margin-top: 8px;
@@ -102,9 +111,9 @@ export const Title = styled.h2`
 
 export const SubTitle = styled.span`
     font-weight: 400; 
-    text-align: ${({ minimal }) => minimal ? "center" : "left"};
+    text-align: ${({ slide }) => slide ? "center" : "left"};
     font-size: ${({ oversize }) => oversize ? "36px" : "16px"};
-    font-size: ${({ minimal }) => minimal ? "18px" : "16px"};
+    font-size: ${({ slide }) => slide ? "18px" : "16px"};
     line-height: 1.2;
     margin-bottom: ${({ oversize }) => oversize ? "24px" : "12px"};
 
@@ -114,17 +123,20 @@ export const SubTitle = styled.span`
 `;
 
 export const Details = styled.div`
+    font-size: 18px;
     margin-bottom: 8px;
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+        font-size: 12px;
+    }
 `;
 
 export const DetailTitle = styled.span`
-    font-size: 18px;
     line-height: 1.2;
     color: ${({ theme }) => theme.color.stormGrey};
 `;
 
 export const DetailContent = styled.span`
-    font-size: 18px;
     line-height: 1.2;
     margin-left: 10px;
 `;
@@ -132,19 +144,19 @@ export const DetailContent = styled.span`
 export const Tags = styled.div`
     display: flex;
     flex-wrap: wrap;
+    margin-top: ${({ oversize }) => oversize ? "24px" : "8px"};
+    margin-bottom: ${({ oversize }) => oversize ? "24px" : "8px"};
     gap: ${({ oversize }) => oversize ? "16px" : "8px"};
-    margin-bottom: 16px;
-
+    
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
-        margin-bottom: 12px;
+        margin-top: 8px;
+        margin-bottom: 8px;
         gap: 8px;
     }
 `;
 
 export const Tag = styled.span`
     padding: 8px 16px;
-    margin-top: ${({ oversize }) => oversize ? "24px" : "0px"};
-    margin-bottom: ${({ oversize }) => oversize ? "24px" : "0px"};
     font-size: 14px;
     border-radius: 5px;
     background-color: ${({ theme }) => theme.color.mystic};
@@ -200,6 +212,10 @@ export const Description = styled.p`
     display: block;
     font-size: 20px;
     line-height: 1.6;
-    margin: 24px 0px;
+    margin: 0px;
     font-weight: 400;
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+        font-size: 14px;
+    }
 `;
