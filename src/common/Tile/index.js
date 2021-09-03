@@ -100,7 +100,7 @@ const Tile = ({
                         ))}
                     </Tags>
                 }
-                {votes > 0 ?
+                {!slide && (votes > 0 ?
                     <TileExtraContent>
                         <StyledLogo src={RatingStar} />
                         <Rating>{rating}</Rating>
@@ -111,7 +111,7 @@ const Tile = ({
                     <TileExtraContent>
                         <NoVotesText>No votes yet</NoVotesText>
                     </TileExtraContent>
-                }
+                )}
             </TileContent>
             {overview &&
                 <Description>
