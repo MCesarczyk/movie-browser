@@ -12,7 +12,7 @@ import {
     Rating,
     WrapperExtraContent
 } from "./styled";
-import ratingStar from "../../../../common/Tile/RatingStar/ratingStar.svg";
+import ratingStar from "../../../../common/Tile/RatingStar/RatingStar.svg";
 
 const Backdrop = ({ backdropUrl, title, rating, votes }) => {
     return (
