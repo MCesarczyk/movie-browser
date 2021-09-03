@@ -40,7 +40,7 @@ const Tile = ({
     const genres = useSelector(selectGenres);
 
     return (
-        <StyledTile oversize={oversize} >
+        <StyledTile oversize={oversize} minimal={minimal} >
             <Image
                 width={width}
                 mobile={mobile}
