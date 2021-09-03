@@ -72,7 +72,7 @@ const MoviesPage = () => {
                         />
                     ))}
                 </MoviesList>
-                {moviesState === "success" && <Pager />}
+                {moviesState === "success" && <Pager property={"movies"}/>}
             </Wrapper>
         </>
     )
