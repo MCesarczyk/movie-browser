@@ -16,6 +16,7 @@ const initialState = {
     totalPages: 500,
     state: "idle",
     posterSize: "w500",
+    posterWidth: "312",
     backdropSize: "w1280",
 };
 
@@ -28,6 +29,9 @@ const globalSlice = createSlice({
         },
         setPosterSize: (state, { payload: newSize }) => {
             state.posterSize = newSize;
+        },
+        setPosterWidth: (state, { payload: newWidth }) => {
+            state.posterWidth = newWidth;
         },
         setBackdropSize: (state, { payload: newSize }) => {
             state.backdropSize = newSize;
@@ -44,6 +48,7 @@ const globalSlice = createSlice({
 export const {
     setConfig,
     setPosterSize,
+    setPosterWidth,
     setBackdropSize,
     setTotalPages,
     setState,
@@ -55,6 +60,7 @@ export const selectImagesBaseURL = state => state.global.config.images.secure_ba
 export const selectPosterSizes = state => state.global.config.images.poster_sizes;
 export const selectBackdropSizes = state => state.global.config.images.backdrop_sizes;
 export const selectPosterSize = state => state.global.posterSize;
+export const selectPosterWidth = state => state.global.posterWidth;
 export const selectBackdropSize = state => state.global.backdropSize;
 export const selectTotalPages = state => state.global.totalPages;
 export const selectState = state => state.global.state;

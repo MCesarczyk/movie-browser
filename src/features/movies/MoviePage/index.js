@@ -15,7 +15,9 @@ import {
     selectImagesBaseURL,
     selectPosterSize,
     selectPosterSizes,
-    setPosterSize
+    selectPosterWidth,
+    setPosterSize,
+    setPosterWidth
 } from "../../../globalSlice";
 import { useGetConfig } from "../../../useGetConfig";
 import { useGetMovieDetails } from "../useGetMovieDetails";
@@ -30,6 +32,7 @@ const MoviePage = () => {
     const movieDetails = useSelector(selectMovieDetails);
     const imgURL = useSelector(selectImagesBaseURL);
     const posterSize = useSelector(selectPosterSize);
+    const posterWidth = useSelector(selectPosterWidth);
     const posterSizes = useSelector(selectPosterSizes);
     const movieCast = useSelector(selectMovieCast);
     const movieCrew = useSelector(selectMovieCrew);
@@ -46,13 +49,17 @@ const MoviePage = () => {
     const onPageResize = () => {
         const maxwidth = window.innerWidth;
         if (maxwidth > "1280") {
-            dispatch(setPosterSize(posterSizes[4]))
+            dispatch(setPosterSize(posterSizes[4]));
+            dispatch(setPosterWidth("312"));
         } else if (maxwidth > "768") {
             dispatch(setPosterSize(posterSizes[3]))
+            dispatch(setPosterWidth("240"));
         } else if (maxwidth > "480") {
             dispatch(setPosterSize(posterSizes[2]))
+            dispatch(setPosterWidth("180"));
         } else {
             dispatch(setPosterSize(posterSizes[1]))
+            dispatch(setPosterWidth("114"));
         };
     };
 
@@ -68,8 +75,7 @@ const MoviePage = () => {
             />
             <Wrapper>
                 <Tile
-                    width="312"
-                    mobile="114"
+                    width={posterWidth}
                     key={movieId}
                     movieId={movieId}
                     titleUrl={`/movie/${movieId}`}
