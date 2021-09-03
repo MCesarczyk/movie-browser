@@ -122,7 +122,11 @@ export const SubTitle = styled.span`
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
         font-size: 13px;
         margin-bottom: 8px;
-    }    
+    }
+
+    ${({ slide }) => slide && css`
+        color: ${({ theme }) => theme.color.darkGrey}
+    `}
 `;
 
 export const Details = styled.div`
