@@ -72,7 +72,7 @@ const MoviePage = () => {
             dispatch(setPosterSize(posterSizes[1]))
             dispatch(setPosterWidth("114"));
             dispatch(setProfileSize(profileSizes[1]));
-            dispatch(setSlideWidth("136px"));
+            dispatch(setSlideWidth("144px"));
         };
     };
 
