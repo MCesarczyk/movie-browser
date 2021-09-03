@@ -5,13 +5,17 @@ export const StyledTile = styled.div`
     background-color: ${({ theme }) => theme.color.white};
     box-shadow: 0px 4px 12px rgba(186, 199, 213, 0.5);
     padding: ${({ oversize }) => oversize ? "40px" : "16px"};
-    display: flex;
+    display: grid;
+    grid-template-areas: 
+        "image image"
+        "image image"
+        "content desc";
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto 1fr;
     flex-direction: ${({ oversize }) => oversize ? "row" : "column"};
     gap: ${({ oversize }) => oversize ? "40px" : "8px"};
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
-        flex-direction: row;
-        align-items: flex-start;
     }    
 `;
 
@@ -19,6 +23,7 @@ export const Image = styled.img.attrs(props => ({
     width: props.width || 177,
     mobile: props.mobile || 120,
 }))`
+    grid-area: image;
     display: block;
     aspect-ratio: 2/3;
     width: ${props => props.width};
@@ -30,6 +35,7 @@ export const Image = styled.img.attrs(props => ({
 `;
 
 export const TileContent = styled.div`
+    grid-area: content;
     width: 100%;
     height: 100%;
     display: flex;
@@ -158,6 +164,8 @@ export const Votes = styled.span`
 `;
 
 export const Description = styled.p`
+    grid-area: desc;
+    display: block;
     font-size: 20px;
     line-height: 1.6;
     margin: 24px 0px;
