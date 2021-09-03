@@ -17,6 +17,7 @@ const initialState = {
     state: "idle",
     posterSize: "w500",
     profileSize: "original",
+    slideWidth: "177",
     backdropSize: "w1280",
 };
 
@@ -32,6 +33,9 @@ const globalSlice = createSlice({
         },
         setProfileSize: (state, { payload: newSize }) => {
             state.profileSize = newSize;
+        },
+        setSlideWidth: (state, { payload: newWidth }) => {
+            state.slideWidth = newWidth;
         },
         setBackdropSize: (state, { payload: newSize }) => {
             state.backdropSize = newSize;
@@ -49,6 +53,7 @@ export const {
     setConfig,
     setPosterSize,
     setProfileSize,
+    setSlideWidth,
     setBackdropSize,
     setTotalPages,
     setState,
@@ -61,6 +66,7 @@ export const selectPosterSizes = state => state.global.config.images.poster_size
 export const selectPosterSize = state => state.global.posterSize;
 export const selectProfileSizes = state => state.global.config.images.profile_sizes;
 export const selectProfileSize = state => state.global.profileSize;
+export const selectSlideWidth = state => state.global.slideWidth;
 export const selectBackdropSizes = state => state.global.config.images.backdrop_sizes;
 export const selectBackdropSize = state => state.global.backdropSize;
 export const selectTotalPages = state => state.global.totalPages;
