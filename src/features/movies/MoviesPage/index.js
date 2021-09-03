@@ -59,7 +59,7 @@ const MoviesPage = () => {
                     {moviesState === "error" && <ErrorPage />}
                     {moviesState === "success" && movieList && movieList.map((movie, index) => (
                         <Tile
-                            width="292"
+                            imageWidth="292"
                             mobile="114"
                             movieId={movieList[index].id}
                             key={movieList[index].id}

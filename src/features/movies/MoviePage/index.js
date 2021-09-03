@@ -50,6 +50,7 @@ const MoviePage = () => {
     useGetMovieDetails(movieId);
     useGetMovieCredits(movieId);
 
+    // eslint-disable-next-line
     const adjustPhotoSizes = () => {
         const maxwidth = window.innerWidth;
         if (maxwidth > "1280") {
@@ -59,7 +60,7 @@ const MoviePage = () => {
             dispatch(setProfileWidth("177"));
         } else if (maxwidth > "768") {
             dispatch(setPosterSize(posterSizes[3]))
-            dispatch(setPosterWidth("240"));
+            dispatch(setPosterWidth("312"));
             dispatch(setProfileSize(profileSizes[1]));
             dispatch(setProfileWidth("120"));
         } else if (maxwidth > "480") {
@@ -77,6 +78,9 @@ const MoviePage = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+    }, []);
+
+    useEffect(() => {
         adjustPhotoSizes();
     }, [adjustPhotoSizes]);
 
@@ -93,7 +97,7 @@ const MoviePage = () => {
             <Wrapper>
                 <Tile
                     oversize
-                    width={posterWidth}
+                    imageWidth={posterWidth}
                     key={movieId}
                     movieId={movieId}
                     titleUrl={`/movie/${movieId}`}
@@ -113,7 +117,7 @@ const MoviePage = () => {
                         body={movieCast && movieCast.map((person, index) => (
                             <Tile
                                 minimal
-                                width={profileWidth}
+                                imageWidth={profileWidth}
                                 key={movieCast[index].credit_id}
                                 titleUrl={`/people/${movieCast[index].id}`}
                                 imageUrl={`${imgURL}${profileSize}${movieCast[index].profile_path}`}
@@ -127,7 +131,7 @@ const MoviePage = () => {
                         body={movieCrew && movieCrew.map((person, index) => (
                             <Tile
                                 minimal
-                                width={profileWidth}
+                                imageWidth={profileWidth}
                                 key={movieCrew[index].credit_id}
                                 titleUrl={`/people/${movieCrew[index].id}`}
                                 imageUrl={`${imgURL}${profileSize}${movieCrew[index].profile_path}`}
