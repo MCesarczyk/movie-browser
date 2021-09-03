@@ -1,4 +1,4 @@
-import { ReactComponent as RatingStarPicture } from "./RatingStar.svg";
+import { ReactComponent as RatingStarPicture } from "./ratingStar.svg";
 
 const RatingStar = () => (
     <RatingStarPicture />

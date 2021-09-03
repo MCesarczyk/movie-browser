@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { selectGenres } from "../../features/movies/moviesSlice";
-import RatingStar from "./RatingStar/RatingStar.svg";
+import RatingStar from "./RatingStar/ratingStar.svg";
 import {
     StyledTile,
     Image,
