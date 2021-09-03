@@ -12,6 +12,27 @@ export const SectionTitle = styled.h2`
     margin-top: 8px;
 `;
 
+export const SectionMiddleContainer = styled.div`
+    width: ${({ theme }) => theme.dimension.maxWidth};
+    margin: 0 auto;
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
+        width: 1012px;
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}) {
+        width: 800px;
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+        width: 520px;
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
+        width:290px;
+    }
+`;
+
 export const SectionListContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
