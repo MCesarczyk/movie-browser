@@ -21,6 +21,9 @@ function App() {
         <Route path="/movies">
           <MoviesPage />
         </Route>
+        <Route path="/people/:page">
+          <MoviesPage />
+        </Route>
         <Route path="/people">
           <PeoplePage />
         </Route>
