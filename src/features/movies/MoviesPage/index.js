@@ -5,7 +5,6 @@ import Tile from "../../../common/Tile"
 import Pager from "../../../common/Pager";
 import LoadingPage from "../../../common/LoadingPage";
 import ErrorPage from "../../../common/ErrorPage";
-import { TileList } from "../../../common/TileList";
 import { useGetConfig } from "../../../useGetConfig";
 import { useGetPopularMovies } from "../useGetPopularMovies";
 import { useGetMovieGenres } from "../useGetMovieGenres";
@@ -17,8 +16,11 @@ import {
     selectPosterSizes,
     selectPosterSize,
     setPosterSize,
-    selectState
+    selectState,
+    selectTileWidth,
+    setTileWidth
 } from "../../../globalSlice";
+import TilesSection from "../../../common/TilesSection";
 
 const MoviesPage = () => {
     const dispatch = useDispatch();
@@ -27,40 +29,57 @@ const MoviesPage = () => {
     const imgURL = useSelector(selectImagesBaseURL);
     const posterSizes = useSelector(selectPosterSizes);
     const posterSize = useSelector(selectPosterSize);
+    const tileWidth = useSelector(selectTileWidth);
 
     useGetConfig();
     useGetMovieGenres();
     useGetPopularMovies();
 
+    // eslint-disable-next-line
+    const adjustPhotoSizes = () => {
+        const maxwidth = window.innerWidth;
+        if (maxwidth > "1280") {
+            dispatch(setPosterSize(posterSizes[3]));
+            dispatch(setTileWidth("324px"));
+        } else if (maxwidth > "620") {
+            dispatch(setPosterSize(posterSizes[3]));
+            dispatch(setTileWidth("286px"));
+        } else if (maxwidth > "480") {
+            dispatch(setPosterSize(posterSizes[3]));
+            dispatch(setTileWidth("228px"));
+        } else {
+            dispatch(setPosterSize(posterSizes[1]));
+        };
+    };
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
 
-    const onPageResize = () => {
-        const maxwidth = window.innerWidth;
-        if (maxwidth > "1280") {
-            dispatch(setPosterSize(posterSizes[3]));
-        } else if (maxwidth > "768") {
-            dispatch(setPosterSize(posterSizes[2]));
-        } else if (maxwidth > "480") {
-            dispatch(setPosterSize(posterSizes[1]));
-        } else {
-            dispatch(setPosterSize(posterSizes[0]));
-        };
-    };
+    useEffect(() => {
+        adjustPhotoSizes();
+    }, [adjustPhotoSizes]);
 
-    window.addEventListener("resize", onPageResize);
+    window.addEventListener("resize", adjustPhotoSizes);
 
     return (
         <>
             <Wrapper>
-                <TileList>
-                    {moviesState === "loading" && <LoadingPage message="Loading movies list..." />}
-                    {moviesState === "error" && <ErrorPage />}
-                        {moviesState === "success" && movieList && movieList.map((movie, index) => (
+                {moviesState === "loading" &&
+                    <LoadingPage
+                        message="Loading movies list..."
+                    />
+                }
+                {moviesState === "error" &&
+                    <ErrorPage />
+                }
+                {moviesState === "success" && movieList &&
+                    <TilesSection
+                        title="Popular movies"
+                        body={movieList.map((movie, index) => (
                             <Tile
+                                width={tileWidth}
                                 imageWidth="100%"
-                                mobile="114"
                                 movieId={movieList[index].id}
                                 key={movieList[index].id}
                                 titleUrl={`/movie/${movieList[index].id}`}
@@ -72,7 +91,8 @@ const MoviesPage = () => {
                                 votes={movieList[index].vote_count}
                             />
                         ))}
-                    </TileList>
+                    />
+                }
                 {moviesState === "success" && <Pager />}
             </Wrapper>
         </>

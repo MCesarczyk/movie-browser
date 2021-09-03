@@ -17,7 +17,8 @@ export const StyledTile = styled.div.attrs(props => ({
     grid-template-rows: auto auto 1fr;
     gap: ${({ oversize }) => oversize ? "24px 40px" : "8px"};
 
-    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+    @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
+        width: 100%;
         grid-template-areas: 
             "image content"
             "image content"
@@ -26,12 +27,14 @@ export const StyledTile = styled.div.attrs(props => ({
     }    
 
     ${({ oversize }) => oversize && css`
+        width: ${props => props.width};
         grid-template-areas: 
             "image content"
             "image content"
             "image desc";
 
         @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+            width: ${props => props.width};
             grid-template-areas: 
                 "image content"
                 "image content"
@@ -40,6 +43,7 @@ export const StyledTile = styled.div.attrs(props => ({
     `}
 
     ${({ slide }) => slide && css`
+        width: ${props => props.width};
         grid-template-areas: 
             "image image"
             "image image"
@@ -47,10 +51,11 @@ export const StyledTile = styled.div.attrs(props => ({
         gap: 16px 24px;
 
         @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+            width: ${props => props.width};
             grid-template-areas: 
-            "image image"
-            "image image"
-            "content content";
+                "image image"
+                "image image"
+                "content content";
         }
     `}  
 `;
@@ -68,6 +73,10 @@ export const Image = styled.img.attrs(props => ({
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
         width: ${props => props.mobile};
+    }
+  
+    @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
+        width: 114px;
     }
 
     ${({ slide }) => slide && css`
@@ -100,7 +109,7 @@ export const Title = styled.h2`
     font-weight: 600;
     text-align: ${({ slide }) => slide ? "center" : "left"};
     font-size: ${({ oversize }) => oversize ? "36px" : "22px"};
-    line-height: 1.2;
+    line-height: 28.6px;
     margin-top: 8px;
     margin-bottom: ${({ oversize }) => oversize ? "24px" : "8px"};
 
