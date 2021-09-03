@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { selectGenres } from "../../features/movies/moviesSlice";
-import RatingStar from "./RatingStar";
+import RatingStar from "./RatingStar/RatingStar.svg";
 import {
     StyledTile,
     Image,
@@ -19,6 +19,7 @@ import {
     Description,
     ActiveTitle,
     NoVotesText,
+    StyledLogo,
 } from "./styled";
 
 const Tile = ({
@@ -101,7 +102,7 @@ const Tile = ({
                 }
                 {votes > 0 ?
                     <TileExtraContent>
-                        <RatingStar />
+                        <StyledLogo src={RatingStar} />
                         <Rating>{rating}</Rating>
                         <RatingScale>/ 10</RatingScale>
                         <Votes>{votes} votes</Votes>

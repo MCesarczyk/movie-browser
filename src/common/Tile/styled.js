@@ -106,6 +106,8 @@ export const Title = styled.h2`
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
         font-size: 16px;
+        margin-top: 4px;
+        margin-bottom: 8px;
     }    
 `;
 
@@ -119,6 +121,7 @@ export const SubTitle = styled.span`
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
         font-size: 13px;
+        margin-bottom: 8px;
     }    
 `;
 
@@ -134,11 +137,14 @@ export const Details = styled.div`
 export const DetailTitle = styled.span`
     line-height: 1.2;
     color: ${({ theme }) => theme.color.stormGrey};
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+        display: none;
+    }
 `;
 
 export const DetailContent = styled.span`
     line-height: 1.2;
-    margin-left: 10px;
 `;
 
 export const Tags = styled.div`
@@ -149,7 +155,7 @@ export const Tags = styled.div`
     gap: ${({ oversize }) => oversize ? "16px" : "8px"};
     
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
-        margin-top: 8px;
+        margin-top: 0px;
         margin-bottom: 8px;
         gap: 8px;
     }
@@ -176,6 +182,16 @@ export const TileExtraContent = styled.div`
     }
 `;
 
+export const StyledLogo = styled.img`
+    width: 24px;
+    height: 24px;
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+        width: 16px;
+        height: 16px;
+    }
+`;
+
 export const Rating = styled.span`
     font-weight: 500;
     font-size: 22px;
@@ -191,15 +207,17 @@ export const RatingScale = styled.span`
     font-weight: 400;
     font-size: 14px;
     line-height: 1.2;
-    margin-left: 8px;
     align-self: flex-end;
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+        display: none;
+    }
 `;
 
 export const Votes = styled.span`
     font-weight: 400;
     font-size: 16px;
     line-height: 1.2;
-    margin-left: 12px;
     align-self: flex-end;
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
