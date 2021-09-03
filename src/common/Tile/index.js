@@ -105,7 +105,7 @@ const Tile = ({
                         <StyledLogo src={RatingStar} />
                         <Rating>{rating}</Rating>
                         <RatingScale>/ 10</RatingScale>
-                        <Votes>{votes} votes</Votes>
+                        <Votes>{votes}&nbsp;votes</Votes>
                     </TileExtraContent>
                     :
                     <TileExtraContent>

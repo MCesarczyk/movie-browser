@@ -176,6 +176,9 @@ export const Tag = styled.span`
 
 export const TileExtraContent = styled.div`
     margin-top: auto;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
         margin-top: 0px;
@@ -193,21 +196,20 @@ export const StyledLogo = styled.img`
 `;
 
 export const Rating = styled.span`
-    font-weight: 500;
+    font-weight: 600;
     font-size: 22px;
-    line-height: 1.3;
-    margin-left: 8px;
+    line-height: 29px;
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
         font-size: 13px;
+        line-height: 17px;
     }    
 `;
 
 export const RatingScale = styled.span`
     font-weight: 400;
     font-size: 14px;
-    line-height: 1.2;
-    align-self: flex-end;
+    line-height: 17px;
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
         display: none;
@@ -216,9 +218,8 @@ export const RatingScale = styled.span`
 
 export const Votes = styled.span`
     font-weight: 400;
-    font-size: 16px;
-    line-height: 1.2;
-    align-self: flex-end;
+    font-size: 14px;
+    line-height: 17px;
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
         font-size: 13px;
