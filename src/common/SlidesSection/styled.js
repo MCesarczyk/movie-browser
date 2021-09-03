@@ -29,7 +29,7 @@ export const SectionMiddleContainer = styled.div`
     }
 
     @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
-        width:290px;
+        width:320px;
     }
 `;
 
