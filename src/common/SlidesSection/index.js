@@ -1,6 +1,6 @@
 import { SectionListContainer, SectionMiddleContainer, SectionTitle, SectionWrapper } from "./styled";
 
-const Section = ({ title, body }) => {
+const SlidesSection = ({ title, body }) => {
     return (
         <SectionWrapper>
             <SectionTitle>{title}</SectionTitle>
@@ -13,4 +13,4 @@ const Section = ({ title, body }) => {
     )
 };
 
-export default Section;
+export default SlidesSection;

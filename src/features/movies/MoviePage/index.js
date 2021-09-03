@@ -28,7 +28,7 @@ import { useGetConfig } from "../../../useGetConfig";
 import { useGetMovieDetails } from "../useGetMovieDetails";
 import { useGetMovieCredits } from "../useGetMovieCredits";
 import { useEffect } from "react";
-const Section = React.lazy(() => import('../../../common/Section'));
+const Section = React.lazy(() => import('../../../common/SlidesSection'));
 
 const MoviePage = () => {
     const dispatch = useDispatch();
