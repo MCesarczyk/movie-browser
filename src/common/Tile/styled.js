@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const StyledTile = styled.div`
     background-color: ${({ theme }) => theme.color.white};
@@ -15,8 +15,21 @@ export const StyledTile = styled.div`
     flex-direction: ${({ oversize }) => oversize ? "row" : "column"};
     gap: ${({ oversize }) => oversize ? "40px" : "8px"};
 
-    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
-    }    
+    ${({ oversize }) => oversize && css`
+        grid-template-areas: 
+            "image content"
+            "image content"
+            "image desc";
+
+        @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+            grid-template-areas: 
+                "image content"
+                "image content"
+                "desc desc";
+        }    
+    `}
+
+        
 `;
 
 export const Image = styled.img.attrs(props => ({

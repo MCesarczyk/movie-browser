@@ -75,6 +75,7 @@ const MoviePage = () => {
             />
             <Wrapper>
                 <Tile
+                    oversize
                     width={posterWidth}
                     key={movieId}
                     movieId={movieId}
