@@ -1,6 +1,18 @@
 
-import { BackdropPoster, WrapperBackdrop, Title, WrapperContent, RatingScale, Votes, BackdropContainer, WrapperRating, RatingStar, Rating, WrapperExtraContent } from "./styled";
-import ratingStar from "../../../../images/ratingStar.svg";
+import {
+    BackdropPoster,
+    WrapperBackdrop,
+    Title,
+    WrapperContent,
+    RatingScale,
+    Votes,
+    BackdropContainer,
+    WrapperRating,
+    RatingStar,
+    Rating,
+    WrapperExtraContent
+} from "./styled";
+import ratingStar from "../../../../common/Tile/RatingStar/ratingStar.svg";
 
 const Backdrop = ({ backdropUrl, title, rating, votes }) => {
     return (
