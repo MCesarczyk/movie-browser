@@ -90,7 +90,7 @@ const MoviePage = () => {
                             <Tile
                                 minimal
                                 key={movieCast[index].credit_id}
-                                titleUrl={`/people/${movieCast[index].id}`}
+                                titleUrl={`/person/${movieCast[index].id}`}
                                 imageUrl={`${imgURL}${posterSize}${movieCast[index].profile_path}`}
                                 title={movieCast[index].name}
                                 subtitle={movieCast[index].character}
@@ -103,7 +103,7 @@ const MoviePage = () => {
                             <Tile
                                 minimal
                                 key={movieCrew[index].credit_id}
-                                titleUrl={`/people/${movieCrew[index].id}`}
+                                titleUrl={`/person/${movieCrew[index].id}`}
                                 imageUrl={`${imgURL}${posterSize}${movieCrew[index].profile_path}`}
                                 title={movieCrew[index].name}
                                 subtitle={movieCrew[index].job}
