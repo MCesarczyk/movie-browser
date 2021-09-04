@@ -1,14 +1,13 @@
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Wrapper from "../../../common/Wrapper";
+import Section from "../../../common/Section";
 import Tile from "../../../common/Tile"
 import Pager from "../../../common/Pager";
 import LoadingPage from "../../../common/LoadingPage";
 import ErrorPage from "../../../common/ErrorPage";
 import { useGetConfig } from "../../../useGetConfig";
 import { useGetPopularPeople } from "../useGetPopularPeople";
-import {
-  selectPeopleList,
-} from "../peopleSlice";
 import {
   selectImagesBaseURL,
   selectState,
@@ -18,8 +17,9 @@ import {
   selectSlideWidth,
   setSlideWidth
 } from "../../../globalSlice";
-import { useEffect } from "react";
-import Section from "../../../common/Section";
+import {
+  selectPeopleList,
+} from "../peopleSlice";
 
 const PeoplePage = () => {
   const dispatch = useDispatch();
@@ -80,14 +80,14 @@ const PeoplePage = () => {
                 imageWidth="100%"
                 personId={peopleList[index].id}
                 key={peopleList[index].id}
-                personUrl={`/person/${peopleList[index].id}`}
+                titleUrl={`/person/${peopleList[index].id}`}
                 imageUrl={`${imgURL}${profileSize}${peopleList[index].profile_path}`}
                 title={peopleList[index].name}
               />
             ))}
           />
         }
-        {peopleState === "success" && <Pager property={"people"}/>}
+        {peopleState === "success" && <Pager property={"people"} />}
       </Wrapper>
     </>
   )
