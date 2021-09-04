@@ -31,6 +31,8 @@ const Tile = ({
     subtitle,
     countries,
     releaseDate,
+    birthday,
+    birthPlace,
     genreIds,
     genresList,
     rating,
@@ -61,6 +63,18 @@ const Tile = ({
                         <DetailContent>{releaseDate}</DetailContent>
                     </Details>
                 }
+                {birthday &&
+                    <Details>
+                        <DetailTitle>Date of birth: </DetailTitle>
+                        <DetailContent>{birthday}</DetailContent>
+                    </Details>
+                }
+                {birthPlace &&
+                    <Details>
+                        <DetailTitle>Place of birth: </DetailTitle>
+                        <DetailContent>{birthPlace}</DetailContent>
+                    </Details>
+                }
                 {genreIds &&
                     <Tags>
                         {genres && genreIds && genreIds.map(genreId => (
@@ -81,17 +95,19 @@ const Tile = ({
                         ))}
                     </Tags>
                 }
-                {votes > 0 ?
-                    <TileExtraContent>
-                        <RatingStar />
-                        <Rating>{rating}</Rating>
-                        <RatingScale>/ 10</RatingScale>
-                        <Votes>{votes} votes</Votes>
-                    </TileExtraContent>
-                    :
-                    <TileExtraContent>
-                        <NoVotesText>No votes yet</NoVotesText>
-                    </TileExtraContent>
+                {!minimal && votes && (
+                    votes > 0 ?
+                        <TileExtraContent>
+                            <RatingStar />
+                            <Rating>{rating}</Rating>
+                            <RatingScale>/ 10</RatingScale>
+                            <Votes>{votes} votes</Votes>
+                        </TileExtraContent>
+                        :
+                        <TileExtraContent>
+                            <NoVotesText>No votes yet</NoVotesText>
+                        </TileExtraContent>
+                )
                 }
                 {overview &&
                     <Description>
