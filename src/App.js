@@ -3,6 +3,7 @@ import Navigation from './features/Navigation';
 import MoviesPage from './features/movies/MoviesPage';
 import MoviePage from './features/movies/MoviePage';
 import PeoplePage from "./features/people/PeoplePage";
+import PersonPage from "./features/people/PersonPage";
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
         </Route>
         <Route path="/movies">
           <MoviesPage />
+        </Route>
+        <Route path="/person/:id">
+          <PersonPage />
         </Route>
         <Route path="/people/:page">
           <PeoplePage />
