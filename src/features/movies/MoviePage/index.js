@@ -1,10 +1,14 @@
 import React, { Suspense } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Wrapper from "../../../common/Wrapper";
 import Tile from "../../../common/Tile"
 import Backdrop from "./Backdrop";
 import LoadingCircle from "../../../common/LoadingPage/LoadingCircle";
+import { useGetConfig } from "../../../useGetConfig";
+import { useGetMovieDetails } from "../useGetMovieDetails";
+import { useGetMovieCredits } from "../useGetMovieCredits";
 import {
     selectMovieDetails,
     selectMovieCast,
@@ -17,10 +21,6 @@ import {
     selectPosterSizes,
     setPosterSize
 } from "../../../globalSlice";
-import { useGetConfig } from "../../../useGetConfig";
-import { useGetMovieDetails } from "../useGetMovieDetails";
-import { useGetMovieCredits } from "../useGetMovieCredits";
-import { useEffect } from "react";
 const Section = React.lazy(() => import('../../../common/Section'));
 
 const MoviePage = () => {
