@@ -17,7 +17,7 @@ const peopleSlice = createSlice({
         setPerson: (state, { payload: person }) => {
             state.person = person;
         },
-        setCredits: (state, { payload: credits }) => {
+        setPersonCredits: (state, { payload: credits }) => {
             state.credits = credits;
         },
         setGenres: (state, { payload: genres }) => {
@@ -29,7 +29,7 @@ const peopleSlice = createSlice({
 export const {
     setPeople,
     setPerson,
-    setCredits,
+    setPersonCredits,
     setGenres,
 } = peopleSlice.actions;
 
