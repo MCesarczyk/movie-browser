@@ -9,7 +9,7 @@ export const useGetMoviesByQuery = () => {
     const params = useParams();
     const page = (params.page ? params.page : 1);
     
-    const apiURL = `https://api.themoviedb.org/3/search/movie?api_key=768f7875782193f5e4797762314da0b7&language=en-US&query=Mulan&page=1&include_adult=false`
+    const apiURL = `https://api.themoviedb.org/3/search/movie?api_key=768f7875782193f5e4797762314da0b7&language=en-US&query=Mulan&page=${page}&include_adult=false`
     //const apiURL = `https://api.themoviedb.org/3/movie/popular?api_key=768f7875782193f5e4797762314da0b7&page=${page}&language=en-US`;
 
     const retardPageLoading = () => {
