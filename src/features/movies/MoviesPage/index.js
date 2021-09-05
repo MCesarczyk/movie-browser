@@ -1,16 +1,18 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Wrapper from "../../../common/Wrapper";
 import Tile from "../../../common/Tile"
 import Pager from "../../../common/Pager";
 import LoadingPage from "../../../common/LoadingPage";
 import ErrorPage from "../../../common/ErrorPage";
+import searchQueryParamName from "../../Navigation/Search/searchQueryParamName";
 import { MoviesList } from "./styled";
 import { useGetConfig } from "../../../useGetConfig";
 import { useGetPopularMovies } from "../useGetPopularMovies";
+import { useGetMoviesByQuery } from "../useGetMoviesByQuery";
 import { useGetMovieGenres } from "../useGetMovieGenres";
-import {
-    selectMovieList,
-} from "../moviesSlice";
+import { selectMovieList } from "../moviesSlice";
 import {
     selectImagesBaseURL,
     selectPosterSizes,
@@ -18,19 +20,23 @@ import {
     setPosterSize,
     selectState
 } from "../../../globalSlice";
-import { useEffect } from "react";
 
 const MoviesPage = () => {
     const dispatch = useDispatch();
+    const location = useLocation();
     const movieList = useSelector(selectMovieList);
     const moviesState = useSelector(selectState);
     const imgURL = useSelector(selectImagesBaseURL);
     const posterSizes = useSelector(selectPosterSizes);
     const posterSize = useSelector(selectPosterSize);
 
+    const searchParams = new URLSearchParams(location.search);
+    const query = searchParams.get(searchQueryParamName);
+
     useGetConfig();
     useGetMovieGenres();
-    useGetPopularMovies();
+    useGetMoviesByQuery();
+    //useGetPopularMovies();
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -54,6 +60,7 @@ const MoviesPage = () => {
     return (
         <>
             <Wrapper>
+                <p>{location.search} , {query}</p>
                 {moviesState === "loading" && <LoadingPage message="Loading movies list..." />}
                 {moviesState === "error" && <ErrorPage />}
                 <MoviesList title="Movies" >
