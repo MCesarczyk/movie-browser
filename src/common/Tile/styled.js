@@ -87,6 +87,7 @@ export const Image = styled.img`
     width: ${props => props.width};
     grid-area: image;
     display: block;
+    align-self: flex-start;
     aspect-ratio: 2/3;
     border-radius: 5px;
     transition: width 1s ease-in-out, left 1.5s ease-in-out;

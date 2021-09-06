@@ -1,3 +1,22 @@
+import React, { Suspense } from "react";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import Wrapper from "../../../common/Wrapper";
+import Tile from "../../../common/Tile"
+import LoadingCircle from "../../../common/LoadingPage/LoadingCircle";
+import { useGetConfig } from "../../../useGetConfig";
+import { useGetPersonDetails } from "../useGetPersonDetails"
+import { useGetPersonCredits } from "../useGetPersonCredits";
+import {
+    selectImagesBaseURL,
+    selectPosterSize,
+    selectPosterSizes,
+    setPosterSize
+} from "../../../globalSlice";
+import { selectPersonCast, selectPersonCrew, selectPersonDetails } from "../peopleSlice";
+const Section = React.lazy(() => import('../../../common/Section'));
+
 const PersonPage = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
@@ -86,3 +105,4 @@ const PersonPage = () => {
         </>
     );
 };
+export default PersonPage;

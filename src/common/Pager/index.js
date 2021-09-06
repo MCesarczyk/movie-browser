@@ -5,7 +5,7 @@ import { Wrapper, StyledLink, PagerText, PageNumberText } from "./styled";
 import NextIcon from "./NextIcon";
 import PreviousIcon from "./PreviousIcon";
 
-const Pager = () => {
+const Pager = ({property}) => {
     const dispatch = useDispatch();
     const { page } = useParams();
     const currentPage = (page ? page : 1);
@@ -18,11 +18,11 @@ const Pager = () => {
 
     return (
         <Wrapper>
-            <StyledLink to={`/movies/1`} disabled={checkIfPreviousIsDisabled()}>
+            <StyledLink to={`/${property}/1`} disabled={checkIfPreviousIsDisabled()}>
                 <PreviousIcon disabled={checkIfPreviousIsDisabled()} />
                 First
             </StyledLink>
-            <StyledLink to={`/movies/${+currentPage === 1 ? 1 : +currentPage - 1}`} disabled={checkIfPreviousIsDisabled()}>
+            <StyledLink to={`/${property}/${+currentPage === 1 ? 1 : +currentPage - 1}`} disabled={checkIfPreviousIsDisabled()}>
                 <PreviousIcon disabled={checkIfPreviousIsDisabled()} />
                 Previous
             </StyledLink>
@@ -32,11 +32,11 @@ const Pager = () => {
             <PagerText>of</PagerText>
             <PageNumberText>{totalPages}</PageNumberText>
 
-            <StyledLink to={`/movies/${+currentPage === +totalPages ? +currentPage : +currentPage + 1}`} disabled={checkIfNextIsDisabled()}>
+            <StyledLink to={`/${property}/${+currentPage === +totalPages ? +currentPage : +currentPage + 1}`} disabled={checkIfNextIsDisabled()}>
                 Next
                 <NextIcon disabled={checkIfNextIsDisabled()} />
             </StyledLink>
-            <StyledLink to={`/movies/${totalPages}`} disabled={checkIfNextIsDisabled()}>
+            <StyledLink to={`/${property}/${totalPages}`} disabled={checkIfNextIsDisabled()}>
                 Last
                 <NextIcon disabled={checkIfNextIsDisabled()} />
             </StyledLink>

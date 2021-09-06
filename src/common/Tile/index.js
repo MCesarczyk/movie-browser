@@ -37,6 +37,8 @@ const Tile = ({
     subtitle,
     countries,
     releaseDate,
+    birthday,
+    birthPlace,
     genreIds,
     genresList,
     rating,
@@ -88,6 +90,18 @@ const Tile = ({
                     <Details>
                         <DetailTitle>Release date: </DetailTitle>
                         <DetailContent>{releaseDate}</DetailContent>
+                    </Details>
+                }
+                {birthday &&
+                    <Details>
+                        <DetailTitle>Date of birth: </DetailTitle>
+                        <DetailContent>{birthday}</DetailContent>
+                    </Details>
+                }
+                {birthPlace &&
+                    <Details>
+                        <DetailTitle>Place of birth: </DetailTitle>
+                        <DetailContent>{birthPlace}</DetailContent>
                     </Details>
                 }
                 {genreIds &&
