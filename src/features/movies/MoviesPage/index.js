@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import Wrapper from "../../../common/Wrapper";
 import Tile from "../../../common/Tile"
 import Pager from "../../../common/Pager";
@@ -14,53 +14,33 @@ import {
 import {
     selectImagesBaseURL,
     selectPosterSizes,
-    selectPosterSize,
-    setPosterSize,
     selectState,
-    selectTileWidth,
-    setTileWidth
 } from "../../../globalSlice";
 import TilesSection from "../../../common/TilesSection";
 
 const MoviesPage = () => {
-    const dispatch = useDispatch();
     const movieList = useSelector(selectMovieList);
     const moviesState = useSelector(selectState);
     const imgURL = useSelector(selectImagesBaseURL);
     const posterSizes = useSelector(selectPosterSizes);
-    const posterSize = useSelector(selectPosterSize);
-    const tileWidth = useSelector(selectTileWidth);
 
     useGetConfig();
     useGetMovieGenres();
     useGetPopularMovies();
 
-    // eslint-disable-next-line
-    const adjustPhotoSizes = () => {
-        const maxwidth = window.innerWidth;
-        if (maxwidth > "1280") {
-            dispatch(setPosterSize(posterSizes[3]));
-            dispatch(setTileWidth("324px"));
-        } else if (maxwidth > "620") {
-            dispatch(setPosterSize(posterSizes[3]));
-            dispatch(setTileWidth("286px"));
-        } else if (maxwidth > "480") {
-            dispatch(setPosterSize(posterSizes[3]));
-            dispatch(setTileWidth("228px"));
-        } else {
-            dispatch(setPosterSize(posterSizes[1]));
-        };
-    };
-
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
 
-    useEffect(() => {
-        adjustPhotoSizes();
-    }, [adjustPhotoSizes]);
+    const posterSize1 = posterSizes[1];
+    const posterSize2 = posterSizes[2];
+    const posterSize3 = posterSizes[3];
+    const posterSize4 = posterSizes[4];
+    const posterSize5 = posterSizes[5];
 
-    window.addEventListener("resize", adjustPhotoSizes);
+    const tileWidth1 = "228px";
+    const tileWidth2 = "286px";
+    const tileWidth3 = "324px";
 
     return (
         <>
@@ -78,12 +58,22 @@ const MoviesPage = () => {
                         title="Popular movies"
                         body={movieList.map((movie, index) => (
                             <Tile
-                                width={tileWidth}
-                                imageWidth="100%"
-                                movieId={movieList[index].id}
                                 key={movieList[index].id}
+                                movieId={movieList[index].id}
+                                size1={posterSize1}
+                                size2={posterSize2}
+                                size3={posterSize3}
+                                size4={posterSize4}
+                                size5={posterSize5}
+                                imageBaseUrl={imgURL}
+                                imagePath={movieList[index].poster_path}
+                                width1="100%"
+                                width2={tileWidth1}
+                                width3={tileWidth2}
+                                width4={tileWidth2}
+                                width5={tileWidth3}
+                                imageWidth="100%"
                                 titleUrl={`/movie/${movieList[index].id}`}
-                                imageUrl={`${imgURL}${posterSize}${movieList[index].poster_path}`}
                                 title={movieList[index].title}
                                 subtitle={new Date(Date.parse(movieList[index].release_date)).getFullYear()}
                                 genreIds={movieList[index].genre_ids}

@@ -23,8 +23,19 @@ import {
 } from "./styled";
 
 const Tile = ({
-    width,
+    width1,
+    width2,
+    width3,
+    width4,
+    width5,
     imageWidth,
+    size1,
+    size2,
+    size3,
+    size4,
+    size5,
+    imageBaseUrl,
+    imagePath,
     mobile,
     oversize,
     slide,
@@ -43,11 +54,26 @@ const Tile = ({
     const genres = useSelector(selectGenres);
 
     return (
-        <StyledTile width={width} oversize={oversize} slide={slide} >
+        <StyledTile
+            width1={width1}
+            width2={width2}
+            width3={width3}
+            width4={width4}
+            width5={width5}
+            oversize={oversize}
+            slide={slide}
+        >
             <Image
                 slide={slide}
                 width={imageWidth}
                 mobile={mobile}
+                size1={size1}
+                size2={size2}
+                size3={size3}
+                size4={size4}
+                size5={size5}
+                baseUrl={imageBaseUrl}
+                path={imagePath}
                 src={imageUrl}
                 alt="image"
             />

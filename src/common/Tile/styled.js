@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 export const StyledTile = styled.div.attrs(props => ({
     width: props.width || undefined,
 }))`
-    width: ${props => props.width};
+    width: ${props => props.width5};
     background-color: ${({ theme }) => theme.color.white};
     box-shadow: 0px 4px 12px rgba(186, 199, 213, 0.5);
     padding: ${({ oversize }) => oversize ? "40px" : "16px"};
@@ -16,9 +16,21 @@ export const StyledTile = styled.div.attrs(props => ({
     grid-template-columns: auto 1fr;
     grid-template-rows: auto auto 1fr;
     gap: ${({ oversize }) => oversize ? "24px 40px" : "8px"};
+    
+    @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
+        width: ${props => props.width4};
+    }
+   
+    @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}) {
+        width: ${props => props.width3};
+    }
+   
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+        width: ${props => props.width2};
+    }
 
     @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
-        width: 100%;
+        width: ${props => props.width1};
         grid-template-areas: 
             "image content"
             "image content"
@@ -27,14 +39,12 @@ export const StyledTile = styled.div.attrs(props => ({
     }    
 
     ${({ oversize }) => oversize && css`
-        width: ${props => props.width};
         grid-template-areas: 
             "image content"
             "image content"
             "image desc";
 
         @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
-            width: ${props => props.width};
             grid-template-areas: 
                 "image content"
                 "image content"
@@ -43,44 +53,64 @@ export const StyledTile = styled.div.attrs(props => ({
     `}
 
     ${({ slide }) => slide && css`
-        width: ${props => props.width};
+        width: ${props => props.width5};
         grid-template-areas: 
             "image image"
             "image image"
             "content content";
         gap: 16px 24px;
-
+    
+        @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
+            width: ${props => props.width4};
+        }
+   
+        @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}) {
+            width: ${props => props.width3};
+        }
+    
         @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
-            width: ${props => props.width};
+            width: ${props => props.width2};
             grid-template-areas: 
                 "image image"
                 "image image"
                 "content content";
         }
+
+        @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
+            width: ${props => props.width1};
+        }
     `}  
 `;
 
-export const Image = styled.img.attrs(props => ({
-    width: props.width || 177,
-    mobile: props.mobile || 120,
-}))`
+export const Image = styled.img`
+    content: url("${props => props.baseUrl}${props => props.size5}${props => props.path}");
+    width: ${props => props.width};
     grid-area: image;
     display: block;
     aspect-ratio: 2/3;
-    width: ${props => props.width};
     border-radius: 5px;
     transition: width 1s ease-in-out, left 1.5s ease-in-out;
 
+    @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
+        content: url("${props => props.baseUrl}${props => props.size4}${props => props.path}");
+    }
+   
+    @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}) {
+        content: url("${props => props.baseUrl}${props => props.size3}${props => props.path}");
+    }
+   
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+        content: url("${props => props.baseUrl}${props => props.size2}${props => props.path}");
         width: ${props => props.mobile};
     }
   
     @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
+        content: url("${props => props.baseUrl}${props => props.size1}${props => props.path}");
         width: 114px;
     }
 
     ${({ slide }) => slide && css`
-        width: 100%;
+    width: 100%;
     `}
 `;
 
