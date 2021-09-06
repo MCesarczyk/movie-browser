@@ -1,29 +1,26 @@
 {
   "files": {
-    "main.js": "/movie-browser/static/js/main.e96e4d36.chunk.js",
-    "main.js.map": "/movie-browser/static/js/main.e96e4d36.chunk.js.map",
-    "runtime-main.js": "/movie-browser/static/js/runtime-main.ae97269a.js",
-    "runtime-main.js.map": "/movie-browser/static/js/runtime-main.ae97269a.js.map",
-    "static/js/2.e45ddb25.chunk.js": "/movie-browser/static/js/2.e45ddb25.chunk.js",
-    "static/js/2.e45ddb25.chunk.js.map": "/movie-browser/static/js/2.e45ddb25.chunk.js.map",
-    "static/js/3.053e5868.chunk.js": "/movie-browser/static/js/3.053e5868.chunk.js",
-    "static/js/3.053e5868.chunk.js.map": "/movie-browser/static/js/3.053e5868.chunk.js.map",
-    "static/js/4.8fdd3b1f.chunk.js": "/movie-browser/static/js/4.8fdd3b1f.chunk.js",
-    "static/js/4.8fdd3b1f.chunk.js.map": "/movie-browser/static/js/4.8fdd3b1f.chunk.js.map",
+    "main.js": "/movie-browser/static/js/main.e238fba7.chunk.js",
+    "main.js.map": "/movie-browser/static/js/main.e238fba7.chunk.js.map",
+    "runtime-main.js": "/movie-browser/static/js/runtime-main.9dfb9fd8.js",
+    "runtime-main.js.map": "/movie-browser/static/js/runtime-main.9dfb9fd8.js.map",
+    "static/js/2.18d5b6e3.chunk.js": "/movie-browser/static/js/2.18d5b6e3.chunk.js",
+    "static/js/2.18d5b6e3.chunk.js.map": "/movie-browser/static/js/2.18d5b6e3.chunk.js.map",
+    "static/js/3.bd8aba17.chunk.js": "/movie-browser/static/js/3.bd8aba17.chunk.js",
+    "static/js/3.bd8aba17.chunk.js.map": "/movie-browser/static/js/3.bd8aba17.chunk.js.map",
     "index.html": "/movie-browser/index.html",
-    "static/js/2.e45ddb25.chunk.js.LICENSE.txt": "/movie-browser/static/js/2.e45ddb25.chunk.js.LICENSE.txt",
+    "static/js/2.18d5b6e3.chunk.js.LICENSE.txt": "/movie-browser/static/js/2.18d5b6e3.chunk.js.LICENSE.txt",
     "static/media/Ellipse.c5f29646.svg": "/movie-browser/static/media/Ellipse.c5f29646.svg",
     "static/media/camera.b470e4d1.svg": "/movie-browser/static/media/camera.b470e4d1.svg",
     "static/media/error.fb129407.svg": "/movie-browser/static/media/error.fb129407.svg",
     "static/media/next.9fdf3bd2.svg": "/movie-browser/static/media/next.9fdf3bd2.svg",
-    "static/media/noResults.1c908993.svg": "/movie-browser/static/media/noResults.1c908993.svg",
     "static/media/prev.40e7e274.svg": "/movie-browser/static/media/prev.40e7e274.svg",
     "static/media/ratingStar.6666ab69.svg": "/movie-browser/static/media/ratingStar.6666ab69.svg",
     "static/media/search.d40a7fee.svg": "/movie-browser/static/media/search.d40a7fee.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.ae97269a.js",
-    "static/js/2.e45ddb25.chunk.js",
-    "static/js/main.e96e4d36.chunk.js"
+    "static/js/runtime-main.9dfb9fd8.js",
+    "static/js/2.18d5b6e3.chunk.js",
+    "static/js/main.e238fba7.chunk.js"
   ]
 }
