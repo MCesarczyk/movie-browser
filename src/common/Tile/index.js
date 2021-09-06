@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { selectGenres } from "../../features/movies/moviesSlice";
-import RatingStar from "./RatingStar";
+import RatingStar from "./RatingStar/ratingStar.svg";
 import {
     StyledTile,
     Image,
@@ -19,18 +19,26 @@ import {
     Description,
     ActiveTitle,
     NoVotesText,
+    StyledLogo,
 } from "./styled";
 
 const Tile = ({
-    oversize,
-    minimal,
+    widths,
     imageWidth,
+    sizes,
+    imageBaseUrl,
+    imagePath,
+    mobile,
+    oversize,
+    slide,
     titleUrl,
     imageUrl,
     title,
     subtitle,
     countries,
     releaseDate,
+    birthday,
+    birthPlace,
     genreIds,
     genresList,
     rating,
@@ -40,13 +48,36 @@ const Tile = ({
     const genres = useSelector(selectGenres);
 
     return (
-        <StyledTile oversize={oversize} >
-            <Image src={imageUrl} width={imageWidth} alt="image" />
+        <StyledTile
+            widths={widths || "100%"}
+            oversize={oversize}
+            slide={slide}
+        >
+            <Image
+                slide={slide}
+                width={imageWidth}
+                mobile={mobile}
+                sizes={sizes}
+                baseUrl={imageBaseUrl}
+                path={imagePath}
+                src={imageUrl}
+                alt="image"
+            />
             <TileContent>
                 <ActiveTitle to={titleUrl} >
-                    <Title oversize={oversize} minimal={minimal} >{title}</Title>
+                    <Title
+                        oversize={oversize}
+                        slide={slide}
+                    >
+                        {title}
+                    </Title>
                 </ActiveTitle>
-                <SubTitle oversize={oversize} minimal={minimal} >{subtitle}</SubTitle>
+                <SubTitle
+                    oversize={oversize}
+                    slide={slide}
+                >
+                    {subtitle}
+                </SubTitle>
                 {countries &&
                     <Details>
                         <DetailTitle>Production: </DetailTitle>
@@ -59,6 +90,18 @@ const Tile = ({
                     <Details>
                         <DetailTitle>Release date: </DetailTitle>
                         <DetailContent>{releaseDate}</DetailContent>
+                    </Details>
+                }
+                {birthday &&
+                    <Details>
+                        <DetailTitle>Date of birth: </DetailTitle>
+                        <DetailContent>{birthday}</DetailContent>
+                    </Details>
+                }
+                {birthPlace &&
+                    <Details>
+                        <DetailTitle>Place of birth: </DetailTitle>
+                        <DetailContent>{birthPlace}</DetailContent>
                     </Details>
                 }
                 {genreIds &&
@@ -81,25 +124,24 @@ const Tile = ({
                         ))}
                     </Tags>
                 }
-                {votes > 0 ?
+                {!slide && (votes > 0 ?
                     <TileExtraContent>
-                        <RatingStar />
+                        <StyledLogo src={RatingStar} />
                         <Rating>{rating}</Rating>
                         <RatingScale>/ 10</RatingScale>
-                        <Votes>{votes} votes</Votes>
+                        <Votes>{votes}&nbsp;votes</Votes>
                     </TileExtraContent>
                     :
                     <TileExtraContent>
                         <NoVotesText>No votes yet</NoVotesText>
                     </TileExtraContent>
-                }
-                {overview &&
-                    <Description>
-                        {overview}
-                    </Description>
-                }
-
+                )}
             </TileContent>
+            {overview &&
+                <Description>
+                    {overview}
+                </Description>
+            }
         </StyledTile>
     );
 };

@@ -17,7 +17,7 @@ const moviesSlice = createSlice({
         setMovie: (state, { payload: movie }) => {
             state.movie = movie;
         },
-        setCredits: (state, { payload: credits }) => {
+        setMovieCredits: (state, { payload: credits }) => {
             state.credits = credits;
         },
         setGenres: (state, { payload: genres }) => {
@@ -29,7 +29,7 @@ const moviesSlice = createSlice({
 export const {
     setMovies,
     setMovie,
-    setCredits,
+    setMovieCredits,
     setGenres,
 } = moviesSlice.actions;
 
