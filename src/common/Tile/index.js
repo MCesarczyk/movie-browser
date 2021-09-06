@@ -47,7 +47,7 @@ const Tile = ({
 
     return (
         <StyledTile
-            widths={widths}
+            widths={widths || "100%"}
             oversize={oversize}
             slide={slide}
         >

@@ -15,11 +15,7 @@ import {
 import ratingStar from "../../../../common/Tile/RatingStar/ratingStar.svg";
 
 const Backdrop = ({
-    size1,
-    size2,
-    size3,
-    size4,
-    size5,
+    sizes,
     imageBaseUrl,
     imagePath,
     title,
@@ -29,11 +25,7 @@ const Backdrop = ({
     return (
         <BackdropContainer>
             <BackdropPoster
-                size1={size1}
-                size2={size2}
-                size3={size3}
-                size4={size4}
-                size5={size5}
+                sizes={sizes}
                 baseUrl={imageBaseUrl}
                 path={imagePath}
             >

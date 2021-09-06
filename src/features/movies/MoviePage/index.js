@@ -43,36 +43,39 @@ const MoviePage = () => {
         window.scrollTo(0, 0);
     }, []);
 
-    const backdropSize1 = backdropSizes[0];
-    const backdropSize2 = backdropSizes[1];
-    const backdropSize3 = backdropSizes[2];
-    const backdropSize4 = backdropSizes[3];
+    const backdropSizesArray = [
+        backdropSizes[1],
+        backdropSizes[1],
+        backdropSizes[2],
+        backdropSizes[2],
+        backdropSizes[3]
+    ];
 
-    const posterSize1 = posterSizes[1];
-    const posterSize2 = posterSizes[2];
-    const posterSize3 = posterSizes[3];
-    const posterSize4 = posterSizes[4];
-    const posterSize5 = posterSizes[5];
+    const posterSizesArray = [
+        posterSizes[1],
+        posterSizes[2],
+        posterSizes[3],
+        posterSizes[4],
+        posterSizes[5]
+    ];
 
-    const profileSize1 = profileSizes[1];
-    const profileSize2 = profileSizes[2];
-    const profileSize3 = profileSizes[3];
+    const profileSizesArray = [
+        profileSizes[1],
+        profileSizes[1],
+        profileSizes[1],
+        profileSizes[1],
+        profileSizes[1]
+    ];
 
-    const slideWidth1 = "144px";
-    const slideWidth2 = "160px";
-    const slideWidth3 = "184px";
-    const slideWidth4 = "208px";
+    const slideWidths = ["144px", "160px", "184px", "208px", "208px"];
+    const tileWidths = ["100%", "100%", "100%", "100%", "100%"];
 
     return (
         <>
             <Backdrop
                 imageBaseUrl={imgURL}
                 imagePath={movieDetails.backdrop_path}
-                size1={backdropSize1}
-                size2={backdropSize2}
-                size3={backdropSize3}
-                size4={backdropSize4}
-                size5={backdropSize4}
+                sizes={backdropSizesArray}
                 title={movieDetails.original_title}
                 rating={movieDetails.vote_average}
                 votes={movieDetails.vote_count}
@@ -82,13 +85,10 @@ const MoviePage = () => {
                     oversize
                     imageWidth="312px"
                     mobile="177px"
+                    widths={tileWidths}
                     key={movieId}
                     movieId={movieId}
-                    size1={posterSize1}
-                    size2={posterSize2}
-                    size3={posterSize3}
-                    size4={posterSize4}
-                    size5={posterSize5}
+                    sizes={posterSizesArray}
                     imageBaseUrl={imgURL}
                     imagePath={movieDetails.poster_path}
                     titleUrl={`/movie/${movieId}`}
@@ -107,17 +107,9 @@ const MoviePage = () => {
                         body={movieCast && movieCast.map((person, index) => (
                             <Tile
                                 slide
-                                width1={slideWidth1}
-                                width2={slideWidth2}
-                                width3={slideWidth3}
-                                width4={slideWidth4}
-                                width5={slideWidth4}
+                                widths={slideWidths}
                                 key={movieCast[index].credit_id}
-                                size1={profileSize1}
-                                size2={profileSize1}
-                                size3={profileSize2}
-                                size4={profileSize2}
-                                size5={profileSize3}
+                                sizes={profileSizesArray}
                                 imageBaseUrl={imgURL}
                                 imagePath={movieCast[index].profile_path}
                                 titleUrl={`/people/${movieCast[index].id}`}
@@ -131,17 +123,9 @@ const MoviePage = () => {
                         body={movieCrew && movieCrew.map((person, index) => (
                             <Tile
                                 slide
-                                width1={slideWidth1}
-                                width2={slideWidth2}
-                                width3={slideWidth3}
-                                width4={slideWidth4}
-                                width5={slideWidth4}
+                                widths={slideWidths}
                                 key={movieCrew[index].credit_id}
-                                size1={profileSize1}
-                                size2={profileSize1}
-                                size3={profileSize2}
-                                size4={profileSize2}
-                                size5={profileSize3}
+                                sizes={profileSizesArray}
                                 titleUrl={`/people/${movieCrew[index].id}`}
                                 imageBaseUrl={imgURL}
                                 imagePath={movieCrew[index].profile_path}

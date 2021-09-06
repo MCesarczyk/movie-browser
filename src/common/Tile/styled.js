@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-export const StyledTile = styled.div.attrs(props => ({
-    width: props.width || undefined,
-}))`
+export const StyledTile = styled.div`
     width: ${props => props.widths[4]};
     background-color: ${({ theme }) => theme.color.white};
     box-shadow: 0px 4px 12px rgba(186, 199, 213, 0.5);
@@ -39,12 +37,14 @@ export const StyledTile = styled.div.attrs(props => ({
     }    
 
     ${({ oversize }) => oversize && css`
+        width: "100%";
         grid-template-areas: 
             "image content"
             "image content"
             "image desc";
 
         @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+            width: "100%";
             grid-template-areas: 
                 "image content"
                 "image content"
@@ -53,7 +53,7 @@ export const StyledTile = styled.div.attrs(props => ({
     `}
 
     ${({ slide }) => slide && css`
-        width: ${props => props.width5};
+        width: ${props => props.widths[4]};
         grid-template-areas: 
             "image image"
             "image image"
@@ -61,15 +61,15 @@ export const StyledTile = styled.div.attrs(props => ({
         gap: 16px 24px;
     
         @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
-            width: ${props => props.width4};
+            width: ${props => props.widths[3]};
         }
    
         @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}) {
-            width: ${props => props.width3};
+            width: ${props => props.widths[2]};
         }
     
         @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
-            width: ${props => props.width2};
+            width: ${props => props.widths[1]};
             grid-template-areas: 
                 "image image"
                 "image image"
@@ -77,7 +77,7 @@ export const StyledTile = styled.div.attrs(props => ({
         }
 
         @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
-            width: ${props => props.width1};
+            width: ${props => props.widths[0]};
         }
     `}  
 `;
