@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 export const StyledTile = styled.div.attrs(props => ({
     width: props.width || undefined,
 }))`
-    width: ${props => props.width5};
+    width: ${props => props.widths[4]};
     background-color: ${({ theme }) => theme.color.white};
     box-shadow: 0px 4px 12px rgba(186, 199, 213, 0.5);
     padding: ${({ oversize }) => oversize ? "40px" : "16px"};
@@ -18,19 +18,19 @@ export const StyledTile = styled.div.attrs(props => ({
     gap: ${({ oversize }) => oversize ? "24px 40px" : "8px"};
     
     @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
-        width: ${props => props.width4};
+        width: ${props => props.widths[3]};
     }
    
     @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}) {
-        width: ${props => props.width3};
+        width: ${props => props.widths[2]};
     }
    
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
-        width: ${props => props.width2};
+        width: ${props => props.widths[1]};
     }
 
     @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
-        width: ${props => props.width1};
+        width: ${props => props.widths[0]};
         grid-template-areas: 
             "image content"
             "image content"
@@ -83,7 +83,7 @@ export const StyledTile = styled.div.attrs(props => ({
 `;
 
 export const Image = styled.img`
-    content: url("${props => props.baseUrl}${props => props.size5}${props => props.path}");
+    content: url("${props => props.baseUrl}${props => props.sizes[4]}${props => props.path}");
     width: ${props => props.width};
     grid-area: image;
     display: block;
@@ -92,20 +92,20 @@ export const Image = styled.img`
     transition: width 1s ease-in-out, left 1.5s ease-in-out;
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
-        content: url("${props => props.baseUrl}${props => props.size4}${props => props.path}");
+        content: url("${props => props.baseUrl}${props => props.sizes[3]}${props => props.path}");
     }
    
     @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}) {
-        content: url("${props => props.baseUrl}${props => props.size3}${props => props.path}");
+        content: url("${props => props.baseUrl}${props => props.sizes[2]}${props => props.path}");
     }
    
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
-        content: url("${props => props.baseUrl}${props => props.size2}${props => props.path}");
+        content: url("${props => props.baseUrl}${props => props.sizes[1]}${props => props.path}");
         width: ${props => props.mobile};
     }
   
     @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
-        content: url("${props => props.baseUrl}${props => props.size1}${props => props.path}");
+        content: url("${props => props.baseUrl}${props => props.sizes[0]}${props => props.path}");
         width: 114px;
     }
 
