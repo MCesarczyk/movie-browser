@@ -14,7 +14,10 @@ export const theme = {
         whisper: "#F5F5FA",
     },
     breakpoint: {
+        mediumScreen: "1280px",
+        smallScreen: "992px",
         mobileMax: "767px",
+        oldIphone: "480px",
         mobileMin: "320px",
     },
     dimension: {

@@ -32,29 +32,15 @@ const PersonPage = () => {
     useGetPersonDetails(personId);
     useGetPersonCredits(personId);
 
-    // eslint-disable-next-line
-    const adjustPhotoSizes = () => {
-        const maxwidth = window.innerWidth;
-        if (maxwidth > "1280") {
-            dispatch(setPosterSize(posterSizes[4]))
-        } else if (maxwidth > "768") {
-            dispatch(setPosterSize(posterSizes[3]))
-        } else if (maxwidth > "480") {
-            dispatch(setPosterSize(posterSizes[2]))
-        } else {
-            dispatch(setPosterSize(posterSizes[1]))
-        };
-    };
-
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
 
-    useEffect(() => {
-        adjustPhotoSizes();
-    }, [adjustPhotoSizes]);
-
-    window.addEventListener("resize", adjustPhotoSizes);
+    const posterSize1 = posterSizes[1];
+    const posterSize2 = posterSizes[2];
+    const posterSize3 = posterSizes[3];
+    const posterSize4 = posterSizes[4];
+    const posterSize5 = posterSizes[5];
 
     return (
         <>
@@ -63,9 +49,15 @@ const PersonPage = () => {
                     oversize
                     key={personId}
                     movieId={personId}
+                    size1={posterSize1}
+                    size2={posterSize2}
+                    size3={posterSize3}
+                    size4={posterSize4}
+                    size5={posterSize5}
                     imageWidth="312px"
                     titleUrl={`/person/${personId}`}
-                    imageUrl={personDetails && `${imgURL}${posterSize}${personDetails.profile_path}`}
+                    imageBaseUrl={imgURL}
+                    imagePath={personDetails.profile_path}
                     title={personDetails.name}
                     birthday={personDetails.birthday}
                     birthPlace={personDetails.place_of_birth}
@@ -113,5 +105,4 @@ const PersonPage = () => {
         </>
     );
 };
-
 export default PersonPage;
