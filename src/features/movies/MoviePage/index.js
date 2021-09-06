@@ -72,7 +72,7 @@ const MoviePage = () => {
 
     return (
         <>
-            <Backdrop
+            {movieDetails.backdrop_path !== null && <Backdrop
                 imageBaseUrl={imgURL}
                 imagePath={movieDetails.backdrop_path}
                 sizes={backdropSizesArray}
@@ -80,6 +80,7 @@ const MoviePage = () => {
                 rating={movieDetails.vote_average}
                 votes={movieDetails.vote_count}
             />
+            }
             <Wrapper>
                 <Tile
                     oversize
