@@ -8,9 +8,6 @@ const moviesSlice = createSlice({
         state: "idle"
     },
     reducers: {
-        applicationStart: (state) => {
-            state.state = "loading";
-        },
         fetchPopularMovies: () => { },
         setMovies: (state, { payload: movies }) => {
             state.movies = movies;
