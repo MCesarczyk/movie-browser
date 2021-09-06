@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Wrapper from "../../../common/Wrapper";
 import Tile from "../../../common/Tile"
 import Backdrop from "./Backdrop";
@@ -12,25 +12,25 @@ import {
     selectGenresList,
 } from "../moviesSlice";
 import {
+    selectBackdropSizes,
     selectImagesBaseURL,
-    selectPosterSize,
     selectPosterSizes,
-    setPosterSize
+    selectProfileSizes,
 } from "../../../globalSlice";
 import { useGetConfig } from "../../../useGetConfig";
 import { useGetMovieDetails } from "../useGetMovieDetails";
 import { useGetMovieCredits } from "../useGetMovieCredits";
 import { useEffect } from "react";
-const Section = React.lazy(() => import('../../../common/Section'));
+const Section = React.lazy(() => import('../../../common/SlidesSection'));
 
 const MoviePage = () => {
-    const dispatch = useDispatch();
     const { id } = useParams();
     const movieId = id;
     const movieDetails = useSelector(selectMovieDetails);
     const imgURL = useSelector(selectImagesBaseURL);
-    const posterSize = useSelector(selectPosterSize);
     const posterSizes = useSelector(selectPosterSizes);
+    const backdropSizes = useSelector(selectBackdropSizes);
+    const profileSizes = useSelector(selectProfileSizes);
     const movieCast = useSelector(selectMovieCast);
     const movieCrew = useSelector(selectMovieCrew);
     const genresList = useSelector(selectGenresList);
@@ -43,25 +43,39 @@ const MoviePage = () => {
         window.scrollTo(0, 0);
     }, []);
 
-    const onPageResize = () => {
-        const maxwidth = window.innerWidth;
-        if (maxwidth > "1280") {
-            dispatch(setPosterSize(posterSizes[4]))
-        } else if (maxwidth > "768") {
-            dispatch(setPosterSize(posterSizes[3]))
-        } else if (maxwidth > "480") {
-            dispatch(setPosterSize(posterSizes[2]))
-        } else {
-            dispatch(setPosterSize(posterSizes[1]))
-        };
-    };
+    const backdropSizesArray = [
+        backdropSizes[1],
+        backdropSizes[1],
+        backdropSizes[2],
+        backdropSizes[2],
+        backdropSizes[3]
+    ];
 
-    window.addEventListener("resize", onPageResize);
+    const posterSizesArray = [
+        posterSizes[1],
+        posterSizes[2],
+        posterSizes[3],
+        posterSizes[4],
+        posterSizes[5]
+    ];
+
+    const profileSizesArray = [
+        profileSizes[1],
+        profileSizes[1],
+        profileSizes[1],
+        profileSizes[1],
+        profileSizes[1]
+    ];
+
+    const slideWidths = ["144px", "160px", "184px", "208px", "208px"];
+    const tileWidths = ["100%", "100%", "100%", "100%", "100%"];
 
     return (
         <>
             <Backdrop
-                backdropUrl={`${imgURL}original${movieDetails.backdrop_path}`}
+                imageBaseUrl={imgURL}
+                imagePath={movieDetails.backdrop_path}
+                sizes={backdropSizesArray}
                 title={movieDetails.original_title}
                 rating={movieDetails.vote_average}
                 votes={movieDetails.vote_count}
@@ -69,11 +83,15 @@ const MoviePage = () => {
             <Wrapper>
                 <Tile
                     oversize
+                    imageWidth="312px"
+                    mobile="177px"
+                    widths={tileWidths}
                     key={movieId}
                     movieId={movieId}
-                    imageWidth="312px"
+                    sizes={posterSizesArray}
+                    imageBaseUrl={imgURL}
+                    imagePath={movieDetails.poster_path}
                     titleUrl={`/movie/${movieId}`}
-                    imageUrl={movieDetails && `${imgURL}${posterSize}${movieDetails.poster_path}`}
                     title={movieDetails.title}
                     subtitle={movieDetails && new Date(Date.parse(movieDetails.release_date)).getFullYear().toString()}
                     countries={movieDetails.production_countries}
@@ -88,10 +106,13 @@ const MoviePage = () => {
                         title="Cast"
                         body={movieCast && movieCast.map((person, index) => (
                             <Tile
-                                minimal
+                                slide
+                                widths={slideWidths}
                                 key={movieCast[index].credit_id}
+                                sizes={profileSizesArray}
+                                imageBaseUrl={imgURL}
+                                imagePath={movieCast[index].profile_path}
                                 titleUrl={`/people/${movieCast[index].id}`}
-                                imageUrl={`${imgURL}${posterSize}${movieCast[index].profile_path}`}
                                 title={movieCast[index].name}
                                 subtitle={movieCast[index].character}
                             />
@@ -101,10 +122,13 @@ const MoviePage = () => {
                         title="Crew"
                         body={movieCrew && movieCrew.map((person, index) => (
                             <Tile
-                                minimal
+                                slide
+                                widths={slideWidths}
                                 key={movieCrew[index].credit_id}
+                                sizes={profileSizesArray}
                                 titleUrl={`/people/${movieCrew[index].id}`}
-                                imageUrl={`${imgURL}${posterSize}${movieCrew[index].profile_path}`}
+                                imageBaseUrl={imgURL}
+                                imagePath={movieCrew[index].profile_path}
                                 title={movieCrew[index].name}
                                 subtitle={movieCrew[index].job}
                             />
