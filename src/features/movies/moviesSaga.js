@@ -1,4 +1,5 @@
 import { call, delay, put, takeLatest } from "redux-saga/effects";
+import { setError } from "../../globalSlice";
 import { getPopularMovies } from "./getPopularMovies";
 import { fetchPopularMovies, setMovies, setState } from "./moviesSlice";
 
@@ -10,7 +11,7 @@ function* fetchPopularMoviesHandler() {
         yield delay(2_000);
         yield put(setState("success"));
     } catch (error) {
-        yield call(alert, "Unable to fetch data...");
+        yield call(setError(error));
     }
 }
 
