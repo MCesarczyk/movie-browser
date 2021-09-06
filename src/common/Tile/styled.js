@@ -12,6 +12,7 @@ export const StyledTile = styled.div`
 
 export const Image = styled.img`
     display: block;
+    align-self: flex-start;
     aspect-ratio: 2/3;
     width: ${props => props.width ? props.width : "100%"};
     border-radius: 5px;

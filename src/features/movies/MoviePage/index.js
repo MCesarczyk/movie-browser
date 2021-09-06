@@ -1,10 +1,14 @@
 import React, { Suspense } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Wrapper from "../../../common/Wrapper";
 import Tile from "../../../common/Tile"
 import Backdrop from "./Backdrop";
 import LoadingCircle from "../../../common/LoadingPage/LoadingCircle";
+import { useGetConfig } from "../../../useGetConfig";
+import { useGetMovieDetails } from "../useGetMovieDetails";
+import { useGetMovieCredits } from "../useGetMovieCredits";
 import {
     selectMovieDetails,
     selectMovieCast,
@@ -17,10 +21,6 @@ import {
     selectPosterSizes,
     setPosterSize
 } from "../../../globalSlice";
-import { useGetConfig } from "../../../useGetConfig";
-import { useGetMovieDetails } from "../useGetMovieDetails";
-import { useGetMovieCredits } from "../useGetMovieCredits";
-import { useEffect } from "react";
 const Section = React.lazy(() => import('../../../common/Section'));
 
 const MoviePage = () => {
@@ -90,7 +90,7 @@ const MoviePage = () => {
                             <Tile
                                 minimal
                                 key={movieCast[index].credit_id}
-                                titleUrl={`/people/${movieCast[index].id}`}
+                                titleUrl={`/person/${movieCast[index].id}`}
                                 imageUrl={`${imgURL}${posterSize}${movieCast[index].profile_path}`}
                                 title={movieCast[index].name}
                                 subtitle={movieCast[index].character}
@@ -103,7 +103,7 @@ const MoviePage = () => {
                             <Tile
                                 minimal
                                 key={movieCrew[index].credit_id}
-                                titleUrl={`/people/${movieCrew[index].id}`}
+                                titleUrl={`/person/${movieCrew[index].id}`}
                                 imageUrl={`${imgURL}${posterSize}${movieCrew[index].profile_path}`}
                                 title={movieCrew[index].name}
                                 subtitle={movieCrew[index].job}
