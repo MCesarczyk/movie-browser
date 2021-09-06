@@ -21,10 +21,6 @@ import {
     selectPosterSizes,
     selectProfileSizes,
 } from "../../../globalSlice";
-import { useGetConfig } from "../../../useGetConfig";
-import { useGetMovieDetails } from "../useGetMovieDetails";
-import { useGetMovieCredits } from "../useGetMovieCredits";
-import { useEffect } from "react";
 const Section = React.lazy(() => import('../../../common/SlidesSection'));
 
 const MoviePage = () => {
@@ -117,7 +113,7 @@ const MoviePage = () => {
                                 sizes={profileSizesArray}
                                 imageBaseUrl={imgURL}
                                 imagePath={movieCast[index].profile_path}
-                                titleUrl={`/people/${movieCast[index].id}`}
+                                titleUrl={`/person/${movieCast[index].id}`}
                                 title={movieCast[index].name}
                                 subtitle={movieCast[index].character}
                             />
@@ -131,7 +127,7 @@ const MoviePage = () => {
                                 widths={slideWidths}
                                 key={movieCrew[index].credit_id}
                                 sizes={profileSizesArray}
-                                titleUrl={`/people/${movieCrew[index].id}`}
+                                titleUrl={`/person/${movieCrew[index].id}`}
                                 imageBaseUrl={imgURL}
                                 imagePath={movieCrew[index].profile_path}
                                 title={movieCrew[index].name}

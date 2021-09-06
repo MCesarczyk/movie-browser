@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import Wrapper from "../../../common/Wrapper";
+import TilesSection from "../../../common/TilesSection";
 import Tile from "../../../common/Tile"
 import Pager from "../../../common/Pager";
 import LoadingPage from "../../../common/LoadingPage";
@@ -16,7 +17,6 @@ import {
     selectPosterSizes,
     selectState,
 } from "../../../globalSlice";
-import TilesSection from "../../../common/TilesSection";
 
 const MoviesPage = () => {
     const movieList = useSelector(selectMovieList);
@@ -37,8 +37,8 @@ const MoviesPage = () => {
         posterSizes[3],
         posterSizes[3],
         posterSizes[3],
-        posterSizes[4],
-    ]
+        posterSizes[4]
+    ];
 
     const tileWidths = ["100%", "228px", "286px", "286px", "324px"];
 
@@ -75,7 +75,7 @@ const MoviesPage = () => {
                         ))}
                     />
                 }
-                {moviesState === "success" && <Pager property={"movies"}/>}
+                {moviesState === "success" && <Pager property={"movies"} />}
             </Wrapper>
         </>
     )

@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Wrapper from "../../../common/Wrapper";
 import Tile from "../../../common/Tile"
 import LoadingCircle from "../../../common/LoadingPage/LoadingCircle";
@@ -9,22 +9,24 @@ import { useGetConfig } from "../../../useGetConfig";
 import { useGetPersonDetails } from "../useGetPersonDetails"
 import { useGetPersonCredits } from "../useGetPersonCredits";
 import {
+    selectPersonCast,
+    selectPersonCrew,
+    selectPersonDetails
+} from "../peopleSlice";
+import {
     selectImagesBaseURL,
-    selectPosterSize,
     selectPosterSizes,
-    setPosterSize
+    selectProfileSizes,
 } from "../../../globalSlice";
-import { selectPersonCast, selectPersonCrew, selectPersonDetails } from "../peopleSlice";
-const Section = React.lazy(() => import('../../../common/Section'));
+const Section = React.lazy(() => import('../../../common/TilesSection'));
 
 const PersonPage = () => {
-    const dispatch = useDispatch();
     const { id } = useParams();
     const personId = id;
     const personDetails = useSelector(selectPersonDetails);
     const imgURL = useSelector(selectImagesBaseURL);
-    const posterSize = useSelector(selectPosterSize);
     const posterSizes = useSelector(selectPosterSizes);
+    const profileSizes = useSelector(selectProfileSizes);
     const personCast = useSelector(selectPersonCast);
     const personCrew = useSelector(selectPersonCrew);
 
@@ -36,11 +38,25 @@ const PersonPage = () => {
         window.scrollTo(0, 0);
     }, []);
 
-    const posterSize1 = posterSizes[1];
-    const posterSize2 = posterSizes[2];
-    const posterSize3 = posterSizes[3];
-    const posterSize4 = posterSizes[4];
-    const posterSize5 = posterSizes[5];
+    const posterSizesArray = [
+        posterSizes[1],
+        posterSizes[2],
+        posterSizes[2],
+        posterSizes[3],
+        posterSizes[3]
+    ];
+
+    const profileSizesArray = [
+        profileSizes[1],
+        profileSizes[1],
+        profileSizes[1],
+        profileSizes[1],
+        profileSizes[2]
+    ];
+
+    const slideWidths = ["100%", "228px", "286px", "286px", "324px"];
+    const tileWidths = ["100%", "100%", "100%", "100%", "100%"];
+
 
     return (
         <>
@@ -49,12 +65,9 @@ const PersonPage = () => {
                     oversize
                     key={personId}
                     movieId={personId}
-                    size1={posterSize1}
-                    size2={posterSize2}
-                    size3={posterSize3}
-                    size4={posterSize4}
-                    size5={posterSize5}
+                    sizes={posterSizesArray}
                     imageWidth="312px"
+                    widths={tileWidths}
                     titleUrl={`/person/${personId}`}
                     imageBaseUrl={imgURL}
                     imagePath={personDetails.profile_path}
@@ -70,7 +83,11 @@ const PersonPage = () => {
                             <Tile
                                 key={personCast[index].credit_id}
                                 titleUrl={`/movie/${personCast[index].id}`}
-                                imageUrl={`${imgURL}${posterSize}${personCast[index].poster_path}`}
+                                imageWidth="100%"
+                                widths={slideWidths}
+                                imageBaseUrl={imgURL}
+                                imagePath={personCast[index].poster_path}
+                                sizes={profileSizesArray}
                                 title={personCast[index].title}
                                 subtitle={`
                                     ${personCast[index].character}
@@ -88,7 +105,10 @@ const PersonPage = () => {
                             <Tile
                                 key={personCrew[index].credit_id}
                                 titleUrl={`/movie/${personCrew[index].id}`}
-                                imageUrl={`${imgURL}${posterSize}${personCrew[index].poster_path}`}
+                                widths={slideWidths}
+                                imageBaseUrl={imgURL}
+                                imagePath={personCrew[index].poster_path}
+                                sizes={profileSizesArray}
                                 title={personCrew[index].title}
                                 subtitle={`
                                     ${personCrew[index].job}
