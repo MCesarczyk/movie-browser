@@ -27,6 +27,10 @@ export const PagerText = styled.span`
     line-height: 1.5;
     color: ${({ theme }) => theme.color.darkGrey};
     margin: 0px 8px;
+
+    @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+        font-size: 10px;
+    }
 `;
 
 export const PageNumberText = styled.span`
@@ -35,4 +39,8 @@ export const PageNumberText = styled.span`
     line-height: 1.5;
     color: ${({ theme }) => theme.color.woodsmoke};
     margin: 0px 8px;
+
+    @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+        font-size: 10px;
+    }
 `;
