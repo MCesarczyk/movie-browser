@@ -1,8 +1,7 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchMovieGenres, fetchPopularMovies } from "../moviesSlice";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Wrapper from "../../../common/Wrapper";
 import TilesSection from "../../../common/TilesSection";
 import Tile from "../../../common/Tile"
@@ -21,7 +20,6 @@ import {
 
 const MoviesPage = () => {
     const dispatch = useDispatch();
-
     const { page } = useParams();
 
     useEffect(() => {
