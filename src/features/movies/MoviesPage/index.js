@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Wrapper from "../../../common/Wrapper";
 import TilesSection from "../../../common/TilesSection";
 import Tile from "../../../common/Tile"
@@ -7,11 +7,9 @@ import Pager from "../../../common/Pager";
 import LoadingPage from "../../../common/LoadingPage";
 import ErrorPage from "../../../common/ErrorPage";
 import { useGetConfig } from "../../../useGetConfig";
-import { useGetPopularMovies } from "../useGetPopularMovies";
 import { useGetMovieGenres } from "../useGetMovieGenres";
-import {
-    selectMovieList,
-} from "../moviesSlice";
+import { useGetMovies } from "../useGetMovies";
+import { selectMovieList } from "../moviesSlice";
 import {
     selectImagesBaseURL,
     selectPosterSizes,
@@ -26,7 +24,7 @@ const MoviesPage = () => {
 
     useGetConfig();
     useGetMovieGenres();
-    useGetPopularMovies();
+    useGetMovies();
 
     useEffect(() => {
         window.scrollTo(0, 0);
