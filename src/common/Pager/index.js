@@ -5,7 +5,7 @@ import { Wrapper, StyledLink, PagerText, PageNumberText } from "./styled";
 import NextIcon from "./NextIcon";
 import PreviousIcon from "./PreviousIcon";
 
-const Pager = ({property}) => {
+const Pager = ({ property }) => {
     const dispatch = useDispatch();
     const { page } = useParams();
     const currentPage = (page ? page : 1);
