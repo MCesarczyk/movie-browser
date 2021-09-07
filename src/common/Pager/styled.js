@@ -2,8 +2,12 @@ import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Wrapper = styled.div`
-    width: 640px;
+    display: flex;
+    justify-content: center;
     margin: 40px auto;
+    @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+        margin: 32px auto;
+    }
 `;
 
 export const StyledLink = styled(Link)`
@@ -22,7 +26,7 @@ export const StyledLink = styled(Link)`
     `}
 
     @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
-        padding: 0px 8px;
+        padding: 0px 10px;
         margin: 0px 4px;
     } 
 `;
@@ -34,6 +38,7 @@ export const PagerText = styled.span`
     margin: 0px 8px;
 
     @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+        margin: 0px 2px;
         font-size: 10px;
     }
 `;
@@ -46,6 +51,7 @@ export const PageNumberText = styled.span`
     margin: 0px 8px;
 
     @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+        margin: 0px 2px;
         font-size: 10px;
     }
 `;
