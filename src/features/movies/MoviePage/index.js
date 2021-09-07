@@ -1,29 +1,32 @@
 import React, { Suspense } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Wrapper from "../../../common/Wrapper";
 import Tile from "../../../common/Tile"
 import Backdrop from "./Backdrop";
 import LoadingCircle from "../../../common/LoadingPage/LoadingCircle";
-import { useGetConfig } from "../../../useGetConfig";
-import { useGetMovieDetails } from "../useGetMovieDetails";
+// import { useGetConfig } from "../../../useGetConfig";
+// import { useGetMovieDetails } from "../useGetMovieDetails";
 import { useGetMovieCredits } from "../useGetMovieCredits";
 import {
     selectMovieDetails,
     selectMovieCast,
     selectMovieCrew,
     selectGenresList,
+    fetchMovieDetails,
 } from "../moviesSlice";
 import {
     selectBackdropSizes,
     selectImagesBaseURL,
     selectPosterSizes,
     selectProfileSizes,
+    setId,
 } from "../../../globalSlice";
 const Section = React.lazy(() => import('../../../common/SlidesSection'));
 
 const MoviePage = () => {
+    const dispatch = useDispatch();
     const { id } = useParams();
     const movieId = id;
     const movieDetails = useSelector(selectMovieDetails);
@@ -35,9 +38,14 @@ const MoviePage = () => {
     const movieCrew = useSelector(selectMovieCrew);
     const genresList = useSelector(selectGenresList);
 
-    useGetConfig();
-    useGetMovieDetails(movieId);
+    // useGetConfig();
+    // useGetMovieDetails(movieId);
     useGetMovieCredits(movieId);
+
+    useEffect(() => {
+        dispatch(setId(id));
+        dispatch(fetchMovieDetails());
+    }, []);
 
     useEffect(() => {
         window.scrollTo(0, 0);

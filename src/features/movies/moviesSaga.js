@@ -1,8 +1,9 @@
 import { call, delay, put, select, takeLatest } from "redux-saga/effects";
-import { selectPage, setError, setState, setTotalPages } from "../../globalSlice";
-import { getMovieGenres } from "./getMovieGenres";
+import { selectId, selectPage, setError, setState, setTotalPages } from "../../globalSlice";
 import { getPopularMovies } from "./getPopularMovies";
-import { fetchMovieDetails, fetchMovieGenres, fetchPopularMovies, setMovieGenres, setPopularMovies } from "./moviesSlice";
+import { getMovieGenres } from "./getMovieGenres";
+import { getMovieDetails } from "./getMovieDetails";
+import { fetchMovieDetails, fetchMovieGenres, fetchPopularMovies, setMovieDetails, setMovieGenres, setPopularMovies } from "./moviesSlice";
 
 function* fetchPopularMoviesHandler() {
     try {
@@ -29,7 +30,9 @@ function* fetchMovieGenresHandler() {
 
 function* fetchMovieDetailsHandler() {
     try {
-        const details = yield call();
+        const id = yield select(selectId);
+        const details = yield call(getMovieDetails, id);
+        yield put(setMovieDetails(details));
     } catch (error) {
         yield call(setError(error));
     }
