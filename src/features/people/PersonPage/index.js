@@ -15,6 +15,8 @@ import {
     setPosterSize
 } from "../../../globalSlice";
 import { selectPersonCast, selectPersonCrew, selectPersonDetails } from "../peopleSlice";
+import noPicture from "../../../common/Tile/noPicture.svg";
+
 const Section = React.lazy(() => import('../../../common/Section'));
 
 const PersonPage = () => {
@@ -65,7 +67,7 @@ const PersonPage = () => {
                     movieId={personId}
                     imageWidth="312px"
                     titleUrl={`/person/${personId}`}
-                    imageUrl={personDetails && `${imgURL}${posterSize}${personDetails.profile_path}`}
+                    imageUrl={!!personDetails.profile_path ? `${imgURL}${posterSize}${personDetails.profile_path}` : noPicture }
                     title={personDetails.name}
                     birthday={personDetails.birthday}
                     birthPlace={personDetails.place_of_birth}
