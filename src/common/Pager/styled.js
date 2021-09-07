@@ -11,7 +11,7 @@ export const StyledLink = styled(Link)`
     padding: 8px 16px;
     border-radius: 5px;
     background-color: ${({ theme }) => theme.color.cornflowerBlue};
-    margin: 0px 12px;
+    margin: 0px 6px;
     font-size: 14px;
     color: ${({ theme }) => theme.color.mineShaft};
 
@@ -20,6 +20,11 @@ export const StyledLink = styled(Link)`
         color: ${({ theme }) => theme.color.woodsmoke};
         cursor: default;
     `}
+
+    @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+        padding: 0px 8px;
+        margin: 0px 4px;
+    } 
 `;
 
 export const PagerText = styled.span`
