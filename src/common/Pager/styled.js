@@ -36,6 +36,7 @@ export const PagerText = styled.span`
     line-height: 1.5;
     color: ${({ theme }) => theme.color.darkGrey};
     margin: 0px 8px;
+    align-self: center;
 
     @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
         margin: 0px 2px;
@@ -49,6 +50,7 @@ export const PageNumberText = styled.span`
     line-height: 1.5;
     color: ${({ theme }) => theme.color.woodsmoke};
     margin: 0px 8px;
+    align-self: center;
 
     @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
         margin: 0px 2px;
