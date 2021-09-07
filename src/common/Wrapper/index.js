@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-    width: 1368px;
-    margin: 64px auto;
-    background-color: ${({ theme }) => theme.color.whisper};
+    max-width: ${({ theme }) => theme.dimension.maxWidth};
+    margin: 0 auto;
 `;
 
 export default Wrapper;

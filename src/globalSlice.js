@@ -13,6 +13,8 @@ const initialState = {
             still_sizes: [],
         },
     },
+    totalPages: 500,
+    state: "idle",
     error: "",
 };
 
@@ -24,7 +26,13 @@ const globalSlice = createSlice({
         setConfig: (state, { payload: newConfig }) => {
             state.config = newConfig;
         },
-        setError: (state, {payload: newError}) => {
+        setTotalPages: (state, { payload: totalPages }) => {
+            state.totalPages = totalPages;
+        },
+        setState: (state, { payload: stateName }) => {
+            state.state = stateName;
+        },
+        setError: (state, { payload: newError }) => {
             state.error = newError;
         },
     },
@@ -33,6 +41,8 @@ const globalSlice = createSlice({
 export const {
     fetchConfiguration,
     setConfig,
+    setTotalPages,
+    setState,
     setError,
 } = globalSlice.actions;
 
@@ -41,6 +51,9 @@ export const selectImagesConfig = state => state.global.config.images;
 export const selectImagesBaseURL = state => state.global.config.images.secure_base_url;
 export const selectPosterSizes = state => state.global.config.images.poster_sizes;
 export const selectBackdropSizes = state => state.global.config.images.backdrop_sizes;
+export const selectProfileSizes = state => state.global.config.images.profile_sizes;
+export const selectTotalPages = state => state.global.totalPages;
+export const selectState = state => state.global.state;
 export const selecterror = state => state.global.error;
 
 export default globalSlice.reducer;

@@ -1,7 +1,7 @@
 import { call, delay, put, takeLatest } from "redux-saga/effects";
-import { setError } from "../../globalSlice";
+import { setError, setState } from "../../globalSlice";
 import { getPopularMovies } from "./getPopularMovies";
-import { fetchPopularMovies, setMovies, setState } from "./moviesSlice";
+import { fetchPopularMovies, setMovies } from "./moviesSlice";
 
 function* fetchPopularMoviesHandler() {
     try {

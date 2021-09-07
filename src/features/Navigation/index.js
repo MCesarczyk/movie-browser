@@ -14,21 +14,21 @@ const Navigation = ({ moviesPath, peoplePath }) => {
         <NavigationContainer>
             <NavigationWrapper>
                 <HeaderWrapper>
+                    <Header />
                     <List>
-                        <Header />
                         <Item>
-                            <StyledNavLink to="/movies">
+                            <StyledNavLink to={moviesPath}>
                                 Movies
                             </StyledNavLink>
                         </Item>
                         <Item>
-                            <StyledNavLink to="/people">
+                            <StyledNavLink to={peoplePath}>
                                 People
                             </StyledNavLink>
                         </Item>
                     </List>
-                    <Search />
                 </HeaderWrapper>
+                <Search />
             </NavigationWrapper>
         </NavigationContainer>
     );

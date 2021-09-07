@@ -1,6 +1,10 @@
 export const theme = {
     color: {
         white: "#FFFFFF",
+        blue: "#0044CC",
+        cornflowerBlue: "#D6E4FF",
+        mineShaft: "#333333",
+        scienceBlue: "#0044CC",
         mystic: "#E4E6F0",
         mercury: "#E5E5E5",
         woodsmoke: "#18181B",
@@ -10,6 +14,13 @@ export const theme = {
         whisper: "#F5F5FA",
     },
     breakpoint: {
-        mobile: "767",
+        mediumScreen: "1280px",
+        smallScreen: "992px",
+        mobileMax: "767px",
+        oldIphone: "480px",
+        mobileMin: "320px",
+    },
+    dimension: {
+        maxWidth: "1368px",
     },
 };
