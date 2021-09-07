@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { selectTotalPages, setState } from "../../globalSlice";
@@ -13,9 +14,9 @@ const Pager = ({ property }) => {
     const totalPages = useSelector(selectTotalPages);
     currentPage > totalPages && dispatch(setState("error"));
 
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    window.onresize = () => setWindowWidth(window.innerWidth);
     const mobileMax = 767;
-    const windowWidth = window.innerWidth;
-    console.log(windowWidth);
 
     const checkIfPreviousIsDisabled = () => +currentPage === 1 ? true : false;
     const checkIfNextIsDisabled = () => +currentPage === +totalPages ? true : false;
@@ -49,3 +50,5 @@ const Pager = ({ property }) => {
 };
 
 export default Pager;
+
+
