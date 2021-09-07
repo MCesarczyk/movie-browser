@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import { fetchPopularMovies } from "../moviesSlice";
 import { useSelector } from "react-redux";
 import Wrapper from "../../../common/Wrapper";
@@ -8,13 +9,12 @@ import Tile from "../../../common/Tile"
 import Pager from "../../../common/Pager";
 import LoadingPage from "../../../common/LoadingPage";
 import ErrorPage from "../../../common/ErrorPage";
-import { useGetConfig } from "../../../useGetConfig";
-import { useGetPopularMovies } from "../useGetPopularMovies";
 import { useGetMovieGenres } from "../useGetMovieGenres";
 import {
     selectImagesBaseURL,
     selectPosterSizes,
     selectState,
+    setPage,
 } from "../../../globalSlice";
 import {
     selectMovieList,
@@ -23,20 +23,26 @@ import {
 const MoviesPage = () => {
     const dispatch = useDispatch();
 
+    const { page } = useParams();
+
     useEffect(() => {
-        dispatch(fetchPopularMovies());
         window.scrollTo(0, 0);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    useEffect(() => {
+        dispatch(setPage(page));
+        dispatch(fetchPopularMovies());
+    }, [dispatch, page]);
 
     const movieList = useSelector(selectMovieList);
     const moviesState = useSelector(selectState);
     const imgURL = useSelector(selectImagesBaseURL);
     const posterSizes = useSelector(selectPosterSizes);
 
-    useGetConfig();
+    // useGetConfig();
     useGetMovieGenres();
-    useGetPopularMovies();
+    // useGetPopularMovies();
 
     const posterSizesArray = [
         posterSizes[1],
