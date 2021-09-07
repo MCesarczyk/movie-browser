@@ -5,13 +5,17 @@ import { Wrapper, StyledLink, PagerText, PageNumberText } from "./styled";
 import NextIcon from "./NextIcon";
 import PreviousIcon from "./PreviousIcon";
 
-const Pager = ({property}) => {
+const Pager = ({ property }) => {
     const dispatch = useDispatch();
     const { page } = useParams();
     const currentPage = (page ? page : 1);
 
     const totalPages = useSelector(selectTotalPages);
     currentPage > totalPages && dispatch(setState("error"));
+
+    const mobileMax = 767;
+    const windowWidth = window.innerWidth;
+    console.log(windowWidth);
 
     const checkIfPreviousIsDisabled = () => +currentPage === 1 ? true : false;
     const checkIfNextIsDisabled = () => +currentPage === +totalPages ? true : false;
@@ -37,7 +41,7 @@ const Pager = ({property}) => {
                 <NextIcon disabled={checkIfNextIsDisabled()} />
             </StyledLink>
             <StyledLink to={`/${property}/${totalPages}`} disabled={checkIfNextIsDisabled()}>
-                Last
+                {windowWidth < mobileMax ? <NextIcon disabled={checkIfNextIsDisabled()} /> : "Last"}
                 <NextIcon disabled={checkIfNextIsDisabled()} />
             </StyledLink>
         </Wrapper>
