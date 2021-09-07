@@ -24,11 +24,11 @@ const Pager = ({ property }) => {
         <Wrapper>
             <StyledLink to={`/${property}/1`} disabled={checkIfPreviousIsDisabled()}>
                 <PreviousIcon disabled={checkIfPreviousIsDisabled()} />
-                First
+                {windowWidth < mobileMax ? <PreviousIcon disabled={checkIfPreviousIsDisabled()} /> : "First"}
             </StyledLink>
             <StyledLink to={`/${property}/${+currentPage === 1 ? 1 : +currentPage - 1}`} disabled={checkIfPreviousIsDisabled()}>
                 <PreviousIcon disabled={checkIfPreviousIsDisabled()} />
-                Previous
+                {windowWidth < mobileMax ? "" : "Previous"}
             </StyledLink>
 
             <PagerText>Page</PagerText>
@@ -37,7 +37,7 @@ const Pager = ({ property }) => {
             <PageNumberText>{totalPages}</PageNumberText>
 
             <StyledLink to={`/${property}/${+currentPage === +totalPages ? +currentPage : +currentPage + 1}`} disabled={checkIfNextIsDisabled()}>
-                Next
+                {windowWidth < mobileMax ? "" : "Next"}
                 <NextIcon disabled={checkIfNextIsDisabled()} />
             </StyledLink>
             <StyledLink to={`/${property}/${totalPages}`} disabled={checkIfNextIsDisabled()}>
