@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import Wrapper from "../../../common/Wrapper";
 import Tile from "../../../common/Tile"
 import LoadingCircle from "../../../common/LoadingPage/LoadingCircle";
-import { useGetConfig } from "../../../useGetConfig";
 import { useGetPersonDetails } from "../useGetPersonDetails"
 import { useGetPersonCredits } from "../useGetPersonCredits";
 import {

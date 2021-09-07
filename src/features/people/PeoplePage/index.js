@@ -6,7 +6,6 @@ import Tile from "../../../common/Tile"
 import Pager from "../../../common/Pager";
 import LoadingPage from "../../../common/LoadingPage";
 import ErrorPage from "../../../common/ErrorPage";
-import { useGetConfig } from "../../../useGetConfig";
 import { useGetPopularPeople } from "../useGetPopularPeople";
 import {
   selectImagesBaseURL,
