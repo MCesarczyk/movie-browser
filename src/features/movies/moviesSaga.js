@@ -1,9 +1,9 @@
 import { call, delay, put, select, takeLatest } from "redux-saga/effects";
 import { selectId, selectPage, setError, setState, setTotalPages } from "../../globalSlice";
-import { getPopularMovies } from "./getPopularMovies";
-import { getMovieGenres } from "./getMovieGenres";
-import { getMovieDetails } from "./getMovieDetails";
-import { getMovieCredits } from "./getMovieCredits";
+import { getMovieCredits, getMovieDetails, getMovieGenres, getPopularMovies } from "./getMoviesData";
+// import { getMovieGenres } from "./getMovieGenres";
+// import { getMovieDetails } from "./getMovieDetails";
+// import { getMovieCredits } from "./getMovieCredits";
 import { fetchMovieCredits, fetchMovieDetails, fetchMovieGenres, fetchPopularMovies, setMovieCredits, setMovieDetails, setMovieGenres, setPopularMovies } from "./moviesSlice";
 
 function* fetchPopularMoviesHandler() {
