@@ -23,7 +23,6 @@ const PeoplePage = () => {
   const imgURL = useSelector(selectImagesBaseURL);
   const profileSizes = useSelector(selectProfileSizes);
 
-  useGetConfig();
   useGetPopularPeople();
 
   useEffect(() => {

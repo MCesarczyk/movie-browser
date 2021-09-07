@@ -30,7 +30,6 @@ const PersonPage = () => {
     const personCast = useSelector(selectPersonCast);
     const personCrew = useSelector(selectPersonCrew);
 
-    useGetConfig();
     useGetPersonDetails(personId);
     useGetPersonCredits(personId);
 
