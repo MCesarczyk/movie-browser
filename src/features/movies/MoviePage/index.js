@@ -21,6 +21,7 @@ import {
     selectPosterSizes,
     setPosterSize
 } from "../../../globalSlice";
+import noPicture from "../../../common/Tile/noPicture.svg";
 const Section = React.lazy(() => import('../../../common/Section'));
 
 const MoviePage = () => {
@@ -91,7 +92,7 @@ const MoviePage = () => {
                                 minimal
                                 key={movieCast[index].credit_id}
                                 titleUrl={`/person/${movieCast[index].id}`}
-                                imageUrl={`${imgURL}${posterSize}${movieCast[index].profile_path}`}
+                                imageUrl={!!movieCast[index].profile_path ? `${imgURL}${posterSize}${movieCast[index].profile_path}` : noPicture}
                                 title={movieCast[index].name}
                                 subtitle={movieCast[index].character}
                             />
