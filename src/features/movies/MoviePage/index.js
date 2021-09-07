@@ -40,7 +40,7 @@ const MoviePage = () => {
         dispatch(setId(id));
         dispatch(fetchMovieDetails());
         dispatch(fetchMovieCredits());
-    }, []);
+    }, [dispatch, id]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
