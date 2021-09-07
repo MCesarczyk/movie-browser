@@ -8,13 +8,14 @@ import Backdrop from "./Backdrop";
 import LoadingCircle from "../../../common/LoadingPage/LoadingCircle";
 // import { useGetConfig } from "../../../useGetConfig";
 // import { useGetMovieDetails } from "../useGetMovieDetails";
-import { useGetMovieCredits } from "../useGetMovieCredits";
+// import { useGetMovieCredits } from "../useGetMovieCredits";
 import {
     selectMovieDetails,
     selectMovieCast,
     selectMovieCrew,
     selectGenresList,
     fetchMovieDetails,
+    fetchMovieCredits,
 } from "../moviesSlice";
 import {
     selectBackdropSizes,
@@ -40,11 +41,12 @@ const MoviePage = () => {
 
     // useGetConfig();
     // useGetMovieDetails(movieId);
-    useGetMovieCredits(movieId);
+    // useGetMovieCredits(movieId);
 
     useEffect(() => {
         dispatch(setId(id));
         dispatch(fetchMovieDetails());
+        dispatch(fetchMovieCredits());
     }, []);
 
     useEffect(() => {

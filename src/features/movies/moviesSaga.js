@@ -3,7 +3,8 @@ import { selectId, selectPage, setError, setState, setTotalPages } from "../../g
 import { getPopularMovies } from "./getPopularMovies";
 import { getMovieGenres } from "./getMovieGenres";
 import { getMovieDetails } from "./getMovieDetails";
-import { fetchMovieDetails, fetchMovieGenres, fetchPopularMovies, setMovieDetails, setMovieGenres, setPopularMovies } from "./moviesSlice";
+import { getMovieCredits } from "./getMovieCredits";
+import { fetchMovieCredits, fetchMovieDetails, fetchMovieGenres, fetchPopularMovies, setMovieCredits, setMovieDetails, setMovieGenres, setPopularMovies } from "./moviesSlice";
 
 function* fetchPopularMoviesHandler() {
     try {
@@ -38,8 +39,19 @@ function* fetchMovieDetailsHandler() {
     }
 };
 
+function* fetchMovieCreditsHandler() {
+    try {
+        const id = yield select(selectId);
+        const credits = yield call(getMovieCredits, id);
+        yield put(setMovieCredits(credits));
+    } catch (error) {
+        yield call(setError(error));
+    }
+};
+
 export function* moviesSaga() {
     yield takeLatest(fetchPopularMovies.type, fetchPopularMoviesHandler);
     yield takeLatest(fetchMovieGenres.type, fetchMovieGenresHandler);
     yield takeLatest(fetchMovieDetails.type, fetchMovieDetailsHandler);
+    yield takeLatest(fetchMovieCredits.type, fetchMovieCreditsHandler);
 };
