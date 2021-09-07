@@ -1,15 +1,20 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { selectTotalPages, setState } from "../../globalSlice";
 import { Wrapper, StyledLink, PagerText, PageNumberText } from "./styled";
+import searchQueryParamName from "../../features/Navigation/Search/searchQueryParamName";
 import NextIcon from "./NextIcon";
 import PreviousIcon from "./PreviousIcon";
 
 const Pager = ({ property }) => {
     const dispatch = useDispatch();
     const { page } = useParams();
+    const location = useLocation();
     const currentPage = (page ? page : 1);
+
+    const searchParams = new URLSearchParams(location.search);
+    const query = searchParams.get(searchQueryParamName);
 
     const totalPages = useSelector(selectTotalPages);
     currentPage > totalPages && dispatch(setState("error"));
@@ -23,11 +28,17 @@ const Pager = ({ property }) => {
 
     return (
         <Wrapper>
-            <StyledLink to={`/${property}/1`} disabled={checkIfPreviousIsDisabled()}>
+            <StyledLink
+                to={`/${property}/1${query ? `?${searchQueryParamName}=${query}` : ""}`}
+                disabled={checkIfPreviousIsDisabled()}
+            >
                 <PreviousIcon disabled={checkIfPreviousIsDisabled()} />
                 {windowWidth < mobileMax ? <PreviousIcon disabled={checkIfPreviousIsDisabled()} /> : "First"}
             </StyledLink>
-            <StyledLink to={`/${property}/${+currentPage === 1 ? 1 : +currentPage - 1}`} disabled={checkIfPreviousIsDisabled()}>
+            <StyledLink
+                to={`/${property}/${+currentPage === 1 ? 1 : +currentPage - 1}${query ? `?${searchQueryParamName}=${query}` : ""}`}
+                disabled={checkIfPreviousIsDisabled()}
+            >
                 <PreviousIcon disabled={checkIfPreviousIsDisabled()} />
                 {windowWidth < mobileMax ? "" : "Previous"}
             </StyledLink>
