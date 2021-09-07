@@ -12,13 +12,13 @@ const moviesSlice = createSlice({
     initialState,
     reducers: {
         fetchPopularMovies: () => { },
-        setMovies: (state, { payload: movies }) => {
+        setPopularMovies: (state, { payload: movies }) => {
             state.movies = movies;
         },
-        setMovie: (state, { payload: movie }) => {
+        setMovieDetails: (state, { payload: movie }) => {
             state.movie = movie;
         },
-        setGenres: (state, { payload: genres }) => {
+        setMovieGenres: (state, { payload: genres }) => {
             state.genres = genres;
         },
         setMovieCredits: (state, { payload: credits }) => {
@@ -29,10 +29,10 @@ const moviesSlice = createSlice({
 
 export const {
     fetchPopularMovies,
-    setMovies,
-    setMovie,
+    setPopularMovies,
+    setMovieDetails,
     setMovieCredits,
-    setGenres,
+    setMovieGenres,
 } = moviesSlice.actions;
 
 export const selectMovies = state => state.movies;

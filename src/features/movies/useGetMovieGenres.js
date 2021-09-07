@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setGenres } from "./moviesSlice";
+import { setMovieGenres } from "./moviesSlice";
 
 export const useGetMovieGenres = () => {
     const apiURL = "https://api.themoviedb.org/3/genre/movie/list?api_key=768f7875782193f5e4797762314da0b7&language=en-US";
@@ -9,7 +9,7 @@ export const useGetMovieGenres = () => {
     useEffect(() => {
         fetch(apiURL)
             .then(response => response.json())
-            .then(genres => dispatch(setGenres(genres)))
+            .then(genres => dispatch(setMovieGenres(genres)))
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

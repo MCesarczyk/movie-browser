@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { setMovie } from "./moviesSlice";
+import { setMovieDetails } from "./moviesSlice";
 
 export const useGetMovieDetails = () => {
     const { id } = useParams();
@@ -12,7 +12,7 @@ export const useGetMovieDetails = () => {
     useEffect(() => {
         fetch(apiURL)
             .then(response => response.json())
-            .then(movie => dispatch(setMovie(movie)))
+            .then(movie => dispatch(setMovieDetails(movie)))
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
