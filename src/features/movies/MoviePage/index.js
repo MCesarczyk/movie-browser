@@ -105,7 +105,7 @@ const MoviePage = () => {
                                 minimal
                                 key={movieCrew[index].credit_id}
                                 titleUrl={`/person/${movieCrew[index].id}`}
-                                imageUrl={`${imgURL}${posterSize}${movieCrew[index].profile_path}`}
+                                imageUrl={!!movieCrew[index].profile_path ? `${imgURL}${posterSize}${movieCrew[index].profile_path}` : noPicture}
                                 title={movieCrew[index].name}
                                 subtitle={movieCrew[index].job}
                             />
