@@ -1,32 +1,36 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Wrapper from "../../../common/Wrapper";
 import SlidesSection from "../../../common/SlidesSection";
 import Tile from "../../../common/Tile"
 import Pager from "../../../common/Pager";
 import LoadingPage from "../../../common/LoadingPage";
 import ErrorPage from "../../../common/ErrorPage";
-import { useGetPopularPeople } from "../useGetPopularPeople";
 import {
   selectImagesBaseURL,
   selectState,
   selectProfileSizes,
 } from "../../../globalSlice";
 import {
+  fetchPopularPeople,
   selectPeopleList,
 } from "../peopleSlice";
 
 const PeoplePage = () => {
+  const dispatch = useDispatch();
   const peopleList = useSelector(selectPeopleList);
   const peopleState = useSelector(selectState);
   const imgURL = useSelector(selectImagesBaseURL);
   const profileSizes = useSelector(selectProfileSizes);
 
-  useGetPopularPeople();
-
   useEffect(() => {
     window.scrollTo(0, 0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    dispatch(fetchPopularPeople());
+  }, [dispatch]);
 
   const profileSizesArray = [
     profileSizes[1],
