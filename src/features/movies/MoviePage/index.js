@@ -6,9 +6,6 @@ import Wrapper from "../../../common/Wrapper";
 import Tile from "../../../common/Tile"
 import Backdrop from "./Backdrop";
 import LoadingCircle from "../../../common/LoadingPage/LoadingCircle";
-// import { useGetConfig } from "../../../useGetConfig";
-// import { useGetMovieDetails } from "../useGetMovieDetails";
-// import { useGetMovieCredits } from "../useGetMovieCredits";
 import {
     selectMovieDetails,
     selectMovieCast,
@@ -38,10 +35,6 @@ const MoviePage = () => {
     const movieCast = useSelector(selectMovieCast);
     const movieCrew = useSelector(selectMovieCrew);
     const genresList = useSelector(selectGenresList);
-
-    // useGetConfig();
-    // useGetMovieDetails(movieId);
-    // useGetMovieCredits(movieId);
 
     useEffect(() => {
         dispatch(setId(id));
