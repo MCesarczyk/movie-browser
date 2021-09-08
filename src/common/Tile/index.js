@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { selectGenres } from "../../features/movies/moviesSlice";
-import RatingStar from "./RatingStar/ratingStar.svg";
+import RatingStar from "./RatingStar";
 import {
     StyledTile,
     Image,
@@ -19,18 +19,12 @@ import {
     Description,
     ActiveTitle,
     NoVotesText,
-    StyledLogo,
 } from "./styled";
 
 const Tile = ({
-    widths,
-    imageWidth,
-    sizes,
-    imageBaseUrl,
-    imagePath,
-    mobile,
     oversize,
-    slide,
+    minimal,
+    imageWidth,
     titleUrl,
     imageUrl,
     title,
@@ -48,36 +42,13 @@ const Tile = ({
     const genres = useSelector(selectGenres);
 
     return (
-        <StyledTile
-            widths={widths || "100%"}
-            oversize={oversize}
-            slide={slide}
-        >
-            <Image
-                slide={slide}
-                width={imageWidth}
-                mobile={mobile}
-                sizes={sizes}
-                baseUrl={imageBaseUrl}
-                path={imagePath}
-                src={imageUrl}
-                alt="image"
-            />
+        <StyledTile oversize={oversize} >
+            <Image src={imageUrl} width={imageWidth} alt="image" />
             <TileContent>
                 <ActiveTitle to={titleUrl} >
-                    <Title
-                        oversize={oversize}
-                        slide={slide}
-                    >
-                        {title}
-                    </Title>
+                    <Title oversize={oversize} minimal={minimal} >{title}</Title>
                 </ActiveTitle>
-                <SubTitle
-                    oversize={oversize}
-                    slide={slide}
-                >
-                    {subtitle}
-                </SubTitle>
+                <SubTitle oversize={oversize} minimal={minimal} >{subtitle}</SubTitle>
                 {countries &&
                     <Details>
                         <DetailTitle>Production: </DetailTitle>
@@ -124,24 +95,27 @@ const Tile = ({
                         ))}
                     </Tags>
                 }
-                {!slide && (votes > 0 ?
-                    <TileExtraContent>
-                        <StyledLogo src={RatingStar} />
-                        <Rating>{rating}</Rating>
-                        <RatingScale>/ 10</RatingScale>
-                        <Votes>{votes}&nbsp;votes</Votes>
-                    </TileExtraContent>
-                    :
-                    <TileExtraContent>
-                        <NoVotesText>No votes yet</NoVotesText>
-                    </TileExtraContent>
-                )}
+                {!minimal && votes && (
+                    votes > 0 ?
+                        <TileExtraContent>
+                            <RatingStar />
+                            <Rating>{rating}</Rating>
+                            <RatingScale>/ 10</RatingScale>
+                            <Votes>{votes} votes</Votes>
+                        </TileExtraContent>
+                        :
+                        <TileExtraContent>
+                            <NoVotesText>No votes yet</NoVotesText>
+                        </TileExtraContent>
+                )
+                }
+                {overview &&
+                    <Description>
+                        {overview}
+                    </Description>
+                }
+
             </TileContent>
-            {overview &&
-                <Description>
-                    {overview}
-                </Description>
-            }
         </StyledTile>
     );
 };

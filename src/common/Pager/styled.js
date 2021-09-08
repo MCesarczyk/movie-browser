@@ -2,12 +2,8 @@ import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Wrapper = styled.div`
-    display: flex;
-    justify-content: center;
+    width: 640px;
     margin: 40px auto;
-    @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
-        margin: 32px auto;
-    }
 `;
 
 export const StyledLink = styled(Link)`
@@ -15,7 +11,7 @@ export const StyledLink = styled(Link)`
     padding: 8px 16px;
     border-radius: 5px;
     background-color: ${({ theme }) => theme.color.cornflowerBlue};
-    margin: 0px 6px;
+    margin: 0px 12px;
     font-size: 14px;
     color: ${({ theme }) => theme.color.mineShaft};
 
@@ -24,11 +20,6 @@ export const StyledLink = styled(Link)`
         color: ${({ theme }) => theme.color.woodsmoke};
         cursor: default;
     `}
-
-    @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
-        padding: 0px 10px;
-        margin: 0px 4px;
-    } 
 `;
 
 export const PagerText = styled.span`
@@ -36,12 +27,6 @@ export const PagerText = styled.span`
     line-height: 1.5;
     color: ${({ theme }) => theme.color.darkGrey};
     margin: 0px 8px;
-    align-self: center;
-
-    @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
-        margin: 0px 2px;
-        font-size: 10px;
-    }
 `;
 
 export const PageNumberText = styled.span`
@@ -50,10 +35,4 @@ export const PageNumberText = styled.span`
     line-height: 1.5;
     color: ${({ theme }) => theme.color.woodsmoke};
     margin: 0px 8px;
-    align-self: center;
-
-    @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
-        margin: 0px 2px;
-        font-size: 10px;
-    }
 `;
