@@ -372,4 +372,24 @@ export const NoVotesText = styled.p`
     font-size: 16px;
     line-height: 1.5;
     color: ${({ theme }) => theme.color.darkGrey};
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+        font-size: 13px;
+    }
+    
+    @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
+        font-size: 15px;
+    }
+   
+    @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}) {
+        font-size: 14px;
+    }
+  
+    @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
+        font-size: 12px;
+    }
+    
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMin}) {
+        font-size: 11px;
+    }
 `;
