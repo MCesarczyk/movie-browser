@@ -179,6 +179,21 @@ export const SubTitle = styled.span`
         font-size: 13px;
         margin-bottom: 8px;
     }
+    @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
+        font-size: 16px;
+    }
+   
+    @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}) {
+        font-size: 14px;
+    }
+  
+    @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
+        font-size: 12px;
+    }
+    
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMin}) {
+        font-size: 11px;
+    }
 
     ${({ slide }) => slide && css`
         color: ${({ theme }) => theme.color.darkGrey}
