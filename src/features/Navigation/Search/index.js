@@ -6,11 +6,10 @@ import searchQueryParamName from "./searchQueryParamName";
 export const Search = () => {
     const location = useLocation();
     const history = useHistory();
-    const query = (new URLSearchParams(location.search)).get(searchQueryParamName);
+    const searchParams = new URLSearchParams(location.search);
+    const query = searchParams.get(searchQueryParamName);
 
     const onInputChange = ({ target }) => {
-        const searchParams = new URLSearchParams(location.search);
-
         if (target.value.trim() === "") {
             searchParams.delete(searchQueryParamName);
         } else {
