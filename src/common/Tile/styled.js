@@ -148,7 +148,23 @@ export const Title = styled.h2`
         font-size: 16px;
         margin-top: 4px;
         margin-bottom: 8px;
-    }    
+    }  
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
+        font-size: 20px;
+    }
+   
+    @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}) {
+        font-size: 18px;
+    }
+  
+    @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
+        font-size: 14px;
+    }
+    
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMin}) {
+        font-size: 12px;
+    }
 `;
 
 export const SubTitle = styled.span`
