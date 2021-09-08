@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { fetchMovieGenres, fetchPopularMovies } from "../moviesSlice";
 import { useSelector, useDispatch } from "react-redux";
 import Wrapper from "../../../common/Wrapper";
@@ -8,11 +8,13 @@ import Tile from "../../../common/Tile"
 import Pager from "../../../common/Pager";
 import LoadingPage from "../../../common/LoadingPage";
 import ErrorPage from "../../../common/ErrorPage";
+import searchQueryParamName from "../../Navigation/Search/searchQueryParamName";
 import {
     selectImagesBaseURL,
     selectPosterSizes,
     selectState,
     setPage,
+    setQuery,
 } from "../../../globalSlice";
 import {
     selectMovieList,
@@ -21,6 +23,12 @@ import {
 const MoviesPage = () => {
     const dispatch = useDispatch();
     const { page } = useParams();
+    const location = useLocation();
+    const query = (new URLSearchParams(location.search)).get(searchQueryParamName);
+
+    useEffect(() => {
+        dispatch(setQuery(query));
+    }, [query]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
