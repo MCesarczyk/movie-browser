@@ -18,6 +18,7 @@ const initialState = {
     totalPages: 500,
     state: "idle",
     error: "",
+    query: "",
 };
 
 const globalSlice = createSlice({
@@ -43,6 +44,9 @@ const globalSlice = createSlice({
         setError: (state, { payload: newError }) => {
             state.error = newError;
         },
+        setQuery: (state, {payload: newQuery}) => {
+            state.query = newQuery;
+        },
     },
 });
 
@@ -54,6 +58,7 @@ export const {
     setTotalPages,
     setState,
     setError,
+    setQuery,
 } = globalSlice.actions;
 
 export const selectConfig = state => state.global;
@@ -66,6 +71,7 @@ export const selectPage = state => state.global.page;
 export const selectId = state =>state.global.id;
 export const selectTotalPages = state => state.global.totalPages;
 export const selectState = state => state.global.state;
-export const selecterror = state => state.global.error;
+export const selectError = state => state.global.error;
+export const selectQuery = state => state.global.query;
 
 export default globalSlice.reducer;
