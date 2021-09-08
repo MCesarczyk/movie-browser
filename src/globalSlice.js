@@ -15,6 +15,10 @@ const initialState = {
     },
     totalPages: 500,
     state: "idle",
+    posterSize: "w500",
+    profileSize: "original",
+    slideWidth: "177",
+    backdropSize: "w1280",
 };
 
 const globalSlice = createSlice({
@@ -23,6 +27,18 @@ const globalSlice = createSlice({
     reducers: {
         setConfig: (state, { payload: newConfig }) => {
             state.config = newConfig;
+        },
+        setPosterSize: (state, { payload: newSize }) => {
+            state.posterSize = newSize;
+        },
+        setProfileSize: (state, { payload: newSize }) => {
+            state.profileSize = newSize;
+        },
+        setSlideWidth: (state, { payload: newWidth }) => {
+            state.slideWidth = newWidth;
+        },
+        setBackdropSize: (state, { payload: newSize }) => {
+            state.backdropSize = newSize;
         },
         setTotalPages: (state, { payload: totalPages }) => {
             state.totalPages = totalPages;
@@ -35,6 +51,10 @@ const globalSlice = createSlice({
 
 export const {
     setConfig,
+    setPosterSize,
+    setProfileSize,
+    setSlideWidth,
+    setBackdropSize,
     setTotalPages,
     setState,
 } = globalSlice.actions;
@@ -43,8 +63,12 @@ export const selectConfig = state => state.global;
 export const selectImagesConfig = state => state.global.config.images;
 export const selectImagesBaseURL = state => state.global.config.images.secure_base_url;
 export const selectPosterSizes = state => state.global.config.images.poster_sizes;
+export const selectPosterSize = state => state.global.posterSize;
 export const selectProfileSizes = state => state.global.config.images.profile_sizes;
+export const selectProfileSize = state => state.global.profileSize;
+export const selectSlideWidth = state => state.global.slideWidth;
 export const selectBackdropSizes = state => state.global.config.images.backdrop_sizes;
+export const selectBackdropSize = state => state.global.backdropSize;
 export const selectTotalPages = state => state.global.totalPages;
 export const selectState = state => state.global.state;
 

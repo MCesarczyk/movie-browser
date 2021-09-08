@@ -17,7 +17,7 @@ export const Search = () => {
             searchParams.set(searchQueryParamName, target.value);
         }
 
-        history.push(`/movies/1?${searchParams.toString()}`);
+        history.push(`${location.pathname}?${searchParams.toString()}`);
     };
     return (
         <SearchWrapper>

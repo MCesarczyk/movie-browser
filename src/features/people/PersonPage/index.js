@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Wrapper from "../../../common/Wrapper";
 import Tile from "../../../common/Tile"
 import LoadingCircle from "../../../common/LoadingPage/LoadingCircle";
@@ -9,26 +9,24 @@ import { useGetConfig } from "../../../useGetConfig";
 import { useGetPersonDetails } from "../useGetPersonDetails"
 import { useGetPersonCredits } from "../useGetPersonCredits";
 import {
-    selectPersonCast,
-    selectPersonCrew,
-    selectPersonDetails
-} from "../peopleSlice";
-import {
     selectImagesBaseURL,
+    selectPosterSize,
     selectPosterSizes,
-    selectProfileSizes,
+    setPosterSize
 } from "../../../globalSlice";
 import { selectPersonCast, selectPersonCrew, selectPersonDetails } from "../peopleSlice";
 import noPicture from "../../../common/Tile/noPicture.svg";
-const Section = React.lazy(() => import('../../../common/TilesSection'));
+
+const Section = React.lazy(() => import('../../../common/Section'));
 
 const PersonPage = () => {
+    const dispatch = useDispatch();
     const { id } = useParams();
     const personId = id;
     const personDetails = useSelector(selectPersonDetails);
     const imgURL = useSelector(selectImagesBaseURL);
+    const posterSize = useSelector(selectPosterSize);
     const posterSizes = useSelector(selectPosterSizes);
-    const profileSizes = useSelector(selectProfileSizes);
     const personCast = useSelector(selectPersonCast);
     const personCrew = useSelector(selectPersonCrew);
 
@@ -36,29 +34,29 @@ const PersonPage = () => {
     useGetPersonDetails(personId);
     useGetPersonCredits(personId);
 
+    // eslint-disable-next-line
+    const adjustPhotoSizes = () => {
+        const maxwidth = window.innerWidth;
+        if (maxwidth > "1280") {
+            dispatch(setPosterSize(posterSizes[4]))
+        } else if (maxwidth > "768") {
+            dispatch(setPosterSize(posterSizes[3]))
+        } else if (maxwidth > "480") {
+            dispatch(setPosterSize(posterSizes[2]))
+        } else {
+            dispatch(setPosterSize(posterSizes[1]))
+        };
+    };
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
 
-    const posterSizesArray = [
-        posterSizes[1],
-        posterSizes[2],
-        posterSizes[2],
-        posterSizes[3],
-        posterSizes[3]
-    ];
+    useEffect(() => {
+        adjustPhotoSizes();
+    }, [adjustPhotoSizes]);
 
-    const profileSizesArray = [
-        profileSizes[1],
-        profileSizes[1],
-        profileSizes[1],
-        profileSizes[1],
-        profileSizes[2]
-    ];
-
-    const slideWidths = ["100%", "228px", "286px", "286px", "324px"];
-    const tileWidths = ["100%", "100%", "100%", "100%", "100%"];
-
+    window.addEventListener("resize", adjustPhotoSizes);
 
     return (
         <>
@@ -67,12 +65,9 @@ const PersonPage = () => {
                     oversize
                     key={personId}
                     movieId={personId}
-                    sizes={posterSizesArray}
                     imageWidth="312px"
-                    widths={tileWidths}
                     titleUrl={`/person/${personId}`}
-                    imageBaseUrl={imgURL}
-                    imagePath={personDetails.profile_path || noPicture}
+                    imageUrl={!!personDetails.profile_path ? `${imgURL}${posterSize}${personDetails.profile_path}` : noPicture }
                     title={personDetails.name}
                     birthday={personDetails.birthday}
                     birthPlace={personDetails.place_of_birth}
@@ -85,11 +80,7 @@ const PersonPage = () => {
                             <Tile
                                 key={personCast[index].credit_id}
                                 titleUrl={`/movie/${personCast[index].id}`}
-                                imageWidth="100%"
-                                widths={slideWidths}
-                                imageBaseUrl={imgURL}
-                                imagePath={personCast[index].poster_path}
-                                sizes={profileSizesArray}
+                                imageUrl={`${imgURL}${posterSize}${personCast[index].poster_path}`}
                                 title={personCast[index].title}
                                 subtitle={`
                                     ${personCast[index].character}
@@ -107,10 +98,7 @@ const PersonPage = () => {
                             <Tile
                                 key={personCrew[index].credit_id}
                                 titleUrl={`/movie/${personCrew[index].id}`}
-                                widths={slideWidths}
-                                imageBaseUrl={imgURL}
-                                imagePath={personCrew[index].poster_path}
-                                sizes={profileSizesArray}
+                                imageUrl={`${imgURL}${posterSize}${personCrew[index].poster_path}`}
                                 title={personCrew[index].title}
                                 subtitle={`
                                     ${personCrew[index].job}
@@ -127,4 +115,5 @@ const PersonPage = () => {
         </>
     );
 };
+
 export default PersonPage;
