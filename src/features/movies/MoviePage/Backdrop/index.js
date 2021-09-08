@@ -14,10 +14,21 @@ import {
 } from "./styled";
 import ratingStar from "../../../../common/Tile/RatingStar/ratingStar.svg";
 
-const Backdrop = ({ backdropUrl, title, rating, votes }) => {
+const Backdrop = ({
+    sizes,
+    imageBaseUrl,
+    imagePath,
+    title,
+    rating,
+    votes
+}) => {
     return (
         <BackdropContainer>
-            <BackdropPoster style={{ backgroundImage: `url("${backdropUrl}")` }}>
+            <BackdropPoster
+                sizes={sizes}
+                baseUrl={imageBaseUrl}
+                path={imagePath}
+            >
                 <WrapperBackdrop >
                     <WrapperContent>
                         <Title>{title}</Title>
