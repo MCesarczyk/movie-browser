@@ -24,7 +24,7 @@ export const Search = () => {
             <SearchIcon src={search} alt="" />
             <SearchInput placeholder="Search for movies..."
                 value={query || ""}
-                // onChange={onInputChange}
+                onChange={onInputChange}
             />
         </SearchWrapper>
     )
