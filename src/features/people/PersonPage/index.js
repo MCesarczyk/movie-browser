@@ -1,26 +1,27 @@
 import React, { Suspense } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Wrapper from "../../../common/Wrapper";
 import Tile from "../../../common/Tile"
 import LoadingCircle from "../../../common/LoadingPage/LoadingCircle";
-import { useGetConfig } from "../../../useGetConfig";
-import { useGetPersonDetails } from "../useGetPersonDetails"
-import { useGetPersonCredits } from "../useGetPersonCredits";
-import {
-    selectPersonCast,
-    selectPersonCrew,
-    selectPersonDetails
-} from "../peopleSlice";
 import {
     selectImagesBaseURL,
     selectPosterSizes,
     selectProfileSizes,
+    setId,
 } from "../../../globalSlice";
+import {
+    fetchPersonCredits,
+    fetchPersonDetails,
+    selectPersonCast,
+    selectPersonCrew,
+    selectPersonDetails
+} from "../peopleSlice";
 const Section = React.lazy(() => import('../../../common/TilesSection'));
 
 const PersonPage = () => {
+    const dispatch = useDispatch();
     const { id } = useParams();
     const personId = id;
     const personDetails = useSelector(selectPersonDetails);
@@ -30,12 +31,15 @@ const PersonPage = () => {
     const personCast = useSelector(selectPersonCast);
     const personCrew = useSelector(selectPersonCrew);
 
-    useGetConfig();
-    useGetPersonDetails(personId);
-    useGetPersonCredits(personId);
+    useEffect(() => {
+        dispatch(setId(id));
+        dispatch(fetchPersonDetails());
+        dispatch(fetchPersonCredits());
+    }, [dispatch, id]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const posterSizesArray = [
@@ -56,7 +60,6 @@ const PersonPage = () => {
 
     const slideWidths = ["100%", "228px", "286px", "286px", "324px"];
     const tileWidths = ["100%", "100%", "100%", "100%", "100%"];
-
 
     return (
         <>

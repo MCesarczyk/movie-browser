@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import { useParams, useLocation } from "react-router-dom";
+import { fetchMovieGenres, fetchMoviesList } from "../moviesSlice";
 import { useSelector, useDispatch } from "react-redux";
 import Wrapper from "../../../common/Wrapper";
 import TilesSection from "../../../common/TilesSection";
@@ -6,29 +8,45 @@ import Tile from "../../../common/Tile"
 import Pager from "../../../common/Pager";
 import LoadingPage from "../../../common/LoadingPage";
 import ErrorPage from "../../../common/ErrorPage";
-import { useGetConfig } from "../../../useGetConfig";
-import { useGetMovieGenres } from "../useGetMovieGenres";
-import { useGetMovies } from "../useGetMovies";
-import { selectMovieList } from "../moviesSlice";
+import searchQueryParamName from "../../Navigation/Search/searchQueryParamName";
 import {
     selectImagesBaseURL,
     selectPosterSizes,
     selectState,
+    setPage,
+    setQuery,
 } from "../../../globalSlice";
+import {
+    selectMoviesList,
+} from "../moviesSlice";
 
 const MoviesPage = () => {
-    const movieList = useSelector(selectMovieList);
-    const moviesState = useSelector(selectState);
-    const imgURL = useSelector(selectImagesBaseURL);
-    const posterSizes = useSelector(selectPosterSizes);
+    const dispatch = useDispatch();
+    const { page } = useParams();
+    const location = useLocation();
+    const query = (new URLSearchParams(location.search)).get(searchQueryParamName);
 
-    useGetConfig();
-    useGetMovieGenres();
-    useGetMovies();
+    useEffect(() => {
+        dispatch(setQuery(query));
+        dispatch(fetchMoviesList());
+        // eslint-disable-next-line
+    }, [query]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    useEffect(() => {
+        dispatch(setPage(page));
+        dispatch(fetchMoviesList());
+        dispatch(fetchMovieGenres());
+    }, [dispatch, page]);
+
+    const movieList = useSelector(selectMoviesList);
+    const moviesState = useSelector(selectState);
+    const imgURL = useSelector(selectImagesBaseURL);
+    const posterSizes = useSelector(selectPosterSizes);
 
     const posterSizesArray = [
         posterSizes[1],
