@@ -146,24 +146,32 @@ export const Title = styled.h2`
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
         font-size: 16px;
-        margin-top: 4px;
-        margin-bottom: 8px;
+        margin-top: 5px;
+        margin-bottom: 18px;
     }  
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
         font-size: 20px;
+        margin-top: 7px;
+        margin-bottom: 22px;
     }
    
     @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}) {
         font-size: 18px;
+        margin-top: 6px;
+        margin-bottom: 20px;
     }
   
     @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
         font-size: 14px;
+        margin-top: 4px;
+        margin-bottom: 16px;
     }
     
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMin}) {
         font-size: 12px;
+        margin-top: 3px;
+        margin-bottom: 14px;
     }
 `;
 
