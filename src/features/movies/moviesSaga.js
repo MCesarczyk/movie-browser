@@ -11,20 +11,20 @@ import {
     fetchMovieCredits, 
     fetchMovieDetails, 
     fetchMovieGenres, 
-    fetchPopularMovies, 
+    fetchMoviesList, 
     setMovieCredits, 
     setMovieDetails, 
     setMovieGenres, 
-    setPopularMovies 
+    setMoviesList 
 } from "./moviesSlice";
 
-function* fetchPopularMoviesHandler() {
+function* fetchMoviesListHandler() {
     try {
         yield put(setState("loading"));
         const page = yield select(selectPage);
         const apiURL = `https://api.themoviedb.org/3/movie/popular?api_key=768f7875782193f5e4797762314da0b7&page=${page}&language=en-US`;
         const movies = yield call(getDataFromApi, apiURL);
-        yield put(setPopularMovies(movies.results));
+        yield put(setMoviesList(movies.results));
         yield put(setTotalPages(movies.total_pages));
         yield delay(1_000);
         yield put(setState("success"));
@@ -66,7 +66,7 @@ function* fetchMovieCreditsHandler() {
 };
 
 export function* moviesSaga() {
-    yield takeLatest(fetchPopularMovies.type, fetchPopularMoviesHandler);
+    yield takeLatest(fetchMoviesList.type, fetchMoviesListHandler);
     yield takeLatest(fetchMovieGenres.type, fetchMovieGenresHandler);
     yield takeLatest(fetchMovieDetails.type, fetchMovieDetailsHandler);
     yield takeLatest(fetchMovieCredits.type, fetchMovieCreditsHandler);

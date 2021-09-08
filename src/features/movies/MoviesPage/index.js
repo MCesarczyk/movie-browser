@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
-import { fetchMovieGenres, fetchPopularMovies } from "../moviesSlice";
+import { fetchMovieGenres, fetchMoviesList } from "../moviesSlice";
 import { useSelector, useDispatch } from "react-redux";
 import Wrapper from "../../../common/Wrapper";
 import TilesSection from "../../../common/TilesSection";
@@ -17,7 +17,7 @@ import {
     setQuery,
 } from "../../../globalSlice";
 import {
-    selectMovieList,
+    selectMoviesList,
 } from "../moviesSlice";
 
 const MoviesPage = () => {
@@ -28,6 +28,7 @@ const MoviesPage = () => {
 
     useEffect(() => {
         dispatch(setQuery(query));
+        // eslint-disable-next-line
     }, [query]);
 
     useEffect(() => {
@@ -37,11 +38,11 @@ const MoviesPage = () => {
 
     useEffect(() => {
         dispatch(setPage(page));
-        dispatch(fetchPopularMovies());
+        dispatch(fetchMoviesList());
         dispatch(fetchMovieGenres());
     }, [dispatch, page]);
 
-    const movieList = useSelector(selectMovieList);
+    const movieList = useSelector(selectMoviesList);
     const moviesState = useSelector(selectState);
     const imgURL = useSelector(selectImagesBaseURL);
     const posterSizes = useSelector(selectPosterSizes);
