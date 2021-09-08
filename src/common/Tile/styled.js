@@ -115,6 +115,15 @@ export const Image = styled.img`
     `}
 `;
 
+export const PlaceholderImageWrapper = styled.div`
+    width: ${props => props.width};
+    grid-area: image;
+    flex-grow: 0;
+    align-self: flex-start;
+    border-radius: 5px;
+    transition: width 1s ease-in-out, left 1.5s ease-in-out;
+`;
+
 export const TileContent = styled.div`
     grid-area: content;
     width: 100%;

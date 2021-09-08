@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { selectGenres } from "../../features/movies/moviesSlice";
+import { ReactComponent as PlaceholderImage } from "./noPicture.svg";
 import RatingStar from "./RatingStar/ratingStar.svg";
 import {
     StyledTile,
@@ -20,6 +21,7 @@ import {
     ActiveTitle,
     NoVotesText,
     StyledLogo,
+    PlaceholderImageWrapper,
 } from "./styled";
 
 const Tile = ({
@@ -53,16 +55,21 @@ const Tile = ({
             oversize={oversize}
             slide={slide}
         >
-            <Image
-                slide={slide}
-                width={imageWidth}
-                mobile={mobile}
-                sizes={sizes}
-                baseUrl={imageBaseUrl}
-                path={imagePath}
-                src={imageUrl}
-                alt="image"
-            />
+            {imagePath ?
+                <Image
+                    slide={slide}
+                    width={imageWidth}
+                    mobile={mobile}
+                    sizes={sizes}
+                    baseUrl={imageBaseUrl}
+                    path={imagePath}
+                    alt="image"
+                />
+                :
+                <PlaceholderImageWrapper width={imageWidth} >
+                    <PlaceholderImage />
+                </PlaceholderImageWrapper>
+            }
             <TileContent>
                 <ActiveTitle to={titleUrl} >
                     <Title
