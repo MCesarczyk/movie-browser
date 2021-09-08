@@ -257,23 +257,27 @@ export const Tag = styled.span`
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
         font-size: 11px;
-        padding: 4px 8px;
+        padding: 5px 10px;
     }  
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
         font-size: 13px;
+        padding: 7px 14px;
     }
    
     @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}) {
         font-size: 12px;
+        padding: 6px 12px;
     }
   
     @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
         font-size: 10px;
+        padding: 4px 8px;
     }
     
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMin}) {
         font-size: 9px;
+        padding: 3px 6px;
     }
 `;
 
