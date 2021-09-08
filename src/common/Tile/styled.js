@@ -244,9 +244,25 @@ export const Tag = styled.span`
     color: ${({ theme }) => theme.color.woodsmoke};
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
-        font-size: 10px;
+        font-size: 11px;
         padding: 4px 8px;
-    }    
+    }  
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
+        font-size: 13px;
+    }
+   
+    @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}) {
+        font-size: 12px;
+    }
+  
+    @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
+        font-size: 10px;
+    }
+    
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMin}) {
+        font-size: 9px;
+    }
 `;
 
 export const TileExtraContent = styled.div`
