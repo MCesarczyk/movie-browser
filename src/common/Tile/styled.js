@@ -292,9 +292,25 @@ export const Rating = styled.span`
     line-height: 29px;
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
-        font-size: 13px;
+        font-size: 16px;
         line-height: 17px;
-    }    
+    }   
+    
+    @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
+        font-size: 20px;
+    }
+   
+    @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}) {
+        font-size: 18px;
+    }
+  
+    @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
+        font-size: 14px;
+    }
+    
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMin}) {
+        font-size: 12px;
+    }
 `;
 
 export const RatingScale = styled.span`
