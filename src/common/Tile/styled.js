@@ -153,11 +153,35 @@ export const Title = styled.h2`
     margin-top: 8px;
     margin-bottom: ${({ oversize }) => oversize ? "24px" : "8px"};
 
+    @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
+        font-size: 20px;
+        margin-top: 7px;
+        margin-bottom: 22px;
+    }
+   
+    @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}) {
+        font-size: 18px;
+        margin-top: 6px;
+        margin-bottom: 20px;
+    }
+  
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
         font-size: 16px;
+        margin-top: 5px;
+        margin-bottom: 18px;
+    }  
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
+        font-size: 14px;
         margin-top: 4px;
-        margin-bottom: 8px;
-    }    
+        margin-bottom: 16px;
+    }
+    
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMin}) {
+        font-size: 12px;
+        margin-top: 3px;
+        margin-bottom: 14px;
+    }
 `;
 
 export const SubTitle = styled.span`
@@ -168,9 +192,29 @@ export const SubTitle = styled.span`
     line-height: 1.2;
     margin-bottom: ${({ oversize }) => oversize ? "24px" : "12px"};
 
+    @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+   
+    @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}) {
+        font-size: 14px;
+        margin-bottom: 16px;
+    }
+  
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
         font-size: 13px;
+        margin-bottom: 12px;
+    }
+    
+    @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
+        font-size: 12px;
         margin-bottom: 8px;
+    }
+    
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMin}) {
+        font-size: 11px;
+        margin-bottom: 4px;
     }
 
     ${({ slide }) => slide && css`
@@ -221,10 +265,30 @@ export const Tag = styled.span`
     background-color: ${({ theme }) => theme.color.mystic};
     color: ${({ theme }) => theme.color.woodsmoke};
 
+    @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
+        font-size: 13px;
+        padding: 7px 14px;
+    }
+   
+    @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}) {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+  
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+        font-size: 11px;
+        padding: 5px 10px;
+    }  
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
         font-size: 10px;
         padding: 4px 8px;
-    }    
+    }
+    
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMin}) {
+        font-size: 9px;
+        padding: 3px 6px;
+    }
 `;
 
 export const TileExtraContent = styled.div`
@@ -253,10 +317,26 @@ export const Rating = styled.span`
     font-size: 22px;
     line-height: 29px;
 
+    @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
+        font-size: 20px;
+    }
+   
+    @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}) {
+        font-size: 18px;
+    }
+  
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
-        font-size: 13px;
+        font-size: 16px;
         line-height: 17px;
-    }    
+    }   
+    
+    @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
+        font-size: 14px;
+    }
+    
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMin}) {
+        font-size: 12px;
+    }
 `;
 
 export const RatingScale = styled.span`
@@ -274,8 +354,24 @@ export const Votes = styled.span`
     font-size: 14px;
     line-height: 17px;
 
-    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+    @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
         font-size: 13px;
+    }
+   
+    @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}) {
+        font-size: 12px;
+    }
+  
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+        font-size: 11px;
+    }
+    
+    @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
+        font-size: 10px;
+    }
+    
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMin}) {
+        font-size: 9px;
     }
 `;
 
@@ -297,4 +393,24 @@ export const NoVotesText = styled.p`
     font-size: 16px;
     line-height: 1.5;
     color: ${({ theme }) => theme.color.darkGrey};
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
+        font-size: 15px;
+    }
+   
+    @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}) {
+        font-size: 14px;
+    }
+  
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+        font-size: 13px;
+    }
+    
+    @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
+        font-size: 12px;
+    }
+    
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMin}) {
+        font-size: 11px;
+    }
 `;
