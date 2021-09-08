@@ -185,22 +185,26 @@ export const SubTitle = styled.span`
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
         font-size: 13px;
-        margin-bottom: 8px;
+        margin-bottom: 12px;
     }
     @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
         font-size: 16px;
+        margin-bottom: 20px;
     }
    
     @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}) {
         font-size: 14px;
+        margin-bottom: 16px;
     }
   
     @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
         font-size: 12px;
+        margin-bottom: 8px;
     }
     
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMin}) {
         font-size: 11px;
+        margin-bottom: 4px;
     }
 
     ${({ slide }) => slide && css`
