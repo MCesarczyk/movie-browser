@@ -28,6 +28,7 @@ const MoviesPage = () => {
 
     useEffect(() => {
         dispatch(setQuery(query));
+        dispatch(fetchMoviesList());
         // eslint-disable-next-line
     }, [query]);
 

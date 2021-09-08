@@ -3,6 +3,7 @@ import { getDataFromApi } from "../../getDataFromApi";
 import { 
     selectId, 
     selectPage, 
+    selectQuery, 
     setError, 
     setState, 
     setTotalPages 
@@ -22,7 +23,13 @@ function* fetchMoviesListHandler() {
     try {
         yield put(setState("loading"));
         const page = yield select(selectPage);
-        const apiURL = `https://api.themoviedb.org/3/movie/popular?api_key=768f7875782193f5e4797762314da0b7&page=${page}&language=en-US`;
+        const query = yield select(selectQuery);
+        const apiURL = (query ?
+            `https://api.themoviedb.org/3/search/movie?api_key=768f7875782193f5e4797762314da0b7&language=en-US&query=${query}&page=${page}&include_adult=false`
+            :
+            `https://api.themoviedb.org/3/movie/popular?api_key=768f7875782193f5e4797762314da0b7&page=${page}&language=en-US`
+        )
+        // const apiURL = `https://api.themoviedb.org/3/movie/popular?api_key=768f7875782193f5e4797762314da0b7&page=${page}&language=en-US`;
         const movies = yield call(getDataFromApi, apiURL);
         yield put(setMoviesList(movies.results));
         yield put(setTotalPages(movies.total_pages));
