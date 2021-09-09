@@ -30,7 +30,7 @@ const Pager = ({ property }) => {
         <Wrapper>
             <StyledLink
                 to={
-                    `/${property}/1${query ? `?${searchQueryParamName}=${query}` : ""}`
+                    `${property}/1${query ? `?${searchQueryParamName}=${query}` : ""}`
                 }
                 disabled={checkIfPreviousIsDisabled()}
             >
@@ -42,7 +42,7 @@ const Pager = ({ property }) => {
             </StyledLink>
             <StyledLink
                 to={
-                    `/${property}/${+currentPage === 1 ? 1 : +currentPage - 1}${query ? `?${searchQueryParamName}=${query}` : ""}`
+                    `${property}/${+currentPage === 1 ? 1 : +currentPage - 1}${query ? `?${searchQueryParamName}=${query}` : ""}`
                 }
                 disabled={checkIfPreviousIsDisabled()}
             >
@@ -57,7 +57,7 @@ const Pager = ({ property }) => {
 
             <StyledLink
                 to={
-                    `/${property}/${+currentPage === +totalPages ? +currentPage : +currentPage + 1}${query ? `?${searchQueryParamName}=${query}` : ""}`
+                    `${property}/${+currentPage === +totalPages ? +currentPage : +currentPage + 1}${query ? `?${searchQueryParamName}=${query}` : ""}`
                 }
                 disabled={checkIfNextIsDisabled()}
             >
@@ -65,7 +65,7 @@ const Pager = ({ property }) => {
                 <NextIcon disabled={checkIfNextIsDisabled()} />
             </StyledLink>
             <StyledLink to={
-                `/${property}/${totalPages}${query ? `?${searchQueryParamName}=${query}` : ""}`
+                `${property}/${totalPages}${query ? `?${searchQueryParamName}=${query}` : ""}`
             }
                 disabled={checkIfNextIsDisabled()}
             >

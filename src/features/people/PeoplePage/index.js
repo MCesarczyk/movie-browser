@@ -72,7 +72,7 @@ const PeoplePage = () => {
             ))}
           />
         }
-        {peopleState === "success" && <Pager property={"people"} />}
+        {peopleState === "success" && <Pager property={"/people"} />}
       </Wrapper>
     </>
   )
