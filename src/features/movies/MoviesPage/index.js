@@ -33,15 +33,15 @@ const MoviesPage = () => {
     }, [query]);
 
     useEffect(() => {
-        window.scrollTo(0, 0);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    useEffect(() => {
         dispatch(setPage(page));
         dispatch(fetchMoviesList());
         dispatch(fetchMovieGenres());
     }, [dispatch, page]);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const movieList = useSelector(selectMoviesList);
     const moviesState = useSelector(selectState);
