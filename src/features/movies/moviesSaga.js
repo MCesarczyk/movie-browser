@@ -5,6 +5,7 @@ import {
     selectPage, 
     selectQuery, 
     setError, 
+    setQuery, 
     setState, 
     setTotalPages 
 } from "../../globalSlice";
@@ -29,7 +30,6 @@ function* fetchMoviesListHandler() {
             :
             `https://api.themoviedb.org/3/movie/popular?api_key=768f7875782193f5e4797762314da0b7&page=${page}&language=en-US`
         );
-        // const apiURL = `https://api.themoviedb.org/3/movie/popular?api_key=768f7875782193f5e4797762314da0b7&page=${page}&language=en-US`;
         const movies = yield call(getDataFromApi, apiURL);
         yield put(setMoviesList(movies.results));
         yield put(setTotalPages(movies.total_pages));
@@ -38,6 +38,10 @@ function* fetchMoviesListHandler() {
     } catch (error) {
         yield call(setError(error));
     }
+};
+
+function* fetchSearchResultsHandler() {
+    yield put(fetchMoviesList());
 };
 
 function* fetchMovieGenresHandler() {
@@ -74,6 +78,7 @@ function* fetchMovieCreditsHandler() {
 
 export function* moviesSaga() {
     yield takeLatest(fetchMoviesList.type, fetchMoviesListHandler);
+    yield takeLatest(setQuery.type, fetchSearchResultsHandler);
     yield takeLatest(fetchMovieGenres.type, fetchMovieGenresHandler);
     yield takeLatest(fetchMovieDetails.type, fetchMovieDetailsHandler);
     yield takeLatest(fetchMovieCredits.type, fetchMovieCreditsHandler);
