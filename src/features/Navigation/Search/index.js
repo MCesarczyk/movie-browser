@@ -1,22 +1,28 @@
+import { useEffect } from "react";
+import { useRouteMatch } from "react-router";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { SearchIcon, SearchInput, SearchWrapper } from "./styled";
 import search from "../images/search.svg";
-import { useHistory, useLocation } from "react-router-dom";
 import searchQueryParamName from "./searchQueryParamName";
-import { useDispatch, useSelector } from "react-redux";
 import { selectQuery, setQuery } from "../../../globalSlice";
-import { useEffect } from "react";
+import { useState } from "react";
 
 export const Search = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const query = useSelector(selectQuery);
 
+    const moviesMatch = useRouteMatch("/movies");
+    const peopleMatch = useRouteMatch("/people");
+    const property = moviesMatch && moviesMatch.path || peopleMatch && peopleMatch.path;
+    
     const onInputChange = ({ target }) => {
-            dispatch(setQuery(target.value));
+        dispatch(setQuery(target.value));
     };
 
     useEffect(() => {
-        query && query !== null && history.push(`/movies/1?${searchQueryParamName}=${query}`);
+        query && query !== null && history.push(`${property}/1?${searchQueryParamName}=${query}`);
     }, [query]);
 
     return (
