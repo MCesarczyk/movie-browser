@@ -1,7 +1,6 @@
 import { useEffect } from "react";
-import { useParams, useLocation } from "react-router-dom";
-import { fetchMovieGenres, fetchMoviesList } from "../moviesSlice";
 import { useSelector, useDispatch } from "react-redux";
+import { useParams, useLocation } from "react-router-dom";
 import Wrapper from "../../../common/Wrapper";
 import TilesSection from "../../../common/TilesSection";
 import Tile from "../../../common/Tile"
@@ -18,6 +17,8 @@ import {
 } from "../../../globalSlice";
 import {
     selectMoviesList,
+    fetchMovieGenres,
+    fetchMoviesList
 } from "../moviesSlice";
 
 const MoviesPage = () => {
