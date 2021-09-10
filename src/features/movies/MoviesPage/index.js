@@ -36,11 +36,12 @@ const MoviesPage = () => {
         dispatch(setPage(page));
         dispatch(fetchMoviesList());
         dispatch(fetchMovieGenres());
-    }, [dispatch, page]);
+        // eslint-disable-next-line
+    }, [page]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line
     }, []);
 
     const movieList = useSelector(selectMoviesList);
