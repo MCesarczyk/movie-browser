@@ -23,10 +23,11 @@ export const Search = () => {
 
         history.push(`${property}/1?${searchParams.toString()}`);
     };
+
     return (
         <SearchWrapper>
             <SearchIcon src={search} alt="" />
-            <SearchInput placeholder="Search for movies..."
+            <SearchInput placeholder={moviesMatch ? "Search for movies..." : "Search for people..."}
                 value={query || ""}
                 onChange={onInputChange}
             />
