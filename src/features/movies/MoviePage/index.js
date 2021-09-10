@@ -1,11 +1,17 @@
-import React, { Suspense } from "react";
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { Suspense, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import Wrapper from "../../../common/Wrapper";
 import Tile from "../../../common/Tile"
 import Backdrop from "./Backdrop";
 import LoadingCircle from "../../../common/LoadingPage/LoadingCircle";
+import {
+    selectBackdropSizes,
+    selectImagesBaseURL,
+    selectPosterSizes,
+    selectProfileSizes,
+    setId,
+} from "../../../globalSlice";
 import {
     selectMovieDetails,
     selectMovieCast,
@@ -14,13 +20,6 @@ import {
     fetchMovieDetails,
     fetchMovieCredits,
 } from "../moviesSlice";
-import {
-    selectBackdropSizes,
-    selectImagesBaseURL,
-    selectPosterSizes,
-    selectProfileSizes,
-    setId,
-} from "../../../globalSlice";
 const Section = React.lazy(() => import('../../../common/SlidesSection'));
 
 const MoviePage = () => {
@@ -40,7 +39,8 @@ const MoviePage = () => {
         dispatch(setId(id));
         dispatch(fetchMovieDetails());
         dispatch(fetchMovieCredits());
-    }, [dispatch, id]);
+        // eslint-disable-next-line
+    }, [id]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
