@@ -11,8 +11,8 @@ const peopleSlice = createSlice({
     name: 'people',
     initialState,
     reducers: {
-        fetchPopularPeople: () => { },
-        setPopularPeople: (state, { payload: people }) => {
+        fetchPeopleList: () => { },
+        setPeopleList: (state, { payload: people }) => {
             state.people = people;
         },
         fetchMovieGenres: () => { },
@@ -31,8 +31,8 @@ const peopleSlice = createSlice({
 });
 
 export const {
-    fetchPopularPeople,
-    setPopularPeople,
+    fetchPeopleList,
+    setPeopleList,
     fetchMovieGenres,
     setMovieGenres,
     fetchPersonDetails,

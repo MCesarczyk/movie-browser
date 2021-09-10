@@ -12,7 +12,7 @@ import {
   selectProfileSizes,
 } from "../../../globalSlice";
 import {
-  fetchPopularPeople,
+  fetchPeopleList,
   selectPeopleList,
 } from "../peopleSlice";
 
@@ -29,7 +29,7 @@ const PeoplePage = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(fetchPopularPeople());
+    dispatch(fetchPeopleList());
   }, [dispatch]);
 
   const profileSizesArray = [
