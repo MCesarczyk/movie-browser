@@ -1,15 +1,19 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useParams } from "react-router";
 import Wrapper from "../../../common/Wrapper";
 import SlidesSection from "../../../common/SlidesSection";
 import Tile from "../../../common/Tile"
 import Pager from "../../../common/Pager";
 import LoadingPage from "../../../common/LoadingPage";
 import ErrorPage from "../../../common/ErrorPage";
+import searchQueryParamName from "../../Navigation/Search/searchQueryParamName";
 import {
   selectImagesBaseURL,
   selectState,
   selectProfileSizes,
+  setQuery,
+  setPage,
 } from "../../../globalSlice";
 import {
   fetchPeopleList,
@@ -18,19 +22,31 @@ import {
 
 const PeoplePage = () => {
   const dispatch = useDispatch();
-  const peopleList = useSelector(selectPeopleList);
-  const peopleState = useSelector(selectState);
-  const imgURL = useSelector(selectImagesBaseURL);
-  const profileSizes = useSelector(selectProfileSizes);
+  const { page } = useParams();
+  const location = useLocation();
+  const query = (new URLSearchParams(location.search)).get(searchQueryParamName);
+
+  useEffect(() => {
+    dispatch(setQuery(query));
+    dispatch(fetchPeopleList());
+    // eslint-disable-next-line
+  }, [query]);
+
+  useEffect(() => {
+    dispatch(setPage(page));
+    dispatch(fetchPeopleList());
+    // eslint-disable-next-line
+  }, [page]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    dispatch(fetchPeopleList());
-  }, [dispatch]);
+  const peopleList = useSelector(selectPeopleList);
+  const peopleState = useSelector(selectState);
+  const imgURL = useSelector(selectImagesBaseURL);
+  const profileSizes = useSelector(selectProfileSizes);
 
   const profileSizesArray = [
     profileSizes[1],
