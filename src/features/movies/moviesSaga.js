@@ -5,7 +5,6 @@ import {
     selectPage, 
     selectQuery, 
     setError, 
-    setQuery, 
     setState, 
     setTotalPages 
 } from "../../globalSlice";
@@ -38,10 +37,6 @@ function* fetchMoviesListHandler() {
     } catch (error) {
         yield call(setError(error));
     }
-};
-
-function* fetchSearchResultsHandler() {
-    yield put(fetchMoviesList());
 };
 
 function* fetchMovieGenresHandler() {
@@ -78,7 +73,6 @@ function* fetchMovieCreditsHandler() {
 
 export function* moviesSaga() {
     yield takeLatest(fetchMoviesList.type, fetchMoviesListHandler);
-    yield takeLatest(setQuery.type, fetchSearchResultsHandler);
     yield takeLatest(fetchMovieGenres.type, fetchMovieGenresHandler);
     yield takeLatest(fetchMovieDetails.type, fetchMovieDetailsHandler);
     yield takeLatest(fetchMovieCredits.type, fetchMovieCreditsHandler);
