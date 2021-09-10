@@ -11,17 +11,19 @@ export const Search = () => {
     const query = searchParams.get(searchQueryParamName);
 
     const moviesMatch = useRouteMatch("/movies");
+    const movieMatch = useRouteMatch("/movie");
     const peopleMatch = useRouteMatch("/people");
-    const property = (moviesMatch && moviesMatch.path) || (peopleMatch && peopleMatch.path);
+    const personMatch = useRouteMatch("/person");
+    const property = ((moviesMatch || movieMatch) && "/movies") || ((peopleMatch || personMatch) && "/people");
 
-    const onInputChange = ({ target }) => {
+    const onInputChange = async ({ target }) => {
         if (target.value.trim() === "") {
             searchParams.delete(searchQueryParamName);
         } else {
             searchParams.set(searchQueryParamName, target.value);
         }
-
-        history.push(`${property}/1?${searchParams.toString()}`);
+        const newSearchParams = await searchParams.toString();
+        history.push(`${property}/1?${newSearchParams.toString()}`);
     };
 
     return (
