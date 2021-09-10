@@ -21,9 +21,10 @@ import {
 
 function* fetchPeopleListHandler() {
     try {
-        yield put(setState("loading"));
         const page = yield select(selectPage);
         const query = yield select(selectQuery);
+        yield delay(query ? 500 : 0);
+        yield put(setState("loading"));
         const apiURL = (query ?
             `https://api.themoviedb.org/3/search/person?api_key=768f7875782193f5e4797762314da0b7&query=${query}&page=${page}&language=en-US&include_adult=false`
             :

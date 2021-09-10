@@ -16,13 +16,13 @@ export const Search = () => {
     const personMatch = useRouteMatch("/person");
     const property = ((moviesMatch || movieMatch) && "/movies") || ((peopleMatch || personMatch) && "/people");
 
-    const onInputChange = async ({ target }) => {
+    const onInputChange = ({ target }) => {
         if (target.value.trim() === "") {
             searchParams.delete(searchQueryParamName);
         } else {
             searchParams.set(searchQueryParamName, target.value);
         }
-        const newSearchParams = await searchParams.toString();
+        const newSearchParams = searchParams.toString();
         history.push(`${property}/1?${newSearchParams.toString()}`);
     };
 

@@ -1,29 +1,30 @@
 import { call, delay, put, select, takeLatest } from "redux-saga/effects";
 import { getDataFromApi } from "../../getDataFromApi";
-import { 
-    selectId, 
-    selectPage, 
-    selectQuery, 
-    setError, 
-    setState, 
-    setTotalPages 
+import {
+    selectId,
+    selectPage,
+    selectQuery,
+    setError,
+    setState,
+    setTotalPages
 } from "../../globalSlice";
-import { 
-    fetchMovieCredits, 
-    fetchMovieDetails, 
-    fetchMovieGenres, 
-    fetchMoviesList, 
-    setMovieCredits, 
-    setMovieDetails, 
-    setMovieGenres, 
-    setMoviesList 
+import {
+    fetchMovieCredits,
+    fetchMovieDetails,
+    fetchMovieGenres,
+    fetchMoviesList,
+    setMovieCredits,
+    setMovieDetails,
+    setMovieGenres,
+    setMoviesList
 } from "./moviesSlice";
 
 function* fetchMoviesListHandler() {
     try {
-        yield put(setState("loading"));
         const page = yield select(selectPage);
         const query = yield select(selectQuery);
+        yield delay(query ? 500 : 0);
+        yield put(setState("loading"));
         const apiURL = (query ?
             `https://api.themoviedb.org/3/search/movie?api_key=768f7875782193f5e4797762314da0b7&language=en-US&query=${query}&page=${page}&include_adult=false`
             :
