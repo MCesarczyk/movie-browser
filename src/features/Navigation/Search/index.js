@@ -23,7 +23,8 @@ export const Search = () => {
             searchParams.set(searchQueryParamName, target.value);
         }
         const newSearchParams = searchParams.toString();
-        history.push(`${property}/1?${newSearchParams.toString()}`);
+        
+        history.push(`${property}/1?${newSearchParams}`);
     };
 
     return (
