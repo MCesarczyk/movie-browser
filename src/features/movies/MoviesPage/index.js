@@ -1,7 +1,6 @@
 import { useEffect } from "react";
-import { useParams, useLocation } from "react-router-dom";
-import { fetchMovieGenres, fetchMoviesList } from "../moviesSlice";
 import { useSelector, useDispatch } from "react-redux";
+import { useParams, useLocation } from "react-router-dom";
 import Wrapper from "../../../common/Wrapper";
 import TilesSection from "../../../common/TilesSection";
 import Tile from "../../../common/Tile"
@@ -18,6 +17,8 @@ import {
 } from "../../../globalSlice";
 import {
     selectMoviesList,
+    fetchMovieGenres,
+    fetchMoviesList
 } from "../moviesSlice";
 
 const MoviesPage = () => {
@@ -33,15 +34,16 @@ const MoviesPage = () => {
     }, [query]);
 
     useEffect(() => {
-        window.scrollTo(0, 0);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    useEffect(() => {
         dispatch(setPage(page));
         dispatch(fetchMoviesList());
         dispatch(fetchMovieGenres());
-    }, [dispatch, page]);
+        // eslint-disable-next-line
+    }, [page]);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        // eslint-disable-next-line
+    }, []);
 
     const movieList = useSelector(selectMoviesList);
     const moviesState = useSelector(selectState);
@@ -91,7 +93,7 @@ const MoviesPage = () => {
                         ))}
                     />
                 }
-                {moviesState === "success" && <Pager property={"movies"} />}
+                {moviesState === "success" && <Pager property={"/movies"} />}
             </Wrapper>
         </>
     )

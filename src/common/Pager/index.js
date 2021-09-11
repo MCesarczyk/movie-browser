@@ -29,14 +29,21 @@ const Pager = ({ property }) => {
     return (
         <Wrapper>
             <StyledLink
-                to={`/${property}/1${query ? `?${searchQueryParamName}=${query}` : ""}`}
+                to={
+                    `${property}/1${query ? `?${searchQueryParamName}=${query}` : ""}`
+                }
                 disabled={checkIfPreviousIsDisabled()}
             >
                 <PreviousIcon disabled={checkIfPreviousIsDisabled()} />
-                {windowWidth < mobileMax ? <PreviousIcon disabled={checkIfPreviousIsDisabled()} /> : "First"}
+                {windowWidth < mobileMax ?
+                    <PreviousIcon disabled={checkIfPreviousIsDisabled()} />
+                    : "First"
+                }
             </StyledLink>
             <StyledLink
-                to={`/${property}/${+currentPage === 1 ? 1 : +currentPage - 1}${query ? `?${searchQueryParamName}=${query}` : ""}`}
+                to={
+                    `${property}/${+currentPage === 1 ? 1 : +currentPage - 1}${query ? `?${searchQueryParamName}=${query}` : ""}`
+                }
                 disabled={checkIfPreviousIsDisabled()}
             >
                 <PreviousIcon disabled={checkIfPreviousIsDisabled()} />
@@ -48,12 +55,24 @@ const Pager = ({ property }) => {
             <PagerText>of</PagerText>
             <PageNumberText>{totalPages}</PageNumberText>
 
-            <StyledLink to={`/${property}/${+currentPage === +totalPages ? +currentPage : +currentPage + 1}`} disabled={checkIfNextIsDisabled()}>
+            <StyledLink
+                to={
+                    `${property}/${+currentPage === +totalPages ? +currentPage : +currentPage + 1}${query ? `?${searchQueryParamName}=${query}` : ""}`
+                }
+                disabled={checkIfNextIsDisabled()}
+            >
                 {windowWidth < mobileMax ? "" : "Next"}
                 <NextIcon disabled={checkIfNextIsDisabled()} />
             </StyledLink>
-            <StyledLink to={`/${property}/${totalPages}`} disabled={checkIfNextIsDisabled()}>
-                {windowWidth < mobileMax ? <NextIcon disabled={checkIfNextIsDisabled()} /> : "Last"}
+            <StyledLink to={
+                `${property}/${totalPages}${query ? `?${searchQueryParamName}=${query}` : ""}`
+            }
+                disabled={checkIfNextIsDisabled()}
+            >
+                {windowWidth < mobileMax ?
+                    <NextIcon disabled={checkIfNextIsDisabled()} />
+                    : "Last"
+                }
                 <NextIcon disabled={checkIfNextIsDisabled()} />
             </StyledLink>
         </Wrapper>

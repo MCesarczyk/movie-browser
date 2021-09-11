@@ -1,39 +1,39 @@
 import { call, delay, put, select, takeLatest } from "redux-saga/effects";
 import { getDataFromApi } from "../../getDataFromApi";
-import { 
-    selectId, 
-    selectPage, 
-    selectQuery, 
-    setError, 
-    setState, 
-    setTotalPages 
+import {
+    selectId,
+    selectPage,
+    selectQuery,
+    setError,
+    setState,
+    setTotalPages
 } from "../../globalSlice";
-import { 
-    fetchMovieCredits, 
-    fetchMovieDetails, 
-    fetchMovieGenres, 
-    fetchMoviesList, 
-    setMovieCredits, 
-    setMovieDetails, 
-    setMovieGenres, 
-    setMoviesList 
+import {
+    fetchMovieCredits,
+    fetchMovieDetails,
+    fetchMovieGenres,
+    fetchMoviesList,
+    setMovieCredits,
+    setMovieDetails,
+    setMovieGenres,
+    setMoviesList
 } from "./moviesSlice";
 
 function* fetchMoviesListHandler() {
     try {
-        yield put(setState("loading"));
         const page = yield select(selectPage);
         const query = yield select(selectQuery);
+        yield put(setState("loading"));
+        yield delay(query ? 500 : 0);
         const apiURL = (query ?
             `https://api.themoviedb.org/3/search/movie?api_key=768f7875782193f5e4797762314da0b7&language=en-US&query=${query}&page=${page}&include_adult=false`
             :
             `https://api.themoviedb.org/3/movie/popular?api_key=768f7875782193f5e4797762314da0b7&page=${page}&language=en-US`
-        )
-        // const apiURL = `https://api.themoviedb.org/3/movie/popular?api_key=768f7875782193f5e4797762314da0b7&page=${page}&language=en-US`;
+        );
         const movies = yield call(getDataFromApi, apiURL);
         yield put(setMoviesList(movies.results));
         yield put(setTotalPages(movies.total_pages));
-        yield delay(1_000);
+        yield delay(500);
         yield put(setState("success"));
     } catch (error) {
         yield call(setError(error));
