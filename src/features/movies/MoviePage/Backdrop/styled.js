@@ -89,9 +89,24 @@ export const Title = styled.h1`
         font-size: 24px;
         margin-bottom: 4px;
         margin-left: 16px;
-    };
-`;
 
+        @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
+            font-size: 51px;
+        }
+       
+        @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}) {
+            font-size: 38px;
+        }
+  
+        @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
+            font-size: 14px;
+        }
+        
+        @media (max-width: ${({ theme }) => theme.breakpoint.mobileMin}) {
+            font-size: 12px;
+        }
+    `;
+    
 export const WrapperExtraContent = styled.div`
     display: flex;
     flex-direction: column;
