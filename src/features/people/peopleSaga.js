@@ -23,8 +23,8 @@ function* fetchPeopleListHandler() {
     try {
         const page = yield select(selectPage);
         const query = yield select(selectQuery);
-        yield delay(query ? 500 : 0);
         yield put(setState("loading"));
+        yield delay(query ? 500 : 0);
         const apiURL = (query ?
             `https://api.themoviedb.org/3/search/person?api_key=768f7875782193f5e4797762314da0b7&query=${query}&page=${page}&language=en-US&include_adult=false`
             :
@@ -33,7 +33,7 @@ function* fetchPeopleListHandler() {
         const people = yield call(getDataFromApi, apiURL);
         yield put(setPeopleList(people.results));
         yield put(setTotalPages(people.total_pages));
-        yield delay(1_000);
+        yield delay(500);
         yield put(setState("success"));
     } catch (error) {
         yield call(setError(error));
