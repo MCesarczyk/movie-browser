@@ -76,6 +76,21 @@ export const WrapperContent = styled.div`
     width: 100%;
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+        margin-bottom: 26px;
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
+        margin-bottom: 46px;
+    }
+       
+    @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}) {
+        margin-bottom: 36px;
+    }
+  
+    @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
+        margin-bottom: 16px;
+    }
+        
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMin}) {
         margin-bottom: 8px;
     }
 `;
@@ -87,11 +102,30 @@ export const Title = styled.h1`
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
         font-size: 24px;
-        margin-bottom: 4px;
+        margin-bottom: 6px;
         margin-left: 16px;
-    };
-`;
 
+        @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
+            font-size: 51px;
+            margin-bottom: 16px;
+        }
+       
+        @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}) {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+  
+        @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+        
+        @media (max-width: ${({ theme }) => theme.breakpoint.mobileMin}) {
+            font-size: 12px;
+            margin-bottom: 2px;
+        }
+    `;
+    
 export const WrapperExtraContent = styled.div`
     display: flex;
     flex-direction: column;
@@ -120,8 +154,24 @@ export const Rating = styled.span`
     margin-left: 8px;
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
-        font-size: 14px;
+        font-size: 18px;
         margin-left: 2px;
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
+        font-size: 26px;
+    }
+       
+    @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}) {
+        font-size: 22px;
+    }
+  
+    @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
+        font-size: 12px;
+    }
+        
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMin}) {
+        font-size: 10px;
     }
 `;
 
