@@ -87,23 +87,27 @@ export const Title = styled.h1`
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
         font-size: 24px;
-        margin-bottom: 4px;
+        margin-bottom: 6px;
         margin-left: 16px;
 
         @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
             font-size: 51px;
+            margin-bottom: 16px;
         }
        
         @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}) {
             font-size: 38px;
+            margin-bottom: 10px;
         }
   
         @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
             font-size: 14px;
+            margin-bottom: 4px;
         }
         
         @media (max-width: ${({ theme }) => theme.breakpoint.mobileMin}) {
             font-size: 12px;
+            margin-bottom: 2px;
         }
     `;
     
