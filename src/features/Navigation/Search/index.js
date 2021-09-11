@@ -30,7 +30,7 @@ export const Search = () => {
     return (
         <SearchWrapper>
             <SearchIcon src={search} alt="" />
-            <SearchInput placeholder={moviesMatch ? "Search for movies..." : "Search for people..."}
+            <SearchInput placeholder={(moviesMatch || movieMatch) ? "Search for movies..." : "Search for people..."}
                 value={query || ""}
                 onChange={onInputChange}
             />
