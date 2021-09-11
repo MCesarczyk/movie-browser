@@ -34,7 +34,6 @@ const Tile = ({
     oversize,
     slide,
     titleUrl,
-    imageUrl,
     title,
     subtitle,
     countries,
@@ -79,12 +78,14 @@ const Tile = ({
                         {title}
                     </Title>
                 </ActiveTitle>
-                <SubTitle
-                    oversize={oversize}
-                    slide={slide}
-                >
-                    {subtitle}
-                </SubTitle>
+                {subtitle &&
+                    <SubTitle
+                        oversize={oversize}
+                        slide={slide}
+                    >
+                        {subtitle}
+                    </SubTitle>
+                }
                 {countries &&
                     <Details>
                         <DetailTitle>Production: </DetailTitle>
@@ -131,16 +132,16 @@ const Tile = ({
                         ))}
                     </Tags>
                 }
-                {!slide && (votes > 0 ?
+                {!slide && (votes === 0 ?
                     <TileExtraContent>
+                        <NoVotesText>No votes yet</NoVotesText>
+                    </TileExtraContent>
+                    :
+                    votes && <TileExtraContent>
                         <StyledLogo src={RatingStar} />
                         <Rating>{rating}</Rating>
                         <RatingScale>/ 10</RatingScale>
                         <Votes>{votes}&nbsp;votes</Votes>
-                    </TileExtraContent>
-                    :
-                    <TileExtraContent>
-                        <NoVotesText>No votes yet</NoVotesText>
                     </TileExtraContent>
                 )}
             </TileContent>

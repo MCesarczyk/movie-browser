@@ -97,7 +97,11 @@ const MoviePage = () => {
                     imagePath={movieDetails.poster_path}
                     titleUrl={`/movie/${movieId}`}
                     title={movieDetails.title}
-                    subtitle={movieDetails && new Date(Date.parse(movieDetails.release_date)).getFullYear().toString()}
+                    subtitle={
+                        movieDetails &&
+                        movieDetails.release_date &&
+                        new Date(Date.parse(movieDetails.release_date)).getFullYear().toString()
+                    }
                     countries={movieDetails.production_countries}
                     releaseDate={movieDetails.release_date}
                     genresList={genresList}
