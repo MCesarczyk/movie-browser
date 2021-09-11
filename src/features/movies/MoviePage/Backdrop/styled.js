@@ -76,6 +76,21 @@ export const WrapperContent = styled.div`
     width: 100%;
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+        margin-bottom: 26px;
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
+        margin-bottom: 46px;
+    }
+       
+    @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}) {
+        margin-bottom: 36px;
+    }
+  
+    @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
+        margin-bottom: 16px;
+    }
+        
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMin}) {
         margin-bottom: 8px;
     }
 `;
