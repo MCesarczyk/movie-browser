@@ -13,6 +13,23 @@ This is group project created under partonate of the programming school [Youcode
 _____________________________
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Used technologies:
+- HTML
+- CSS
+- REACT JS
+- FLEX
+- GRID
+- IMMUTABILITY
+- CREATE-REACT-APP
+- FETCH API
+- CUSTOM HOOKS
+- MEDIA QUERIES
+- STYLED-COMPONENTS
+- REDUX
+- REDUX SAGA
+- REDUX ROUTER
+- REDUX TOOLKIT
+
 ## Available Scripts
 
 In the project directory, you can run:
