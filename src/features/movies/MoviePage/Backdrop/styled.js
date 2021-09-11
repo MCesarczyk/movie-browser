@@ -139,8 +139,24 @@ export const Rating = styled.span`
     margin-left: 8px;
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
-        font-size: 14px;
+        font-size: 18px;
         margin-left: 2px;
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
+        font-size: 26px;
+    }
+       
+    @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}) {
+        font-size: 22px;
+    }
+  
+    @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
+        font-size: 12px;
+    }
+        
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMin}) {
+        font-size: 10px;
     }
 `;
 
