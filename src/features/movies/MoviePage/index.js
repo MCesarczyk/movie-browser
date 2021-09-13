@@ -70,7 +70,7 @@ const MoviePage = () => {
         profileSizes[1]
     ];
 
-    const slideWidths = ["144px", "160px", "184px", "208px", "208px"];
+    const personTileWidths = ["144px", "160px", "184px", "208px", "208px"];
     const tileWidths = ["100%", "100%", "100%", "100%", "100%"];
 
     return (
@@ -114,8 +114,8 @@ const MoviePage = () => {
                         title="Cast"
                         body={movieCast && movieCast.map((person, index) => (
                             <Tile
-                                slide
-                                widths={slideWidths}
+                                personTile
+                                widths={personTileWidths}
                                 key={movieCast[index].credit_id}
                                 sizes={profileSizesArray}
                                 imageBaseUrl={imgURL}
@@ -130,8 +130,8 @@ const MoviePage = () => {
                         title="Crew"
                         body={movieCrew && movieCrew.map((person, index) => (
                             <Tile
-                                slide
-                                widths={slideWidths}
+                                personTile
+                                widths={personTileWidths}
                                 key={movieCrew[index].credit_id}
                                 sizes={profileSizesArray}
                                 titleUrl={`/person/${movieCrew[index].id}`}

@@ -56,7 +56,7 @@ const PeoplePage = () => {
     profileSizes[1]
   ];
 
-  const slideWidths = ["144px", "160px", "184px", "184px", "208px"];
+  const personTileWidths = ["144px", "160px", "184px", "184px", "208px"];
 
   return (
     <>
@@ -74,11 +74,11 @@ const PeoplePage = () => {
             title="Popular people"
             body={peopleList.map((person, index) => (
               <Tile
-                slide
+                personTile
                 key={peopleList[index].id}
                 personId={peopleList[index].id}
                 imageWidth="100%"
-                widths={slideWidths}
+                widths={personTileWidths}
                 sizes={profileSizesArray}
                 imageBaseUrl={imgURL}
                 imagePath={peopleList[index].profile_path}

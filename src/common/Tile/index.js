@@ -33,7 +33,7 @@ const Tile = ({
     imagePath,
     mobile,
     oversize,
-    slide,
+    personTile,
     titleUrl,
     title,
     subtitle,
@@ -53,11 +53,11 @@ const Tile = ({
         <StyledTile
             widths={widths || "100%"}
             oversize={oversize}
-            slide={slide}
+            personTile={personTile}
         >
             {imagePath ?
                 <Image
-                    slide={slide}
+                    personTile={personTile}
                     width={imageWidth}
                     mobile={mobile}
                     sizes={sizes}
@@ -66,7 +66,7 @@ const Tile = ({
                     alt="image"
                 />
                 :
-                slide ? <PlaceholderImageWrapper width={imageWidth} >
+                personTile ? <PlaceholderImageWrapper width={imageWidth} >
                     <NoPictureImage />
                 </PlaceholderImageWrapper>
                 :
@@ -78,7 +78,7 @@ const Tile = ({
                 <ActiveTitle to={titleUrl} >
                     <Title
                         oversize={oversize}
-                        slide={slide}
+                        personTile={personTile}
                     >
                         {title}
                     </Title>
@@ -86,7 +86,7 @@ const Tile = ({
                 {subtitle &&
                     <SubTitle
                         oversize={oversize}
-                        slide={slide}
+                        personTile={personTile}
                     >
                         {subtitle}
                     </SubTitle>
@@ -137,7 +137,7 @@ const Tile = ({
                         ))}
                     </Tags>
                 }
-                {!slide && (votes === 0 ?
+                {!personTile && (votes === 0 ?
                     <TileExtraContent>
                         <NoVotesText>No votes yet</NoVotesText>
                     </TileExtraContent>

@@ -52,7 +52,7 @@ export const StyledTile = styled.div`
         }    
     `}
 
-    ${({ slide }) => slide && css`
+    ${({ personTile }) => personTile && css`
         width: ${props => props.widths[4]};
         grid-template-areas: 
             "image image"
@@ -110,7 +110,7 @@ export const Image = styled.img`
         width: 114px;
     }
 
-    ${({ slide }) => slide && css`
+    ${({ personTile }) => personTile && css`
     width: 100%;
     `}
 `;
@@ -147,7 +147,7 @@ export const ActiveTitle = styled(Link)`
 
 export const Title = styled.h2`
     font-weight: 600;
-    text-align: ${({ slide }) => slide ? "center" : "left"};
+    text-align: ${({ personTile }) => personTile ? "center" : "left"};
     font-size: ${({ oversize }) => oversize ? "36px" : "22px"};
     line-height: 28.6px;
     margin-top: 8px;
@@ -186,9 +186,9 @@ export const Title = styled.h2`
 
 export const SubTitle = styled.span`
     font-weight: 400; 
-    text-align: ${({ slide }) => slide ? "center" : "left"};
+    text-align: ${({ personTile }) => personTile ? "center" : "left"};
     font-size: ${({ oversize }) => oversize ? "36px" : "16px"};
-    font-size: ${({ slide }) => slide ? "18px" : "16px"};
+    font-size: ${({ personTile }) => personTile ? "18px" : "16px"};
     line-height: 1.2;
     margin-bottom: ${({ oversize }) => oversize ? "24px" : "12px"};
 
@@ -217,7 +217,7 @@ export const SubTitle = styled.span`
         margin-bottom: 4px;
     }
 
-    ${({ slide }) => slide && css`
+    ${({ personTile }) => personTile && css`
         color: ${({ theme }) => theme.color.darkGrey}
     `}
 `;
