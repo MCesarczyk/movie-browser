@@ -92,7 +92,7 @@ const Tile = ({
                         {subtitle}
                     </SubTitle>
                 }
-                {countries &&
+                {countries && countries.length > 0 &&
                     <Details>
                         <DetailTitle>Production: </DetailTitle>
                         <DetailContent>
