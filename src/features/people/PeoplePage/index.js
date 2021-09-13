@@ -20,6 +20,7 @@ import {
   fetchPeopleList,
   selectPeopleList,
 } from "../peopleSlice";
+import { NoResults } from "../../../common/NoResults";
 
 const PeoplePage = () => {
   const dispatch = useDispatch();
@@ -69,7 +70,7 @@ const PeoplePage = () => {
           />
         }
         {peopleState === "error" &&
-          <ErrorPage />
+          (query ? <NoResults /> : <ErrorPage />)
         }
         {peopleState === "success" && peopleList &&
           <PeopleList

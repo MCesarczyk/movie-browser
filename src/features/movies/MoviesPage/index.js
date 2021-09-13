@@ -21,6 +21,7 @@ import {
     fetchMovieGenres,
     fetchMoviesList
 } from "../moviesSlice";
+import { NoResults } from "../../../common/NoResults";
 
 const MoviesPage = () => {
     const dispatch = useDispatch();
@@ -71,7 +72,7 @@ const MoviesPage = () => {
                     />
                 }
                 {moviesState === "error" &&
-                    <ErrorPage />
+                    (query ? <NoResults /> : <ErrorPage />)
                 }
                 {moviesState === "success" && movieList &&
                     <MoviesList
