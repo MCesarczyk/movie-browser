@@ -10,6 +10,7 @@ import {
     selectImagesBaseURL,
     selectPosterSizes,
     selectProfileSizes,
+    selectState,
     setId,
 } from "../../../globalSlice";
 import {
@@ -20,11 +21,14 @@ import {
     fetchMovieDetails,
     fetchMovieCredits,
 } from "../moviesSlice";
+import LoadingPage from "../../../common/LoadingPage";
+import ErrorPage from "../../../common/ErrorPage";
 const PeopleList = React.lazy(() => import('../../../common/PeopleList'));
 
 const MoviePage = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
+    const movieState = useSelector(selectState);
     const movieDetails = useSelector(selectMovieDetails);
     const imgURL = useSelector(selectImagesBaseURL);
     const posterSizes = useSelector(selectPosterSizes);
@@ -74,74 +78,88 @@ const MoviePage = () => {
 
     return (
         <>
-            {movieDetails.backdrop_path !== null && <Backdrop
-                imageBaseUrl={imgURL}
-                imagePath={movieDetails.backdrop_path}
-                sizes={backdropSizesArray}
-                title={movieDetails.original_title}
-                rating={movieDetails.vote_average}
-                votes={movieDetails.vote_count}
-            />
-            }
-            <Wrapper>
-                <Tile
-                    oversize
-                    imageWidth="312px"
-                    mobile="177px"
-                    widths={tileWidths}
-                    key={id}
-                    sizes={posterSizesArray}
-                    imageBaseUrl={imgURL}
-                    imagePath={movieDetails.poster_path}
-                    titleUrl={`/movie/${id}`}
-                    title={movieDetails.title}
-                    subtitle={
-                        movieDetails &&
-                        movieDetails.release_date &&
-                        new Date(Date.parse(movieDetails.release_date)).getFullYear().toString()
-                    }
-                    countries={movieDetails.production_countries}
-                    releaseDate={movieDetails.release_date}
-                    genresList={genresList}
-                    rating={movieDetails.vote_average}
-                    votes={movieDetails.vote_count}
-                    overview={movieDetails.overview}
+            {movieState === "loading" &&
+                <LoadingPage
+                    message="Loading movie details..."
                 />
-                <Suspense fallback={<LoadingCircle />}>
-                    {movieCast && <PeopleList
-                        title="Cast"
-                        body={movieCast && movieCast.map((person, index) => (
-                            <Tile
-                                personTile
-                                widths={personTileWidths}
-                                key={movieCast[index].credit_id}
-                                sizes={profileSizesArray}
-                                imageBaseUrl={imgURL}
-                                imagePath={movieCast[index].profile_path}
-                                titleUrl={`/person/${movieCast[index].id}`}
-                                title={movieCast[index].name}
-                                subtitle={movieCast[index].character}
-                            />
-                        ))}
-                    />}
-                    {movieCrew && <PeopleList
-                        title="Crew"
-                        body={movieCrew && movieCrew.map((person, index) => (
-                            <Tile
-                                personTile
-                                widths={personTileWidths}
-                                key={movieCrew[index].credit_id}
-                                sizes={profileSizesArray}
-                                titleUrl={`/person/${movieCrew[index].id}`}
-                                imageBaseUrl={imgURL}
-                                imagePath={movieCrew[index].profile_path}
-                                title={movieCrew[index].name}
-                                subtitle={movieCrew[index].job}
-                            />
-                        ))}
-                    />}
-                </Suspense>
-            </Wrapper>
+            }
+            {
+                movieState === "error" &&
+                <ErrorPage />
+            }
+            {
+                movieState === "success" && movieDetails &&
+                <>
+                    {movieDetails.backdrop_path !== null && <Backdrop
+                        imageBaseUrl={imgURL}
+                        imagePath={movieDetails.backdrop_path}
+                        sizes={backdropSizesArray}
+                        title={movieDetails.original_title}
+                        rating={movieDetails.vote_average}
+                        votes={movieDetails.vote_count}
+                    />
+                    }
+                    <Wrapper>
+                        <Tile
+                            oversize
+                            imageWidth="312px"
+                            mobile="177px"
+                            widths={tileWidths}
+                            key={id}
+                            sizes={posterSizesArray}
+                            imageBaseUrl={imgURL}
+                            imagePath={movieDetails.poster_path}
+                            titleUrl={`/movie/${id}`}
+                            title={movieDetails.title}
+                            subtitle={
+                                movieDetails &&
+                                movieDetails.release_date &&
+                                new Date(Date.parse(movieDetails.release_date)).getFullYear().toString()
+                            }
+                            countries={movieDetails.production_countries}
+                            releaseDate={movieDetails.release_date}
+                            genresList={genresList}
+                            rating={movieDetails.vote_average}
+                            votes={movieDetails.vote_count}
+                            overview={movieDetails.overview}
+                        />
+                        <Suspense fallback={<LoadingCircle />}>
+                            {movieCast && <PeopleList
+                                title="Cast"
+                                body={movieCast && movieCast.map((person, index) => (
+                                    <Tile
+                                        personTile
+                                        widths={personTileWidths}
+                                        key={movieCast[index].credit_id}
+                                        sizes={profileSizesArray}
+                                        imageBaseUrl={imgURL}
+                                        imagePath={movieCast[index].profile_path}
+                                        titleUrl={`/person/${movieCast[index].id}`}
+                                        title={movieCast[index].name}
+                                        subtitle={movieCast[index].character}
+                                    />
+                                ))}
+                            />}
+                            {movieCrew && <PeopleList
+                                title="Crew"
+                                body={movieCrew && movieCrew.map((person, index) => (
+                                    <Tile
+                                        personTile
+                                        widths={personTileWidths}
+                                        key={movieCrew[index].credit_id}
+                                        sizes={profileSizesArray}
+                                        titleUrl={`/person/${movieCrew[index].id}`}
+                                        imageBaseUrl={imgURL}
+                                        imagePath={movieCrew[index].profile_path}
+                                        title={movieCrew[index].name}
+                                        subtitle={movieCrew[index].job}
+                                    />
+                                ))}
+                            />}
+                        </Suspense>
+                    </Wrapper>
+                </>
+            }
         </>
     );
 };
