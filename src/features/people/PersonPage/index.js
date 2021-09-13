@@ -109,7 +109,7 @@ const PersonPage = () => {
                                         title={personCast[index].title}
                                         subtitle={`
                                     ${personCast[index].character}
-                                    ${personCast && "(" + new Date(Date.parse(personCast[index].release_date)).getFullYear().toString() + ")"}
+                                    ${personCast[index].release_date && "(" + new Date(Date.parse(personCast[index].release_date)).getFullYear().toString() + ")"}
                                 `}
                                         genreIds={personCast[index].genre_ids}
                                         rating={personCast[index].vote_average}
