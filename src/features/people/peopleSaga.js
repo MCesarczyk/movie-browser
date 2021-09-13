@@ -54,10 +54,13 @@ function* fetchMovieGenresHandler() {
 
 function* fetchPersonDetailsHandler() {
     try {
+        yield put(setState("loading"));
         const id = yield select(selectId);
         const apiURL = `https://api.themoviedb.org/3/person/${id}?api_key=768f7875782193f5e4797762314da0b7&language=en-US`;
         const person = yield call(getDataFromApi, apiURL);
         yield put(setPersonDetails(person));
+        yield delay(500);
+        yield put(setState("success"));
     } catch (error) {
         yield call(setError(error));
     }
