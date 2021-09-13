@@ -20,7 +20,7 @@ import {
     fetchMovieDetails,
     fetchMovieCredits,
 } from "../moviesSlice";
-const Section = React.lazy(() => import('../../../common/SlidesSection'));
+const Section = React.lazy(() => import('../../../common/PeopleList'));
 
 const MoviePage = () => {
     const dispatch = useDispatch();

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useParams } from "react-router";
 import Wrapper from "../../../common/Wrapper";
-import SlidesSection from "../../../common/SlidesSection";
+import PeopleList from "../../../common/PeopleList";
 import Tile from "../../../common/Tile"
 import Pager from "../../../common/Pager";
 import LoadingPage from "../../../common/LoadingPage";
@@ -70,7 +70,7 @@ const PeoplePage = () => {
           <ErrorPage />
         }
         {peopleState === "success" && peopleList &&
-          <SlidesSection
+          <PeopleList
             title="Popular people"
             body={peopleList.map((person, index) => (
               <Tile
