@@ -84,7 +84,7 @@ export const StyledTile = styled.div`
 
 export const Image = styled.img`
     content: url("${props => props.baseUrl}${props => props.sizes[4]}${props => props.path}");
-    width: ${props => props.width};
+    width: 100%;
     grid-area: image;
     display: block;
     align-self: flex-start;
@@ -110,8 +110,8 @@ export const Image = styled.img`
         width: 114px;
     }
 
-    ${({ personTile }) => personTile && css`
-    width: 100%;
+    ${({ oversize }) => oversize && css`
+        width: ${props => props.width};
     `}
 `;
 

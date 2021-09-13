@@ -33,6 +33,7 @@ const Tile = ({
     imagePath,
     mobile,
     oversize,
+    oversizePersonTile,
     personTile,
     titleUrl,
     title,
@@ -57,6 +58,7 @@ const Tile = ({
         >
             {imagePath ?
                 <Image
+                    oversize={oversize}
                     personTile={personTile}
                     width={imageWidth}
                     mobile={mobile}
@@ -66,13 +68,14 @@ const Tile = ({
                     alt="image"
                 />
                 :
-                personTile ? <PlaceholderImageWrapper width={imageWidth} >
-                    <NoPictureImage />
-                </PlaceholderImageWrapper>
-                :
-                <PlaceholderImageWrapper width={imageWidth} >
-                    <NoPosterImage />
-                </PlaceholderImageWrapper>
+                (personTile || oversizePersonTile) ?
+                    <PlaceholderImageWrapper width={imageWidth} >
+                        <NoPictureImage />
+                    </PlaceholderImageWrapper>
+                    :
+                    <PlaceholderImageWrapper width={imageWidth} >
+                        <NoPosterImage />
+                    </PlaceholderImageWrapper>
             }
             <TileContent>
                 <ActiveTitle to={titleUrl} >
