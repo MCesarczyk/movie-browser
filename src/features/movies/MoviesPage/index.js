@@ -77,7 +77,6 @@ const MoviesPage = () => {
                         body={movieList.map((movie, index) => (
                             <Tile
                                 key={movieList[index].id}
-                                movieId={movieList[index].id}
                                 sizes={posterSizesArray}
                                 widths={tileWidths}
                                 imageBaseUrl={imgURL}

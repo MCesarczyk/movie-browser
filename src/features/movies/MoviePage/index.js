@@ -25,7 +25,6 @@ const PeopleList = React.lazy(() => import('../../../common/PeopleList'));
 const MoviePage = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
-    const movieId = id;
     const movieDetails = useSelector(selectMovieDetails);
     const imgURL = useSelector(selectImagesBaseURL);
     const posterSizes = useSelector(selectPosterSizes);
@@ -90,12 +89,11 @@ const MoviePage = () => {
                     imageWidth="312px"
                     mobile="177px"
                     widths={tileWidths}
-                    key={movieId}
-                    movieId={movieId}
+                    key={id}
                     sizes={posterSizesArray}
                     imageBaseUrl={imgURL}
                     imagePath={movieDetails.poster_path}
-                    titleUrl={`/movie/${movieId}`}
+                    titleUrl={`/movie/${id}`}
                     title={movieDetails.title}
                     subtitle={
                         movieDetails &&

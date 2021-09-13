@@ -66,8 +66,8 @@ const PersonPage = () => {
             <Wrapper>
                 <Tile
                     oversize
+                    oversizePersonTile
                     key={personId}
-                    movieId={personId}
                     sizes={posterSizesArray}
                     imageWidth="312px"
                     widths={tileWidths}
