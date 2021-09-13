@@ -95,7 +95,7 @@ const PersonPage = () => {
                             overview={personDetails.biography}
                         />
                         <Suspense fallback={<LoadingCircle />}>
-                            {personCast && <MoviesList
+                            {personCast && personCast.length > 0 && <MoviesList
                                 title="Cast"
                                 body={personCast && personCast.map((movie, index) => (
                                     <Tile
@@ -117,7 +117,7 @@ const PersonPage = () => {
                                     />
                                 ))}
                             />}
-                            {personCrew && <MoviesList
+                            {personCrew && personCrew.length > 0 && <MoviesList
                                 title="Crew"
                                 body={personCrew && personCrew.map((movie, index) => (
                                     <Tile
