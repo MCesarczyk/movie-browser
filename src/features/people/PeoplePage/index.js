@@ -85,7 +85,7 @@ const PeoplePage = () => {
                 sizes={profileSizesArray}
                 imageBaseUrl={imgURL}
                 imagePath={peopleList[index].profile_path}
-                titleUrl={`/person/${peopleList[index].id}`}
+                detailsUrl={`/person/${peopleList[index].id}`}
                 title={peopleList[index].name}
               />
             ))}

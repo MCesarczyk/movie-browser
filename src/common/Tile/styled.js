@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-export const StyledTile = styled.div`
+export const StyledTile = styled(Link)`
+    text-decoration: none;
+    color: currentColor;
     width: ${props => props.widths[4]};
     background-color: ${({ theme }) => theme.color.white};
     box-shadow: 0px 4px 12px rgba(186, 199, 213, 0.5);
@@ -36,21 +38,15 @@ export const StyledTile = styled.div`
         gap: 16px;
     }    
 
-    ${({ oversize }) => oversize && css`
-        width: "100%";
-        grid-template-areas: 
-            "image content"
-            "image content"
-            "image desc";
-
-        @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
-            width: "100%";
-            grid-template-areas: 
-                "image content"
-                "image content"
-                "desc desc";
-        }    
-    `}
+    &:hover {
+        transform: scale(1.025);
+        transition: ease-out 0.5s;
+        box-shadow: 0px 0px 6px 0px ${({ theme }) => theme.color.darkGrey};
+    }
+        
+    &:active {
+        transform: scale(1);
+    }
 
     ${({ personTile }) => personTile && css`
         width: ${props => props.widths[4]};
@@ -80,6 +76,32 @@ export const StyledTile = styled.div`
             width: ${props => props.widths[0]};
         }
     `}  
+
+    ${({ oversize }) => oversize && css`
+        width: "100%";
+        grid-template-areas: 
+            "image content"
+            "image content"
+            "image desc";
+
+        @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+            width: "100%";
+            grid-template-areas: 
+                "image content"
+                "image content"
+                "desc desc";
+        }    
+
+        &:hover {
+            transform: scale(1.01);
+            transition: ease-out 0.5s;
+            box-shadow: 0px 0px 6px 0px ${({ theme }) => theme.color.darkGrey};
+        }
+            
+        &:active {
+            transform: scale(1);
+        }
+    `}
 `;
 
 export const Image = styled.img`
@@ -143,19 +165,6 @@ export const TileContent = styled.div`
     height: 100%;
     display: flex;
     flex-direction: column;
-`;
-
-export const ActiveTitle = styled(Link)`
-    text-decoration: none;
-    color: currentColor;
-
-    &:hover {
-        color: darkred;
-    }
-    
-    &:active {
-        color: crimson;
-    }
 `;
 
 export const Title = styled.h2`

@@ -85,7 +85,7 @@ const MoviesPage = () => {
                                 imageBaseUrl={imgURL}
                                 imagePath={movieList[index].poster_path}
                                 imageWidth="100%"
-                                titleUrl={`/movie/${movieList[index].id}`}
+                                detailsUrl={`/movie/${movieList[index].id}`}
                                 title={movieList[index].title}
                                 subtitle={new Date(Date.parse(movieList[index].release_date)).getFullYear()}
                                 genreIds={movieList[index].genre_ids}

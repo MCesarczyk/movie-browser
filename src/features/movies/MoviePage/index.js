@@ -109,7 +109,7 @@ const MoviePage = () => {
                             sizes={posterSizesArray}
                             imageBaseUrl={imgURL}
                             imagePath={movieDetails.poster_path}
-                            titleUrl={`/movie/${id}`}
+                            detailsUrl={`/movie/${id}`}
                             title={movieDetails.title}
                             subtitle={
                                 movieDetails &&
@@ -134,7 +134,7 @@ const MoviePage = () => {
                                         sizes={profileSizesArray}
                                         imageBaseUrl={imgURL}
                                         imagePath={movieCast[index].profile_path}
-                                        titleUrl={`/person/${movieCast[index].id}`}
+                                        detailsUrl={`/person/${movieCast[index].id}`}
                                         title={movieCast[index].name}
                                         subtitle={movieCast[index].character}
                                     />
@@ -148,7 +148,7 @@ const MoviePage = () => {
                                         widths={personTileWidths}
                                         key={movieCrew[index].credit_id}
                                         sizes={profileSizesArray}
-                                        titleUrl={`/person/${movieCrew[index].id}`}
+                                        detailsUrl={`/person/${movieCrew[index].id}`}
                                         imageBaseUrl={imgURL}
                                         imagePath={movieCrew[index].profile_path}
                                         title={movieCrew[index].name}

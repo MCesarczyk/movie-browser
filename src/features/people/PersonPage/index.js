@@ -86,7 +86,7 @@ const PersonPage = () => {
                             sizes={posterSizesArray}
                             imageWidth="312px"
                             widths={tileWidths}
-                            titleUrl={`/person/${id}`}
+                            detailsUrl={`/person/${id}`}
                             imageBaseUrl={imgURL}
                             imagePath={personDetails.profile_path}
                             title={personDetails.name}
@@ -100,7 +100,7 @@ const PersonPage = () => {
                                 body={personCast && personCast.map((movie, index) => (
                                     <Tile
                                         key={personCast[index].credit_id}
-                                        titleUrl={`/movie/${personCast[index].id}`}
+                                        detailsUrl={`/movie/${personCast[index].id}`}
                                         imageWidth="100%"
                                         widths={personTileWidths}
                                         imageBaseUrl={imgURL}
@@ -122,7 +122,7 @@ const PersonPage = () => {
                                 body={personCrew && personCrew.map((movie, index) => (
                                     <Tile
                                         key={personCrew[index].credit_id}
-                                        titleUrl={`/movie/${personCrew[index].id}`}
+                                        detailsUrl={`/movie/${personCrew[index].id}`}
                                         widths={personTileWidths}
                                         imageBaseUrl={imgURL}
                                         imagePath={personCrew[index].poster_path}

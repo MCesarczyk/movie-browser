@@ -6,6 +6,7 @@ import RatingStar from "./RatingStar/ratingStar.svg";
 import {
     StyledTile,
     Image,
+    PlaceholderImageWrapper,
     Title,
     SubTitle,
     TileContent,
@@ -19,23 +20,21 @@ import {
     RatingScale,
     Votes,
     Description,
-    ActiveTitle,
     NoVotesText,
     StyledLogo,
-    PlaceholderImageWrapper,
 } from "./styled";
 
 const Tile = ({
-    widths,
-    imageWidth,
-    sizes,
-    imageBaseUrl,
-    imagePath,
     mobile,
     oversize,
     oversizePersonTile,
+    detailsUrl,
+    imageBaseUrl,
+    widths,
+    imageWidth,
+    sizes,
+    imagePath,
     personTile,
-    titleUrl,
     title,
     subtitle,
     countries,
@@ -52,6 +51,7 @@ const Tile = ({
 
     return (
         <StyledTile
+            to={detailsUrl}
             widths={widths || "100%"}
             oversize={oversize}
             personTile={personTile}
@@ -78,14 +78,12 @@ const Tile = ({
                     </PlaceholderImageWrapper>
             }
             <TileContent>
-                <ActiveTitle to={titleUrl} >
-                    <Title
-                        oversize={oversize}
-                        personTile={personTile}
-                    >
-                        {title}
-                    </Title>
-                </ActiveTitle>
+                <Title
+                    oversize={oversize}
+                    personTile={personTile}
+                >
+                    {title}
+                </Title>
                 {subtitle &&
                     <SubTitle
                         oversize={oversize}
