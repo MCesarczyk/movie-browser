@@ -93,13 +93,9 @@ export const StyledTile = styled(Link)`
         }    
 
         &:hover {
-            transform: scale(1.01);
-            transition: ease-out 0.5s;
-            box-shadow: 0px 0px 6px 0px ${({ theme }) => theme.color.darkGrey};
-        }
-            
-        &:active {
-            transform: scale(1);
+            transform: none;
+            box-shadow: 0px 4px 12px rgba(186, 199, 213, 0.5);
+            cursor: default;
         }
     `}
 `;
