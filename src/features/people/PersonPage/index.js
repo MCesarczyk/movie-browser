@@ -18,7 +18,7 @@ import {
     selectPersonCrew,
     selectPersonDetails
 } from "../peopleSlice";
-const Section = React.lazy(() => import('../../../common/MoviesList'));
+const MoviesList = React.lazy(() => import('../../../common/MoviesList'));
 
 const PersonPage = () => {
     const dispatch = useDispatch();
@@ -80,9 +80,9 @@ const PersonPage = () => {
                     overview={personDetails.biography}
                 />
                 <Suspense fallback={<LoadingCircle />}>
-                    {personCast && <Section
+                    {personCast && <MoviesList
                         title="Cast"
-                        body={personCast && personCast.map((person, index) => (
+                        body={personCast && personCast.map((movie, index) => (
                             <Tile
                                 key={personCast[index].credit_id}
                                 titleUrl={`/movie/${personCast[index].id}`}
@@ -102,9 +102,9 @@ const PersonPage = () => {
                             />
                         ))}
                     />}
-                    {personCrew && <Section
+                    {personCrew && <MoviesList
                         title="Crew"
-                        body={personCrew && personCrew.map((person, index) => (
+                        body={personCrew && personCrew.map((movie, index) => (
                             <Tile
                                 key={personCrew[index].credit_id}
                                 titleUrl={`/movie/${personCrew[index].id}`}
