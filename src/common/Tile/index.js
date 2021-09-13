@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { selectGenres } from "../../features/movies/moviesSlice";
-import { ReactComponent as PlaceholderImage } from "./noPicture.svg";
+import { ReactComponent as NoPictureImage } from "./noPicture.svg";
+import { ReactComponent as NoPosterImage } from "./noPoster.svg";
 import RatingStar from "./RatingStar/ratingStar.svg";
 import {
     StyledTile,
@@ -65,8 +66,12 @@ const Tile = ({
                     alt="image"
                 />
                 :
+                slide ? <PlaceholderImageWrapper width={imageWidth} >
+                    <NoPictureImage />
+                </PlaceholderImageWrapper>
+                :
                 <PlaceholderImageWrapper width={imageWidth} >
-                    <PlaceholderImage />
+                    <NoPosterImage />
                 </PlaceholderImageWrapper>
             }
             <TileContent>
