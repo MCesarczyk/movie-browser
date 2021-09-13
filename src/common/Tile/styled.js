@@ -122,6 +122,19 @@ export const PlaceholderImageWrapper = styled.div`
     align-self: flex-start;
     border-radius: 5px;
     transition: width 1s ease-in-out, left 1.5s ease-in-out;
+    
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+        width: ${props => props.mobile};
+    }
+  
+    @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
+        width: 114px;
+    }
+
+    ${({ oversize }) => oversize && css`
+        width: ${props => props.width};
+    `}
+
 `;
 
 export const TileContent = styled.div`

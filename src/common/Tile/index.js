@@ -69,11 +69,11 @@ const Tile = ({
                 />
                 :
                 (personTile || oversizePersonTile) ?
-                    <PlaceholderImageWrapper width={imageWidth} >
+                    <PlaceholderImageWrapper width={imageWidth} mobile={mobile} >
                         <NoPictureImage />
                     </PlaceholderImageWrapper>
                     :
-                    <PlaceholderImageWrapper width={imageWidth} >
+                    <PlaceholderImageWrapper width={imageWidth} mobile={mobile} >
                         <NoPosterImage />
                     </PlaceholderImageWrapper>
             }
