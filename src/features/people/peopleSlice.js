@@ -15,7 +15,6 @@ const peopleSlice = createSlice({
         setPeopleList: (state, { payload: people }) => {
             state.people = people;
         },
-        fetchMovieGenres: () => { },
         setMovieGenres: (state, { payload: genres }) => {
             state.genres = genres;
         },
@@ -23,7 +22,6 @@ const peopleSlice = createSlice({
         setPersonDetails: (state, { payload: person }) => {
             state.person = person;
         },
-        fetchPersonCredits: () => { },
         setPersonCredits: (state, { payload: credits }) => {
             state.credits = credits;
         },
@@ -33,11 +31,9 @@ const peopleSlice = createSlice({
 export const {
     fetchPeopleList,
     setPeopleList,
-    fetchMovieGenres,
     setMovieGenres,
     fetchPersonDetails,
     setPersonDetails,
-    fetchPersonCredits,
     setPersonCredits,
 } = peopleSlice.actions;
 
