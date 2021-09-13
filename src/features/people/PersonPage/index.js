@@ -96,7 +96,7 @@ const PersonPage = () => {
                         />
                         <Suspense fallback={<LoadingCircle />}>
                             {personCast && personCast.length > 0 && <MoviesList
-                                title="Cast"
+                                title={`Cast (${personCast.length})`}
                                 body={personCast && personCast.map((movie, index) => (
                                     <Tile
                                         key={personCast[index].credit_id}
@@ -118,7 +118,7 @@ const PersonPage = () => {
                                 ))}
                             />}
                             {personCrew && personCrew.length > 0 && <MoviesList
-                                title="Crew"
+                                title={`Crew (${personCrew.length})`}
                                 body={personCrew && personCrew.map((movie, index) => (
                                     <Tile
                                         key={personCrew[index].credit_id}
