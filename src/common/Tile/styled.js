@@ -152,7 +152,6 @@ export const PlaceholderImageWrapper = styled.div`
     ${({ oversize }) => oversize && css`
         width: ${props => props.width};
     `}
-
 `;
 
 export const TileContent = styled.div`
