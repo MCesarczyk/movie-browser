@@ -20,7 +20,7 @@ import {
     fetchMovieDetails,
     fetchMovieCredits,
 } from "../moviesSlice";
-const Section = React.lazy(() => import('../../../common/PeopleList'));
+const PeopleList = React.lazy(() => import('../../../common/PeopleList'));
 
 const MoviePage = () => {
     const dispatch = useDispatch();
@@ -110,7 +110,7 @@ const MoviePage = () => {
                     overview={movieDetails.overview}
                 />
                 <Suspense fallback={<LoadingCircle />}>
-                    {movieCast && <Section
+                    {movieCast && <PeopleList
                         title="Cast"
                         body={movieCast && movieCast.map((person, index) => (
                             <Tile
@@ -126,7 +126,7 @@ const MoviePage = () => {
                             />
                         ))}
                     />}
-                    {movieCrew && <Section
+                    {movieCrew && <PeopleList
                         title="Crew"
                         body={movieCrew && movieCrew.map((person, index) => (
                             <Tile
