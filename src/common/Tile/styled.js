@@ -48,7 +48,7 @@ export const StyledTile = styled(Link)`
         transform: scale(1);
     }
 
-    ${({ personTile }) => personTile && css`
+    ${({ person }) => person && css`
         width: ${props => props.widths[4]};
         grid-template-areas: 
             "image image"
@@ -164,7 +164,7 @@ export const TileContent = styled.div`
 
 export const Title = styled.h2`
     font-weight: 600;
-    text-align: ${({ personTile }) => personTile ? "center" : "left"};
+    text-align: ${({ person }) => person ? "center" : "left"};
     font-size: ${({ oversize }) => oversize ? "36px" : "22px"};
     line-height: 28.6px;
     margin-top: 8px;
@@ -203,9 +203,9 @@ export const Title = styled.h2`
 
 export const SubTitle = styled.span`
     font-weight: 400; 
-    text-align: ${({ personTile }) => personTile ? "center" : "left"};
+    text-align: ${({ person }) => person ? "center" : "left"};
     font-size: ${({ oversize }) => oversize ? "36px" : "16px"};
-    font-size: ${({ personTile }) => personTile ? "18px" : "16px"};
+    font-size: ${({ person }) => person ? "18px" : "16px"};
     line-height: 1.2;
     margin-bottom: ${({ oversize }) => oversize ? "24px" : "12px"};
 
@@ -234,7 +234,7 @@ export const SubTitle = styled.span`
         margin-bottom: 4px;
     }
 
-    ${({ personTile }) => personTile && css`
+    ${({ person }) => person && css`
         color: ${({ theme }) => theme.color.darkGrey}
     `}
 `;

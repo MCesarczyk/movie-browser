@@ -128,7 +128,7 @@ const MoviePage = () => {
                                 title="Cast"
                                 body={movieCast && movieCast.map((person, index) => (
                                     <Tile
-                                        personTile="true"
+                                        person="true"
                                         widths={personTileWidths}
                                         key={movieCast[index].credit_id}
                                         sizes={profileSizesArray}
@@ -144,7 +144,7 @@ const MoviePage = () => {
                                 title="Crew"
                                 body={movieCrew && movieCrew.map((person, index) => (
                                     <Tile
-                                        personTile="true"
+                                        person="true"
                                         widths={personTileWidths}
                                         key={movieCrew[index].credit_id}
                                         sizes={profileSizesArray}

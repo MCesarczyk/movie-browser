@@ -99,7 +99,7 @@ const PersonPage = () => {
                                 title={`Cast (${personCast.length})`}
                                 body={personCast && personCast.map((movie, index) => (
                                     <Tile
-                                        key={personCast[index].credit_id}
+                                        key={`cast:${personCast[index].credit_id}`}
                                         detailsUrl={`/movie/${personCast[index].id}`}
                                         imageWidth="100%"
                                         widths={personTileWidths}
@@ -121,7 +121,7 @@ const PersonPage = () => {
                                 title={`Crew (${personCrew.length})`}
                                 body={personCrew && personCrew.map((movie, index) => (
                                     <Tile
-                                        key={personCrew[index].credit_id}
+                                        key={`crew:${personCrew[index].credit_id}`}
                                         detailsUrl={`/movie/${personCrew[index].id}`}
                                         widths={personTileWidths}
                                         imageBaseUrl={imgURL}

@@ -27,14 +27,14 @@ import {
 const Tile = ({
     mobile,
     oversize,
-    oversizePersonTile,
+    oversizeperson,
     detailsUrl,
     imageBaseUrl,
     widths,
     imageWidth,
     sizes,
     imagePath,
-    personTile,
+    person,
     title,
     subtitle,
     countries,
@@ -59,12 +59,12 @@ const Tile = ({
             to={detailsUrl}
             widths={widths || "100%"}
             oversize={oversize}
-            personTile={personTile}
+            person={person}
         >
             {imagePath ?
                 <Image
                     oversize={oversize}
-                    personTile={personTile}
+                    person={person}
                     width={imageWidth}
                     mobile={mobile}
                     sizes={sizes}
@@ -73,7 +73,7 @@ const Tile = ({
                     alt="image"
                 />
                 :
-                (personTile || oversizePersonTile) ?
+                (person || oversizeperson) ?
                     <PlaceholderImageWrapper width={imageWidth} mobile={mobile} >
                         <NoPictureImage />
                     </PlaceholderImageWrapper>
@@ -85,14 +85,14 @@ const Tile = ({
             <TileContent>
                 <Title
                     oversize={oversize}
-                    personTile={personTile}
+                    person={person}
                 >
                     {title}
                 </Title>
                 {subtitle &&
                     <SubTitle
                         oversize={oversize}
-                        personTile={personTile}
+                        person={person}
                     >
                         {subtitle}
                     </SubTitle>
@@ -143,7 +143,7 @@ const Tile = ({
                         ))}
                     </Tags>
                 }
-                {!personTile && (votes === 0 ?
+                {!person && (votes === 0 ?
                     <TileExtraContent>
                         <NoVotesText>No votes yet</NoVotesText>
                     </TileExtraContent>
