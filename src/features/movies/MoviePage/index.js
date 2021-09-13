@@ -19,7 +19,6 @@ import {
     selectMovieCrew,
     selectGenresList,
     fetchMovieDetails,
-    fetchMovieCredits,
 } from "../moviesSlice";
 import LoadingPage from "../../../common/LoadingPage";
 import ErrorPage from "../../../common/ErrorPage";
@@ -41,7 +40,6 @@ const MoviePage = () => {
     useEffect(() => {
         dispatch(setId(id));
         dispatch(fetchMovieDetails());
-        dispatch(fetchMovieCredits());
         // eslint-disable-next-line
     }, [id]);
 

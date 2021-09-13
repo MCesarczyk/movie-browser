@@ -18,7 +18,6 @@ import {
 } from "../../../globalSlice";
 import {
     selectMoviesList,
-    fetchMovieGenres,
     fetchMoviesList
 } from "../moviesSlice";
 import { NoResults } from "../../../common/NoResults";
@@ -38,7 +37,6 @@ const MoviesPage = () => {
     useEffect(() => {
         dispatch(setPage(page));
         dispatch(fetchMoviesList());
-        dispatch(fetchMovieGenres());
         // eslint-disable-next-line
     }, [page]);
 
