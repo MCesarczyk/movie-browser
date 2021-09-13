@@ -77,7 +77,7 @@ const PeoplePage = () => {
             title={query ? `Search results for "${query}" (${totalResults})` : "Popular people"}
             body={peopleList.map((person, index) => (
               <Tile
-                personTile
+                personTile="true"
                 key={peopleList[index].id}
                 personId={peopleList[index].id}
                 imageWidth="100%"

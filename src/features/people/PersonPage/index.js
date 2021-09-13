@@ -80,8 +80,8 @@ const PersonPage = () => {
                 <>
                     <Wrapper>
                         <Tile
-                            oversize
-                            oversizePersonTile
+                            oversize="true"
+                            oversizePersonTile="true"
                             key={id}
                             sizes={posterSizesArray}
                             imageWidth="312px"
