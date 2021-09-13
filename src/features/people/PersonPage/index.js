@@ -13,7 +13,6 @@ import {
     setId,
 } from "../../../globalSlice";
 import {
-    fetchPersonCredits,
     fetchPersonDetails,
     selectPersonCast,
     selectPersonCrew,
@@ -37,7 +36,6 @@ const PersonPage = () => {
     useEffect(() => {
         dispatch(setId(id));
         dispatch(fetchPersonDetails());
-        dispatch(fetchPersonCredits());
     }, [dispatch, id]);
 
     useEffect(() => {

@@ -13,11 +13,9 @@ import {
     setPersonCredits,
     setPersonDetails,
     setPeopleList,
-    fetchPersonCredits,
     fetchPersonDetails,
     fetchPeopleList,
     setMovieGenres,
-    fetchMovieGenres
 } from "./peopleSlice";
 
 function* fetchPeopleListHandler() {
@@ -42,16 +40,6 @@ function* fetchPeopleListHandler() {
     }
 };
 
-function* fetchMovieGenresHandler() {
-    try {
-        const apiURL = "https://api.themoviedb.org/3/genre/movie/list?api_key=768f7875782193f5e4797762314da0b7&language=en-US";
-        const genres = yield call(getDataFromApi, apiURL);
-        yield put(setMovieGenres(genres));
-    } catch (error) {
-        yield call(setError(error));
-    }
-};
-
 function* fetchPersonDetailsHandler() {
     try {
         yield put(setState("loading"));
@@ -59,8 +47,20 @@ function* fetchPersonDetailsHandler() {
         const apiURL = `https://api.themoviedb.org/3/person/${id}?api_key=768f7875782193f5e4797762314da0b7&language=en-US`;
         const person = yield call(getDataFromApi, apiURL);
         yield put(setPersonDetails(person));
+        yield call(fetchMovieGenresHandler);
+        yield call(fetchPersonCreditsHandler);
         yield delay(500);
         yield put(setState("success"));
+    } catch (error) {
+        yield call(setError(error));
+    }
+};
+
+function* fetchMovieGenresHandler() {
+    try {
+        const apiURL = "https://api.themoviedb.org/3/genre/movie/list?api_key=768f7875782193f5e4797762314da0b7&language=en-US";
+        const genres = yield call(getDataFromApi, apiURL);
+        yield put(setMovieGenres(genres));
     } catch (error) {
         yield call(setError(error));
     }
@@ -79,7 +79,5 @@ function* fetchPersonCreditsHandler() {
 
 export function* peopleSaga() {
     yield takeLatest(fetchPeopleList.type, fetchPeopleListHandler);
-    yield takeLatest(fetchMovieGenres.type, fetchMovieGenresHandler);
     yield takeLatest(fetchPersonDetails.type, fetchPersonDetailsHandler);
-    yield takeLatest(fetchPersonCredits.type, fetchPersonCreditsHandler);
 };
