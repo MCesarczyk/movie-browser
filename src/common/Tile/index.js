@@ -52,7 +52,6 @@ const Tile = ({
     const convertDate = (input) => {
         const date = new Date(input).toLocaleDateString();
         return date;
-        // console.log(date);
     };
 
     return (
@@ -109,7 +108,7 @@ const Tile = ({
                 {releaseDate &&
                     <Details>
                         <DetailTitle>Release date: </DetailTitle>
-                        <DetailContent>{releaseDate}</DetailContent>
+                        <DetailContent>{convertDate(releaseDate)}</DetailContent>
                     </Details>
                 }
                 {birthday &&
