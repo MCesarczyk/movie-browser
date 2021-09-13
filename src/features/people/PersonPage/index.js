@@ -18,7 +18,7 @@ import {
     selectPersonCrew,
     selectPersonDetails
 } from "../peopleSlice";
-const Section = React.lazy(() => import('../../../common/TilesSection'));
+const Section = React.lazy(() => import('../../../common/MoviesList'));
 
 const PersonPage = () => {
     const dispatch = useDispatch();

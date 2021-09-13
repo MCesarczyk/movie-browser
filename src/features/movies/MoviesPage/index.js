@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useLocation } from "react-router-dom";
 import Wrapper from "../../../common/Wrapper";
-import TilesSection from "../../../common/TilesSection";
+import MoviesList from "../../../common/MoviesList";
 import Tile from "../../../common/Tile"
 import Pager from "../../../common/Pager";
 import LoadingPage from "../../../common/LoadingPage";
@@ -72,7 +72,7 @@ const MoviesPage = () => {
                     <ErrorPage />
                 }
                 {moviesState === "success" && movieList &&
-                    <TilesSection
+                    <MoviesList
                         title="Popular movies"
                         body={movieList.map((movie, index) => (
                             <Tile
