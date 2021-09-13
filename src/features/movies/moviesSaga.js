@@ -6,7 +6,8 @@ import {
     selectQuery,
     setError,
     setState,
-    setTotalPages
+    setTotalPages,
+    setTotalResults
 } from "../../globalSlice";
 import {
     fetchMovieCredits,
@@ -32,6 +33,7 @@ function* fetchMoviesListHandler() {
         );
         const movies = yield call(getDataFromApi, apiURL);
         yield put(setMoviesList(movies.results));
+        yield put(setTotalResults(movies.total_results));
         yield put(setTotalPages(movies.total_pages));
         yield delay(500);
         yield put(setState("success"));

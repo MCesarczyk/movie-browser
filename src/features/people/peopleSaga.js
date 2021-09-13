@@ -6,7 +6,8 @@ import {
     selectQuery,
     setError,
     setState,
-    setTotalPages
+    setTotalPages,
+    setTotalResults
 } from "../../globalSlice";
 import {
     setPersonCredits,
@@ -32,6 +33,7 @@ function* fetchPeopleListHandler() {
         );
         const people = yield call(getDataFromApi, apiURL);
         yield put(setPeopleList(people.results));
+        yield put(setTotalResults(people.total_results));
         yield put(setTotalPages(people.total_pages));
         yield delay(500);
         yield put(setState("success"));

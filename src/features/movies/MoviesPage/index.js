@@ -12,6 +12,7 @@ import {
     selectImagesBaseURL,
     selectPosterSizes,
     selectState,
+    selectTotalResults,
     setPage,
     setQuery,
 } from "../../../globalSlice";
@@ -49,6 +50,7 @@ const MoviesPage = () => {
     const moviesState = useSelector(selectState);
     const imgURL = useSelector(selectImagesBaseURL);
     const posterSizes = useSelector(selectPosterSizes);
+    const totalResults = useSelector(selectTotalResults);
 
     const posterSizesArray = [
         posterSizes[1],
@@ -65,7 +67,7 @@ const MoviesPage = () => {
             <Wrapper>
                 {moviesState === "loading" &&
                     <LoadingPage
-                        message="Loading movies list..."
+                        message={query ? `Search results for "${query}"` : "Loading movies list..."}
                     />
                 }
                 {moviesState === "error" &&
@@ -73,7 +75,7 @@ const MoviesPage = () => {
                 }
                 {moviesState === "success" && movieList &&
                     <MoviesList
-                        title="Popular movies"
+                        title={query ? `Search results for "${query}" (${totalResults})` : "Popular movies"}
                         body={movieList.map((movie, index) => (
                             <Tile
                                 key={movieList[index].id}

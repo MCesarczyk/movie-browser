@@ -14,6 +14,7 @@ import {
   selectProfileSizes,
   setQuery,
   setPage,
+  selectTotalResults,
 } from "../../../globalSlice";
 import {
   fetchPeopleList,
@@ -47,6 +48,7 @@ const PeoplePage = () => {
   const peopleState = useSelector(selectState);
   const imgURL = useSelector(selectImagesBaseURL);
   const profileSizes = useSelector(selectProfileSizes);
+  const totalResults = useSelector(selectTotalResults);
 
   const profileSizesArray = [
     profileSizes[1],
@@ -63,7 +65,7 @@ const PeoplePage = () => {
       <Wrapper>
         {peopleState === "loading" &&
           <LoadingPage
-            message="Loading people list..."
+            message={query ? `Search results for "${query}"` : "Loading people list..."}
           />
         }
         {peopleState === "error" &&
@@ -71,7 +73,7 @@ const PeoplePage = () => {
         }
         {peopleState === "success" && peopleList &&
           <PeopleList
-            title="Popular people"
+            title={query ? `Search results for "${query}" (${totalResults})` : "Popular people"}
             body={peopleList.map((person, index) => (
               <Tile
                 personTile
