@@ -49,6 +49,12 @@ const Tile = ({
 }) => {
     const genres = useSelector(selectGenres);
 
+    const convertDate = (input) => {
+        const date = new Date(input).toLocaleDateString();
+        return date;
+        // console.log(date);
+    };
+
     return (
         <StyledTile
             to={detailsUrl}
@@ -109,7 +115,7 @@ const Tile = ({
                 {birthday &&
                     <Details>
                         <DetailTitle>Date of birth: </DetailTitle>
-                        <DetailContent>{birthday}</DetailContent>
+                        <DetailContent>{convertDate(birthday)}</DetailContent>
                     </Details>
                 }
                 {birthPlace &&
