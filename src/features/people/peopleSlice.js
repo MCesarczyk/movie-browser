@@ -37,13 +37,14 @@ export const {
     setPersonCredits,
 } = peopleSlice.actions;
 
-export const selectPeople = state => state.people;
-export const selectPeopleList = state => state.people.people;
-export const selectGenres = state => state.people.genres.genres;
-export const selectGenresList = state => state.people.person.genres;
-export const selectPersonDetails = state => state.people.person;
-export const selectPeopleDetails = state => state.people.details;
-export const selectPersonCast = state => state.people.credits.cast;
-export const selectPersonCrew = state => state.people.credits.crew;
+const selectPeopleState = state => state.people;
+const selectPeopleCredits = state => selectPeopleState(state).credits;
+
+export const selectPeopleList = state => selectPeopleState(state).people;
+export const selectGenres = state => selectPeopleState(state).genres.genres;
+export const selectGenresList = state => selectPersonDetails(state).genres;
+export const selectPersonDetails = state => selectPeopleState(state).person;
+export const selectPersonCast = state => selectPeopleCredits(state).cast;
+export const selectPersonCrew = state => selectPeopleCredits(state).crew;
 
 export default peopleSlice.reducer;
