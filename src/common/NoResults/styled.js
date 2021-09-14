@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Header = styled.h2`
+export const Content = styled.h2`
     font-weight: 600;
     font-size: 36px;
     line-height: 1.2;
@@ -19,5 +19,23 @@ export const Header = styled.h2`
     @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
         font-size: 18px;
         margin-top: 24px;
+    }
+`;
+
+export const NoResultsLogo = styled.img`
+    margin: 0 auto;
+    display: block;
+    Width: 668px;
+    Height: 508px;
+    margin-top: 50px;
+
+    @media(max-width: ${({ theme }) => theme.breakpoint.mobileMin}) {
+        Width: 150px;
+        Height: 105px;
+    }
+
+    @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+        Width: 270px;
+        Height: 205px;
     }
 `;

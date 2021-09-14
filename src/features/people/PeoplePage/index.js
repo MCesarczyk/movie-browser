@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useParams } from "react-router";
 import Wrapper from "../../../common/Wrapper";
-import SlidesSection from "../../../common/SlidesSection";
+import PeopleList from "../../../common/PeopleList";
 import Tile from "../../../common/Tile"
 import Pager from "../../../common/Pager";
 import LoadingPage from "../../../common/LoadingPage";
@@ -14,11 +14,13 @@ import {
   selectProfileSizes,
   setQuery,
   setPage,
+  selectTotalResults,
 } from "../../../globalSlice";
 import {
   fetchPeopleList,
   selectPeopleList,
 } from "../peopleSlice";
+import { NoResults } from "../../../common/NoResults";
 
 const PeoplePage = () => {
   const dispatch = useDispatch();
@@ -47,6 +49,7 @@ const PeoplePage = () => {
   const peopleState = useSelector(selectState);
   const imgURL = useSelector(selectImagesBaseURL);
   const profileSizes = useSelector(selectProfileSizes);
+  const totalResults = useSelector(selectTotalResults);
 
   const profileSizesArray = [
     profileSizes[1],
@@ -56,33 +59,33 @@ const PeoplePage = () => {
     profileSizes[1]
   ];
 
-  const slideWidths = ["144px", "160px", "184px", "184px", "208px"];
+  const personTileWidths = ["144px", "160px", "184px", "184px", "208px"];
 
   return (
     <>
       <Wrapper>
         {peopleState === "loading" &&
           <LoadingPage
-            message="Loading people list..."
+            message={query ? `Search results for "${query}"` : "Loading people list..."}
           />
         }
         {peopleState === "error" &&
-          <ErrorPage />
+          (query ? <NoResults /> : <ErrorPage />)
         }
         {peopleState === "success" && peopleList &&
-          <SlidesSection
-            title="Popular people"
+          <PeopleList
+            title={query ? `Search results for "${query}" (${totalResults})` : "Popular people"}
             body={peopleList.map((person, index) => (
               <Tile
-                slide
+                person="true"
                 key={peopleList[index].id}
                 personId={peopleList[index].id}
                 imageWidth="100%"
-                widths={slideWidths}
+                widths={personTileWidths}
                 sizes={profileSizesArray}
                 imageBaseUrl={imgURL}
                 imagePath={peopleList[index].profile_path}
-                titleUrl={`/person/${peopleList[index].id}`}
+                detailsUrl={`/person/${peopleList[index].id}`}
                 title={peopleList[index].name}
               />
             ))}

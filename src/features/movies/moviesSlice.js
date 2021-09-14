@@ -15,7 +15,6 @@ const moviesSlice = createSlice({
         setMoviesList: (state, { payload: movies }) => {
             state.movies = movies;
         },
-        fetchMovieGenres: () => { },
         setMovieGenres: (state, { payload: genres }) => {
             state.genres = genres;
         },
@@ -23,7 +22,6 @@ const moviesSlice = createSlice({
         setMovieDetails: (state, { payload: movie }) => {
             state.movie = movie;
         },
-        fetchMovieCredits: () => { },
         setMovieCredits: (state, { payload: credits }) => {
             state.credits = credits;
         },
@@ -33,20 +31,20 @@ const moviesSlice = createSlice({
 export const {
     fetchMoviesList,
     setMoviesList,
-    fetchMovieCredits,
     setMovieCredits,
     fetchMovieDetails,
     setMovieDetails,
-    fetchMovieGenres,
     setMovieGenres,
 } = moviesSlice.actions;
 
-export const selectMovies = state => state.movies;
-export const selectMoviesList = state => state.movies.movies;
-export const selectGenres = state => state.movies.genres.genres;
-export const selectGenresList = state => state.movies.movie.genres;
-export const selectMovieDetails = state => state.movies.movie;
-export const selectMovieCast = state => state.movies.credits.cast;
-export const selectMovieCrew = state => state.movies.credits.crew;
+const selectMoviesState = state => state.movies;
+const selectMovieCredits = state => selectMoviesState(state).credits
+
+export const selectMoviesList = state => selectMoviesState(state).movies;
+export const selectGenres = state => selectMoviesState(state).genres.genres;
+export const selectGenresList = state => selectMovieDetails(state).genres;
+export const selectMovieDetails = state => selectMoviesState(state).movie;
+export const selectMovieCast = state => selectMovieCredits(state).cast;
+export const selectMovieCrew = state => selectMovieCredits(state).crew;
 
 export default moviesSlice.reducer;

@@ -6,17 +6,16 @@ import {
     selectQuery,
     setError,
     setState,
-    setTotalPages
+    setTotalPages,
+    setTotalResults
 } from "../../globalSlice";
 import {
     setPersonCredits,
     setPersonDetails,
     setPeopleList,
-    fetchPersonCredits,
     fetchPersonDetails,
     fetchPeopleList,
     setMovieGenres,
-    fetchMovieGenres
 } from "./peopleSlice";
 
 function* fetchPeopleListHandler() {
@@ -32,7 +31,24 @@ function* fetchPeopleListHandler() {
         );
         const people = yield call(getDataFromApi, apiURL);
         yield put(setPeopleList(people.results));
+        yield put(setTotalResults(people.total_results));
         yield put(setTotalPages(people.total_pages));
+        yield delay(500);
+        yield put(setState("success"));
+    } catch (error) {
+        yield call(setError(error));
+    }
+};
+
+function* fetchPersonDetailsHandler() {
+    try {
+        yield put(setState("loading"));
+        const id = yield select(selectId);
+        const apiURL = `https://api.themoviedb.org/3/person/${id}?api_key=768f7875782193f5e4797762314da0b7&language=en-US`;
+        const person = yield call(getDataFromApi, apiURL);
+        yield put(setPersonDetails(person));
+        yield call(fetchMovieGenresHandler);
+        yield call(fetchPersonCreditsHandler);
         yield delay(500);
         yield put(setState("success"));
     } catch (error) {
@@ -45,17 +61,6 @@ function* fetchMovieGenresHandler() {
         const apiURL = "https://api.themoviedb.org/3/genre/movie/list?api_key=768f7875782193f5e4797762314da0b7&language=en-US";
         const genres = yield call(getDataFromApi, apiURL);
         yield put(setMovieGenres(genres));
-    } catch (error) {
-        yield call(setError(error));
-    }
-};
-
-function* fetchPersonDetailsHandler() {
-    try {
-        const id = yield select(selectId);
-        const apiURL = `https://api.themoviedb.org/3/person/${id}?api_key=768f7875782193f5e4797762314da0b7&language=en-US`;
-        const person = yield call(getDataFromApi, apiURL);
-        yield put(setPersonDetails(person));
     } catch (error) {
         yield call(setError(error));
     }
@@ -74,7 +79,5 @@ function* fetchPersonCreditsHandler() {
 
 export function* peopleSaga() {
     yield takeLatest(fetchPeopleList.type, fetchPeopleListHandler);
-    yield takeLatest(fetchMovieGenres.type, fetchMovieGenresHandler);
     yield takeLatest(fetchPersonDetails.type, fetchPersonDetailsHandler);
-    yield takeLatest(fetchPersonCredits.type, fetchPersonCreditsHandler);
 };

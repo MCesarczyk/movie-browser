@@ -15,6 +15,7 @@ const initialState = {
     },
     page: 1,
     id: "",
+    totalResults: 10_000,
     totalPages: 500,
     state: "idle",
     error: "",
@@ -29,11 +30,14 @@ const globalSlice = createSlice({
         setConfig: (state, { payload: newConfig }) => {
             state.config = newConfig;
         },
-        setPage: (state, {payload: currentPage}) => {
+        setPage: (state, { payload: currentPage }) => {
             state.page = currentPage;
         },
-        setId: (state, {payload: currentId}) => {
+        setId: (state, { payload: currentId }) => {
             state.id = currentId;
+        },
+        setTotalResults: (state, { payload: totalResults }) => {
+            state.totalResults = totalResults;
         },
         setTotalPages: (state, { payload: totalPages }) => {
             state.totalPages = totalPages;
@@ -44,7 +48,7 @@ const globalSlice = createSlice({
         setError: (state, { payload: newError }) => {
             state.error = newError;
         },
-        setQuery: (state, {payload: newQuery}) => {
+        setQuery: (state, { payload: newQuery }) => {
             state.query = newQuery;
         },
     },
@@ -55,6 +59,7 @@ export const {
     setConfig,
     setPage,
     setId,
+    setTotalResults,
     setTotalPages,
     setState,
     setError,
@@ -68,7 +73,8 @@ export const selectPosterSizes = state => state.global.config.images.poster_size
 export const selectBackdropSizes = state => state.global.config.images.backdrop_sizes;
 export const selectProfileSizes = state => state.global.config.images.profile_sizes;
 export const selectPage = state => state.global.page;
-export const selectId = state =>state.global.id;
+export const selectId = state => state.global.id;
+export const selectTotalResults = state => state.global.totalResults;
 export const selectTotalPages = state => state.global.totalPages;
 export const selectState = state => state.global.state;
 export const selectError = state => state.global.error;

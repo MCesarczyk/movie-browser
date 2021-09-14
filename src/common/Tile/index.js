@@ -1,10 +1,12 @@
 import { useSelector } from "react-redux";
 import { selectGenres } from "../../features/movies/moviesSlice";
-import { ReactComponent as PlaceholderImage } from "./noPicture.svg";
+import { ReactComponent as NoPictureImage } from "./noPicture.svg";
+import { ReactComponent as NoPosterImage } from "./noPoster.svg";
 import RatingStar from "./RatingStar/ratingStar.svg";
 import {
     StyledTile,
     Image,
+    PlaceholderImageWrapper,
     Title,
     SubTitle,
     TileContent,
@@ -18,22 +20,21 @@ import {
     RatingScale,
     Votes,
     Description,
-    ActiveTitle,
     NoVotesText,
     StyledLogo,
-    PlaceholderImageWrapper,
 } from "./styled";
 
 const Tile = ({
+    mobile,
+    oversize,
+    person,
+    oversizepersontile,
+    detailsUrl,
+    imageBaseUrl,
     widths,
     imageWidth,
     sizes,
-    imageBaseUrl,
     imagePath,
-    mobile,
-    oversize,
-    slide,
-    titleUrl,
     title,
     subtitle,
     countries,
@@ -48,15 +49,22 @@ const Tile = ({
 }) => {
     const genres = useSelector(selectGenres);
 
+    const convertDate = (input) => {
+        const date = new Date(input).toLocaleDateString();
+        return date;
+    };
+
     return (
         <StyledTile
+            to={detailsUrl}
             widths={widths || "100%"}
             oversize={oversize}
-            slide={slide}
+            person={person}
         >
             {imagePath ?
                 <Image
-                    slide={slide}
+                    oversize={oversize}
+                    person={person}
                     width={imageWidth}
                     mobile={mobile}
                     sizes={sizes}
@@ -65,28 +73,31 @@ const Tile = ({
                     alt="image"
                 />
                 :
-                <PlaceholderImageWrapper width={imageWidth} >
-                    <PlaceholderImage />
-                </PlaceholderImageWrapper>
+                (person || oversizepersontile) ?
+                    <PlaceholderImageWrapper width={imageWidth} mobile={mobile} >
+                        <NoPictureImage />
+                    </PlaceholderImageWrapper>
+                    :
+                    <PlaceholderImageWrapper width={imageWidth} mobile={mobile} >
+                        <NoPosterImage />
+                    </PlaceholderImageWrapper>
             }
             <TileContent>
-                <ActiveTitle to={titleUrl} >
-                    <Title
-                        oversize={oversize}
-                        slide={slide}
-                    >
-                        {title}
-                    </Title>
-                </ActiveTitle>
+                <Title
+                    oversize={oversize}
+                    person={person}
+                >
+                    {title}
+                </Title>
                 {subtitle &&
                     <SubTitle
                         oversize={oversize}
-                        slide={slide}
+                        person={person}
                     >
                         {subtitle}
                     </SubTitle>
                 }
-                {countries &&
+                {countries && countries.length > 0 &&
                     <Details>
                         <DetailTitle>Production: </DetailTitle>
                         <DetailContent>
@@ -97,13 +108,13 @@ const Tile = ({
                 {releaseDate &&
                     <Details>
                         <DetailTitle>Release date: </DetailTitle>
-                        <DetailContent>{releaseDate}</DetailContent>
+                        <DetailContent>{convertDate(releaseDate)}</DetailContent>
                     </Details>
                 }
                 {birthday &&
                     <Details>
                         <DetailTitle>Date of birth: </DetailTitle>
-                        <DetailContent>{birthday}</DetailContent>
+                        <DetailContent>{convertDate(birthday)}</DetailContent>
                     </Details>
                 }
                 {birthPlace &&
@@ -132,7 +143,7 @@ const Tile = ({
                         ))}
                     </Tags>
                 }
-                {!slide && (votes === 0 ?
+                {!person && (votes === 0 ?
                     <TileExtraContent>
                         <NoVotesText>No votes yet</NoVotesText>
                     </TileExtraContent>

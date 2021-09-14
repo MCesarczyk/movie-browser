@@ -9,21 +9,23 @@ import {
     selectImagesBaseURL,
     selectPosterSizes,
     selectProfileSizes,
+    selectState,
     setId,
 } from "../../../globalSlice";
 import {
-    fetchPersonCredits,
     fetchPersonDetails,
     selectPersonCast,
     selectPersonCrew,
     selectPersonDetails
 } from "../peopleSlice";
-const Section = React.lazy(() => import('../../../common/TilesSection'));
+import LoadingPage from "../../../common/LoadingPage";
+import ErrorPage from "../../../common/ErrorPage";
+const MoviesList = React.lazy(() => import('../../../common/MoviesList'));
 
 const PersonPage = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
-    const personId = id;
+    const personState = useSelector(selectState);
     const personDetails = useSelector(selectPersonDetails);
     const imgURL = useSelector(selectImagesBaseURL);
     const posterSizes = useSelector(selectPosterSizes);
@@ -34,7 +36,6 @@ const PersonPage = () => {
     useEffect(() => {
         dispatch(setId(id));
         dispatch(fetchPersonDetails());
-        dispatch(fetchPersonCredits());
     }, [dispatch, id]);
 
     useEffect(() => {
@@ -58,73 +59,87 @@ const PersonPage = () => {
         profileSizes[2]
     ];
 
-    const slideWidths = ["100%", "228px", "286px", "286px", "324px"];
+    const personTileWidths = ["100%", "228px", "286px", "286px", "324px"];
     const tileWidths = ["100%", "100%", "100%", "100%", "100%"];
 
     return (
         <>
-            <Wrapper>
-                <Tile
-                    oversize
-                    key={personId}
-                    movieId={personId}
-                    sizes={posterSizesArray}
-                    imageWidth="312px"
-                    widths={tileWidths}
-                    titleUrl={`/person/${personId}`}
-                    imageBaseUrl={imgURL}
-                    imagePath={personDetails.profile_path}
-                    title={personDetails.name}
-                    birthday={personDetails.birthday}
-                    birthPlace={personDetails.place_of_birth}
-                    overview={personDetails.biography}
+            {personState === "loading" &&
+                <LoadingPage
+                    message="Loading person details..."
                 />
-                <Suspense fallback={<LoadingCircle />}>
-                    {personCast && <Section
-                        title="Cast"
-                        body={personCast && personCast.map((person, index) => (
-                            <Tile
-                                key={personCast[index].credit_id}
-                                titleUrl={`/movie/${personCast[index].id}`}
-                                imageWidth="100%"
-                                widths={slideWidths}
-                                imageBaseUrl={imgURL}
-                                imagePath={personCast[index].poster_path}
-                                sizes={profileSizesArray}
-                                title={personCast[index].title}
-                                subtitle={`
+            }
+            {
+                personState === "error" &&
+                <ErrorPage />
+            }
+            {
+                personState === "success" && personDetails &&
+                <>
+                    <Wrapper>
+                        <Tile
+                            oversize="true"
+                            oversizepersontile="true"
+                            key={id}
+                            sizes={posterSizesArray}
+                            imageWidth="312px"
+                            widths={tileWidths}
+                            detailsUrl={`/person/${id}`}
+                            imageBaseUrl={imgURL}
+                            imagePath={personDetails.profile_path}
+                            title={personDetails.name}
+                            birthday={personDetails.birthday}
+                            birthPlace={personDetails.place_of_birth}
+                            overview={personDetails.biography}
+                        />
+                        <Suspense fallback={<LoadingCircle />}>
+                            {personCast && personCast.length > 0 && <MoviesList
+                                title={`Cast (${personCast.length})`}
+                                body={personCast && personCast.map((movie, index) => (
+                                    <Tile
+                                        key={`cast:${personCast[index].credit_id}`}
+                                        detailsUrl={`/movie/${personCast[index].id}`}
+                                        imageWidth="100%"
+                                        widths={personTileWidths}
+                                        imageBaseUrl={imgURL}
+                                        imagePath={personCast[index].poster_path}
+                                        sizes={profileSizesArray}
+                                        title={personCast[index].title}
+                                        subtitle={`
                                     ${personCast[index].character}
-                                    ${personCast && "(" + new Date(Date.parse(personCast[index].release_date)).getFullYear().toString() + ")"}
+                                    ${personCast[index].release_date && "(" + new Date(Date.parse(personCast[index].release_date)).getFullYear().toString() + ")"}
                                 `}
-                                genreIds={personCast[index].genre_ids}
-                                rating={personCast[index].vote_average}
-                                votes={personCast[index].vote_count}
-                            />
-                        ))}
-                    />}
-                    {personCrew && <Section
-                        title="Crew"
-                        body={personCrew && personCrew.map((person, index) => (
-                            <Tile
-                                key={personCrew[index].credit_id}
-                                titleUrl={`/movie/${personCrew[index].id}`}
-                                widths={slideWidths}
-                                imageBaseUrl={imgURL}
-                                imagePath={personCrew[index].poster_path}
-                                sizes={profileSizesArray}
-                                title={personCrew[index].title}
-                                subtitle={`
+                                        genreIds={personCast[index].genre_ids}
+                                        rating={personCast[index].vote_average}
+                                        votes={personCast[index].vote_count}
+                                    />
+                                ))}
+                            />}
+                            {personCrew && personCrew.length > 0 && <MoviesList
+                                title={`Crew (${personCrew.length})`}
+                                body={personCrew && personCrew.map((movie, index) => (
+                                    <Tile
+                                        key={`crew:${personCrew[index].credit_id}`}
+                                        detailsUrl={`/movie/${personCrew[index].id}`}
+                                        widths={personTileWidths}
+                                        imageBaseUrl={imgURL}
+                                        imagePath={personCrew[index].poster_path}
+                                        sizes={profileSizesArray}
+                                        title={personCrew[index].title}
+                                        subtitle={`
                                     ${personCrew[index].job}
                                     ${personCrew[index].release_date && "(" + new Date(Date.parse(personCrew[index].release_date)).getFullYear().toString() + ")"}
                                 `}
-                                genreIds={personCrew[index].genre_ids}
-                                rating={personCrew[index].vote_average}
-                                votes={personCrew[index].vote_count}
-                            />
-                        ))}
-                    />}
-                </Suspense>
-            </Wrapper>
+                                        genreIds={personCrew[index].genre_ids}
+                                        rating={personCrew[index].vote_average}
+                                        votes={personCrew[index].vote_count}
+                                    />
+                                ))}
+                            />}
+                        </Suspense>
+                    </Wrapper>
+                </>
+            }
         </>
     );
 };

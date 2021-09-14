@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useLocation } from "react-router-dom";
 import Wrapper from "../../../common/Wrapper";
-import TilesSection from "../../../common/TilesSection";
+import MoviesList from "../../../common/MoviesList";
 import Tile from "../../../common/Tile"
 import Pager from "../../../common/Pager";
 import LoadingPage from "../../../common/LoadingPage";
@@ -12,14 +12,15 @@ import {
     selectImagesBaseURL,
     selectPosterSizes,
     selectState,
+    selectTotalResults,
     setPage,
     setQuery,
 } from "../../../globalSlice";
 import {
     selectMoviesList,
-    fetchMovieGenres,
     fetchMoviesList
 } from "../moviesSlice";
+import { NoResults } from "../../../common/NoResults";
 
 const MoviesPage = () => {
     const dispatch = useDispatch();
@@ -36,7 +37,6 @@ const MoviesPage = () => {
     useEffect(() => {
         dispatch(setPage(page));
         dispatch(fetchMoviesList());
-        dispatch(fetchMovieGenres());
         // eslint-disable-next-line
     }, [page]);
 
@@ -49,6 +49,7 @@ const MoviesPage = () => {
     const moviesState = useSelector(selectState);
     const imgURL = useSelector(selectImagesBaseURL);
     const posterSizes = useSelector(selectPosterSizes);
+    const totalResults = useSelector(selectTotalResults);
 
     const posterSizesArray = [
         posterSizes[1],
@@ -65,25 +66,24 @@ const MoviesPage = () => {
             <Wrapper>
                 {moviesState === "loading" &&
                     <LoadingPage
-                        message="Loading movies list..."
+                        message={query ? `Search results for "${query}"` : "Loading movies list..."}
                     />
                 }
                 {moviesState === "error" &&
-                    <ErrorPage />
+                    (query ? <NoResults /> : <ErrorPage />)
                 }
                 {moviesState === "success" && movieList &&
-                    <TilesSection
-                        title="Popular movies"
+                    <MoviesList
+                        title={query ? `Search results for "${query}" (${totalResults})` : "Popular movies"}
                         body={movieList.map((movie, index) => (
                             <Tile
                                 key={movieList[index].id}
-                                movieId={movieList[index].id}
                                 sizes={posterSizesArray}
                                 widths={tileWidths}
                                 imageBaseUrl={imgURL}
                                 imagePath={movieList[index].poster_path}
                                 imageWidth="100%"
-                                titleUrl={`/movie/${movieList[index].id}`}
+                                detailsUrl={`/movie/${movieList[index].id}`}
                                 title={movieList[index].title}
                                 subtitle={new Date(Date.parse(movieList[index].release_date)).getFullYear()}
                                 genreIds={movieList[index].genre_ids}

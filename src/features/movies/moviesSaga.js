@@ -6,12 +6,11 @@ import {
     selectQuery,
     setError,
     setState,
-    setTotalPages
+    setTotalPages,
+    setTotalResults
 } from "../../globalSlice";
 import {
-    fetchMovieCredits,
     fetchMovieDetails,
-    fetchMovieGenres,
     fetchMoviesList,
     setMovieCredits,
     setMovieDetails,
@@ -32,7 +31,9 @@ function* fetchMoviesListHandler() {
         );
         const movies = yield call(getDataFromApi, apiURL);
         yield put(setMoviesList(movies.results));
+        yield put(setTotalResults(movies.total_results));
         yield put(setTotalPages(movies.total_pages));
+        yield call(fetchMovieGenresHandler);
         yield delay(500);
         yield put(setState("success"));
     } catch (error) {
@@ -52,10 +53,14 @@ function* fetchMovieGenresHandler() {
 
 function* fetchMovieDetailsHandler() {
     try {
+        yield put(setState("loading"));
         const id = yield select(selectId);
         const apiURL = `https://api.themoviedb.org/3/movie/${id}?api_key=768f7875782193f5e4797762314da0b7&language=en-US`;
         const details = yield call(getDataFromApi, apiURL);
         yield put(setMovieDetails(details));
+        yield call(fetchMovieCreditsHandler);
+        yield delay(500);
+        yield put(setState("success"));
     } catch (error) {
         yield call(setError(error));
     }
@@ -74,7 +79,5 @@ function* fetchMovieCreditsHandler() {
 
 export function* moviesSaga() {
     yield takeLatest(fetchMoviesList.type, fetchMoviesListHandler);
-    yield takeLatest(fetchMovieGenres.type, fetchMovieGenresHandler);
     yield takeLatest(fetchMovieDetails.type, fetchMovieDetailsHandler);
-    yield takeLatest(fetchMovieCredits.type, fetchMovieCreditsHandler);
 };
