@@ -13,6 +13,8 @@ This is group project created under partonate of the programming school [Youcode
 _____________________________
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+![application](public/Animation.gif)
+
 Used technologies:
 - HTML
 - CSS
