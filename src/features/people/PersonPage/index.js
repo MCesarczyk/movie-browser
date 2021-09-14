@@ -79,7 +79,7 @@ const PersonPage = () => {
                     <Wrapper>
                         <Tile
                             oversize="true"
-                            oversizePersonTile="true"
+                            oversizepersontile="true"
                             key={id}
                             sizes={posterSizesArray}
                             imageWidth="312px"

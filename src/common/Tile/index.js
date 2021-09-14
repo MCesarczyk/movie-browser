@@ -27,14 +27,14 @@ import {
 const Tile = ({
     mobile,
     oversize,
-    oversizeperson,
+    person,
+    oversizepersontile,
     detailsUrl,
     imageBaseUrl,
     widths,
     imageWidth,
     sizes,
     imagePath,
-    person,
     title,
     subtitle,
     countries,
@@ -73,7 +73,7 @@ const Tile = ({
                     alt="image"
                 />
                 :
-                (person || oversizeperson) ?
+                (person || oversizepersontile) ?
                     <PlaceholderImageWrapper width={imageWidth} mobile={mobile} >
                         <NoPictureImage />
                     </PlaceholderImageWrapper>
