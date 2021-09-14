@@ -10,9 +10,30 @@ This is group project created under partonate of the programming school [Youcode
 ## Demo:
 [Movie Browser](https://mcesarczyk.github.io/movie-browser/)
 
+This is application for searching popular movies and people. You can find a lot of information about movies for example: title, release date, genres, rating, number of votes, description of the movie.
+There is some information about popular people involved in film production: their name, date and place of birth and their biography.
+
+![application](public/Animation.gif)
+
+Used technologies:
+- HTML
+- CSS
+- REACT JS
+- FLEX
+- GRID
+- IMMUTABILITY
+- CREATE-REACT-APP
+- FETCH API
+- CUSTOM HOOKS
+- MEDIA QUERIES
+- STYLED-COMPONENTS
+- REDUX
+- REDUX SAGA
+- REDUX ROUTER
+- REDUX TOOLKIT
+
 _____________________________
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Available Scripts
 
 In the project directory, you can run:
