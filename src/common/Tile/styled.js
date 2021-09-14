@@ -44,7 +44,7 @@ export const StyledTile = styled(Link)`
         gap: 16px;
     }    
 
-    &:hover {
+    /* &:hover {
         transform: scale(1.025);
         transition: ease-out 0.5s;
         box-shadow: 0px 0px 6px 0px ${({ theme }) => theme.color.darkGrey};
@@ -52,7 +52,7 @@ export const StyledTile = styled(Link)`
         
     &:active {
         transform: scale(1);
-    }
+    } */
 
     ${({ person }) => person && css`
         width: ${props => props.widths[4]};
@@ -98,11 +98,11 @@ export const StyledTile = styled(Link)`
                 "desc desc";
         }    
 
-        &:hover {
+        /* &:hover {
             transform: none;
             box-shadow: 0px 4px 12px rgba(186, 199, 213, 0.5);
             cursor: default;
-        }
+        } */
     `}
 `;
 
@@ -110,6 +110,10 @@ const baseUrl = props => props.baseUrl;
 const path = props => props.path;
 const width = props => props.width;
 const mobile = props => props.mobile;
+
+export const ImageWrapper = styled.div`
+    overflow: hidden;
+`;
 
 export const Image = styled.img`
     content: url("${baseUrl}${props => props.sizes[4]}${path}");
@@ -119,7 +123,8 @@ export const Image = styled.img`
     align-self: flex-start;
     aspect-ratio: 2/3;
     border-radius: 5px;
-    transition: width 1s ease-in-out, left 1.5s ease-in-out;
+    transition: transform .5s ease;
+    //transition: width 1s ease-in-out, left 1.5s ease-in-out;
 
     @media (max-width: ${mediumScreen}) {
         content: url("${baseUrl}${props => props.sizes[3]}${path}");
@@ -142,6 +147,11 @@ export const Image = styled.img`
     ${({ oversize }) => oversize && css`
         width: ${width};
     `}
+
+    &:hover {
+        transform: scale(1.1);
+    }
+
 `;
 
 export const PlaceholderImageWrapper = styled.div`
@@ -442,3 +452,6 @@ export const NoVotesText = styled.p`
         font-size: 11px;
     }
 `;
+
+
+

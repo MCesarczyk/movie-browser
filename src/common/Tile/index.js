@@ -5,6 +5,7 @@ import { ReactComponent as NoPosterImage } from "./noPoster.svg";
 import RatingStar from "./RatingStar/ratingStar.svg";
 import {
     StyledTile,
+    ImageWrapper,
     Image,
     PlaceholderImageWrapper,
     Title,
@@ -62,16 +63,18 @@ const Tile = ({
             person={person}
         >
             {imagePath ?
-                <Image
-                    oversize={oversize}
-                    person={person}
-                    width={imageWidth}
-                    mobile={mobile}
-                    sizes={sizes}
-                    baseUrl={imageBaseUrl}
-                    path={imagePath}
-                    alt="image"
-                />
+                <ImageWrapper>
+                    <Image
+                        oversize={oversize}
+                        person={person}
+                        width={imageWidth}
+                        mobile={mobile}
+                        sizes={sizes}
+                        baseUrl={imageBaseUrl}
+                        path={imagePath}
+                        alt="image"
+                    />
+                </ImageWrapper>
                 :
                 (person || oversizepersontile) ?
                     <PlaceholderImageWrapper width={imageWidth} mobile={mobile} >
