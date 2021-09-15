@@ -32,32 +32,15 @@ export const SectionTitle = styled.h2`
     }
 `;
 
-const maxWidth = ({ theme }) => theme.dimension.maxWidth;
-
 export const SectionMiddleContainer = styled.div`
-    width: ${maxWidth};
+    width: 100%;
     margin: 0 auto;
-
-    @media (max-width: ${mediumScreen}) {
-        width: 1012px;
-    }
-
-    @media (max-width: ${smallScreen}) {
-        width: 800px;
-    }
-
-    @media (max-width: ${mobileMax}) {
-        width: 520px;
-    }
-
-    @media (max-width: ${oldIphone}) {
-        width:320px;
-    }
 `;
 
 export const SectionListContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 24px;
 
     @media (max-width: ${mediumScreen}) {
