@@ -130,8 +130,6 @@ export const StyledTile = styled(Link)`
     `}
 `;
 
-
-
 export const ImageWrapper = styled.div`
     display: block;
     overflow: hidden;
