@@ -1,6 +1,9 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
+const mediumScreen = ({ theme }) => theme.breakpoint.mediumScreen;
+const mobileMax = ({ theme }) => theme.breakpoint.mobileMax;
+
 export const NavigationContainer = styled.div`
   color: ${({ theme }) => theme.color.white};
   background: ${({ theme }) => theme.color.black};
@@ -17,21 +20,28 @@ export const NavigationWrapper = styled.nav`
   margin: 0 auto;
   gap: 80px;
 
-  @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
-    justify-content: center;
+  @media(max-width: ${mediumScreen}) {
     flex-direction: column;
-    width: 100%;
     gap: 24px;
+  }  
+
+  @media(max-width: ${mobileMax}) {
+    justify-content: center;
+    width: 100%;
   }  
 `;
 
 export const HeaderWrapper = styled.div`
   display: flex;
   align-items: center;
-  /* justify-content: flex-start; */
+  justify-content: flex-start;
   width: 100%;
   flex-wrap: nowrap;
   gap: 80px;
+
+  @media(max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
+    gap: 48px;
+  }
 
   @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
     gap: 20px;
@@ -47,7 +57,6 @@ export const List = styled.ul`
 `;
 
 export const Item = styled.li`
-    /* margin: 20px; */
     text-transform: uppercase;
     text-decoration: none;
     

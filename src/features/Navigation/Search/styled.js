@@ -6,7 +6,6 @@ export const SearchWrapper = styled.div`
   display: flex;
   flex-shrink: 1;
   max-height: 48px;
-  flex-basis: 432px;
   border: 1px solid;
   margin: 0px;
   width: 100%;
