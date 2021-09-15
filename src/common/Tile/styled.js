@@ -7,8 +7,57 @@ const mobileMax = ({ theme }) => theme.breakpoint.mobileMax;
 const oldIphone = ({ theme }) => theme.breakpoint.oldIphone;
 const mobileMin = ({ theme }) => theme.breakpoint.mobileMin;
 
+const baseUrl = props => props.baseUrl;
+const path = props => props.path;
+const width = props => props.width;
+const mobile = props => props.mobile;
+
+export const Image = styled.img`
+    content: url("${baseUrl}${props => props.sizes[4]}${path}");
+    width: 100%;
+    grid-area: image;
+    display: block;
+
+    border-radius: 5px;
+    transition: transform .5s ease;
+    //transition: width 1s ease-in-out, left 1.5s ease-in-out;
+
+    @media (max-width: ${mediumScreen}) {
+        content: url("${baseUrl}${props => props.sizes[3]}${path}");
+    }
+   
+    @media (max-width: ${smallScreen}) {
+        content: url("${baseUrl}${props => props.sizes[2]}${path}");
+    }
+   
+    @media (max-width: ${mobileMax}) {
+        content: url("${baseUrl}${props => props.sizes[1]}${path}");
+        width: ${mobile};
+    }
+  
+    @media (max-width: ${oldIphone}) {
+        content: url("${baseUrl}${props => props.sizes[0]}${path}");
+        width: 114px;
+    }
+
+    ${({ oversize }) => oversize && css`
+        width: ${width};
+    `}
+
+    // &:hover {StyledTile} {
+    //  transform: {({ oversize }) => oversize ? "scale(1.0)" : "scale(1.1)"};
+    // */
+
+
+    //&:hover {
+    //    transform: ${({ oversize }) => oversize ? "scale(1.0)" : "scale(1.1)"};
+    //}
+
+`;
+
 export const StyledTile = styled(Link)`
     text-decoration: none;
+    cursor: ${({ oversize }) => oversize ? "auto" : "pointer"};
     color: currentColor;
     width: ${props => props.widths[4]};
     background-color: ${({ theme }) => theme.color.white};
@@ -43,6 +92,10 @@ export const StyledTile = styled(Link)`
             "image desc";
         gap: 16px;
     }    
+
+    &:hover ${Image} {
+      transform: ${({ oversize }) => oversize ? "scale(1.0)" : "scale(1.1)"};
+    }
 
     /* &:hover {
         transform: scale(1.025);
@@ -106,52 +159,14 @@ export const StyledTile = styled(Link)`
     `}
 `;
 
-const baseUrl = props => props.baseUrl;
-const path = props => props.path;
-const width = props => props.width;
-const mobile = props => props.mobile;
+
 
 export const ImageWrapper = styled.div`
-    overflow: hidden;
-`;
-
-export const Image = styled.img`
-    content: url("${baseUrl}${props => props.sizes[4]}${path}");
-    width: 100%;
-    grid-area: image;
     display: block;
-    align-self: flex-start;
+    overflow: hidden;
+ //   align-self: flex-start;
     aspect-ratio: 2/3;
-    border-radius: 5px;
-    transition: transform .5s ease;
-    //transition: width 1s ease-in-out, left 1.5s ease-in-out;
-
-    @media (max-width: ${mediumScreen}) {
-        content: url("${baseUrl}${props => props.sizes[3]}${path}");
-    }
-   
-    @media (max-width: ${smallScreen}) {
-        content: url("${baseUrl}${props => props.sizes[2]}${path}");
-    }
-   
-    @media (max-width: ${mobileMax}) {
-        content: url("${baseUrl}${props => props.sizes[1]}${path}");
-        width: ${mobile};
-    }
-  
-    @media (max-width: ${oldIphone}) {
-        content: url("${baseUrl}${props => props.sizes[0]}${path}");
-        width: 114px;
-    }
-
-    ${({ oversize }) => oversize && css`
-        width: ${width};
-    `}
-
-    &:hover {
-        transform: scale(1.1);
-    }
-
+    grid-area: image;
 `;
 
 export const PlaceholderImageWrapper = styled.div`
