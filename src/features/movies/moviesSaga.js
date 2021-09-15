@@ -18,6 +18,11 @@ import {
     setMoviesList
 } from "./moviesSlice";
 
+const apiBaseUrl = "https://api.themoviedb.org/3/";
+const apiKey = "?api_key=768f7875782193f5e4797762314da0b7";
+const apiLang = "&language=en-US";
+const apiAdult = "&include_adult=false";
+
 function* fetchMoviesListHandler() {
     try {
         const page = yield select(selectPage);
@@ -25,9 +30,9 @@ function* fetchMoviesListHandler() {
         yield put(setState("loading"));
         yield delay(query ? 500 : 0);
         const apiURL = (query ?
-            `https://api.themoviedb.org/3/search/movie?api_key=768f7875782193f5e4797762314da0b7&language=en-US&query=${query}&page=${page}&include_adult=false`
+            `${apiBaseUrl}search/movie${apiKey}${apiLang}&query=${query}&page=${page}${apiAdult}`
             :
-            `https://api.themoviedb.org/3/movie/popular?api_key=768f7875782193f5e4797762314da0b7&page=${page}&language=en-US`
+            `${apiBaseUrl}movie/popular${apiKey}&page=${page}${apiLang}`
         );
         const movies = yield call(getDataFromApi, apiURL);
         yield put(setMoviesList(movies.results));
@@ -43,7 +48,7 @@ function* fetchMoviesListHandler() {
 
 function* fetchMovieGenresHandler() {
     try {
-        const apiURL = "https://api.themoviedb.org/3/genre/movie/list?api_key=768f7875782193f5e4797762314da0b7&language=en-US";
+        const apiURL = `${apiBaseUrl}genre/movie/list${apiKey}${apiLang}`;
         const genres = yield call(getDataFromApi, apiURL);
         yield put(setMovieGenres(genres));
     } catch (error) {
@@ -55,7 +60,7 @@ function* fetchMovieDetailsHandler() {
     try {
         yield put(setState("loading"));
         const id = yield select(selectId);
-        const apiURL = `https://api.themoviedb.org/3/movie/${id}?api_key=768f7875782193f5e4797762314da0b7&language=en-US`;
+        const apiURL = `${apiBaseUrl}movie/${id}${apiKey}${apiLang}`;
         const details = yield call(getDataFromApi, apiURL);
         yield put(setMovieDetails(details));
         yield call(fetchMovieCreditsHandler);
@@ -69,7 +74,7 @@ function* fetchMovieDetailsHandler() {
 function* fetchMovieCreditsHandler() {
     try {
         const id = yield select(selectId);
-        const apiURL = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=768f7875782193f5e4797762314da0b7&language=en-US`;
+        const apiURL = `${apiBaseUrl}movie/${id}/credits${apiKey}${apiLang}`;
         const credits = yield call(getDataFromApi, apiURL);
         yield put(setMovieCredits(credits));
     } catch (error) {
