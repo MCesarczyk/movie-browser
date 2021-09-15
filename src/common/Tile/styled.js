@@ -15,12 +15,9 @@ const mobile = props => props.mobile;
 export const Image = styled.img`
     content: url("${baseUrl}${props => props.sizes[4]}${path}");
     width: 100%;
-    grid-area: image;
     display: block;
-
     border-radius: 5px;
     transition: transform .5s ease;
-    //transition: width 1s ease-in-out, left 1.5s ease-in-out;
 
     @media (max-width: ${mediumScreen}) {
         content: url("${baseUrl}${props => props.sizes[3]}${path}");
@@ -43,16 +40,6 @@ export const Image = styled.img`
     ${({ oversize }) => oversize && css`
         width: ${width};
     `}
-
-    // &:hover {StyledTile} {
-    //  transform: {({ oversize }) => oversize ? "scale(1.0)" : "scale(1.1)"};
-    // */
-
-
-    //&:hover {
-    //    transform: ${({ oversize }) => oversize ? "scale(1.0)" : "scale(1.1)"};
-    //}
-
 `;
 
 export const StyledTile = styled(Link)`
@@ -97,16 +84,6 @@ export const StyledTile = styled(Link)`
       transform: ${({ oversize }) => oversize ? "scale(1.0)" : "scale(1.1)"};
     }
 
-    /* &:hover {
-        transform: scale(1.025);
-        transition: ease-out 0.5s;
-        box-shadow: 0px 0px 6px 0px ${({ theme }) => theme.color.darkGrey};
-    }
-        
-    &:active {
-        transform: scale(1);
-    } */
-
     ${({ person }) => person && css`
         width: ${props => props.widths[4]};
         grid-template-areas: 
@@ -150,12 +127,6 @@ export const StyledTile = styled(Link)`
                 "image content"
                 "desc desc";
         }    
-
-        /* &:hover {
-            transform: none;
-            box-shadow: 0px 4px 12px rgba(186, 199, 213, 0.5);
-            cursor: default;
-        } */
     `}
 `;
 
@@ -164,7 +135,6 @@ export const StyledTile = styled(Link)`
 export const ImageWrapper = styled.div`
     display: block;
     overflow: hidden;
- //   align-self: flex-start;
     aspect-ratio: 2/3;
     grid-area: image;
 `;
@@ -467,6 +437,3 @@ export const NoVotesText = styled.p`
         font-size: 11px;
     }
 `;
-
-
-
