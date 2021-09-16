@@ -5,6 +5,7 @@ export const Content = styled.h2`
     font-size: 36px;
     line-height: 1.2;
     margin-top: 64px;
+    padding: 0 16px;
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
         font-size: 30px;

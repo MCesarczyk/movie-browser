@@ -26,7 +26,7 @@ export const StyledLink = styled(Link)`
     `}
 
     @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
-        padding: 0px 10px;
+        padding: 8px 12px;
         margin: 0px 4px;
     } 
 `;
