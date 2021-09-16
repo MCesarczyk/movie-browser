@@ -11,7 +11,7 @@ import { selectMoviesList } from "../../features/movies/moviesSlice";
 import { selectState } from "../../globalSlice";
 import searchQueryParamName from "../../features/Navigation/Search/searchQueryParamName";
 
-const CorePage = ({ body }) => {
+const CorePage = ({ message, body }) => {
     const location = useLocation();
     const movieList = useSelector(selectMoviesList);
     const moviesState = useSelector(selectState);
@@ -21,7 +21,7 @@ const CorePage = ({ body }) => {
         <Wrapper>
             {moviesState === "loading" &&
                 <InfoPage
-                    title={query ? `Search results for "${query}"` : "Loading movies list..."}
+                    title={query ? `Search results for "${query}"` : message}
                     body={<LoadingCircle />}
                 />
             }

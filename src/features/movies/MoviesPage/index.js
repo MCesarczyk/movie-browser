@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams, useLocation } from "react-router-dom";
 import Section from "../../../common/Section";
 import Tile from "../../../common/Tile"
+import CorePage from "../../../core/CorePage";
 import searchQueryParamName from "../../Navigation/Search/searchQueryParamName";
 import {
     selectImagesBaseURL,
@@ -15,7 +16,6 @@ import {
     selectMoviesList,
     fetchMoviesList
 } from "../moviesSlice";
-import CorePage from "../../../core/CorePage";
 
 const MoviesPage = () => {
     const dispatch = useDispatch();
@@ -57,6 +57,7 @@ const MoviesPage = () => {
 
     return (
         <CorePage
+            message="Loading movies list..."
             body={
                 <Section
                     title={query ? `Search results for "${query}" (${totalResults})` : "Popular movies"}
