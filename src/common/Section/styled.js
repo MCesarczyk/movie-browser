@@ -32,7 +32,7 @@ export const SectionTitle = styled.h2`
     }
 `;
 
-export const SectionListContainer = styled.div`
+export const SectionInnerContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
