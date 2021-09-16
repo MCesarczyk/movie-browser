@@ -1,20 +1,12 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useLocation } from "react-router-dom";
-import { Wrapper } from "../../../common/Wrapper";
 import Section from "../../../common/Section";
 import Tile from "../../../common/Tile"
-import Pager from "../../../common/Pager";
-import InfoPage from "../../../common/InfoPage";
-import ErrorPage from "../../../common/ErrorPage";
-import LoadingCircle from "../../../common/InfoPage/LoadingCircle";
-import { NoResultsLogo } from "../../../common/InfoPage/NoResultsLogo";
-import noResults from "../../../common/InfoPage/NoResultsLogo/noResults.svg";
 import searchQueryParamName from "../../Navigation/Search/searchQueryParamName";
 import {
     selectImagesBaseURL,
     selectPosterSizes,
-    selectState,
     selectTotalResults,
     setPage,
     setQuery,
@@ -23,6 +15,7 @@ import {
     selectMoviesList,
     fetchMoviesList
 } from "../moviesSlice";
+import CorePage from "../../../core/CorePage";
 
 const MoviesPage = () => {
     const dispatch = useDispatch();
@@ -48,7 +41,6 @@ const MoviesPage = () => {
     }, []);
 
     const movieList = useSelector(selectMoviesList);
-    const moviesState = useSelector(selectState);
     const imgURL = useSelector(selectImagesBaseURL);
     const posterSizes = useSelector(selectPosterSizes);
     const totalResults = useSelector(selectTotalResults);
@@ -65,27 +57,11 @@ const MoviesPage = () => {
 
     return (
         <>
-            <Wrapper>
-                {moviesState === "loading" &&
-                    <InfoPage
-                        title={query ? `Search results for "${query}"` : "Loading movies list..."}
-                        extraContent={<LoadingCircle />}
-                    />
-                }
-                {moviesState === "error" &&
-                    (query ?
-                        <InfoPage
-                            title={"Sorry, the page not found..."}
-                            extraContent={<NoResultsLogo src={noResults} alt="" />}
-                        />
-                        :
-                        <ErrorPage />
-                    )
-                }
-                {moviesState === "success" && movieList &&
+            <CorePage
+                body={
                     <Section
                         title={query ? `Search results for "${query}" (${totalResults})` : "Popular movies"}
-                        body={movieList.map((movie, index) => (
+                        itemsList={movieList.map((movie, index) => (
                             <Tile
                                 key={movieList[index].id}
                                 sizes={posterSizesArray}
@@ -103,8 +79,7 @@ const MoviesPage = () => {
                         ))}
                     />
                 }
-                {moviesState === "success" && <Pager property={"/movies"} />}
-            </Wrapper>
+            />
         </>
     )
 };
