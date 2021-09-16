@@ -2,6 +2,7 @@ import React, { Suspense, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Wrapper } from "../../../common/Wrapper";
+import CorePage from "../../../core/CorePage";
 import Tile from "../../../common/Tile"
 import Backdrop from "./Backdrop";
 import LoadingCircle from "../../../common/InfoPage/LoadingCircle";
@@ -10,7 +11,6 @@ import {
     selectImagesBaseURL,
     selectPosterSizes,
     selectProfileSizes,
-    selectState,
     setId,
 } from "../../../globalSlice";
 import {
@@ -20,14 +20,11 @@ import {
     selectGenresList,
     fetchMovieDetails,
 } from "../moviesSlice";
-import InfoPage from "../../../common/InfoPage";
-import ErrorPage from "../../../common/ErrorPage";
 const Section = React.lazy(() => import('../../../common/Section'));
 
 const MoviePage = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
-    const movieState = useSelector(selectState);
     const movieDetails = useSelector(selectMovieDetails);
     const imgURL = useSelector(selectImagesBaseURL);
     const posterSizes = useSelector(selectPosterSizes);
@@ -75,27 +72,21 @@ const MoviePage = () => {
     const tileWidths = ["100%", "100%", "100%", "100%", "100%"];
 
     return (
-        <>
-            {movieState === "loading" &&
-                <InfoPage
-                    title="Loading movie details..."
-                />
-            }
-            {movieState === "error" &&
-                <ErrorPage />
-            }
-            {movieState === "success" && movieDetails &&
+        <CorePage
+            message="Loading movie details..."
+            body={
                 <>
-                    {movieDetails.backdrop_path !== null && <Backdrop
-                        imageBaseUrl={imgURL}
-                        imagePath={movieDetails.backdrop_path}
-                        sizes={backdropSizesArray}
-                        title={movieDetails.original_title}
-                        rating={movieDetails.vote_average}
-                        votes={movieDetails.vote_count}
-                    />
+                    {movieDetails.backdrop_path !== null &&
+                        <Backdrop
+                            imageBaseUrl={imgURL}
+                            imagePath={movieDetails.backdrop_path}
+                            sizes={backdropSizesArray}
+                            title={movieDetails.original_title}
+                            rating={movieDetails.vote_average}
+                            votes={movieDetails.vote_count}
+                        />
                     }
-                    <Wrapper>
+                    < Wrapper >
                         <Tile
                             oversize="true"
                             imageWidth="312px"
@@ -120,43 +111,49 @@ const MoviePage = () => {
                             overview={movieDetails.overview}
                         />
                         <Suspense fallback={<LoadingCircle />}>
-                            {movieCast && movieCast.length > 0 && <Section
-                                title="Cast"
-                                itemsList={movieCast && movieCast.map((person, index) => (
-                                    <Tile
-                                        person="true"
-                                        widths={personTileWidths}
-                                        key={movieCast[index].credit_id}
-                                        sizes={profileSizesArray}
-                                        imageBaseUrl={imgURL}
-                                        imagePath={movieCast[index].profile_path}
-                                        detailsUrl={`/person/${movieCast[index].id}`}
-                                        title={movieCast[index].name}
-                                        subtitle={movieCast[index].character}
-                                    />
-                                ))}
-                            />}
-                            {movieCrew && movieCrew.length > 0 && <Section
-                                title="Crew"
-                                itemsList={movieCrew && movieCrew.map((person, index) => (
-                                    <Tile
-                                        person="true"
-                                        widths={personTileWidths}
-                                        key={movieCrew[index].credit_id}
-                                        sizes={profileSizesArray}
-                                        detailsUrl={`/person/${movieCrew[index].id}`}
-                                        imageBaseUrl={imgURL}
-                                        imagePath={movieCrew[index].profile_path}
-                                        title={movieCrew[index].name}
-                                        subtitle={movieCrew[index].job}
-                                    />
-                                ))}
-                            />}
+                            {movieCast && movieCast.length > 0 &&
+                                <Section
+                                    title="Cast"
+                                    itemsList={movieCast && movieCast.map((person, index) => (
+                                        <Tile
+                                            person="true"
+                                            widths={personTileWidths}
+                                            key={movieCast[index].credit_id}
+                                            sizes={profileSizesArray}
+                                            imageBaseUrl={imgURL}
+                                            imagePath={movieCast[index].profile_path}
+                                            detailsUrl={`/person/${movieCast[index].id}`}
+                                            title={movieCast[index].name}
+                                            subtitle={movieCast[index].character}
+                                        />
+                                    ))
+                                    }
+                                />
+                            }
+                            {movieCrew && movieCrew.length > 0 &&
+                                <Section
+                                    title="Crew"
+                                    itemsList={movieCrew && movieCrew.map((person, index) => (
+                                        <Tile
+                                            person="true"
+                                            widths={personTileWidths}
+                                            key={movieCrew[index].credit_id}
+                                            sizes={profileSizesArray}
+                                            detailsUrl={`/person/${movieCrew[index].id}`}
+                                            imageBaseUrl={imgURL}
+                                            imagePath={movieCrew[index].profile_path}
+                                            title={movieCrew[index].name}
+                                            subtitle={movieCrew[index].job}
+                                        />
+                                    ))
+                                    }
+                                />
+                            }
                         </Suspense>
-                    </Wrapper>
+                    </Wrapper >
                 </>
             }
-        </>
+        />
     );
 };
 
