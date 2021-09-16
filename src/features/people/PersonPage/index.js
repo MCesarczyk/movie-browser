@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Wrapper from "../../../common/Wrapper";
+import { Wrapper } from "../../../common/Wrapper";
 import Tile from "../../../common/Tile"
 import LoadingCircle from "../../../common/InfoPage/LoadingCircle";
 import {
@@ -66,7 +66,7 @@ const PersonPage = () => {
         <>
             {personState === "loading" &&
                 <InfoPage
-                    message="Loading person details..."
+                    title="Loading person details..."
                 />
             }
             {personState === "error" &&

@@ -1,13 +1,15 @@
-import { SectionInnerContainer, SectionTitle, SectionWrapper } from "./styled";
+import { Wrapper } from "../Wrapper";
+import { Header } from "../Header";
+import { SectionInnerContainer } from "./styled";
 
 const Section = ({ title, body }) => {
     return (
-        <SectionWrapper>
-            <SectionTitle>{title}</SectionTitle>
+        <Wrapper>
+            <Header>{title}</Header>
             <SectionInnerContainer>
                 {body}
             </SectionInnerContainer>
-        </SectionWrapper>
+        </Wrapper>
     )
 };
 

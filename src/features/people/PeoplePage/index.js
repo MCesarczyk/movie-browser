@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useParams } from "react-router";
-import Wrapper from "../../../common/Wrapper";
+import { Wrapper } from "../../../common/Wrapper";
 import Section from "../../../common/Section";
 import Tile from "../../../common/Tile"
 import Pager from "../../../common/Pager";
@@ -68,14 +68,14 @@ const PeoplePage = () => {
       <Wrapper>
         {peopleState === "loading" &&
           <InfoPage
-            message={query ? `Search results for "${query}"` : "Loading people list..."}
+            title={query ? `Search results for "${query}"` : "Loading people list..."}
             extraContent={<LoadingCircle />}
           />
         }
         {peopleState === "error" &&
           (query ?
             <InfoPage
-              message={"Sorry, the page not found..."}
+              title={"Sorry, the page not found..."}
               extraContent={<NoResultsLogo src={noResults} alt="" />}
             />
             :

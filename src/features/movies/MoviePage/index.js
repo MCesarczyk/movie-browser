@@ -1,7 +1,7 @@
 import React, { Suspense, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import Wrapper from "../../../common/Wrapper";
+import { Wrapper } from "../../../common/Wrapper";
 import Tile from "../../../common/Tile"
 import Backdrop from "./Backdrop";
 import LoadingCircle from "../../../common/InfoPage/LoadingCircle";
@@ -78,7 +78,7 @@ const MoviePage = () => {
         <>
             {movieState === "loading" &&
                 <InfoPage
-                    message="Loading movie details..."
+                    title="Loading movie details..."
                 />
             }
             {movieState === "error" &&

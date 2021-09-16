@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useLocation } from "react-router-dom";
-import Wrapper from "../../../common/Wrapper";
+import { Wrapper } from "../../../common/Wrapper";
 import Section from "../../../common/Section";
 import Tile from "../../../common/Tile"
 import Pager from "../../../common/Pager";
@@ -68,14 +68,14 @@ const MoviesPage = () => {
             <Wrapper>
                 {moviesState === "loading" &&
                     <InfoPage
-                        message={query ? `Search results for "${query}"` : "Loading movies list..."}
+                        title={query ? `Search results for "${query}"` : "Loading movies list..."}
                         extraContent={<LoadingCircle />}
                     />
                 }
                 {moviesState === "error" &&
                     (query ?
                         <InfoPage
-                            message={"Sorry, the page not found..."}
+                            title={"Sorry, the page not found..."}
                             extraContent={<NoResultsLogo src={noResults} alt="" />}
                         />
                         :
