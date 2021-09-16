@@ -74,14 +74,21 @@ export const StyledNavLink = styled(NavLink).attrs(() => ({
   color: ${({ theme }) => theme.color.white};
   font-size: 14px;
   text-decoration: none;
+  border: 1px solid transparent;
   border-radius: 33px;
   padding: 12px;
   
-  &.${activeClassName} {
-    border: 1px solid ${({ theme }) => theme.color.white};
+  &:hover {
+    border: 1px solid ${({ theme }) => theme.color.stormGrey};
+  }
+
+  &:focus {
+    outline: none;
+    border: 1px solid ${({ theme }) => theme.color.stormGrey};
   }
   
-  &:hover {
+  &.${activeClassName} {
+    border: 1px solid ${({ theme }) => theme.color.white};
   }
 
   @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
