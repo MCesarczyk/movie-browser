@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import Wrapper from "../../../common/Wrapper";
 import Tile from "../../../common/Tile"
 import Backdrop from "./Backdrop";
-import LoadingCircle from "../../../common/LoadingPage/LoadingCircle";
+import LoadingCircle from "../../../common/InfoPage/LoadingCircle";
 import {
     selectBackdropSizes,
     selectImagesBaseURL,
@@ -20,7 +20,7 @@ import {
     selectGenresList,
     fetchMovieDetails,
 } from "../moviesSlice";
-import LoadingPage from "../../../common/LoadingPage";
+import InfoPage from "../../../common/InfoPage";
 import ErrorPage from "../../../common/ErrorPage";
 const Section = React.lazy(() => import('../../../common/Section'));
 
@@ -77,7 +77,7 @@ const MoviePage = () => {
     return (
         <>
             {movieState === "loading" &&
-                <LoadingPage
+                <InfoPage
                     message="Loading movie details..."
                 />
             }

@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Wrapper from "../../../common/Wrapper";
 import Tile from "../../../common/Tile"
-import LoadingCircle from "../../../common/LoadingPage/LoadingCircle";
+import LoadingCircle from "../../../common/InfoPage/LoadingCircle";
 import {
     selectImagesBaseURL,
     selectPosterSizes,
@@ -18,7 +18,7 @@ import {
     selectPersonCrew,
     selectPersonDetails
 } from "../peopleSlice";
-import LoadingPage from "../../../common/LoadingPage";
+import InfoPage from "../../../common/InfoPage";
 import ErrorPage from "../../../common/ErrorPage";
 const MoviesList = React.lazy(() => import('../../../common/Section'));
 
@@ -65,7 +65,7 @@ const PersonPage = () => {
     return (
         <>
             {personState === "loading" &&
-                <LoadingPage
+                <InfoPage
                     message="Loading person details..."
                 />
             }

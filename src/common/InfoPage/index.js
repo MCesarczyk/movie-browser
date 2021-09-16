@@ -1,14 +1,13 @@
 import Wrapper from "../Wrapper";
 import { Header } from "../Header";
-import LoadingCircle from "./LoadingCircle";
 
-const LoadingPage = ({ message }) => {
+const InfoPage = ({ message, extraContent }) => {
     return (
         <Wrapper>
             <Header>{message}</Header>
-            <LoadingCircle />
+            {extraContent}
         </Wrapper>
     );
 };
 
-export default LoadingPage;
+export default InfoPage;

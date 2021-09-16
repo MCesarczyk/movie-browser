@@ -5,8 +5,9 @@ import Wrapper from "../../../common/Wrapper";
 import Section from "../../../common/Section";
 import Tile from "../../../common/Tile"
 import Pager from "../../../common/Pager";
-import LoadingPage from "../../../common/LoadingPage";
+import InfoPage from "../../../common/InfoPage";
 import ErrorPage from "../../../common/ErrorPage";
+import LoadingCircle from "../../../common/InfoPage/LoadingCircle";
 import searchQueryParamName from "../../Navigation/Search/searchQueryParamName";
 import {
     selectImagesBaseURL,
@@ -20,7 +21,6 @@ import {
     selectMoviesList,
     fetchMoviesList
 } from "../moviesSlice";
-import { NoResults } from "../../../common/NoResults";
 
 const MoviesPage = () => {
     const dispatch = useDispatch();
@@ -65,12 +65,19 @@ const MoviesPage = () => {
         <>
             <Wrapper>
                 {moviesState === "loading" &&
-                    <LoadingPage
+                    <InfoPage
                         message={query ? `Search results for "${query}"` : "Loading movies list..."}
+                        extraContent={<LoadingCircle />}
                     />
                 }
                 {moviesState === "error" &&
-                    (query ? <NoResults /> : <ErrorPage />)
+                    (query ?
+                        <InfoPage
+                            message={"Sorry, the page not found..."}
+                        />
+                        :
+                        <ErrorPage />
+                    )
                 }
                 {moviesState === "success" && movieList &&
                     <Section
