@@ -35,9 +35,7 @@ const CorePage = ({ body }) => {
                     <ErrorPage />
                 )
             }
-            {moviesState === "success" && movieList &&
-                { body }
-            }
+            {moviesState === "success" && movieList && body}
             {moviesState === "success" &&
                 <Pager property={"/movies"} />
             }
