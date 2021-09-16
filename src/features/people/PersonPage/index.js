@@ -92,7 +92,7 @@ const PersonPage = () => {
                     <Suspense fallback={<LoadingCircle />}>
                         {personCast && personCast.length > 0 && <MoviesList
                             title={`Cast (${personCast.length})`}
-                            body={personCast && personCast.map((movie, index) => (
+                            itemsList={personCast && personCast.map((movie, index) => (
                                 <Tile
                                     key={`cast:${personCast[index].credit_id}`}
                                     detailsUrl={`/movie/${personCast[index].id}`}
@@ -114,7 +114,7 @@ const PersonPage = () => {
                         />}
                         {personCrew && personCrew.length > 0 && <MoviesList
                             title={`Crew (${personCrew.length})`}
-                            body={personCrew && personCrew.map((movie, index) => (
+                            itemsList={personCrew && personCrew.map((movie, index) => (
                                 <Tile
                                     key={`crew:${personCrew[index].credit_id}`}
                                     detailsUrl={`/movie/${personCrew[index].id}`}

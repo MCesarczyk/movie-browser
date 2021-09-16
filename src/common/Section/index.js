@@ -2,12 +2,12 @@ import { Wrapper } from "../Wrapper";
 import { Header } from "../Header";
 import { SectionInnerContainer } from "./styled";
 
-const Section = ({ title, body }) => {
+const Section = ({ title, itemsList }) => {
     return (
         <Wrapper>
             <Header>{title}</Header>
             <SectionInnerContainer>
-                {body}
+                {itemsList}
             </SectionInnerContainer>
         </Wrapper>
     )

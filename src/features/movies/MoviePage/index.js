@@ -122,7 +122,7 @@ const MoviePage = () => {
                         <Suspense fallback={<LoadingCircle />}>
                             {movieCast && movieCast.length > 0 && <Section
                                 title="Cast"
-                                body={movieCast && movieCast.map((person, index) => (
+                                itemsList={movieCast && movieCast.map((person, index) => (
                                     <Tile
                                         person="true"
                                         widths={personTileWidths}
@@ -138,7 +138,7 @@ const MoviePage = () => {
                             />}
                             {movieCrew && movieCrew.length > 0 && <Section
                                 title="Crew"
-                                body={movieCrew && movieCrew.map((person, index) => (
+                                itemsList={movieCrew && movieCrew.map((person, index) => (
                                     <Tile
                                         person="true"
                                         widths={personTileWidths}
