@@ -7,7 +7,7 @@ const oldIphone = ({ theme }) => theme.breakpoint.oldIphone;
 
 export const SectionWrapper = styled.div`
     width: 100%;
-    margin: 0 auto;
+    padding: 0 16px;
 `;
 
 export const SectionTitle = styled.h2`
@@ -30,11 +30,6 @@ export const SectionTitle = styled.h2`
         font-size: 18px;
         margin-top: 24px;
     }
-`;
-
-export const SectionMiddleContainer = styled.div`
-    width: 100%;
-    margin: 0 auto;
 `;
 
 export const SectionListContainer = styled.div`
