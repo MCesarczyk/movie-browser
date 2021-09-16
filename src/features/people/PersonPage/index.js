@@ -20,7 +20,7 @@ import {
 } from "../peopleSlice";
 import LoadingPage from "../../../common/LoadingPage";
 import ErrorPage from "../../../common/ErrorPage";
-const MoviesList = React.lazy(() => import('../../../common/MoviesList'));
+const MoviesList = React.lazy(() => import('../../../common/Section'));
 
 const PersonPage = () => {
     const dispatch = useDispatch();

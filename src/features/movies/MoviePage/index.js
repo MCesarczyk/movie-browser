@@ -22,7 +22,7 @@ import {
 } from "../moviesSlice";
 import LoadingPage from "../../../common/LoadingPage";
 import ErrorPage from "../../../common/ErrorPage";
-const PeopleList = React.lazy(() => import('../../../common/PeopleList'));
+const Section = React.lazy(() => import('../../../common/Section'));
 
 const MoviePage = () => {
     const dispatch = useDispatch();
@@ -122,7 +122,7 @@ const MoviePage = () => {
                             overview={movieDetails.overview}
                         />
                         <Suspense fallback={<LoadingCircle />}>
-                            {movieCast && movieCast.length > 0 && <PeopleList
+                            {movieCast && movieCast.length > 0 && <Section
                                 title="Cast"
                                 body={movieCast && movieCast.map((person, index) => (
                                     <Tile
@@ -138,7 +138,7 @@ const MoviePage = () => {
                                     />
                                 ))}
                             />}
-                            {movieCrew && movieCrew.length > 0 && <PeopleList
+                            {movieCrew && movieCrew.length > 0 && <Section
                                 title="Crew"
                                 body={movieCrew && movieCrew.map((person, index) => (
                                     <Tile
