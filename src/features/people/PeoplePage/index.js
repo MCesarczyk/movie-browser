@@ -1,19 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useParams } from "react-router";
-import { Wrapper } from "../../../common/Wrapper";
 import Section from "../../../common/Section";
+import CorePage from "../../../core/CorePage";
 import Tile from "../../../common/Tile"
-import Pager from "../../../common/Pager";
-import InfoPage from "../../../common/InfoPage";
-import ErrorPage from "../../../common/ErrorPage";
-import LoadingCircle from "../../../common/InfoPage/LoadingCircle";
-import { NoResultsLogo } from "../../../common/InfoPage/NoResultsLogo";
-import noResults from "../../../common/InfoPage/NoResultsLogo/noResults.svg";
 import searchQueryParamName from "../../Navigation/Search/searchQueryParamName";
 import {
   selectImagesBaseURL,
-  selectState,
   selectProfileSizes,
   setQuery,
   setPage,
@@ -48,7 +41,6 @@ const PeoplePage = () => {
   }, []);
 
   const peopleList = useSelector(selectPeopleList);
-  const peopleState = useSelector(selectState);
   const imgURL = useSelector(selectImagesBaseURL);
   const profileSizes = useSelector(selectProfileSizes);
   const totalResults = useSelector(selectTotalResults);
@@ -64,46 +56,28 @@ const PeoplePage = () => {
   const personTileWidths = ["136px", "160px", "184px", "184px", "208px"];
 
   return (
-    <>
-      <Wrapper>
-        {peopleState === "loading" &&
-          <InfoPage
-            title={query ? `Search results for "${query}"` : "Loading people list..."}
-            body={<LoadingCircle />}
-          />
-        }
-        {peopleState === "error" &&
-          (query ?
-            <InfoPage
-              title={"Sorry, the page not found..."}
-              body={<NoResultsLogo src={noResults} alt="" />}
+    <CorePage
+      message="Loading people list..."
+      body={
+        <Section
+          title={query ? `Search results for "${query}" (${totalResults})` : "Popular people"}
+          itemsList={peopleList.map((person, index) => (
+            <Tile
+              person="true"
+              key={peopleList[index].id}
+              personId={peopleList[index].id}
+              imageWidth="100%"
+              widths={personTileWidths}
+              sizes={profileSizesArray}
+              imageBaseUrl={imgURL}
+              imagePath={peopleList[index].profile_path}
+              detailsUrl={`/person/${peopleList[index].id}`}
+              title={peopleList[index].name}
             />
-            :
-            <ErrorPage />
-          )
-        }
-        {peopleState === "success" && peopleList &&
-          <Section
-            title={query ? `Search results for "${query}" (${totalResults})` : "Popular people"}
-            itemsList={peopleList.map((person, index) => (
-              <Tile
-                person="true"
-                key={peopleList[index].id}
-                personId={peopleList[index].id}
-                imageWidth="100%"
-                widths={personTileWidths}
-                sizes={profileSizesArray}
-                imageBaseUrl={imgURL}
-                imagePath={peopleList[index].profile_path}
-                detailsUrl={`/person/${peopleList[index].id}`}
-                title={peopleList[index].name}
-              />
-            ))}
-          />
-        }
-        {peopleState === "success" && <Pager property={"/people"} />}
-      </Wrapper>
-    </>
+          ))}
+        />
+      }
+    />
   )
 };
 
