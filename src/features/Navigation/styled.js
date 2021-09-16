@@ -54,12 +54,12 @@ export const List = styled.ul`
 `;
 
 export const Item = styled.li`
-    text-transform: uppercase;
-    text-decoration: none;
-    
-    @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
-      margin: 2px;
-    }
+  text-transform: uppercase;
+  text-decoration: none;
+  
+  @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
+    margin: 2px;
+  }
 `;
 
 const activeClassName = "active";
