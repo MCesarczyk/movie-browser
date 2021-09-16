@@ -1,4 +1,4 @@
-import { Wrapper, LoadingIcon } from "./images/styled";
+import { Wrapper, LoadingIcon } from "./styled";
 
 const LoadingCircle = () => (
     <Wrapper>
