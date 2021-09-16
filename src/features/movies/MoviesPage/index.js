@@ -8,6 +8,8 @@ import Pager from "../../../common/Pager";
 import InfoPage from "../../../common/InfoPage";
 import ErrorPage from "../../../common/ErrorPage";
 import LoadingCircle from "../../../common/InfoPage/LoadingCircle";
+import { NoResultsLogo } from "../../../common/InfoPage/NoResultsLogo";
+import noResults from "../../../common/InfoPage/NoResultsLogo/noResults.svg";
 import searchQueryParamName from "../../Navigation/Search/searchQueryParamName";
 import {
     selectImagesBaseURL,
@@ -74,6 +76,7 @@ const MoviesPage = () => {
                     (query ?
                         <InfoPage
                             message={"Sorry, the page not found..."}
+                            extraContent={<NoResultsLogo src={noResults} alt="" />}
                         />
                         :
                         <ErrorPage />
