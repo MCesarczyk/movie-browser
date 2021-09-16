@@ -18,7 +18,7 @@ import {
     selectPersonCrew,
     selectPersonDetails
 } from "../peopleSlice";
-const MoviesList = React.lazy(() => import('../../../common/Section'));
+const Section = React.lazy(() => import('../../../common/Section'));
 
 const PersonPage = () => {
     const dispatch = useDispatch();
@@ -82,7 +82,7 @@ const PersonPage = () => {
                         />
                         <Suspense fallback={<LoadingCircle />}>
                             {personCast && personCast.length > 0 &&
-                                <MoviesList
+                                <Section
                                     title={`Cast (${personCast.length})`}
                                     itemsList={personCast && personCast.map((movie, index) => (
                                         <Tile
@@ -107,7 +107,7 @@ const PersonPage = () => {
                                 />
                             }
                             {personCrew && personCrew.length > 0 &&
-                                <MoviesList
+                                <Section
                                     title={`Crew (${personCrew.length})`}
                                     itemsList={personCrew && personCrew.map((movie, index) => (
                                         <Tile
