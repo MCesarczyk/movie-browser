@@ -81,12 +81,10 @@ const MoviePage = () => {
                     message="Loading movie details..."
                 />
             }
-            {
-                movieState === "error" &&
+            {movieState === "error" &&
                 <ErrorPage />
             }
-            {
-                movieState === "success" && movieDetails &&
+            {movieState === "success" && movieDetails &&
                 <>
                     {movieDetails.backdrop_path !== null && <Backdrop
                         imageBaseUrl={imgURL}
