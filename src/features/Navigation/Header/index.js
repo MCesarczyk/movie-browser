@@ -5,7 +5,7 @@ export const Header = () => {
     return (
         <Wrapper>
             <Icon src={camera} alt="" />
-            <Title>Movies&nbsp;Browser</Title>
-        </Wrapper>  
+            <Title to="/" >Movies&nbsp;Browser</Title>
+        </Wrapper>
     );
 };

@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const mediumScreen = ({ theme }) => theme.breakpoint.mediumScreen;
@@ -34,12 +35,18 @@ export const Icon = styled.img`
     }
 `;
 
-export const Title = styled.h1`
+export const Title = styled(NavLink)`
+    text-decoration: none;
     font-size: 24px;
     font-weight: 500;
     color: ${({ theme }) => theme.color.white};
     line-height: 40px;
     flex-wrap: nowrap; 
+
+    &:focus {
+        outline: none;
+        color: ${({theme}) => theme.color.stormGrey};
+    }
     
     @media (max-width: ${mobileMax}) {
         font-size: 13px;
