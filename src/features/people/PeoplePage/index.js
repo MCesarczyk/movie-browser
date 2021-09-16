@@ -69,14 +69,14 @@ const PeoplePage = () => {
         {peopleState === "loading" &&
           <InfoPage
             title={query ? `Search results for "${query}"` : "Loading people list..."}
-            extraContent={<LoadingCircle />}
+            body={<LoadingCircle />}
           />
         }
         {peopleState === "error" &&
           (query ?
             <InfoPage
               title={"Sorry, the page not found..."}
-              extraContent={<NoResultsLogo src={noResults} alt="" />}
+              body={<NoResultsLogo src={noResults} alt="" />}
             />
             :
             <ErrorPage />
@@ -85,7 +85,7 @@ const PeoplePage = () => {
         {peopleState === "success" && peopleList &&
           <Section
             title={query ? `Search results for "${query}" (${totalResults})` : "Popular people"}
-            body={peopleList.map((person, index) => (
+            itemsList={peopleList.map((person, index) => (
               <Tile
                 person="true"
                 key={peopleList[index].id}

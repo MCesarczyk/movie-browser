@@ -1,11 +1,11 @@
 import { Wrapper } from "../Wrapper";
 import { Header } from "../Header";
 
-const InfoPage = ({ title, extraContent }) => {
+const InfoPage = ({ title, body }) => {
     return (
         <Wrapper>
             <Header>{title}</Header>
-            {extraContent}
+            {body}
         </Wrapper>
     );
 };
