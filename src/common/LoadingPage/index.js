@@ -1,6 +1,6 @@
 import Wrapper from "../Wrapper";
+import { Header } from "../Header";
 import LoadingCircle from "./LoadingCircle";
-import { Header } from "./styled";
 
 const LoadingPage = ({ message }) => {
     return (
