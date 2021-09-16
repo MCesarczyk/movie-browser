@@ -2,13 +2,12 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const mediumScreen = ({ theme }) => theme.breakpoint.mediumScreen;
-const mobileMax = ({ theme }) => theme.breakpoint.mobileMax;
 
 export const NavigationContainer = styled.div`
   color: ${({ theme }) => theme.color.white};
   background: ${({ theme }) => theme.color.black};
   min-height: 94px;
-  padding: 24px 16px;
+  padding: 24px;
   width: 100%;
 `;
 
@@ -37,7 +36,7 @@ export const HeaderWrapper = styled.div`
   gap: 80px;
 
   @media(max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
-    margin-right: 24px;
+    margin: 0 24px;
     gap: 48px;
   }
 

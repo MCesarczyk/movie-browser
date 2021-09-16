@@ -9,16 +9,13 @@ export const Wrapper = styled.div`
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
-    padding-left: 80px;
     gap: 16px;
     
     @media (max-width: ${mediumScreen}) {
-        padding-left: 48px;
         gap: 12px;
     }
     
     @media (max-width: ${mobileMax}) {
-        padding-left: 20px;
         gap: 8px;
     }
 `;
@@ -45,7 +42,7 @@ export const Title = styled(NavLink)`
 
     &:focus {
         outline: none;
-        color: ${({theme}) => theme.color.stormGrey};
+        color: ${({ theme }) => theme.color.stormGrey};
     }
     
     @media (max-width: ${mobileMax}) {
