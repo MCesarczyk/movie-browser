@@ -16,7 +16,7 @@ import {
     selectMoviesList,
     fetchMoviesList
 } from "../moviesSlice";
-import Pager from "../../../common/Pager";
+import Pager from "../../../core/Pager";
 
 const MoviesPage = () => {
     const dispatch = useDispatch();

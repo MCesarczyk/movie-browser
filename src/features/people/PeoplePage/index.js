@@ -16,7 +16,7 @@ import {
     fetchPeopleList,
     selectPeopleList,
 } from "../peopleSlice";
-import Pager from "../../../common/Pager";
+import Pager from "../../../core/Pager";
 
 const PeoplePage = () => {
     const dispatch = useDispatch();
