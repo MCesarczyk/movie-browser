@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import ErrorPage from "./ErrorPage";
-import noResults from "../../common/NoResultsLogo/noResults.svg";
+import noResults from "./NoResultsLogo/noResults.svg";
 import LoadingCircle from "./LoadingCircle";
 import { Wrapper } from "../../common/Wrapper";
 import { NoResultsLogo } from "./NoResultsLogo";

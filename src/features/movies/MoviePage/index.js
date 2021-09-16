@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Wrapper } from "../../../common/Wrapper";
 import CorePage from "../../../core/CorePage";
-import Tile from "../../../common/Tile"
+import Tile from "../../../core/Tile"
 import Backdrop from "./Backdrop";
-import LoadingCircle from "../../../common/InfoPage/LoadingCircle";
+import LoadingCircle from "../../../core/CorePage/LoadingCircle";
 import {
     selectBackdropSizes,
     selectImagesBaseURL,

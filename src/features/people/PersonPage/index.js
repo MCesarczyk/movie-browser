@@ -4,8 +4,8 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Wrapper } from "../../../common/Wrapper";
 import CorePage from "../../../core/CorePage";
-import Tile from "../../../common/Tile"
-import LoadingCircle from "../../../common/InfoPage/LoadingCircle";
+import Tile from "../../../core/Tile"
+import LoadingCircle from "../../../core/CorePage/LoadingCircle";
 import {
     selectImagesBaseURL,
     selectPosterSizes,

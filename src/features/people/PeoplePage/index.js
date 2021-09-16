@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useParams } from "react-router";
 import Section from "../../../common/Section";
 import CorePage from "../../../core/CorePage";
-import Tile from "../../../common/Tile"
+import Tile from "../../../core/Tile"
 import searchQueryParamName from "../../Navigation/Search/searchQueryParamName";
 import {
     selectImagesBaseURL,

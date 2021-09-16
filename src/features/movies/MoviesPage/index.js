@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useLocation } from "react-router-dom";
 import Section from "../../../common/Section";
-import Tile from "../../../common/Tile"
+import Tile from "../../../core/Tile"
 import CorePage from "../../../core/CorePage";
 import searchQueryParamName from "../../Navigation/Search/searchQueryParamName";
 import {
