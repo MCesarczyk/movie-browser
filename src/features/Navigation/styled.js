@@ -22,13 +22,10 @@ export const NavigationWrapper = styled.nav`
 
   @media(max-width: ${mediumScreen}) {
     flex-direction: column;
-    gap: 24px;
-  }  
-
-  @media(max-width: ${mobileMax}) {
     justify-content: center;
     width: 100%;
-  }  
+    gap: 24px;
+  }
 `;
 
 export const HeaderWrapper = styled.div`
@@ -40,6 +37,7 @@ export const HeaderWrapper = styled.div`
   gap: 80px;
 
   @media(max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
+    margin-right: 24px;
     gap: 48px;
   }
 

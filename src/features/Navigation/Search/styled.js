@@ -10,6 +10,11 @@ export const SearchWrapper = styled.div`
   border: 1px solid;
   margin: 0px;
   width: 100%;
+  max-width: 432px;
+
+  @media (max-width: ${({theme})=>theme.breakpoint.mediumScreen}) {
+    max-width: none;
+  }
 `;
 
 export const SearchIcon = styled.img`
