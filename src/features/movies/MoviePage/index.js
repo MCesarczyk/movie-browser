@@ -71,7 +71,7 @@ const MoviePage = () => {
         profileSizes[1]
     ];
 
-    const personTileWidths = ["144px", "160px", "184px", "208px", "208px"];
+    const personTileWidths = ["136px", "160px", "184px", "208px", "208px"];
     const tileWidths = ["100%", "100%", "100%", "100%", "100%"];
 
     return (
