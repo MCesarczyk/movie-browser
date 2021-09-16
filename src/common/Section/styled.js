@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 const mediumScreen = ({ theme }) => theme.breakpoint.mediumScreen;
+const smallScreen = ({ theme }) => theme.breakpoint.smallScreen;
 const mobileMax = ({ theme }) => theme.breakpoint.mobileMax;
 const oldIphone = ({ theme }) => theme.breakpoint.oldIphone;
-const mobileMin = ({ theme }) => theme.breakpoint.mobileMin;
 
 export const SectionWrapper = styled.div`
     width: 100%;
-    margin: 0 auto;
+    padding: 0 16px;
 `;
 
 export const SectionTitle = styled.h2`
@@ -32,36 +32,18 @@ export const SectionTitle = styled.h2`
     }
 `;
 
-const maxWidth = ({ theme }) => theme.dimension.maxWidth;
-
-export const SectionMiddleContainer = styled.div`
-    width: ${maxWidth};
-    margin: 0 auto;
-
-    @media (max-width: ${mediumScreen}) {
-        width: 900px;
-    }
-
-    @media (max-width: ${mobileMax}) {
-        width: 590px;
-    }
-
-    @media (max-width: ${oldIphone}) {
-        width: 480px;
-    }
-
-    @media (max-width: ${mobileMin}) {
-        width: 320px;
-    }
-`;
-
-export const SectionListContainer = styled.div`
+export const SectionInnerContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 24px;
 
     @media (max-width: ${mediumScreen}) {
-        gap: 21px;
+        gap: 22px;
+    }
+
+    @media (max-width: ${smallScreen}) {
+        gap: 20px;
     }
 
     @media (max-width: ${mobileMax}) {

@@ -9,6 +9,9 @@ export const GlobalStyle = createGlobalStyle`
     font-family: "Poppins", sans-serif;
     background-color:${({ theme }) => theme.color.whisper};
     min-width: ${({ theme }) => theme.breakpoint.mobileMin};
+    overflow-wrap: break-word;
+    overflow-y: scroll;
+    width: 100%;
   }
     
   *, ::after, ::before {
