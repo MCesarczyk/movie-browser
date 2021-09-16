@@ -56,31 +56,29 @@ const MoviesPage = () => {
     const tileWidths = ["100%", "228px", "286px", "286px", "324px"];
 
     return (
-        <>
-            <CorePage
-                body={
-                    <Section
-                        title={query ? `Search results for "${query}" (${totalResults})` : "Popular movies"}
-                        itemsList={movieList.map((movie, index) => (
-                            <Tile
-                                key={movieList[index].id}
-                                sizes={posterSizesArray}
-                                widths={tileWidths}
-                                imageBaseUrl={imgURL}
-                                imagePath={movieList[index].poster_path}
-                                imageWidth="100%"
-                                detailsUrl={`/movie/${movieList[index].id}`}
-                                title={movieList[index].title}
-                                subtitle={new Date(Date.parse(movieList[index].release_date)).getFullYear()}
-                                genreIds={movieList[index].genre_ids}
-                                rating={movieList[index].vote_average}
-                                votes={movieList[index].vote_count}
-                            />
-                        ))}
-                    />
-                }
-            />
-        </>
+        <CorePage
+            body={
+                <Section
+                    title={query ? `Search results for "${query}" (${totalResults})` : "Popular movies"}
+                    itemsList={movieList.map((movie, index) => (
+                        <Tile
+                            key={movieList[index].id}
+                            sizes={posterSizesArray}
+                            widths={tileWidths}
+                            imageBaseUrl={imgURL}
+                            imagePath={movieList[index].poster_path}
+                            imageWidth="100%"
+                            detailsUrl={`/movie/${movieList[index].id}`}
+                            title={movieList[index].title}
+                            subtitle={new Date(Date.parse(movieList[index].release_date)).getFullYear()}
+                            genreIds={movieList[index].genre_ids}
+                            rating={movieList[index].vote_average}
+                            votes={movieList[index].vote_count}
+                        />
+                    ))}
+                />
+            }
+        />
     )
 };
 
