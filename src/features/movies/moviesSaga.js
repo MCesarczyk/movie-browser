@@ -10,6 +10,7 @@ import {
     setTotalResults
 } from "../../globalSlice";
 import {
+    clearMovieDetails,
     clearMoviesList,
     fetchMovieDetails,
     fetchMoviesList,
@@ -95,8 +96,17 @@ function* fetchMovieCreditsHandler() {
     }
 };
 
+function* clearMovieDetailsDataHandler() {
+    yield all([
+        put(setMovieDetails([])),
+        put(setMovieCredits([])),
+        put(setState("idle")),
+    ]);
+};
+
 export function* moviesSaga() {
     yield takeLatest(fetchMoviesList.type, fetchMoviesListHandler);
     yield takeLatest(clearMoviesList.type, clearMoviesListDataHandler);
     yield takeLatest(fetchMovieDetails.type, fetchMovieDetailsHandler);
+    yield takeLatest(clearMovieDetails.type, clearMovieDetailsDataHandler);
 };

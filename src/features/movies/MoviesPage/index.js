@@ -43,7 +43,6 @@ const MoviesPage = () => {
         return () => {
             dispatch(clearMoviesList());
         }
-
         // eslint-disable-next-line
     }, []);
 

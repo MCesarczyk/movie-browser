@@ -19,6 +19,7 @@ import {
     selectMovieCrew,
     selectGenresList,
     fetchMovieDetails,
+    clearMovieDetails,
 } from "../moviesSlice";
 const Section = React.lazy(() => import('../../../common/Section'));
 
@@ -42,6 +43,11 @@ const MoviePage = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+
+        return () => {
+            dispatch(clearMovieDetails());
+        };
+        // eslint-disable-next-line
     }, []);
 
     const backdropSizesArray = [
