@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Wrapper } from "../../../common/Wrapper";
 import CorePage from "../../../core/CorePage";
 import Tile from "../../../core/Tile"
-import LoadingCircle from "../../../core/CorePage/LoadingCircle";
+import LoadingCircle from "../../../common/LoadingCircle";
 import {
     selectImagesBaseURL,
     selectPosterSizes,

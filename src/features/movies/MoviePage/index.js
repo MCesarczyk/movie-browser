@@ -5,7 +5,7 @@ import { Wrapper } from "../../../common/Wrapper";
 import CorePage from "../../../core/CorePage";
 import Tile from "../../../core/Tile"
 import Backdrop from "./Backdrop";
-import LoadingCircle from "../../../core/CorePage/LoadingCircle";
+import LoadingCircle from "../../../common/LoadingCircle";
 import {
     selectBackdropSizes,
     selectImagesBaseURL,
