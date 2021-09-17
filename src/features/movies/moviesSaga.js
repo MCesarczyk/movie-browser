@@ -36,10 +36,12 @@ function* fetchMoviesListHandler() {
             `${apiBaseUrl}movie/popular${apiKey}&page=${page}${apiLang}`
         );
         const movies = yield call(getDataFromApi, apiURL);
-        yield put(setMoviesList(movies.results));
-        yield put(setTotalResults(movies.total_results));
-        yield put(setTotalPages(movies.total_pages));
-        yield call(fetchMovieGenresHandler);
+        yield all([
+            put(setMoviesList(movies.results)),
+            put(setTotalResults(movies.total_results)),
+            put(setTotalPages(movies.total_pages)),
+            call(fetchMovieGenresHandler),
+        ]);
         yield delay(500);
         yield put(setState("success"));
     } catch (error) {
@@ -59,10 +61,10 @@ function* fetchMovieGenresHandler() {
 
 function* clearMoviesListDataHandler() {
     yield all([
-        yield put(setMoviesList([])),
-        yield put(setMovieGenres([])),
-        yield put(setTotalResults(10_000)),
-        yield put(setTotalPages(500)),
+        put(setMoviesList([])),
+        put(setMovieGenres([])),
+        put(setTotalResults(10_000)),
+        put(setTotalPages(500)),
     ]);
     yield put(setState("idle"));
 };
