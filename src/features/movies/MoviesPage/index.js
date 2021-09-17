@@ -14,7 +14,8 @@ import {
 } from "../../../globalSlice";
 import {
     selectMoviesList,
-    fetchMoviesList
+    fetchMoviesList,
+    clearMoviesList
 } from "../moviesSlice";
 import Pager from "../../../core/Pager";
 
@@ -38,6 +39,11 @@ const MoviesPage = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+
+        return () => {
+            dispatch(clearMoviesList());
+        }
+
         // eslint-disable-next-line
     }, []);
 

@@ -12,6 +12,7 @@ const moviesSlice = createSlice({
     initialState,
     reducers: {
         fetchMoviesList: () => { },
+        clearMoviesList: () => { },
         setMoviesList: (state, { payload: movies }) => {
             state.movies = movies;
         },
@@ -30,6 +31,7 @@ const moviesSlice = createSlice({
 
 export const {
     fetchMoviesList,
+    clearMoviesList,
     setMoviesList,
     setMovieCredits,
     fetchMovieDetails,
