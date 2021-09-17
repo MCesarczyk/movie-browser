@@ -100,8 +100,8 @@ function* clearMovieDetailsDataHandler() {
     yield all([
         put(setMovieDetails([])),
         put(setMovieCredits([])),
-        put(setState("idle")),
     ]);
+    yield put(setState("idle"));
 };
 
 export function* moviesSaga() {
