@@ -1,4 +1,4 @@
-import { call, delay, put, select, takeLatest } from "redux-saga/effects";
+import { call, all, delay, put, select, takeLatest } from "redux-saga/effects";
 import { getDataFromApi } from "../../getDataFromApi";
 import {
     selectId,
@@ -58,8 +58,12 @@ function* fetchMovieGenresHandler() {
 };
 
 function* clearMoviesListDataHandler() {
-    yield put(setMoviesList([]));
-    yield put(setMovieGenres([]));
+    yield all([
+        yield put(setMoviesList([])),
+        yield put(setMovieGenres([])),
+        yield put(setTotalResults(10_000)),
+        yield put(setTotalPages(500)),
+    ]);
     yield put(setState("idle"));
 };
 
