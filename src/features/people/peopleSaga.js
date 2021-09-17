@@ -1,4 +1,4 @@
-import { call, delay, put, select, takeLatest } from "redux-saga/effects";
+import { call, all, delay, put, select, takeLatest } from "redux-saga/effects";
 import { getDataFromApi } from "../../getDataFromApi";
 import {
     selectId,
@@ -16,6 +16,8 @@ import {
     fetchPersonDetails,
     fetchPeopleList,
     setMovieGenres,
+    clearPeopleList,
+    clearPersonDetails,
 } from "./peopleSlice";
 
 const apiBaseUrl = "https://api.themoviedb.org/3/";
@@ -43,6 +45,15 @@ function* fetchPeopleListHandler() {
     } catch (error) {
         yield call(setError(error));
     }
+};
+
+function* clearPeopleListDataHandler() {
+    yield all([
+        put(setPeopleList([])),
+        put(setTotalResults(10_000)),
+        put(setTotalPages(500)),
+    ]);
+    yield put(setState("idle"));
 };
 
 function* fetchPersonDetailsHandler() {
@@ -82,7 +93,18 @@ function* fetchPersonCreditsHandler() {
     }
 };
 
+function* clearPersonDetailsDataHandler() {
+    yield all([
+        put(setPersonDetails([])),
+        put(setMovieGenres([])),
+        put(setPersonCredits([])),
+    ]);
+    yield put(setState("idle"));
+};
+
 export function* peopleSaga() {
     yield takeLatest(fetchPeopleList.type, fetchPeopleListHandler);
+    yield takeLatest(clearPeopleList.type, clearPeopleListDataHandler);
     yield takeLatest(fetchPersonDetails.type, fetchPersonDetailsHandler);
+    yield takeLatest(clearPersonDetails.type, clearPersonDetailsDataHandler);
 };

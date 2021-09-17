@@ -13,6 +13,7 @@ import {
     selectTotalResults,
 } from "../../../globalSlice";
 import {
+    clearPeopleList,
     fetchPeopleList,
     selectPeopleList,
 } from "../peopleSlice";
@@ -38,6 +39,10 @@ const PeoplePage = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+
+        return () => {
+            dispatch(clearPeopleList());
+        };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

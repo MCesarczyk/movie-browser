@@ -12,6 +12,7 @@ const peopleSlice = createSlice({
     initialState,
     reducers: {
         fetchPeopleList: () => { },
+        clearPeopleList: () => { },
         setPeopleList: (state, { payload: people }) => {
             state.people = people;
         },
@@ -19,6 +20,7 @@ const peopleSlice = createSlice({
             state.genres = genres;
         },
         fetchPersonDetails: () => { },
+        clearPersonDetails: () => { },
         setPersonDetails: (state, { payload: person }) => {
             state.person = person;
         },
@@ -30,9 +32,11 @@ const peopleSlice = createSlice({
 
 export const {
     fetchPeopleList,
+    clearPeopleList,
     setPeopleList,
     setMovieGenres,
     fetchPersonDetails,
+    clearPersonDetails,
     setPersonDetails,
     setPersonCredits,
 } = peopleSlice.actions;

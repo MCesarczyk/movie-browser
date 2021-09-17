@@ -13,6 +13,7 @@ import {
     setId,
 } from "../../../globalSlice";
 import {
+    clearPersonDetails,
     fetchPersonDetails,
     selectPersonCast,
     selectPersonCrew,
@@ -37,6 +38,10 @@ const PersonPage = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+
+        return () => {
+            dispatch(clearPersonDetails());
+        };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
