@@ -15,6 +15,7 @@ const CorePage = ({ message, body }) => {
 
     return (
         <>
+            {moviesState === "idle" && <></>}
             {moviesState === "loading" &&
                 <LoadingPage
                     message={message}
