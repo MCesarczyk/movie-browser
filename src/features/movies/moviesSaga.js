@@ -1,7 +1,6 @@
 import { call, all, delay, put, select, takeLatest } from "redux-saga/effects";
 import { getDataFromApi } from "../../getDataFromApi";
 import {
-    selectId,
     selectPage,
     selectQuery,
     setError,
@@ -10,14 +9,10 @@ import {
     setTotalResults
 } from "../../globalSlice";
 import {
-    clearMovieDetails,
-    clearMoviesList,
-    fetchMovieDetails,
     fetchMoviesList,
-    setMovieCredits,
-    setMovieDetails,
+    setMoviesList,
+    clearMoviesList,
     setMovieGenres,
-    setMoviesList
 } from "./moviesSlice";
 
 const apiBaseUrl = "https://api.themoviedb.org/3/";
@@ -54,7 +49,7 @@ function* fetchMovieGenresHandler() {
     try {
         const apiURL = `${apiBaseUrl}genre/movie/list${apiKey}${apiLang}`;
         const genres = yield call(getDataFromApi, apiURL);
-        yield put(setMovieGenres(genres));
+        yield put(setMovieGenres(genres.genres));
     } catch (error) {
         yield call(setError(error));
     }
@@ -70,43 +65,7 @@ function* clearMoviesListDataHandler() {
     yield put(setState("idle"));
 };
 
-function* fetchMovieDetailsHandler() {
-    try {
-        yield put(setState("loading"));
-        const id = yield select(selectId);
-        const apiURL = `${apiBaseUrl}movie/${id}${apiKey}${apiLang}`;
-        const details = yield call(getDataFromApi, apiURL);
-        yield put(setMovieDetails(details));
-        yield call(fetchMovieCreditsHandler);
-        yield delay(500);
-        yield put(setState("success"));
-    } catch (error) {
-        yield call(setError(error));
-    }
-};
-
-function* fetchMovieCreditsHandler() {
-    try {
-        const id = yield select(selectId);
-        const apiURL = `${apiBaseUrl}movie/${id}/credits${apiKey}${apiLang}`;
-        const credits = yield call(getDataFromApi, apiURL);
-        yield put(setMovieCredits(credits));
-    } catch (error) {
-        yield call(setError(error));
-    }
-};
-
-function* clearMovieDetailsDataHandler() {
-    yield all([
-        put(setMovieDetails([])),
-        put(setMovieCredits([])),
-    ]);
-    yield put(setState("idle"));
-};
-
 export function* moviesSaga() {
     yield takeLatest(fetchMoviesList.type, fetchMoviesListHandler);
     yield takeLatest(clearMoviesList.type, clearMoviesListDataHandler);
-    yield takeLatest(fetchMovieDetails.type, fetchMovieDetailsHandler);
-    yield takeLatest(clearMovieDetails.type, clearMovieDetailsDataHandler);
 };
