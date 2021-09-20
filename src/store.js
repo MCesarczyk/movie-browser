@@ -3,7 +3,7 @@ import createSagaMiddleware from "@redux-saga/core";
 import rootSaga from "./rootSaga";
 import globalReducer from "./globalSlice";
 import moviesReducer from "./features/movies/moviesSlice";
-import movieReducer from "./features/movies/movieSlice";
+import movieReducer from "./features/movie/movieSlice";
 import peopleReducer from "./features/people/peopleSlice";
 
 const sagaMiddleware = createSagaMiddleware();
