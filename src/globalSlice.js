@@ -13,6 +13,7 @@ const initialState = {
             still_sizes: [],
         },
     },
+    genres: [],
     page: 1,
     id: "",
     totalResults: 10_000,
@@ -29,6 +30,10 @@ const globalSlice = createSlice({
         fetchConfiguration: () => { },
         setConfig: (state, { payload: newConfig }) => {
             state.config = newConfig;
+        },
+        fetchMovieGenres: () => { },
+        setMovieGenres: (state, { payload: genres }) => {
+            state.genres = genres;
         },
         setPage: (state, { payload: currentPage }) => {
             state.page = currentPage;
@@ -57,6 +62,8 @@ const globalSlice = createSlice({
 export const {
     fetchConfiguration,
     setConfig,
+    fetchMovieGenres,
+    setMovieGenres,
     setPage,
     setId,
     setTotalResults,
@@ -66,18 +73,22 @@ export const {
     setQuery,
 } = globalSlice.actions;
 
-export const selectConfig = state => state.global;
-export const selectImagesConfig = state => state.global.config.images;
-export const selectImagesBaseURL = state => state.global.config.images.secure_base_url;
-export const selectPosterSizes = state => state.global.config.images.poster_sizes;
-export const selectBackdropSizes = state => state.global.config.images.backdrop_sizes;
-export const selectProfileSizes = state => state.global.config.images.profile_sizes;
-export const selectPage = state => state.global.page;
-export const selectId = state => state.global.id;
-export const selectTotalResults = state => state.global.totalResults;
-export const selectTotalPages = state => state.global.totalPages;
-export const selectState = state => state.global.state;
-export const selectError = state => state.global.error;
-export const selectQuery = state => state.global.query;
+const selectGlobal = state => state.global;
+export const selectMoviesGenres = state => selectGlobal(state).genres;
+export const selectPage = state => selectGlobal(state).page;
+export const selectId = state => selectGlobal(state).id;
+export const selectTotalResults = state => selectGlobal(state).totalResults;
+export const selectTotalPages = state => selectGlobal(state).totalPages;
+export const selectState = state => selectGlobal(state).state;
+export const selectError = state => selectGlobal(state).error;
+export const selectQuery = state => selectGlobal(state).query;
+
+const selectConfig = state => selectGlobal(state).config
+const selectImagesConfig = state => selectConfig(state).images;
+
+export const selectImagesBaseURL = state => selectImagesConfig(state).secure_base_url;
+export const selectPosterSizes = state => selectImagesConfig(state).poster_sizes;
+export const selectProfileSizes = state => selectImagesConfig(state).profile_sizes;
+export const selectBackdropSizes = state => selectImagesConfig(state).backdrop_sizes;
 
 export default globalSlice.reducer;

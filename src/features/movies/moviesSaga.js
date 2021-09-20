@@ -12,7 +12,6 @@ import {
     fetchMoviesList,
     setMoviesList,
     clearMoviesList,
-    setMovieGenres,
 } from "./moviesSlice";
 
 const apiBaseUrl = "https://api.themoviedb.org/3/";
@@ -36,20 +35,9 @@ function* fetchMoviesListHandler() {
             put(setMoviesList(movies.results)),
             put(setTotalResults(movies.total_results)),
             put(setTotalPages(movies.total_pages)),
-            call(fetchMovieGenresHandler),
         ]);
         yield delay(500);
         yield put(setState("success"));
-    } catch (error) {
-        yield call(setError(error));
-    }
-};
-
-function* fetchMovieGenresHandler() {
-    try {
-        const apiURL = `${apiBaseUrl}genre/movie/list${apiKey}${apiLang}`;
-        const genres = yield call(getDataFromApi, apiURL);
-        yield put(setMovieGenres(genres.genres));
     } catch (error) {
         yield call(setError(error));
     }

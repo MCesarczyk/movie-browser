@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { selectMoviesGenres } from "../../features/movies/moviesSlice";
+import { selectMoviesGenres } from "../../globalSlice";
 import { ReactComponent as NoPictureImage } from "./noPicture.svg";
 import { ReactComponent as NoPosterImage } from "./noPoster.svg";
 import RatingStar from "./RatingStar/ratingStar.svg";
