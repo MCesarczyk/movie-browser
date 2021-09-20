@@ -4,7 +4,7 @@ import globalReducer from "./globalSlice";
 import moviesReducer from "./features/movies/moviesSlice";
 import movieReducer from "./features/movie/movieSlice";
 import peopleReducer from "./features/people/peopleSlice";
-import personReducer from "./features/people/personSlice";
+import personReducer from "./features/person/personSlice";
 import rootSaga from "./rootSaga";
 
 const sagaMiddleware = createSagaMiddleware();

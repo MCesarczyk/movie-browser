@@ -6,7 +6,7 @@ import Navigation from './features/Navigation';
 import MoviesPage from './features/movies/MoviesPage';
 import MoviePage from './features/movie/MoviePage';
 import PeoplePage from "./features/people/PeoplePage";
-import PersonPage from "./features/people/PersonPage";
+import PersonPage from "./features/person/PersonPage";
 
 function App() {
   const dispatch = useDispatch();
