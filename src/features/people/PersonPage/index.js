@@ -13,12 +13,12 @@ import {
     setId,
 } from "../../../globalSlice";
 import {
-    clearPersonDetails,
     fetchPersonDetails,
+    clearPersonDetails,
+    selectPersonDetails,
     selectPersonCast,
     selectPersonCrew,
-    selectPersonDetails
-} from "../peopleSlice";
+} from "../personSlice";
 const Section = React.lazy(() => import('../../../common/Section'));
 
 const PersonPage = () => {

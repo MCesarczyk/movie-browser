@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as Ellipse } from "./Ellipse.svg";
+import { ReactComponent as Ellipse } from "./ellipse.svg";
 
 export const Wrapper = styled.div`
     width: 91px;
