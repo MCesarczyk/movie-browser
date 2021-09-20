@@ -15,7 +15,6 @@ import {
     setPeopleList,
     fetchPersonDetails,
     fetchPeopleList,
-    setMovieGenres,
     clearPeopleList,
     clearPersonDetails,
 } from "./peopleSlice";
@@ -63,20 +62,9 @@ function* fetchPersonDetailsHandler() {
         const apiURL = `${apiBaseUrl}person/${id}${apiKey}${apiLang}`;
         const person = yield call(getDataFromApi, apiURL);
         yield put(setPersonDetails(person));
-        yield call(fetchMovieGenresHandler);
         yield call(fetchPersonCreditsHandler);
         yield delay(500);
         yield put(setState("success"));
-    } catch (error) {
-        yield call(setError(error));
-    }
-};
-
-function* fetchMovieGenresHandler() {
-    try {
-        const apiURL = `${apiBaseUrl}genre/movie/list${apiKey}${apiLang}`;
-        const genres = yield call(getDataFromApi, apiURL);
-        yield put(setMovieGenres(genres));
     } catch (error) {
         yield call(setError(error));
     }
@@ -96,7 +84,6 @@ function* fetchPersonCreditsHandler() {
 function* clearPersonDetailsDataHandler() {
     yield all([
         put(setPersonDetails([])),
-        put(setMovieGenres([])),
         put(setPersonCredits([])),
     ]);
     yield put(setState("idle"));
