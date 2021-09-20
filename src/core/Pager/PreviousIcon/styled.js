@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { ReactComponent as Previous } from "./images/prev.svg";
+import { ReactComponent as Previous } from "./prev.svg";
 
 export const Icon = styled(Previous)`
     margin-right: 8px;

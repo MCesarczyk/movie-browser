@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { ReactComponent as Next } from "./images/next.svg";
+import { ReactComponent as Next } from "./next.svg";
 
 export const Icon = styled(Next)`
     margin-left: 8px;
