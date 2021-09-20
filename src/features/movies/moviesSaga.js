@@ -58,7 +58,6 @@ function* fetchMovieGenresHandler() {
 function* clearMoviesListDataHandler() {
     yield all([
         put(setMoviesList([])),
-        put(setMovieGenres([])),
         put(setTotalResults(10_000)),
         put(setTotalPages(500)),
     ]);
