@@ -1,23 +1,25 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams, useLocation } from "react-router-dom";
-import { selectTotalPages, setState } from "../../globalSlice";
+import { useSelector } from "react-redux";
+import { useParams, useLocation, useHistory } from "react-router-dom";
+import { selectTotalPages } from "../../globalSlice";
 import { Wrapper, StyledLink, PagerText, PageNumberText } from "./styled";
-import searchQueryParamName from "../../features/search/searchQueryParamName";
 import NextIcon from "./NextIcon";
 import PreviousIcon from "./PreviousIcon";
+import searchQueryParamName from "../../features/search/searchQueryParamName";
 
 const Pager = ({ property }) => {
-    const dispatch = useDispatch();
     const { page } = useParams();
-    const location = useLocation();
-    const currentPage = (page ? page : 1);
+    let currentPage = (page ? page : 1);
 
+    const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const query = searchParams.get(searchQueryParamName);
 
+    const history = useHistory();
     const totalPages = useSelector(selectTotalPages);
-    currentPage > totalPages && dispatch(setState("error"));
+    if (currentPage > totalPages) {
+        history.push(`${property}/1${query ? `?${searchQueryParamName}=${query}` : ""}`);
+    }
 
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     window.onresize = () => setWindowWidth(window.innerWidth);
