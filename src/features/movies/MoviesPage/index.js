@@ -61,6 +61,11 @@ const MoviesPage = () => {
 
     const tileWidths = ["100%", "228px", "286px", "286px", "324px"];
 
+    const getFullYearFromDate = (movieList, index) => {
+        const releaseDate = movieList[index].release_date;
+        return releaseDate && new Date(Date.parse(releaseDate)).getFullYear();
+    };
+
     return (
         <CorePage
             message="Loading movies list..."
@@ -78,7 +83,7 @@ const MoviesPage = () => {
                                 imageWidth="100%"
                                 detailsUrl={`/movie/${movieList[index].id}`}
                                 title={movieList[index].title}
-                                subtitle={new Date(Date.parse(movieList[index].release_date)).getFullYear()}
+                                subtitle={getFullYearFromDate(movieList, index)}
                                 genreIds={movieList[index].genre_ids}
                                 rating={movieList[index].vote_average}
                                 votes={movieList[index].vote_count}
