@@ -2,9 +2,9 @@ import { useLocation, useRouteMatch } from "react-router";
 import { useHistory } from "react-router-dom";
 import { SearchIcon, SearchInput, SearchWrapper } from "./styled";
 import search from "./search.svg";
-import searchQueryParamName from "./searchQueryParamName";
+import searchQueryParamName from "../searchQueryParamName";
 
-export const Search = () => {
+const SearchForm = () => {
     const location = useLocation();
     const history = useHistory();
     const searchParams = new URLSearchParams(location.search);
@@ -36,4 +36,6 @@ export const Search = () => {
             />
         </SearchWrapper>
     )
-}
+};
+
+export default SearchForm;

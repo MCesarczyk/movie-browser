@@ -1,5 +1,5 @@
 import { Header } from "./Header";
-import { Search } from "../../features/search/SearchForm";
+import SearchForm from "../../features/search/SearchForm";
 import {
     StyledNavLink,
     Item,
@@ -28,7 +28,7 @@ const Navbar = ({ moviesPath, peoplePath }) => {
                         </Item>
                     </List>
                 </HeaderWrapper>
-                <Search />
+                <SearchForm />
             </NavigationWrapper>
         </NavigationContainer>
     );

@@ -5,7 +5,7 @@ import NoResultsPage from "./NoResultsPage";
 import ErrorPage from "./ErrorPage";
 import { selectMoviesList } from "../../features/movies/moviesSlice";
 import { selectState } from "../../globalSlice";
-import searchQueryParamName from "../../features/search/SearchForm/searchQueryParamName";
+import searchQueryParamName from "../../features/search/searchQueryParamName";
 
 const CorePage = ({ message, body }) => {
     const location = useLocation();
