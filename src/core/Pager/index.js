@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useLocation } from "react-router-dom";
 import { selectTotalPages, setState } from "../../globalSlice";
 import { Wrapper, StyledLink, PagerText, PageNumberText } from "./styled";
-import searchQueryParamName from "../../features/Navigation/Search/searchQueryParamName";
+import searchQueryParamName from "../../features/search/SearchForm/searchQueryParamName";
 import NextIcon from "./NextIcon";
 import PreviousIcon from "./PreviousIcon";
 

@@ -1,7 +1,7 @@
 import { useLocation, useRouteMatch } from "react-router";
 import { useHistory } from "react-router-dom";
 import { SearchIcon, SearchInput, SearchWrapper } from "./styled";
-import search from "../images/search.svg";
+import search from "./search.svg";
 import searchQueryParamName from "./searchQueryParamName";
 
 export const Search = () => {

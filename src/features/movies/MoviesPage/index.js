@@ -4,7 +4,7 @@ import { useParams, useLocation } from "react-router-dom";
 import Section from "../../../common/Section";
 import Tile from "../../../core/Tile"
 import CorePage from "../../../core/CorePage";
-import searchQueryParamName from "../../Navigation/Search/searchQueryParamName";
+import searchQueryParamName from "../../search/SearchForm/searchQueryParamName";
 import {
     selectImagesBaseURL,
     selectPosterSizes,

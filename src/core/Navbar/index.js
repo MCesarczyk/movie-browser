@@ -1,5 +1,5 @@
 import { Header } from "./Header";
-import { Search } from "./Search";
+import { Search } from "../../features/search/SearchForm";
 import {
     StyledNavLink,
     Item,
@@ -9,7 +9,7 @@ import {
     NavigationContainer
 } from "./styled"
 
-const Navigation = ({ moviesPath, peoplePath }) => {
+const Navbar = ({ moviesPath, peoplePath }) => {
     return (
         <NavigationContainer>
             <NavigationWrapper>
@@ -34,4 +34,4 @@ const Navigation = ({ moviesPath, peoplePath }) => {
     );
 };
 
-export default Navigation;
+export default Navbar;

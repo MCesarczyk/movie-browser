@@ -1,5 +1,5 @@
 import { Icon, Title, Wrapper } from "./styled";
-import camera from "../images/camera.svg";
+import camera from "./camera.svg";
 
 export const Header = () => {
     return (
