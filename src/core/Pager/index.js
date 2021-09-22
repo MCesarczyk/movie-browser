@@ -17,9 +17,8 @@ const Pager = ({ property }) => {
 
     const history = useHistory();
     const totalPages = useSelector(selectTotalPages);
-    if (currentPage > totalPages) {
-        history.push(`${property}/1${query ? `?${searchQueryParamName}=${query}` : ""}`);
-    }
+    const firstPageUrl = `${property}/1${query ? `?${searchQueryParamName}=${query}` : ""}`;
+    currentPage > totalPages && history.push(firstPageUrl);
 
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     window.onresize = () => setWindowWidth(window.innerWidth);
@@ -31,9 +30,7 @@ const Pager = ({ property }) => {
     return (
         <Wrapper>
             <StyledLink
-                to={
-                    `${property}/1${query ? `?${searchQueryParamName}=${query}` : ""}`
-                }
+                to={firstPageUrl}
                 disabled={checkIfPreviousIsDisabled()}
             >
                 <PreviousIcon disabled={checkIfPreviousIsDisabled()} />
