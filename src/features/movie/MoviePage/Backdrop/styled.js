@@ -78,6 +78,7 @@ export const WrapperContent = styled.div`
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
         margin-bottom: 26px;
+    }
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
         margin-bottom: 46px;
@@ -125,7 +126,8 @@ export const Title = styled.h1`
             font-size: 12px;
             margin-bottom: 2px;
         }
-    `;
+    }
+`;
 
 export const WrapperExtraContent = styled.div`
     display: flex;

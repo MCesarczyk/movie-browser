@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
+import Votes from "../../common/Votes";
 import { selectMoviesGenres } from "../../globalSlice";
 import { ReactComponent as NoPictureImage } from "./noPicture.svg";
 import { ReactComponent as NoPosterImage } from "./noPoster.svg";
-import RatingStar from "./RatingStar/ratingStar.svg";
 import {
     StyledTile,
     ImageWrapper,
@@ -16,13 +16,7 @@ import {
     DetailContent,
     Tags,
     Tag,
-    TileExtraContent,
-    Rating,
-    RatingScale,
-    Votes,
     Description,
-    NoVotesText,
-    StyledLogo,
 } from "./styled";
 
 const Tile = ({
@@ -146,20 +140,12 @@ const Tile = ({
                         ))}
                     </Tags>
                 }
-                {!person && (votes === 0 ?
-                    <TileExtraContent>
-                        <NoVotesText>No votes yet</NoVotesText>
-                    </TileExtraContent>
-                    :
-                    votes && <TileExtraContent>
-                        <StyledLogo src={RatingStar} />
-                        <Rating>{rating}</Rating>
-                        <RatingScale>/ 10</RatingScale>
-                        <Votes>
-                            {votes}&nbsp;vote{votes > 1 ? "s" : ""}
-                        </Votes>
-                    </TileExtraContent>
-                )}
+                {!person && !oversizepersontile &&
+                    <Votes
+                        votes={votes}
+                        rating={rating}
+                    />
+                }
             </TileContent>
             {overview &&
                 <Description>
