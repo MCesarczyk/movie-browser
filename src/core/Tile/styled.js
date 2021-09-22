@@ -312,90 +312,6 @@ export const Tag = styled.span`
     }
 `;
 
-export const TileExtraContent = styled.div`
-    margin-top: auto;
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-
-    @media (max-width: ${mobileMax}) {
-        margin-top: 0px;
-    }
-`;
-
-export const StyledLogo = styled.img`
-    width: 24px;
-    height: 24px;
-
-    @media (max-width: ${mobileMax}) {
-        width: 16px;
-        height: 16px;
-    }
-`;
-
-export const Rating = styled.span`
-    font-weight: 600;
-    font-size: 22px;
-    line-height: 29px;
-
-    @media (max-width: ${mediumScreen}) {
-        font-size: 20px;
-    }
-   
-    @media (max-width: ${smallScreen}) {
-        font-size: 18px;
-    }
-  
-    @media (max-width: ${mobileMax}) {
-        font-size: 16px;
-        line-height: 17px;
-    }   
-    
-    @media (max-width: ${oldIphone}) {
-        font-size: 14px;
-    }
-    
-    @media (max-width: ${mobileMin}) {
-        font-size: 12px;
-    }
-`;
-
-export const RatingScale = styled.span`
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
-
-    @media (max-width: ${mobileMax}) {
-        display: none;
-    }
-`;
-
-export const Votes = styled.span`
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
-
-    @media (max-width: ${mediumScreen}) {
-        font-size: 13px;
-    }
-   
-    @media (max-width: ${smallScreen}) {
-        font-size: 12px;
-    }
-  
-    @media (max-width: ${mobileMax}) {
-        font-size: 11px;
-    }
-    
-    @media (max-width: ${oldIphone}) {
-        font-size: 10px;
-    }
-    
-    @media (max-width: ${mobileMin}) {
-        font-size: 9px;
-    }
-`;
-
 export const Description = styled.p`
     grid-area: desc;
     display: block;
@@ -406,32 +322,5 @@ export const Description = styled.p`
 
     @media (max-width: ${mobileMax}) {
         font-size: 14px;
-    }
-`;
-
-export const NoVotesText = styled.p`
-    margin:0;
-    font-size: 16px;
-    line-height: 1.5;
-    color: ${({ theme }) => theme.color.darkGrey};
-
-    @media (max-width: ${mediumScreen}) {
-        font-size: 15px;
-    }
-   
-    @media (max-width: ${smallScreen}) {
-        font-size: 14px;
-    }
-  
-    @media (max-width: ${mobileMax}) {
-        font-size: 13px;
-    }
-    
-    @media (max-width: ${oldIphone}) {
-        font-size: 12px;
-    }
-    
-    @media (max-width: ${mobileMin}) {
-        font-size: 11px;
     }
 `;
