@@ -9,23 +9,23 @@ import searchQueryParamName from "../../features/search/searchQueryParamName";
 
 const CorePage = ({ message, body }) => {
     const location = useLocation();
-    const itemsList = useSelector(selectMoviesList);
-    const appState = useSelector(selectState);
+    const movieList = useSelector(selectMoviesList);
+    const moviesState = useSelector(selectState);
     const query = (new URLSearchParams(location.search)).get(searchQueryParamName);
 
     return (
         <>
-            {appState === "idle" && <></>}
-            {appState === "loading" &&
+            {moviesState === "idle" && <></>}
+            {moviesState === "loading" &&
                 <LoadingPage
                     message={message}
                     query={query}
                 />
             }
-            {appState === "error" &&
+            {moviesState === "error" &&
                 (query ? <NoResultsPage /> : <ErrorPage />)
             }
-            {appState === "success" && itemsList && body}
+            {moviesState === "success" && movieList && body}
         </>
     )
 };

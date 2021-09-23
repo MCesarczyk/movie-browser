@@ -1,4 +1,4 @@
-import { call, delay, put, select, takeLatest } from "redux-saga/effects";
+import { call, all, delay, put, select, takeLatest } from "redux-saga/effects";
 import { getDataFromApi } from "../../utils/getDataFromApi";
 import { buildRequestUrl } from "../../utils/buildRequestUrl";
 import {

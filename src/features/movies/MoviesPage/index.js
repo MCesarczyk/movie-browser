@@ -8,6 +8,8 @@ import searchQueryParamName from "../../search/searchQueryParamName";
 import {
     selectImagesBaseURL,
     selectPosterSizes,
+    setPage,
+    setQuery,
 } from "../../../globalSlice";
 import {
     fetchMoviesList,
@@ -24,9 +26,16 @@ const MoviesPage = () => {
     const query = (new URLSearchParams(location.search)).get(searchQueryParamName);
 
     useEffect(() => {
+        dispatch(setQuery(query));
         dispatch(fetchMoviesList());
         // eslint-disable-next-line
-    }, [page, query]);
+    }, [query]);
+
+    useEffect(() => {
+        dispatch(setPage(page));
+        dispatch(fetchMoviesList());
+        // eslint-disable-next-line
+    }, [page]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
