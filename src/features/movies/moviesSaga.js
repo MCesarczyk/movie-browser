@@ -20,7 +20,7 @@ const buildRequestUrl = (path, page, query) => {
     const apiLang = "&language=en-US";
     const apiAdult = "&include_adult=false";
 
-    return `${apiBaseUrl}${path}${apiKey}&page=${page}${apiLang}${apiAdult}${query ? `&query=${query}` : ""}`
+    return `${apiBaseUrl}${path}${apiKey}&page=${page}${apiLang}${query ? apiAdult : ""}${query ? `&query=${query}` : ""}`
 };
 
 function* fetchMoviesListHandler() {

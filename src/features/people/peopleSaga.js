@@ -14,22 +14,24 @@ import {
     clearPeopleList,
 } from "./peopleSlice";
 
-const apiBaseUrl = "https://api.themoviedb.org/3/";
-const apiKey = "?api_key=768f7875782193f5e4797762314da0b7";
-const apiLang = "&language=en-US";
-const apiAdult = "&include_adult=false";
+const buildRequestUrl = (path, page, query) => {
+    const apiBaseUrl = "https://api.themoviedb.org/3/";
+    const apiKey = "?api_key=768f7875782193f5e4797762314da0b7";
+    const apiLang = "&language=en-US";
+    const apiAdult = "&include_adult=false";
+
+    return `${apiBaseUrl}${path}${apiKey}&page=${page}${apiLang}${query ? apiAdult : ""}${query ? `&query=${query}` : ""}`
+};
 
 function* fetchPeopleListHandler() {
     try {
-        const page = yield select(selectPage);
+        const currentpage = yield select(selectPage);
         const query = yield select(selectQuery);
         yield put(setState("loading"));
         yield delay(query ? 500 : 0);
-        const apiURL = (query ?
-            `${apiBaseUrl}search/person${apiKey}${apiLang}&page=${page || "1"}${apiAdult}&query=${query}`
-            :
-            `${apiBaseUrl}person/popular${apiKey}${apiLang}&page=${page || "1"}`
-        );
+        const path = query ? "search/person" : "person/popular";
+        const page = currentpage || "1";
+        const apiURL = buildRequestUrl(path, page, query);
         const people = yield call(getDataFromApi, apiURL);
         yield put(setPeopleList(people.results));
         yield put(setTotalResults(people.total_results));
