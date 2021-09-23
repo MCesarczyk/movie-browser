@@ -1,5 +1,5 @@
 import { call, all, put, takeLatest } from "redux-saga/effects";
-import { getDataFromApi } from "./getDataFromApi";
+import { getDataFromApi } from "./utils/getDataFromApi";
 import { fetchConfiguration, setConfig, setError, setMovieGenres } from "./globalSlice";
 
 const apiBaseUrl = "https://api.themoviedb.org/3/";
