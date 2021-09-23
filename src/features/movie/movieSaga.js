@@ -12,15 +12,21 @@ import {
     setMovieCredits,
 } from "./movieSlice";
 
-const apiBaseUrl = "https://api.themoviedb.org/3/";
-const apiKey = "?api_key=768f7875782193f5e4797762314da0b7";
-const apiLang = "&language=en-US";
+const buildRequestUrl = (path, page, query) => {
+    const apiBaseUrl = "https://api.themoviedb.org/3/";
+    const apiKey = "?api_key=768f7875782193f5e4797762314da0b7";
+    const apiLang = "&language=en-US";
+    const apiAdult = "&include_adult=false";
+
+    return `${apiBaseUrl}${path}${apiKey}${page ? `&page=${page}` : ""}${apiLang}${query ? apiAdult : ""}${query ? `&query=${query}` : ""}`
+};
 
 function* fetchMovieDetailsHandler() {
     try {
         yield put(setState("loading"));
         const id = yield select(selectId);
-        const apiURL = `${apiBaseUrl}movie/${id}${apiKey}${apiLang}`;
+        const path = `movie/${id}`;
+        const apiURL = buildRequestUrl(path);
         const details = yield call(getDataFromApi, apiURL);
         yield put(setMovieDetails(details));
         yield call(fetchMovieCreditsHandler);
@@ -34,7 +40,8 @@ function* fetchMovieDetailsHandler() {
 function* fetchMovieCreditsHandler() {
     try {
         const id = yield select(selectId);
-        const apiURL = `${apiBaseUrl}movie/${id}/credits${apiKey}${apiLang}`;
+        const path = `movie/${id}/credits`;
+        const apiURL = buildRequestUrl(path);
         const credits = yield call(getDataFromApi, apiURL);
         yield put(setMovieCredits(credits));
     } catch (error) {
