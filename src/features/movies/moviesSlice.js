@@ -29,14 +29,15 @@ const moviesSlice = createSlice({
 
 export const {
     fetchMoviesList,
-    setMoviesList: setMoviesList,
+    setMoviesList,
     clearMoviesList,
+    setState,
 } = moviesSlice.actions;
 
-const selectMoviesState = state => state.movies;
+const selectMovies = state => state.movies;
 
-export const selectMoviesList = state => selectMoviesState(state).results;
-export const selectTotalPages = state => selectMoviesState(state).total_pages;
-export const selectTotalResults = state => selectMoviesState(state).total_results;
+export const selectMoviesList = state => selectMovies(state).results;
+export const selectTotalPages = state => selectMovies(state).total_pages;
+export const selectTotalResults = state => selectMovies(state).total_results;
 
 export default moviesSlice.reducer;
