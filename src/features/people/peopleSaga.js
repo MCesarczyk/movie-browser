@@ -26,9 +26,9 @@ function* fetchPeopleListHandler() {
         yield put(setState("loading"));
         yield delay(query ? 500 : 0);
         const apiURL = (query ?
-            `${apiBaseUrl}search/person${apiKey}&query=${query}&page=${page}${apiLang}${apiAdult}`
+            `${apiBaseUrl}search/person${apiKey}${apiLang}&page=${page || "1"}${apiAdult}&query=${query}`
             :
-            `${apiBaseUrl}person/popular${apiKey}&page=${page}${apiLang}`
+            `${apiBaseUrl}person/popular${apiKey}${apiLang}&page=${page || "1"}`
         );
         const people = yield call(getDataFromApi, apiURL);
         yield put(setPeopleList(people.results));

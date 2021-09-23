@@ -26,9 +26,9 @@ function* fetchMoviesListHandler() {
         yield put(setState("loading"));
         yield delay(query ? 500 : 0);
         const apiURL = (query ?
-            `${apiBaseUrl}search/movie${apiKey}${apiLang}&query=${query}&page=${page}${apiAdult}`
+            `${apiBaseUrl}search/movie${apiKey}${apiLang}&page=${page || "1"}${apiAdult}&query=${query}`
             :
-            `${apiBaseUrl}movie/popular${apiKey}&page=${page}${apiLang}`
+            `${apiBaseUrl}movie/popular${apiKey}${apiLang}&page=${page || "1"}`
         );
         const movies = yield call(getDataFromApi, apiURL);
         yield all([
