@@ -8,14 +8,14 @@ import searchQueryParamName from "../../search/searchQueryParamName";
 import {
     selectImagesBaseURL,
     selectPosterSizes,
-    selectTotalResults,
     setPage,
     setQuery,
 } from "../../../globalSlice";
 import {
-    selectMoviesList,
     fetchMoviesList,
-    clearMoviesList
+    selectMoviesList,
+    clearMoviesList,
+    selectTotalResults,
 } from "../moviesSlice";
 import Pager from "../../../core/Pager";
 

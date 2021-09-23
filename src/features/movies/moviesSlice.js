@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    list: [],
+    results: [],
+    total_pages: null,
+    total_results: null,
 };
 
 const moviesSlice = createSlice({
@@ -9,8 +11,17 @@ const moviesSlice = createSlice({
     initialState,
     reducers: {
         fetchMoviesList: () => { },
-        setMoviesList: (state, { payload: list }) => {
-            state.list = list;
+        setMoviesList: (state,
+            {
+                payload: {
+                    results,
+                    total_pages,
+                    total_results,
+                }
+            }) => {
+            state.results = results;
+            state.total_pages = total_pages;
+            state.total_results = total_results;
         },
         clearMoviesList: () => { },
     },
@@ -18,12 +29,14 @@ const moviesSlice = createSlice({
 
 export const {
     fetchMoviesList,
-    setMoviesList,
+    setMoviesList: setMoviesList,
     clearMoviesList,
 } = moviesSlice.actions;
 
 const selectMoviesState = state => state.movies;
 
-export const selectMoviesList = state => selectMoviesState(state).list;
+export const selectMoviesList = state => selectMoviesState(state).results;
+export const selectTotalPages = state => selectMoviesState(state).total_pages;
+export const selectTotalResults = state => selectMoviesState(state).total_results;
 
 export default moviesSlice.reducer;

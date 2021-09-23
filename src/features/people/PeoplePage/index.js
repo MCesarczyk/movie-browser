@@ -10,12 +10,12 @@ import {
     selectProfileSizes,
     setQuery,
     setPage,
-    selectTotalResults,
 } from "../../../globalSlice";
 import {
-    clearPeopleList,
     fetchPeopleList,
     selectPeopleList,
+    clearPeopleList,
+    selectTotalResults,
 } from "../peopleSlice";
 import Pager from "../../../core/Pager";
 

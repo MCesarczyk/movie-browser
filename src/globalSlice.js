@@ -16,8 +16,6 @@ const initialState = {
     genres: [],
     page: 1,
     id: "",
-    totalResults: 10_000,
-    totalPages: 500,
     state: "idle",
     error: "",
     query: "",
@@ -41,12 +39,6 @@ const globalSlice = createSlice({
         setId: (state, { payload: currentId }) => {
             state.id = currentId;
         },
-        setTotalResults: (state, { payload: totalResults }) => {
-            state.totalResults = totalResults;
-        },
-        setTotalPages: (state, { payload: totalPages }) => {
-            state.totalPages = totalPages;
-        },
         setState: (state, { payload: stateName }) => {
             state.state = stateName;
         },
@@ -66,8 +58,6 @@ export const {
     setMovieGenres,
     setPage,
     setId,
-    setTotalResults,
-    setTotalPages,
     setState,
     setError,
     setQuery,
@@ -77,8 +67,6 @@ const selectGlobal = state => state.global;
 export const selectMoviesGenres = state => selectGlobal(state).genres;
 export const selectPage = state => selectGlobal(state).page;
 export const selectId = state => selectGlobal(state).id;
-export const selectTotalResults = state => selectGlobal(state).totalResults;
-export const selectTotalPages = state => selectGlobal(state).totalPages;
 export const selectState = state => selectGlobal(state).state;
 export const selectError = state => selectGlobal(state).error;
 export const selectQuery = state => selectGlobal(state).query;

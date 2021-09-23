@@ -16,7 +16,8 @@ const Pager = ({ property }) => {
     const query = searchParams.get(searchQueryParamName);
 
     const history = useHistory();
-    const totalPages = useSelector(selectTotalPages);
+    // const totalPages = useSelector(selectTotalPages);
+    const totalPages = 500;
     const firstPageUrl = `${property}/1${query ? `?${searchQueryParamName}=${query}` : ""}`;
     currentPage > totalPages && history.push(firstPageUrl);
 

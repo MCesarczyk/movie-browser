@@ -6,8 +6,6 @@ import {
     selectQuery,
     setError,
     setState,
-    setTotalPages,
-    setTotalResults
 } from "../../globalSlice";
 import {
     fetchMoviesList,
@@ -25,11 +23,7 @@ function* fetchMoviesListHandler() {
         const page = currentpage || "1";
         const apiURL = buildRequestUrl(path, page, query);
         const movies = yield call(getDataFromApi, apiURL);
-        yield all([
-            put(setMoviesList(movies.results)),
-            put(setTotalResults(movies.total_results)),
-            put(setTotalPages(movies.total_pages)),
-        ]);
+        yield put(setMoviesList(movies));
         yield delay(500);
         yield put(setState("success"));
     } catch (error) {
@@ -38,11 +32,7 @@ function* fetchMoviesListHandler() {
 };
 
 function* clearMoviesListDataHandler() {
-    yield all([
-        put(setMoviesList([])),
-        put(setTotalResults(10_000)),
-        put(setTotalPages(500)),
-    ]);
+    yield put(setMoviesList([]));
     yield put(setState("idle"));
 };
 
