@@ -26,8 +26,8 @@ function* fetchPeopleListHandler() {
         const apiURL = buildRequestUrl(path, page, query);
         const people = yield call(getDataFromApi, apiURL);
         yield put(setPeopleList(people.results));
-        // yield put(setTotalResults(people.total_results));
-        // yield put(setTotalPages(people.total_pages));
+        yield put(setTotalResults(people.total_results));
+        yield put(setTotalPages(people.total_pages));
         yield delay(500);
         yield put(setState("success"));
     } catch (error) {
@@ -38,8 +38,8 @@ function* fetchPeopleListHandler() {
 function* clearPeopleListDataHandler() {
     yield all([
         put(setPeopleList([])),
-        // put(setTotalResults(10_000)),
-        // put(setTotalPages(500)),
+        put(setTotalResults(10_000)),
+        put(setTotalPages(500)),
     ]);
     yield put(setState("idle"));
 };
