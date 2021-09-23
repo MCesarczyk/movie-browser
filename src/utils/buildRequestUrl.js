@@ -8,5 +8,7 @@ export const buildRequestUrl = (path, page, query) => {
     const queryParam = query ? `&query=${fixedEncodeURIComponent(query)}` : "";
     const pageParam = page ? `&page=${page}` : "";
 
-    return `${apiBaseUrl}${path}${apiKey}${apiLang}${apiAdult}${queryParam}${pageParam}`
+    const requestUrlElements = [apiBaseUrl, path, apiKey, apiLang, apiAdult, queryParam, pageParam];
+
+    return requestUrlElements.join("");
 };
