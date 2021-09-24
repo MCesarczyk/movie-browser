@@ -1,52 +1,36 @@
-import { call, all, delay, put, select, takeLatest } from "redux-saga/effects";
+import { call, delay, put, select, takeLatest } from "redux-saga/effects";
 import { getDataFromApi } from "../../utils/getDataFromApi";
 import { buildRequestUrl } from "../../utils/buildRequestUrl";
 import {
-    selectPage,
-    selectQuery,
     setError,
-    setState,
-    setTotalPages,
-    setTotalResults
 } from "../../commonSlice";
 import {
-    fetchMoviesList,
     setMoviesList,
-    clearMoviesList,
+    setMoviesPage,
+    setMoviesQuery,
+    selectMoviesPage,
+    selectMoviesQuery,
+    setMoviesState,
 } from "./moviesSlice";
 
 function* fetchMoviesListHandler() {
     try {
-        const currentpage = yield select(selectPage);
-        const query = yield select(selectQuery);
-        yield put(setState("loading"));
+        const currentpage = yield select(selectMoviesPage);
+        const query = yield select(selectMoviesQuery);
+        yield put(setMoviesState("loading"));
         yield delay(query ? 500 : 0);
         const path = query ? "search/movie" : "movie/popular";
         const page = currentpage || "1";
         const apiURL = buildRequestUrl(path, page, query);
-        const movies = yield call(getDataFromApi, apiURL);
-        yield all([
-            put(setMoviesList(movies.results)),
-            put(setTotalResults(movies.total_results)),
-            put(setTotalPages(movies.total_pages)),
-        ]);
+        const { results, total_results, total_pages } = yield call(getDataFromApi, apiURL);
         yield delay(500);
-        yield put(setState("success"));
+        yield put(setMoviesList({results, total_results, total_pages, newState: "success"}))
     } catch (error) {
         yield call(setError(error));
     }
 };
 
-function* clearMoviesListDataHandler() {
-    yield all([
-        put(setMoviesList([])),
-        put(setTotalResults(10_000)),
-        put(setTotalPages(500)),
-    ]);
-    yield put(setState("idle"));
-};
-
 export function* moviesSaga() {
-    yield takeLatest(fetchMoviesList.type, fetchMoviesListHandler);
-    yield takeLatest(clearMoviesList.type, clearMoviesListDataHandler);
+    yield takeLatest(setMoviesPage.type, fetchMoviesListHandler);
+    yield takeLatest(setMoviesQuery.type, fetchMoviesListHandler);
 };

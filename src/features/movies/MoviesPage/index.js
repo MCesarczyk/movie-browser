@@ -8,14 +8,13 @@ import searchQueryParamName from "../../search/searchQueryParamName";
 import {
     selectImagesBaseURL,
     selectPosterSizes,
-    selectTotalResults,
-    setPage,
-    setQuery,
 } from "../../../commonSlice";
 import {
-    selectMoviesList,
-    fetchMoviesList,
-    clearMoviesList
+    clearMoviesList,
+    selectMoviesResults,
+    setMoviesQuery,
+    setMoviesPage,
+    selectMoviesTotalResults
 } from "../moviesSlice";
 import Pager from "../../../core/Pager";
 
@@ -26,16 +25,12 @@ const MoviesPage = () => {
     const query = (new URLSearchParams(location.search)).get(searchQueryParamName);
 
     useEffect(() => {
-        dispatch(setQuery(query));
-        dispatch(fetchMoviesList());
-        // eslint-disable-next-line
-    }, [query]);
+        dispatch(setMoviesQuery(query));
+    }, [dispatch, query]);
 
     useEffect(() => {
-        dispatch(setPage(page));
-        dispatch(fetchMoviesList());
-        // eslint-disable-next-line
-    }, [page]);
+        dispatch(setMoviesPage(page));
+    }, [dispatch, page]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -46,10 +41,10 @@ const MoviesPage = () => {
         // eslint-disable-next-line
     }, []);
 
-    const movieList = useSelector(selectMoviesList);
+    const movieList = useSelector(selectMoviesResults);
     const imgURL = useSelector(selectImagesBaseURL);
     const posterSizes = useSelector(selectPosterSizes);
-    const totalResults = useSelector(selectTotalResults);
+    const totalResults = useSelector(selectMoviesTotalResults);
 
     const posterSizesArray = [
         posterSizes[1],

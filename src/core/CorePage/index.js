@@ -3,14 +3,13 @@ import { useLocation } from "react-router";
 import LoadingPage from "./LoadingPage";
 import NoResultsPage from "./NoResultsPage";
 import ErrorPage from "./ErrorPage";
-import { selectMoviesList } from "../../features/movies/moviesSlice";
-import { selectState } from "../../commonSlice";
+import { selectMoviesResults, selectMoviesState } from "../../features/movies/moviesSlice";
 import searchQueryParamName from "../../features/search/searchQueryParamName";
 
 const CorePage = ({ message, body }) => {
     const location = useLocation();
-    const movieList = useSelector(selectMoviesList);
-    const moviesState = useSelector(selectState);
+    const movieList = useSelector(selectMoviesResults);
+    const moviesState = useSelector(selectMoviesState);
     const query = (new URLSearchParams(location.search)).get(searchQueryParamName);
 
     return (

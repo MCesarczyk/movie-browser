@@ -1,29 +1,48 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    list: [],
+    results: [],
+    state: "idle",
 };
 
 const moviesSlice = createSlice({
     name: 'movies',
     initialState,
     reducers: {
-        fetchMoviesList: () => { },
-        setMoviesList: (state, { payload: list }) => {
-            state.list = list;
+        setMoviesPage: (state, { payload: newPage }) => {
+            state.page = newPage;
         },
-        clearMoviesList: () => { },
+        setMoviesQuery: (state, { payload: newQuery }) => {
+            state.query = newQuery;
+        },
+        setMoviesList: (state, { payload: { results, total_pages, total_results , newState} }) => {
+            state.results = results;
+            state.total_pages = total_pages;
+            state.total_results = total_results;
+            state.state = newState;
+        },
+        setMoviesState: (state, { payload: newState }) => {
+            state.state = newState;
+        },
+        clearMoviesList: () => initialState,
     },
 });
 
 export const {
-    fetchMoviesList,
+    setMoviesPage,
+    setMoviesQuery,
     setMoviesList,
+    setMoviesState,
     clearMoviesList,
 } = moviesSlice.actions;
 
-const selectMoviesState = state => state.movies;
+const selectMovies = state => state.movies;
 
-export const selectMoviesList = state => selectMoviesState(state).list;
+export const selectMoviesPage = state => selectMovies(state).page;
+export const selectMoviesQuery = state => selectMovies(state).query;
+export const selectMoviesState = state => selectMovies(state).state;
+export const selectMoviesResults = state => selectMovies(state).results;
+export const selectMoviesTotalPages = state => selectMovies(state).total_pages;
+export const selectMoviesTotalResults = state => selectMovies(state).total_results;
 
 export default moviesSlice.reducer;

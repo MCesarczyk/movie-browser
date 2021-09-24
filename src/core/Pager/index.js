@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams, useLocation, useHistory } from "react-router-dom";
-import { selectTotalPages } from "../../commonSlice";
 import { Wrapper, StyledLink, PagerText, PageNumberText } from "./styled";
 import NextIcon from "./NextIcon";
 import PreviousIcon from "./PreviousIcon";
 import searchQueryParamName from "../../features/search/searchQueryParamName";
+import { selectMoviesTotalPages } from "../../features/movies/moviesSlice";
 
 const Pager = ({ property }) => {
     const { page } = useParams();
@@ -16,7 +16,7 @@ const Pager = ({ property }) => {
     const query = searchParams.get(searchQueryParamName);
 
     const history = useHistory();
-    const totalPages = useSelector(selectTotalPages);
+    const totalPages = useSelector(selectMoviesTotalPages);
     const firstPageUrl = `${property}/1${query ? `?${searchQueryParamName}=${query}` : ""}`;
     currentPage > totalPages && history.push(firstPageUrl);
 
