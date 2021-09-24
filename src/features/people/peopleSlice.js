@@ -1,29 +1,51 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    list: [],
+    page: null,
+    results: [],
+    total_pages: null,
+    total_results: null,
+    state: "idle",
 };
 
 const peopleSlice = createSlice({
     name: 'people',
     initialState,
     reducers: {
-        fetchPeopleList: () => { },
-        setPeopleList: (state, { payload: people }) => {
-            state.list = people;
+        setPeoplePage: (state, { payload: newPage }) => {
+            state.page = newPage;
         },
-        clearPeopleList: () => { },
+        setPeopleQuery: (state, { payload: newQuery }) => {
+            state.query = newQuery;
+        },
+        setPeopleList: (state, { payload: { results, total_pages, total_results, newState } }) => {
+            state.results = results;
+            state.total_pages = total_pages;
+            state.total_results = total_results;
+            state.state = newState;
+        },
+        setPeopleState: (state, { payload: newState }) => {
+            state.state = newState;
+        },
+        clearPeopleList: () => initialState,
     },
 });
 
 export const {
-    fetchPeopleList,
+    setPeoplePage,
+    setPeopleQuery,
     setPeopleList,
+    setPeopleState,
     clearPeopleList,
 } = peopleSlice.actions;
 
-const selectPeopleState = state => state.people;
+const selectPeople = state => state.people;
 
-export const selectPeopleList = state => selectPeopleState(state).list;
+export const selectPeoplePage = state => selectPeople(state).page;
+export const selectPeopleQuery = state => selectPeople(state).query;
+export const selectPeopleState = state => selectPeople(state).state;
+export const selectPeopleResults = state => selectPeople(state).results;
+export const selectPeopleTotalPages = state => selectPeople(state).total_pages;
+export const selectPeopleTotalResults = state => selectPeople(state).total_results;
 
 export default peopleSlice.reducer;

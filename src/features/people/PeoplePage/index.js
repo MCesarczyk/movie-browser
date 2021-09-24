@@ -4,20 +4,19 @@ import { useLocation, useParams } from "react-router";
 import Section from "../../../common/Section";
 import CorePage from "../../../core/CorePage";
 import Tile from "../../../core/Tile"
+import Pager from "../../../core/Pager";
 import searchQueryParamName from "../../search/searchQueryParamName";
 import {
     selectImagesBaseURL,
     selectProfileSizes,
-    setQuery,
-    setPage,
-    selectTotalResults,
 } from "../../../commonSlice";
 import {
+    setPeoplePage,
+    setPeopleQuery,
     clearPeopleList,
-    fetchPeopleList,
-    selectPeopleList,
+    selectPeopleResults,
+    selectPeopleTotalResults,
 } from "../peopleSlice";
-import Pager from "../../../core/Pager";
 
 const PeoplePage = () => {
     const dispatch = useDispatch();
@@ -26,16 +25,12 @@ const PeoplePage = () => {
     const query = (new URLSearchParams(location.search)).get(searchQueryParamName);
 
     useEffect(() => {
-        dispatch(setQuery(query));
-        dispatch(fetchPeopleList());
-        // eslint-disable-next-line
-    }, [query]);
+        dispatch(setPeopleQuery(query));
+    }, [dispatch, query]);
 
     useEffect(() => {
-        dispatch(setPage(page));
-        dispatch(fetchPeopleList());
-        // eslint-disable-next-line
-    }, [page]);
+        dispatch(setPeoplePage(page || "1"));
+    }, [dispatch, page]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -46,10 +41,10 @@ const PeoplePage = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const peopleList = useSelector(selectPeopleList);
+    const peopleList = useSelector(selectPeopleResults);
+    const totalResults = useSelector(selectPeopleTotalResults);
     const imgURL = useSelector(selectImagesBaseURL);
     const profileSizes = useSelector(selectProfileSizes);
-    const totalResults = useSelector(selectTotalResults);
 
     const profileSizesArray = [
         profileSizes[1],
