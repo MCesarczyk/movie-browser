@@ -29,7 +29,7 @@ const MoviesPage = () => {
     }, [dispatch, query]);
 
     useEffect(() => {
-        dispatch(setMoviesPage(page));
+        dispatch(setMoviesPage(page || "1"));
     }, [dispatch, page]);
 
     useEffect(() => {
@@ -42,9 +42,9 @@ const MoviesPage = () => {
     }, []);
 
     const movieList = useSelector(selectMoviesResults);
+    const totalResults = useSelector(selectMoviesTotalResults);
     const imgURL = useSelector(selectImagesBaseURL);
     const posterSizes = useSelector(selectPosterSizes);
-    const totalResults = useSelector(selectMoviesTotalResults);
 
     const posterSizesArray = [
         posterSizes[1],
