@@ -10,11 +10,10 @@ import {
     selectImagesBaseURL,
     selectPosterSizes,
     selectProfileSizes,
-    setId,
 } from "../../../commonSlice";
 import {
-    fetchPersonDetails,
-    clearPersonDetails,
+    setPersonId,
+    clearPersonData,
     selectPersonDetails,
     selectPersonCast,
     selectPersonCrew,
@@ -32,15 +31,14 @@ const PersonPage = () => {
     const personCrew = useSelector(selectPersonCrew);
 
     useEffect(() => {
-        dispatch(setId(id));
-        dispatch(fetchPersonDetails());
+        dispatch(setPersonId(id));
     }, [dispatch, id]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
 
         return () => {
-            dispatch(clearPersonDetails());
+            dispatch(clearPersonData());
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
