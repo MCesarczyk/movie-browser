@@ -6,17 +6,21 @@ import NextIcon from "./NextIcon";
 import PreviousIcon from "./PreviousIcon";
 import searchQueryParamName from "../../features/search/searchQueryParamName";
 import { selectMoviesTotalPages } from "../../features/movies/moviesSlice";
+import { selectPeopleTotalPages } from "../../features/people/peopleSlice";
 
 const Pager = ({ property }) => {
     const { page } = useParams();
     let currentPage = (page ? page : 1);
+
+    const moviesTotalPages = useSelector(selectMoviesTotalPages);
+    const peopleTotalPages = useSelector(selectPeopleTotalPages);
+    const totalPages = property === "/movies" ? moviesTotalPages : peopleTotalPages;
 
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const query = searchParams.get(searchQueryParamName);
 
     const history = useHistory();
-    const totalPages = useSelector(selectMoviesTotalPages);
     const firstPageUrl = `${property}/1${query ? `?${searchQueryParamName}=${query}` : ""}`;
     currentPage > totalPages && history.push(firstPageUrl);
 
