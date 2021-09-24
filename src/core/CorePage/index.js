@@ -7,6 +7,7 @@ import searchQueryParamName from "../../features/search/searchQueryParamName";
 import { selectMoviesResults, selectMoviesState } from "../../features/movies/moviesSlice";
 import { selectPeopleResults, selectPeopleState } from "../../features/people/peopleSlice";
 import { selectMovieState } from "../../features/movie/movieSlice";
+import { selectPersonState } from "../../features/person/personSlice";
 
 const CorePage = ({ message, body }) => {
     const moviesList = useSelector(selectMoviesResults);
@@ -14,10 +15,12 @@ const CorePage = ({ message, body }) => {
     const peopleList = useSelector(selectPeopleResults);
     const peopleState = useSelector(selectPeopleState);
     const movieState = useSelector(selectMovieState);
+    const personState = useSelector(selectPersonState);
 
     const moviesMatch = useRouteMatch("/movies");
     const movieMatch = useRouteMatch("/movie");
     const peopleMatch = useRouteMatch("/people");
+    const personMatch = useRouteMatch("/person");
     const itemsList = moviesMatch ? moviesList : peopleList;
 
     const matchAppState = () => {
@@ -27,6 +30,8 @@ const CorePage = ({ message, body }) => {
             return movieState;
         } else if (peopleMatch) {
             return peopleState;
+        } else if (personMatch) {
+            return personState;
         };
     };
 
