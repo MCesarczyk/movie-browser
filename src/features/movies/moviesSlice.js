@@ -1,7 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+    page: null,
     results: [],
+    total_pages: null,
+    total_results: null,
     state: "idle",
 };
 
@@ -15,7 +18,7 @@ const moviesSlice = createSlice({
         setMoviesQuery: (state, { payload: newQuery }) => {
             state.query = newQuery;
         },
-        setMoviesList: (state, { payload: { results, total_pages, total_results , newState} }) => {
+        setMoviesList: (state, { payload: { results, total_pages, total_results, newState } }) => {
             state.results = results;
             state.total_pages = total_pages;
             state.total_results = total_results;
