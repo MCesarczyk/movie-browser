@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import Votes from "../../common/Votes";
-import { selectMoviesGenres } from "../../globalSlice";
+import { selectMoviesGenres } from "../../commonSlice";
 import { ReactComponent as NoPictureImage } from "./noPicture.svg";
 import { ReactComponent as NoPosterImage } from "./noPoster.svg";
 import {

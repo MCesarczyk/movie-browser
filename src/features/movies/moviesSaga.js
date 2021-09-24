@@ -8,7 +8,7 @@ import {
     setState,
     setTotalPages,
     setTotalResults
-} from "../../globalSlice";
+} from "../../commonSlice";
 import {
     fetchMoviesList,
     setMoviesList,

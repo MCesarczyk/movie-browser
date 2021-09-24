@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams, useLocation, useHistory } from "react-router-dom";
-import { selectTotalPages } from "../../globalSlice";
+import { selectTotalPages } from "../../commonSlice";
 import { Wrapper, StyledLink, PagerText, PageNumberText } from "./styled";
 import NextIcon from "./NextIcon";
 import PreviousIcon from "./PreviousIcon";

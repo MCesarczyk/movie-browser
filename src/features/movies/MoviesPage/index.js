@@ -11,7 +11,7 @@ import {
     selectTotalResults,
     setPage,
     setQuery,
-} from "../../../globalSlice";
+} from "../../../commonSlice";
 import {
     selectMoviesList,
     fetchMoviesList,

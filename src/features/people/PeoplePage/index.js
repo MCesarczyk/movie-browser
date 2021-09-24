@@ -11,7 +11,7 @@ import {
     setQuery,
     setPage,
     selectTotalResults,
-} from "../../../globalSlice";
+} from "../../../commonSlice";
 import {
     clearPeopleList,
     fetchPeopleList,

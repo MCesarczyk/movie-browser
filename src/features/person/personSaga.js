@@ -5,7 +5,7 @@ import {
     selectId,
     setError,
     setState,
-} from "../../globalSlice";
+} from "../../commonSlice";
 import {
     fetchPersonDetails,
     setPersonDetails,

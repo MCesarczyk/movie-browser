@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    config: {
+    configuration: {
         change_keys: [],
         images: {
             backdrop_sizes: [],
@@ -23,13 +23,13 @@ const initialState = {
     query: "",
 };
 
-const globalSlice = createSlice({
-    name: 'global',
+const commonSlice = createSlice({
+    name: 'common',
     initialState,
     reducers: {
         fetchConfiguration: () => { },
-        setConfig: (state, { payload: newConfig }) => {
-            state.config = newConfig;
+        setConfiguration: (state, { payload: newConfiguration }) => {
+            state.configuration = newConfiguration;
         },
         fetchMovieGenres: () => { },
         setMovieGenres: (state, { payload: genres }) => {
@@ -61,7 +61,7 @@ const globalSlice = createSlice({
 
 export const {
     fetchConfiguration,
-    setConfig,
+    setConfiguration,
     fetchMovieGenres,
     setMovieGenres,
     setPage,
@@ -71,24 +71,24 @@ export const {
     setState,
     setError,
     setQuery,
-} = globalSlice.actions;
+} = commonSlice.actions;
 
-const selectGlobal = state => state.global;
-export const selectMoviesGenres = state => selectGlobal(state).genres;
-export const selectPage = state => selectGlobal(state).page;
-export const selectId = state => selectGlobal(state).id;
-export const selectTotalResults = state => selectGlobal(state).totalResults;
-export const selectTotalPages = state => selectGlobal(state).totalPages;
-export const selectState = state => selectGlobal(state).state;
-export const selectError = state => selectGlobal(state).error;
-export const selectQuery = state => selectGlobal(state).query;
+const selectCommon = state => state.common;
+export const selectMoviesGenres = state => selectCommon(state).genres;
+export const selectPage = state => selectCommon(state).page;
+export const selectId = state => selectCommon(state).id;
+export const selectTotalResults = state => selectCommon(state).totalResults;
+export const selectTotalPages = state => selectCommon(state).totalPages;
+export const selectState = state => selectCommon(state).state;
+export const selectError = state => selectCommon(state).error;
+export const selectQuery = state => selectCommon(state).query;
 
-const selectConfig = state => selectGlobal(state).config
-const selectImagesConfig = state => selectConfig(state).images;
+const selectConfiguration = state => selectCommon(state).configuration
+const selectImagesConfiguration = state => selectConfiguration(state).images;
 
-export const selectImagesBaseURL = state => selectImagesConfig(state).secure_base_url;
-export const selectPosterSizes = state => selectImagesConfig(state).poster_sizes;
-export const selectProfileSizes = state => selectImagesConfig(state).profile_sizes;
-export const selectBackdropSizes = state => selectImagesConfig(state).backdrop_sizes;
+export const selectImagesBaseURL = state => selectImagesConfiguration(state).secure_base_url;
+export const selectPosterSizes = state => selectImagesConfiguration(state).poster_sizes;
+export const selectProfileSizes = state => selectImagesConfiguration(state).profile_sizes;
+export const selectBackdropSizes = state => selectImagesConfiguration(state).backdrop_sizes;
 
-export default globalSlice.reducer;
+export default commonSlice.reducer;

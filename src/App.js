@@ -1,7 +1,7 @@
 import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { useEffect } from "react";
-import { fetchConfiguration } from './globalSlice';
+import { fetchConfiguration } from './commonSlice';
 import Navbar from './core/Navbar';
 import MoviesPage from './features/movies/MoviesPage';
 import MoviePage from './features/movie/MoviePage';

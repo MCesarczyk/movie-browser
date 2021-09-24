@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    people: [],
+    list: [],
 };
 
 const peopleSlice = createSlice({
@@ -10,7 +10,7 @@ const peopleSlice = createSlice({
     reducers: {
         fetchPeopleList: () => { },
         setPeopleList: (state, { payload: people }) => {
-            state.people = people;
+            state.list = people;
         },
         clearPeopleList: () => { },
     },
@@ -24,6 +24,6 @@ export const {
 
 const selectPeopleState = state => state.people;
 
-export const selectPeopleList = state => selectPeopleState(state).people;
+export const selectPeopleList = state => selectPeopleState(state).list;
 
 export default peopleSlice.reducer;

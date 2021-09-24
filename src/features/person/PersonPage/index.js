@@ -11,7 +11,7 @@ import {
     selectPosterSizes,
     selectProfileSizes,
     setId,
-} from "../../../globalSlice";
+} from "../../../commonSlice";
 import {
     fetchPersonDetails,
     clearPersonDetails,

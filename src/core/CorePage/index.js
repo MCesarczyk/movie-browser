@@ -4,7 +4,7 @@ import LoadingPage from "./LoadingPage";
 import NoResultsPage from "./NoResultsPage";
 import ErrorPage from "./ErrorPage";
 import { selectMoviesList } from "../../features/movies/moviesSlice";
-import { selectState } from "../../globalSlice";
+import { selectState } from "../../commonSlice";
 import searchQueryParamName from "../../features/search/searchQueryParamName";
 
 const CorePage = ({ message, body }) => {

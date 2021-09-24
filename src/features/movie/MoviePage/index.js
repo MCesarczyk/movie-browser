@@ -12,7 +12,7 @@ import {
     selectPosterSizes,
     selectProfileSizes,
     setId,
-} from "../../../globalSlice";
+} from "../../../commonSlice";
 import {
     selectMovieDetails,
     selectMovieCast,
