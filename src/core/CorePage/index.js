@@ -1,30 +1,48 @@
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router";
+import { useLocation, useRouteMatch } from "react-router";
 import LoadingPage from "./LoadingPage";
 import NoResultsPage from "./NoResultsPage";
 import ErrorPage from "./ErrorPage";
-import { selectMoviesResults, selectMoviesState } from "../../features/movies/moviesSlice";
 import searchQueryParamName from "../../features/search/searchQueryParamName";
+import { selectMoviesResults, selectMoviesState } from "../../features/movies/moviesSlice";
+import { selectPeopleResults, selectPeopleState } from "../../features/people/peopleSlice";
 
 const CorePage = ({ message, body }) => {
-    const location = useLocation();
-    const movieList = useSelector(selectMoviesResults);
+    const moviesList = useSelector(selectMoviesResults);
     const moviesState = useSelector(selectMoviesState);
+    const peopleList = useSelector(selectPeopleResults);
+    const peopleState = useSelector(selectPeopleState);
+
+    const moviesMatch = useRouteMatch("/movies");
+    const peopleMatch = useRouteMatch("/people");
+    const itemsList = moviesMatch ? moviesList : peopleList;
+
+    const matchAppState = () => {
+        if (moviesMatch) {
+            return moviesState;
+        } else if (peopleMatch) {
+            return peopleState;
+        };
+    };
+
+    const appState = matchAppState();
+
+    const location = useLocation();
     const query = (new URLSearchParams(location.search)).get(searchQueryParamName);
 
     return (
         <>
-            {moviesState === "idle" && <></>}
-            {moviesState === "loading" &&
+            {appState === "idle" && <></>}
+            {appState === "loading" &&
                 <LoadingPage
                     message={message}
                     query={query}
                 />
             }
-            {moviesState === "error" &&
+            {appState === "error" &&
                 (query ? <NoResultsPage /> : <ErrorPage />)
             }
-            {moviesState === "success" && movieList && body}
+            {appState === "success" && itemsList && body}
         </>
     )
 };
