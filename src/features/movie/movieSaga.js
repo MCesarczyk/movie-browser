@@ -1,29 +1,28 @@
-import { call, all, delay, put, select, takeLatest } from "redux-saga/effects";
+import { call, delay, put, select, takeLatest } from "redux-saga/effects";
 import { getDataFromApi } from "../../utils/getDataFromApi";
 import { buildRequestUrl } from "../../utils/buildRequestUrl";
 import {
-    selectId,
     setError,
-    setState,
 } from "../../commonSlice";
 import {
-    fetchMovieDetails,
-    clearMovieDetails,
     setMovieDetails,
     setMovieCredits,
+    setMovieId,
+    selectMovieId,
+    setMovieState,
 } from "./movieSlice";
 
 function* fetchMovieDetailsHandler() {
     try {
-        yield put(setState("loading"));
-        const id = yield select(selectId);
+        yield put(setMovieState("loading"));
+        const id = yield select(selectMovieId);
         const path = `movie/${id}`;
         const apiURL = buildRequestUrl(path);
         const details = yield call(getDataFromApi, apiURL);
         yield put(setMovieDetails(details));
         yield call(fetchMovieCreditsHandler);
         yield delay(500);
-        yield put(setState("success"));
+        yield put(setMovieState("success"));
     } catch (error) {
         yield call(setError(error));
     }
@@ -31,7 +30,7 @@ function* fetchMovieDetailsHandler() {
 
 function* fetchMovieCreditsHandler() {
     try {
-        const id = yield select(selectId);
+        const id = yield select(selectMovieId);
         const path = `movie/${id}/credits`;
         const apiURL = buildRequestUrl(path);
         const credits = yield call(getDataFromApi, apiURL);
@@ -41,15 +40,6 @@ function* fetchMovieCreditsHandler() {
     }
 };
 
-function* clearMovieDetailsDataHandler() {
-    yield all([
-        put(setMovieDetails([])),
-        put(setMovieCredits([])),
-    ]);
-    yield put(setState("idle"));
-};
-
 export function* movieSaga() {
-    yield takeLatest(fetchMovieDetails.type, fetchMovieDetailsHandler);
-    yield takeLatest(clearMovieDetails.type, clearMovieDetailsDataHandler);
+    yield takeLatest(setMovieId.type, fetchMovieDetailsHandler);
 };

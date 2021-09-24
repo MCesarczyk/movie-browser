@@ -1,37 +1,47 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+    id: null,
     details: [],
     credits: [],
+    state: "idle",
 };
 
 const movieSlice = createSlice({
     name: 'movie',
     initialState,
     reducers: {
-        fetchMovieDetails: () => { },
+        setMovieId: (state, { payload: newId }) => {
+            state.id = newId;
+        },
         setMovieDetails: (state, { payload: details }) => {
             state.details = details;
         },
-        clearMovieDetails: () => { },
         setMovieCredits: (state, { payload: credits }) => {
             state.credits = credits;
         },
+        setMovieState: (state, { payload: newState }) => {
+            state.state = newState;
+        },
+        clearMovieData: () => initialState,
     },
 });
 
 export const {
-    fetchMovieDetails,
+    setMovieId,
     setMovieDetails,
-    clearMovieDetails,
     setMovieCredits,
+    setMovieState,
+    clearMovieData,
 } = movieSlice.actions;
 
-const selectMovieState = state => state.movie;
-const selectMovieCredits = state => selectMovieState(state).credits
+const selectMovie = state => state.movie;
+const selectMovieCredits = state => selectMovie(state).credits
 
-export const selectMovieDetails = state => selectMovieState(state).details;
-export const selectGenresList = state => selectMovieState(state).genres;
+export const selectMovieId = state => selectMovie(state).id;
+export const selectMovieState = state => selectMovie(state).state;
+export const selectMovieDetails = state => selectMovie(state).details;
+export const selectGenresList = state => selectMovie(state).genres;
 export const selectMovieCast = state => selectMovieCredits(state).cast;
 export const selectMovieCrew = state => selectMovieCredits(state).crew;
 

@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     configuration: {
-        change_keys: [],
         images: {
             backdrop_sizes: [],
             base_url: "",
@@ -14,13 +13,13 @@ const initialState = {
         },
     },
     genres: [],
-    page: 1,
-    id: "",
-    totalResults: 10_000,
-    totalPages: 500,
-    state: "idle",
-    error: "",
-    query: "",
+    // page: 1,
+    // id: "",
+    // totalResults: 10_000,
+    // totalPages: 500,
+    // state: "idle",
+    // error: "",
+    // query: "",
 };
 
 const commonSlice = createSlice({

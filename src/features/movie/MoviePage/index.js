@@ -7,19 +7,18 @@ import Tile from "../../../core/Tile"
 import Backdrop from "./Backdrop";
 import LoadingCircle from "../../../common/LoadingCircle";
 import {
-    selectBackdropSizes,
     selectImagesBaseURL,
+    selectBackdropSizes,
     selectPosterSizes,
     selectProfileSizes,
-    setId,
 } from "../../../commonSlice";
 import {
     selectMovieDetails,
     selectMovieCast,
     selectMovieCrew,
     selectGenresList,
-    fetchMovieDetails,
-    clearMovieDetails,
+    clearMovieData,
+    setMovieId,
 } from "../../movie/movieSlice";
 const Section = React.lazy(() => import('../../../common/Section'));
 
@@ -36,16 +35,14 @@ const MoviePage = () => {
     const genresList = useSelector(selectGenresList);
 
     useEffect(() => {
-        dispatch(setId(id));
-        dispatch(fetchMovieDetails());
-        // eslint-disable-next-line
-    }, [id]);
+        dispatch(setMovieId(id));
+    }, [dispatch, id]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
 
         return () => {
-            dispatch(clearMovieDetails());
+            dispatch(clearMovieData());
         };
         // eslint-disable-next-line
     }, []);
