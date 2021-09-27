@@ -22,11 +22,13 @@ function* fetchMoviesListHandler() {
         const path = query ? "search/movie" : "movie/popular";
         const page = currentpage || "1";
         const apiURL = buildRequestUrl(path, page, query);
-        const { results, total_results, total_pages } = yield call(getDataFromApi, apiURL);
+        const response = yield call(getDataFromApi, apiURL);
+        const { results, total_results, total_pages } = yield response;
         yield delay(500);
-        yield put(setMoviesList({results, total_results, total_pages, newState: "success"}))
+        yield put(setMoviesList({ results, total_results, total_pages, newState: "success" }))
     } catch (error) {
-        yield call(setError(error));
+        yield call(console.error, `fetchMoviesListHandler: ${error}`);
+        yield put(setMoviesList({ newState: "error" }));
     }
 };
 
