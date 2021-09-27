@@ -2,9 +2,6 @@ import { call, delay, put, select, takeLatest } from "redux-saga/effects";
 import { getDataFromApi } from "../../utils/getDataFromApi";
 import { buildRequestUrl } from "../../utils/buildRequestUrl";
 import {
-    setError,
-} from "../../commonSlice";
-import {
     setPersonDetails,
     setPersonCredits,
     setPersonId,
@@ -24,7 +21,8 @@ function* fetchPersonDetailsHandler() {
         yield delay(500);
         yield put(setPersonState("success"));
     } catch (error) {
-        yield call(setError(error));
+        yield call(console.error, `fetchPersonDetailsListHandler: ${error}`);
+        yield put(setPersonState("error"));
     }
 };
 
@@ -36,7 +34,7 @@ function* fetchPersonCreditsHandler() {
         const credits = yield call(getDataFromApi, apiURL);
         yield put(setPersonCredits(credits));
     } catch (error) {
-        yield call(setError(error));
+        yield call(console.error, `fetchPersonCreditsHandler: ${error}`);
     }
 };
 

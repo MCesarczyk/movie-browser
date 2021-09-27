@@ -2,9 +2,6 @@ import { call, delay, put, select, takeLatest } from "redux-saga/effects";
 import { getDataFromApi } from "../../utils/getDataFromApi";
 import { buildRequestUrl } from "../../utils/buildRequestUrl";
 import {
-    setError,
-} from "../../commonSlice";
-import {
     setPeopleList,
     selectPeoplePage,
     selectPeopleQuery,
@@ -26,7 +23,8 @@ function* fetchPeopleListHandler() {
         yield delay(500);
         yield put(setPeopleList({ results, total_results, total_pages, newState: "success" }))
     } catch (error) {
-        yield call(setError(error));
+        yield call(console.error, `fetchPeopleListHandler: ${error}`);
+        yield put(setPeopleState("error"));
     }
 };
 
