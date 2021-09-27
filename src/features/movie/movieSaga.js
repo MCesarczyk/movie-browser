@@ -2,9 +2,6 @@ import { call, delay, put, select, takeLatest } from "redux-saga/effects";
 import { getDataFromApi } from "../../utils/getDataFromApi";
 import { buildRequestUrl } from "../../utils/buildRequestUrl";
 import {
-    setError,
-} from "../../commonSlice";
-import {
     setMovieDetails,
     setMovieCredits,
     setMovieId,
@@ -24,7 +21,8 @@ function* fetchMovieDetailsHandler() {
         yield delay(500);
         yield put(setMovieState("success"));
     } catch (error) {
-        yield call(setError(error));
+        yield call(console.error, `fetchMovieDetailsHandler: ${error}`);
+        yield put(setMovieState("error"));
     }
 };
 
@@ -36,7 +34,8 @@ function* fetchMovieCreditsHandler() {
         const credits = yield call(getDataFromApi, apiURL);
         yield put(setMovieCredits(credits));
     } catch (error) {
-        yield call(setError(error));
+        yield call(console.error, `fetchMovieCreditsHandler: ${error}`);
+        yield put(setMovieState("error"));
     }
 };
 
