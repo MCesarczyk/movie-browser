@@ -2,13 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     images: {
+        secure_base_url: "",
         backdrop_sizes: [],
-        base_url: "",
-        logo_sizes: [],
         poster_sizes: [],
         profile_sizes: [],
-        secure_base_url: "",
-        still_sizes: [],
     },
     genres: [],
 };
@@ -18,8 +15,18 @@ const commonSlice = createSlice({
     initialState,
     reducers: {
         fetchConfiguration: () => { },
-        setConfiguration: (state, { payload: newConfiguration }) => {
-            state.images = newConfiguration;
+        setConfiguration: (state, {
+            payload: {
+                secure_base_url,
+                backdrop_sizes,
+                poster_sizes,
+                profile_sizes,
+            }
+        }) => {
+            state.images.secure_base_url = secure_base_url;
+            state.images.backdrop_sizes = backdrop_sizes;
+            state.images.poster_sizes = poster_sizes;
+            state.images.profile_sizes = profile_sizes;
         },
         fetchMovieGenres: () => { },
         setMovieGenres: (state, { payload: genres }) => {
