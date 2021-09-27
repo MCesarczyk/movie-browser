@@ -2,9 +2,6 @@ import { call, delay, put, select, takeLatest } from "redux-saga/effects";
 import { getDataFromApi } from "../../utils/getDataFromApi";
 import { buildRequestUrl } from "../../utils/buildRequestUrl";
 import {
-    setError,
-} from "../../commonSlice";
-import {
     setMoviesList,
     setMoviesPage,
     setMoviesQuery,
@@ -28,7 +25,7 @@ function* fetchMoviesListHandler() {
         yield put(setMoviesList({ results, total_results, total_pages, newState: "success" }))
     } catch (error) {
         yield call(console.error, `fetchMoviesListHandler: ${error}`);
-        yield put(setMoviesList({ newState: "error" }));
+        yield put(setMoviesState("error"));
     }
 };
 
