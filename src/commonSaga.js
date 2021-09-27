@@ -1,6 +1,6 @@
 import { call, all, put, takeLatest } from "redux-saga/effects";
 import { getDataFromApi } from "./utils/getDataFromApi";
-import { fetchConfiguration, setConfiguration, setError, setMovieGenres } from "./commonSlice";
+import { fetchConfiguration, setConfiguration, setMovieGenres } from "./commonSlice";
 import { buildRequestUrl } from "./utils/buildRequestUrl";
 
 function* fetchConfigurationHandler() {
@@ -10,7 +10,7 @@ function* fetchConfigurationHandler() {
         const configuration = yield call(getDataFromApi, apiURL);
         yield put(setConfiguration(configuration.images));
     } catch (error) {
-        yield call(setError(error));
+        yield call(console.error, `fetchConfigurationHandler: ${error}`);
     }
 };
 
@@ -21,7 +21,7 @@ function* fetchMovieGenresHandler() {
         const genres = yield call(getDataFromApi, apiURL);
         yield put(setMovieGenres(genres.genres));
     } catch (error) {
-        yield call(setError(error));
+        yield call(console.error, `fetchMovieGenresHandler: ${error}`);
     }
 };
 
