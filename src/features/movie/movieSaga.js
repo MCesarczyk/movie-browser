@@ -35,7 +35,6 @@ function* fetchMovieCreditsHandler() {
         yield put(setMovieCredits(credits));
     } catch (error) {
         yield call(console.error, `fetchMovieCreditsHandler: ${error}`);
-        yield put(setMovieState("error"));
     }
 };
 
