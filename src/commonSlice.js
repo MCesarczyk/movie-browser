@@ -1,16 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    configuration: {
-        images: {
-            backdrop_sizes: [],
-            base_url: "",
-            logo_sizes: [],
-            poster_sizes: [],
-            profile_sizes: [],
-            secure_base_url: "",
-            still_sizes: [],
-        },
+    images: {
+        backdrop_sizes: [],
+        base_url: "",
+        logo_sizes: [],
+        poster_sizes: [],
+        profile_sizes: [],
+        secure_base_url: "",
+        still_sizes: [],
     },
     genres: [],
 };
@@ -21,7 +19,7 @@ const commonSlice = createSlice({
     reducers: {
         fetchConfiguration: () => { },
         setConfiguration: (state, { payload: newConfiguration }) => {
-            state.configuration = newConfiguration;
+            state.images = newConfiguration;
         },
         fetchMovieGenres: () => { },
         setMovieGenres: (state, { payload: genres }) => {
@@ -42,8 +40,7 @@ export const {
 } = commonSlice.actions;
 
 const selectCommon = state => state.common;
-const selectConfiguration = state => selectCommon(state).configuration
-const selectImagesConfiguration = state => selectConfiguration(state).images;
+const selectImagesConfiguration = state => selectCommon(state).images;
 
 export const selectMoviesGenres = state => selectCommon(state).genres;
 export const selectError = state => selectCommon(state).error;

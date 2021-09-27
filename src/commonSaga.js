@@ -8,7 +8,7 @@ function* fetchConfigurationHandler() {
         const path = "configuration";
         const apiURL = buildRequestUrl(path);
         const configuration = yield call(getDataFromApi, apiURL);
-        yield put(setConfiguration(configuration));
+        yield put(setConfiguration(configuration.images));
     } catch (error) {
         yield call(setError(error));
     }
