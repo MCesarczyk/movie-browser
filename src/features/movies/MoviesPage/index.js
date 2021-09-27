@@ -68,7 +68,7 @@ const MoviesPage = () => {
                 <>
                     <Section
                         title={query ? `Search results for "${query}" (${totalResults})` : "Popular movies"}
-                        itemsList={movieList.map((movie, index) => (
+                        itemsList={movieList && movieList.map((movie, index) => (
                             <Tile
                                 key={movieList[index].id}
                                 sizes={posterSizesArray}
