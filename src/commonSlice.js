@@ -47,13 +47,13 @@ export const {
 } = commonSlice.actions;
 
 const selectCommon = state => state.common;
-const selectImagesConfiguration = state => selectCommon(state).images;
+const selectImages = state => selectCommon(state).images;
 
+export const selectImagesBaseURL = state => selectImages(state).secure_base_url;
+export const selectPosterSizes = state => selectImages(state).poster_sizes;
+export const selectProfileSizes = state => selectImages(state).profile_sizes;
+export const selectBackdropSizes = state => selectImages(state).backdrop_sizes;
 export const selectMoviesGenres = state => selectCommon(state).genres;
 export const selectError = state => selectCommon(state).error;
-export const selectImagesBaseURL = state => selectImagesConfiguration(state).secure_base_url;
-export const selectPosterSizes = state => selectImagesConfiguration(state).poster_sizes;
-export const selectProfileSizes = state => selectImagesConfiguration(state).profile_sizes;
-export const selectBackdropSizes = state => selectImagesConfiguration(state).backdrop_sizes;
 
 export default commonSlice.reducer;
