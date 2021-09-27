@@ -22,7 +22,9 @@ function* fetchMoviesListHandler() {
         const response = yield call(getDataFromApi, apiURL);
         const { results, total_results, total_pages } = yield response;
         yield delay(500);
-        yield put(setMoviesList({ results, total_results, total_pages, newState: "success" }))
+        !response.total_results && query ?
+            yield put(setMoviesState("noResults")) :
+            yield put(setMoviesList({ results, total_results, total_pages, newState: "success" }))
     } catch (error) {
         yield call(console.error, `fetchMoviesListHandler: ${error}`);
         yield put(setMoviesState("error"));

@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    page: null,
+    page: "1",
     results: [],
     total_pages: null,
     total_results: null,
     state: "idle",
+    query: null,
 };
 
 const moviesSlice = createSlice({

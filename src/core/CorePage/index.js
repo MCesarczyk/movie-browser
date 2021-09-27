@@ -49,7 +49,7 @@ const CorePage = ({ message, body }) => {
                     query={query}
                 />
             }
-            {appState === "noResults" && <NoResultsPage />}
+            {appState === "noResults" && <NoResultsPage query={query} />}
             {appState === "error" && <ErrorPage />}
             {appState === "success" && itemsList && body}
         </>
