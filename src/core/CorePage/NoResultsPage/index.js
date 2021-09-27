@@ -6,7 +6,10 @@ import noResults from "./noResults.svg";
 const NoResultsPage = ({ query }) => (
     <Wrapper>
         <Header>
-            {`Sorry, there are no results for "${query}"`}
+            {query ? 
+            `Sorry, there are no results for "${query}"` :
+            "Sorry, the page not found..."
+            }
         </Header>
         {<NoResultsLogo src={noResults} alt="" />}
     </Wrapper>

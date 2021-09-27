@@ -19,9 +19,15 @@ function* fetchPeopleListHandler() {
         const path = query ? "search/person" : "person/popular";
         const page = currentPage || "1";
         const apiURL = buildRequestUrl(path, page, query);
-        const { results, total_results, total_pages } = yield call(getDataFromApi, apiURL);
+        const response = yield call(getDataFromApi, apiURL);
+        const { results, total_results, total_pages } = yield response;
         yield delay(500);
-        yield put(setPeopleList({ results, total_results, total_pages, newState: "success" }))
+        yield put(setPeopleList({
+            results,
+            total_results,
+            total_pages,
+            newState: total_results ? "success" : "noResults"
+        }))
     } catch (error) {
         yield call(console.error, `fetchPeopleListHandler: ${error}`);
         yield put(setPeopleState("error"));
