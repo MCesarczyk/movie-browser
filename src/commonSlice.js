@@ -32,9 +32,6 @@ const commonSlice = createSlice({
         setMovieGenres: (state, { payload: genres }) => {
             state.genres = genres;
         },
-        setError: (state, { payload: newError }) => {
-            state.error = newError;
-        },
     },
 });
 
@@ -43,7 +40,6 @@ export const {
     setConfiguration,
     fetchMovieGenres,
     setMovieGenres,
-    setError,
 } = commonSlice.actions;
 
 const selectCommon = state => state.common;
@@ -54,6 +50,5 @@ export const selectPosterSizes = state => selectImages(state).poster_sizes;
 export const selectProfileSizes = state => selectImages(state).profile_sizes;
 export const selectBackdropSizes = state => selectImages(state).backdrop_sizes;
 export const selectMoviesGenres = state => selectCommon(state).genres;
-export const selectError = state => selectCommon(state).error;
 
 export default commonSlice.reducer;
