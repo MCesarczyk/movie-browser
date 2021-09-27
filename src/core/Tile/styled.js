@@ -13,27 +13,27 @@ const width = props => props.width;
 const mobile = props => props.mobile;
 
 export const Image = styled.img`
-    content: url("${baseUrl}${props => props.sizes[4]}${path}");
+    content: url("${baseUrl}${(props => props.sizes[4]) || "original"}${path}");
     width: 100%;
     display: block;
     border-radius: 5px;
     transition: transform .5s ease;
 
     @media (max-width: ${mediumScreen}) {
-        content: url("${baseUrl}${props => props.sizes[3]}${path}");
+        content: url("${baseUrl}${(props => props.sizes[3]) || "original"}${path}");
     }
    
     @media (max-width: ${smallScreen}) {
-        content: url("${baseUrl}${props => props.sizes[2]}${path}");
+        content: url("${baseUrl}${(props => props.sizes[2]) || "original"}${path}");
     }
    
     @media (max-width: ${mobileMax}) {
-        content: url("${baseUrl}${props => props.sizes[1]}${path}");
+        content: url("${baseUrl}${(props => props.sizes[1]) || "original"}${path}");
         width: ${mobile};
     }
   
     @media (max-width: ${oldIphone}) {
-        content: url("${baseUrl}${props => props.sizes[0]}${path}");
+        content: url("${baseUrl}${(props => props.sizes[0]) || "original"}${path}");
         width: 114px;
     }
 
