@@ -1,12 +1,12 @@
 import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { useEffect } from "react";
-import { fetchConfiguration } from './globalSlice';
-import Navigation from './features/Navigation';
+import { fetchConfiguration } from './commonSlice';
+import Navbar from './core/Navbar';
 import MoviesPage from './features/movies/MoviesPage';
-import MoviePage from './features/movies/MoviePage';
+import MoviePage from './features/movie/MoviePage';
 import PeoplePage from "./features/people/PeoplePage";
-import PersonPage from "./features/people/PersonPage";
+import PersonPage from "./features/person/PersonPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ function App() {
 
   return (
     <HashRouter>
-      <Navigation
+      <Navbar
         moviesPath={"/movies"}
         peoplePath={"/people"}
       />

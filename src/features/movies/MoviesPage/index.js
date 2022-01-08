@@ -1,26 +1,22 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useLocation } from "react-router-dom";
-import Wrapper from "../../../common/Wrapper";
 import Section from "../../../common/Section";
-import Tile from "../../../common/Tile"
-import Pager from "../../../common/Pager";
-import LoadingPage from "../../../common/LoadingPage";
-import ErrorPage from "../../../common/ErrorPage";
-import searchQueryParamName from "../../Navigation/Search/searchQueryParamName";
+import Tile from "../../../core/Tile"
+import CorePage from "../../../core/CorePage";
+import searchQueryParamName from "../../search/searchQueryParamName";
 import {
     selectImagesBaseURL,
     selectPosterSizes,
-    selectState,
-    selectTotalResults,
-    setPage,
-    setQuery,
-} from "../../../globalSlice";
+} from "../../../commonSlice";
 import {
-    selectMoviesList,
-    fetchMoviesList
+    clearMoviesList,
+    selectMoviesResults,
+    setMoviesQuery,
+    setMoviesPage,
+    selectMoviesTotalResults
 } from "../moviesSlice";
-import { NoResults } from "../../../common/NoResults";
+import Pager from "../../../core/Pager";
 
 const MoviesPage = () => {
     const dispatch = useDispatch();
@@ -29,27 +25,26 @@ const MoviesPage = () => {
     const query = (new URLSearchParams(location.search)).get(searchQueryParamName);
 
     useEffect(() => {
-        dispatch(setQuery(query));
-        dispatch(fetchMoviesList());
-        // eslint-disable-next-line
-    }, [query]);
+        dispatch(setMoviesQuery(query));
+    }, [dispatch, query]);
 
     useEffect(() => {
-        dispatch(setPage(page));
-        dispatch(fetchMoviesList());
-        // eslint-disable-next-line
-    }, [page]);
+        dispatch(setMoviesPage(page || "1"));
+    }, [dispatch, page]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
+
+        return () => {
+            dispatch(clearMoviesList());
+        }
         // eslint-disable-next-line
     }, []);
 
-    const movieList = useSelector(selectMoviesList);
-    const moviesState = useSelector(selectState);
+    const movieList = useSelector(selectMoviesResults);
+    const totalResults = useSelector(selectMoviesTotalResults);
     const imgURL = useSelector(selectImagesBaseURL);
     const posterSizes = useSelector(selectPosterSizes);
-    const totalResults = useSelector(selectTotalResults);
 
     const posterSizesArray = [
         posterSizes[1],
@@ -61,21 +56,19 @@ const MoviesPage = () => {
 
     const tileWidths = ["100%", "228px", "286px", "286px", "324px"];
 
+    const getFullYearFromDate = (movieList, index) => {
+        const releaseDate = movieList[index].release_date;
+        return releaseDate && new Date(Date.parse(releaseDate)).getFullYear();
+    };
+
     return (
-        <>
-            <Wrapper>
-                {moviesState === "loading" &&
-                    <LoadingPage
-                        message={query ? `Search results for "${query}"` : "Loading movies list..."}
-                    />
-                }
-                {moviesState === "error" &&
-                    (query ? <NoResults /> : <ErrorPage />)
-                }
-                {moviesState === "success" && movieList &&
+        <CorePage
+            message="Loading movies list..."
+            body={
+                <>
                     <Section
                         title={query ? `Search results for "${query}" (${totalResults})` : "Popular movies"}
-                        body={movieList.map((movie, index) => (
+                        itemsList={movieList && movieList.map((movie, index) => (
                             <Tile
                                 key={movieList[index].id}
                                 sizes={posterSizesArray}
@@ -85,17 +78,17 @@ const MoviesPage = () => {
                                 imageWidth="100%"
                                 detailsUrl={`/movie/${movieList[index].id}`}
                                 title={movieList[index].title}
-                                subtitle={new Date(Date.parse(movieList[index].release_date)).getFullYear()}
+                                subtitle={getFullYearFromDate(movieList, index)}
                                 genreIds={movieList[index].genre_ids}
                                 rating={movieList[index].vote_average}
                                 votes={movieList[index].vote_count}
                             />
                         ))}
                     />
-                }
-                {moviesState === "success" && <Pager property={"/movies"} />}
-            </Wrapper>
-        </>
+                    < Pager property={"/movies"} />
+                </>
+            }
+        />
     )
 };
 

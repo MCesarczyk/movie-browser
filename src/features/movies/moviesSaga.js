@@ -1,83 +1,40 @@
 import { call, delay, put, select, takeLatest } from "redux-saga/effects";
-import { getDataFromApi } from "../../getDataFromApi";
+import { getDataFromApi } from "../../utils/getDataFromApi";
+import { buildRequestUrl } from "../../utils/buildRequestUrl";
 import {
-    selectId,
-    selectPage,
-    selectQuery,
-    setError,
-    setState,
-    setTotalPages,
-    setTotalResults
-} from "../../globalSlice";
-import {
-    fetchMovieDetails,
-    fetchMoviesList,
-    setMovieCredits,
-    setMovieDetails,
-    setMovieGenres,
-    setMoviesList
+    setMoviesList,
+    setMoviesPage,
+    setMoviesQuery,
+    selectMoviesPage,
+    selectMoviesQuery,
+    setMoviesState,
 } from "./moviesSlice";
 
 function* fetchMoviesListHandler() {
     try {
-        const page = yield select(selectPage);
-        const query = yield select(selectQuery);
-        yield put(setState("loading"));
+        const currentpage = yield select(selectMoviesPage);
+        const query = yield select(selectMoviesQuery);
+        yield put(setMoviesState("loading"));
         yield delay(query ? 500 : 0);
-        const apiURL = (query ?
-            `https://api.themoviedb.org/3/search/movie?api_key=768f7875782193f5e4797762314da0b7&language=en-US&query=${query}&page=${page}&include_adult=false`
-            :
-            `https://api.themoviedb.org/3/movie/popular?api_key=768f7875782193f5e4797762314da0b7&page=${page}&language=en-US`
-        );
-        const movies = yield call(getDataFromApi, apiURL);
-        yield put(setMoviesList(movies.results));
-        yield put(setTotalResults(movies.total_results));
-        yield put(setTotalPages(movies.total_pages));
-        yield call(fetchMovieGenresHandler);
+        const path = query ? "search/movie" : "movie/popular";
+        const page = currentpage || "1";
+        const apiURL = buildRequestUrl(path, page, query);
+        const response = yield call(getDataFromApi, apiURL);
+        const { results, total_results, total_pages } = yield response;
         yield delay(500);
-        yield put(setState("success"));
+        yield put(setMoviesList({ 
+            results, 
+            total_results, 
+            total_pages, 
+            newState: total_results ? "success" : "noResults" 
+        }))
     } catch (error) {
-        yield call(setError(error));
-    }
-};
-
-function* fetchMovieGenresHandler() {
-    try {
-        const apiURL = "https://api.themoviedb.org/3/genre/movie/list?api_key=768f7875782193f5e4797762314da0b7&language=en-US";
-        const genres = yield call(getDataFromApi, apiURL);
-        yield put(setMovieGenres(genres));
-    } catch (error) {
-        yield call(setError(error));
-    }
-};
-
-function* fetchMovieDetailsHandler() {
-    try {
-        yield put(setState("loading"));
-        const id = yield select(selectId);
-        const apiURL = `https://api.themoviedb.org/3/movie/${id}?api_key=768f7875782193f5e4797762314da0b7&language=en-US`;
-        const details = yield call(getDataFromApi, apiURL);
-        yield put(setMovieDetails(details));
-        yield call(fetchMovieCreditsHandler);
-        yield delay(500);
-        yield put(setState("success"));
-    } catch (error) {
-        yield call(setError(error));
-    }
-};
-
-function* fetchMovieCreditsHandler() {
-    try {
-        const id = yield select(selectId);
-        const apiURL = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=768f7875782193f5e4797762314da0b7&language=en-US`;
-        const credits = yield call(getDataFromApi, apiURL);
-        yield put(setMovieCredits(credits));
-    } catch (error) {
-        yield call(setError(error));
+        yield call(console.error, `fetchMoviesListHandler: ${error}`);
+        yield put(setMoviesState("error"));
     }
 };
 
 export function* moviesSaga() {
-    yield takeLatest(fetchMoviesList.type, fetchMoviesListHandler);
-    yield takeLatest(fetchMovieDetails.type, fetchMovieDetailsHandler);
+    yield takeLatest(setMoviesPage.type, fetchMoviesListHandler);
+    yield takeLatest(setMoviesQuery.type, fetchMoviesListHandler);
 };

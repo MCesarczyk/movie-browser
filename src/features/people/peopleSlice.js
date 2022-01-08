@@ -1,50 +1,51 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    people: [],
-    genres: [],
-    person: [],
-    credits: [],
+    page: null,
+    results: [],
+    total_pages: null,
+    total_results: null,
+    state: "idle",
 };
 
 const peopleSlice = createSlice({
     name: 'people',
     initialState,
     reducers: {
-        fetchPeopleList: () => { },
-        setPeopleList: (state, { payload: people }) => {
-            state.people = people;
+        setPeoplePage: (state, { payload: newPage }) => {
+            state.page = newPage;
         },
-        setMovieGenres: (state, { payload: genres }) => {
-            state.genres = genres;
+        setPeopleQuery: (state, { payload: newQuery }) => {
+            state.query = newQuery;
         },
-        fetchPersonDetails: () => { },
-        setPersonDetails: (state, { payload: person }) => {
-            state.person = person;
+        setPeopleList: (state, { payload: { results, total_pages, total_results, newState } }) => {
+            state.results = results;
+            state.total_pages = total_pages;
+            state.total_results = total_results;
+            state.state = newState;
         },
-        setPersonCredits: (state, { payload: credits }) => {
-            state.credits = credits;
+        setPeopleState: (state, { payload: newState }) => {
+            state.state = newState;
         },
+        clearPeopleList: () => initialState,
     },
 });
 
 export const {
-    fetchPeopleList,
+    setPeoplePage,
+    setPeopleQuery,
     setPeopleList,
-    setMovieGenres,
-    fetchPersonDetails,
-    setPersonDetails,
-    setPersonCredits,
+    setPeopleState,
+    clearPeopleList,
 } = peopleSlice.actions;
 
-const selectPeopleState = state => state.people;
-const selectPeopleCredits = state => selectPeopleState(state).credits;
+const selectPeople = state => state.people;
 
-export const selectPeopleList = state => selectPeopleState(state).people;
-export const selectGenres = state => selectPeopleState(state).genres.genres;
-export const selectGenresList = state => selectPersonDetails(state).genres;
-export const selectPersonDetails = state => selectPeopleState(state).person;
-export const selectPersonCast = state => selectPeopleCredits(state).cast;
-export const selectPersonCrew = state => selectPeopleCredits(state).crew;
+export const selectPeoplePage = state => selectPeople(state).page;
+export const selectPeopleQuery = state => selectPeople(state).query;
+export const selectPeopleState = state => selectPeople(state).state;
+export const selectPeopleResults = state => selectPeople(state).results;
+export const selectPeopleTotalPages = state => selectPeople(state).total_pages;
+export const selectPeopleTotalResults = state => selectPeople(state).total_results;
 
 export default peopleSlice.reducer;
