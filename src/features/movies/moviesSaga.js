@@ -24,8 +24,8 @@ function* fetchMoviesListHandler() {
         yield delay(500);
         yield put(setMoviesList({ 
             results, 
-            total_results, 
-            total_pages, 
+            total_results: total_results <= 10000 || 10000, 
+            total_pages: total_pages <= 500 || 500, 
             newState: total_results ? "success" : "noResults" 
         }))
     } catch (error) {
