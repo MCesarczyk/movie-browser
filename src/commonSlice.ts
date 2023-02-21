@@ -1,6 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from "./store";
 
-const initialState = {
+interface CommonSliceProps {
+    images: {
+        secure_base_url: string;
+        backdrop_sizes: number[];
+        poster_sizes: number[];
+        profile_sizes: number[];
+    },
+    genres: string[];
+};
+
+const initialState: CommonSliceProps = {
     images: {
         secure_base_url: "",
         backdrop_sizes: [],
@@ -42,13 +53,13 @@ export const {
     setMovieGenres,
 } = commonSlice.actions;
 
-const selectCommon = state => state.common;
-const selectImages = state => selectCommon(state).images;
+const selectCommon = (state: RootState) => state.common;
+const selectImages = (state: RootState) => selectCommon(state).images;
 
-export const selectImagesBaseURL = state => selectImages(state).secure_base_url;
-export const selectPosterSizes = state => selectImages(state).poster_sizes;
-export const selectProfileSizes = state => selectImages(state).profile_sizes;
-export const selectBackdropSizes = state => selectImages(state).backdrop_sizes;
-export const selectMoviesGenres = state => selectCommon(state).genres;
+export const selectImagesBaseURL = (state: RootState): string => selectImages(state).secure_base_url;
+export const selectPosterSizes = (state: RootState): number[] => selectImages(state).poster_sizes;
+export const selectProfileSizes = (state: RootState): number[] => selectImages(state).profile_sizes;
+export const selectBackdropSizes = (state: RootState): number[] => selectImages(state).backdrop_sizes;
+export const selectMoviesGenres = (state: RootState): string[] => selectCommon(state).genres;
 
 export default commonSlice.reducer;
