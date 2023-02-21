@@ -1,12 +1,12 @@
-import styled, { css } from "styled-components";
+import styled, { css, DefaultTheme } from "styled-components";
 
-const mediumScreen = ({ theme }) => theme.breakpoint.mediumScreen;
-const smallScreen = ({ theme }) => theme.breakpoint.smallScreen;
-const mobileMax = ({ theme }) => theme.breakpoint.mobileMax;
-const oldIphone = ({ theme }) => theme.breakpoint.oldIphone;
-const mobileMin = ({ theme }) => theme.breakpoint.mobileMin;
+const mediumScreen = ({ theme }: { theme: DefaultTheme }) => theme.breakpoint.mediumScreen;
+const smallScreen = ({ theme }: { theme: DefaultTheme }) => theme.breakpoint.smallScreen;
+const mobileMax = ({ theme }: { theme: DefaultTheme }) => theme.breakpoint.mobileMax;
+const oldIphone = ({ theme }: { theme: DefaultTheme }) => theme.breakpoint.oldIphone;
+const mobileMin = ({ theme }: { theme: DefaultTheme }) => theme.breakpoint.mobileMin;
 
-export const VotesWrapper = styled.div`
+export const VotesWrapper = styled.div<{ backdrop: string }>`
     margin-top: auto;
     display: flex;
     align-items: flex-end;
@@ -27,7 +27,7 @@ export const VotesWrapper = styled.div`
     `}
 `;
 
-export const RatingWrapper = styled.div`
+export const RatingWrapper = styled.div<{ backdrop: string }>`
     margin-top: auto;
     display: flex;
     align-items: flex-end;
@@ -43,7 +43,7 @@ export const RatingWrapper = styled.div`
     `}
 `;
 
-export const StyledLogo = styled.div`
+export const StyledLogo = styled.div<{ backdrop: string }>`
     width: 24px;
     margin-right: 8px;
     
@@ -60,7 +60,7 @@ export const StyledLogo = styled.div`
     `}
 `;
 
-export const Rating = styled.span`
+export const Rating = styled.span<{ backdrop: string }>`
     font-weight: 600;
     font-size: 22px;
     margin-right: 8px;
@@ -111,7 +111,7 @@ export const Rating = styled.span`
     `}
 `;
 
-export const RatingScale = styled.span`
+export const RatingScale = styled.span<{ backdrop: string }>`
     font-weight: 400;
     font-size: 14px;
     margin-right: 12px;
@@ -133,7 +133,7 @@ export const RatingScale = styled.span`
     `}
 `;
 
-export const VotesCount = styled.span`
+export const VotesCount = styled.span<{ backdrop: string }>`
     font-weight: 400;
     font-size: 14px;
 

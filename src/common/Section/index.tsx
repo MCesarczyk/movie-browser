@@ -2,7 +2,12 @@ import { Wrapper } from "../Wrapper";
 import { Header } from "../Header";
 import { SectionInnerContainer } from "./styled";
 
-const Section = ({ title, itemsList }) => {
+interface SectionProps {
+    title: string;
+    itemsList: string[];
+};
+
+const Section = ({ title, itemsList }: SectionProps) => {
     return (
         <Wrapper>
             <Header>{title}</Header>
