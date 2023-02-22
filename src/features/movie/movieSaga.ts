@@ -8,15 +8,16 @@ import {
     selectMovieId,
     setMovieState,
 } from "./movieSlice";
+import { Movie, MovieCredits } from "../../types";
 
 function* fetchMovieDetailsHandler() {
     try {
         yield put(setMovieState("loading"));
-        const id = yield select(selectMovieId);
-        const path = `movie/${id}`;
+        const id: unknown = yield select(selectMovieId);
+        const path = `movie/${id as string}`;
         const apiURL = buildRequestUrl(path);
-        const details = yield call(getDataFromApi, apiURL);
-        yield put(setMovieDetails(details));
+        const details: unknown = yield call(getDataFromApi, apiURL);
+        yield put(setMovieDetails(details as Movie));
         yield call(fetchMovieCreditsHandler);
         yield delay(500);
         yield put(setMovieState("success"));
@@ -28,11 +29,11 @@ function* fetchMovieDetailsHandler() {
 
 function* fetchMovieCreditsHandler() {
     try {
-        const id = yield select(selectMovieId);
-        const path = `movie/${id}/credits`;
+        const id: unknown = yield select(selectMovieId);
+        const path = `movie/${id as string}/credits`;
         const apiURL = buildRequestUrl(path);
-        const credits = yield call(getDataFromApi, apiURL);
-        yield put(setMovieCredits(credits));
+        const credits: unknown = yield call(getDataFromApi, apiURL);
+        yield put(setMovieCredits(credits as MovieCredits));
     } catch (error) {
         yield call(console.error, `fetchMovieCreditsHandler: ${error}`);
     }
