@@ -17,10 +17,11 @@ import {
     selectMoviesTotalResults
 } from "../moviesSlice";
 import Pager from "../../../core/Pager";
+import { MovieResult } from "../../../types";
 
 const MoviesPage = () => {
     const dispatch = useDispatch();
-    const { page } = useParams();
+    const { page }: any = useParams();
     const location = useLocation();
     const query = (new URLSearchParams(location.search)).get(searchQueryParamName);
 
@@ -29,7 +30,7 @@ const MoviesPage = () => {
     }, [dispatch, query]);
 
     useEffect(() => {
-        dispatch(setMoviesPage(page || "1"));
+        dispatch(setMoviesPage(page as string || "1"));
     }, [dispatch, page]);
 
     useEffect(() => {
@@ -56,7 +57,7 @@ const MoviesPage = () => {
 
     const tileWidths = ["100%", "228px", "286px", "286px", "324px"];
 
-    const getFullYearFromDate = (movieList, index) => {
+    const getFullYearFromDate = (movieList: MovieResult[], index: number) => {
         const releaseDate = movieList[index].release_date;
         return releaseDate && new Date(Date.parse(releaseDate)).getFullYear();
     };
@@ -69,6 +70,7 @@ const MoviesPage = () => {
                     <Section
                         title={query ? `Search results for "${query}" (${totalResults})` : "Popular movies"}
                         itemsList={movieList && movieList.map((movie, index) => (
+                            // @ts-ignore
                             <Tile
                                 key={movieList[index].id}
                                 sizes={posterSizesArray}

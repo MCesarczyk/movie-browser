@@ -96,6 +96,10 @@ export interface MovieDetails {
   vote_count: number;
 };
 
+export interface MovieDetailsInitialState {
+  backdrop_path: number;
+};
+
 export interface MovieCredits {
   id: number;
   cast: Actor[];
@@ -130,6 +134,7 @@ export interface ActingMovieDetailed extends ActingMovie {
   character: string;
   credit_id: string;
   order: number;
+  job: string;
 };
 
 export interface Person {
@@ -154,6 +159,11 @@ export interface PeopleApiResponse {
 
 export interface PersonDetailsInitialState {
   genres: [];
+  profile_path: null;
+  name: null;
+  birthday: null;
+  place_of_birth: null;
+  biography: null;
 };
 
 export interface PersonCreditsInitialState {

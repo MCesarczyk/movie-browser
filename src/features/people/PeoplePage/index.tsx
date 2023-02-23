@@ -20,7 +20,7 @@ import {
 
 const PeoplePage = () => {
     const dispatch = useDispatch();
-    const { page } = useParams();
+    const { page }: any = useParams();
     const location = useLocation();
     const query = (new URLSearchParams(location.search)).get(searchQueryParamName);
 
@@ -29,7 +29,7 @@ const PeoplePage = () => {
     }, [dispatch, query]);
 
     useEffect(() => {
-        dispatch(setPeoplePage(page || "1"));
+        dispatch(setPeoplePage(page as string || "1"));
     }, [dispatch, page]);
 
     useEffect(() => {
@@ -64,6 +64,7 @@ const PeoplePage = () => {
                     <Section
                         title={query ? `Search results for "${query}" (${totalResults})` : "Popular people"}
                         itemsList={peopleList.map((person, index) => (
+                            // @ts-ignore
                             <Tile
                                 person="true"
                                 key={peopleList[index].id}

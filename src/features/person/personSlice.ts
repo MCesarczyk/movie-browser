@@ -6,6 +6,11 @@ const initialState: PersonApiResponse = {
     id: null,
     details: {
         genres: [],
+        profile_path: null,
+        name: null,
+        birthday: null,
+        place_of_birth: null,
+        biography: null,
     },
     credits: {
         cast: [],
