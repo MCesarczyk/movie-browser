@@ -1,5 +1,5 @@
 import React from 'react';
-import App from './App.jsx';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Normalize } from 'styled-normalize';
 import { GlobalStyle } from './GlobalStyle';

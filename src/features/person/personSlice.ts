@@ -1,0 +1,54 @@
+import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from "../../store";
+import { ActingMovieDetailed, PersonApiResponse, PersonCredits, PersonCreditsInitialState, PersonDetails, PersonDetailsInitialState } from "../../types";
+
+const initialState: PersonApiResponse = {
+    id: null,
+    details: {
+        genres: [],
+    },
+    credits: {
+        cast: [],
+        crew: [],
+    },
+    state: "idle",
+};
+
+const personSlice = createSlice({
+    name: 'person',
+    initialState,
+    reducers: {
+        setPersonId: (state, { payload: newId }) => {
+            state.id = newId;
+        },
+        setPersonDetails: (state, { payload: details }) => {
+            state.details = details;
+        },
+        setPersonCredits: (state, { payload: credits }) => {
+            state.credits = credits;
+        },
+        setPersonState: (state, { payload: newState }) => {
+            state.state = newState;
+        },
+        clearPersonData: () => initialState,
+    },
+});
+
+export const {
+    setPersonId,
+    setPersonDetails,
+    setPersonCredits,
+    setPersonState,
+    clearPersonData,
+} = personSlice.actions;
+
+const selectPerson = (state: RootState) => state.person;
+const selectPersonCredits = (state: RootState): PersonCredits | PersonCreditsInitialState => selectPerson(state).credits;
+
+export const selectPersonId = (state: RootState): string | null => selectPerson(state).id;
+export const selectPersonState = (state: RootState): string => selectPerson(state).state;
+export const selectPersonDetails = (state: RootState): PersonDetails | PersonDetailsInitialState => selectPerson(state).details;
+export const selectPersonCast = (state: RootState): ActingMovieDetailed[] | [] => selectPersonCredits(state).cast;
+export const selectPersonCrew = (state: RootState): ActingMovieDetailed[] | [] => selectPersonCredits(state).crew;
+
+export default personSlice.reducer;

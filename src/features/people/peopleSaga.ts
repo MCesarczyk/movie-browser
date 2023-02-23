@@ -9,18 +9,20 @@ import {
     setPeoplePage,
     setPeopleQuery,
 } from "./peopleSlice";
+import { PeopleApiResponse } from "../../types";
 
 function* fetchPeopleListHandler() {
     try {
-        const currentPage = yield select(selectPeoplePage);
-        const query = yield select(selectPeopleQuery);
+        const currentPage: unknown = yield select(selectPeoplePage);
+        const queryString: unknown = yield select(selectPeopleQuery);
+        const query = queryString as string;
         yield put(setPeopleState("loading"));
         yield delay(query ? 500 : 0);
         const path = query ? "search/person" : "person/popular";
-        const page = currentPage || "1";
+        const page = (currentPage as string) || "1";
         const apiURL = buildRequestUrl(path, page, query);
-        const response = yield call(getDataFromApi, apiURL);
-        const { results, total_results, total_pages } = yield response;
+        const response: unknown = yield call(getDataFromApi, apiURL);
+        const { results, total_results, total_pages } = yield response as PeopleApiResponse;
         yield delay(500);
         yield put(setPeopleList({
             results,

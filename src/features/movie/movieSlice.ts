@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
-import { Actor, Genre, Movie, MovieCredits, MovieDetails, StaffMember } from "../../types";
+import { Actor, Genre, MovieApiResponse, MovieCredits, MovieDetails, StaffMember } from "../../types";
 
 interface MovieCreditsInitialState {
     cast: [];
     crew: [];
 };
 
-interface InitialStateProps extends Movie {
+interface InitialStateProps extends MovieApiResponse {
     id: number | null;
     details: MovieDetails | {};
     genres: Genre[] | [];

@@ -102,8 +102,90 @@ export interface MovieCredits {
   crew: StaffMember[];
 };
 
-export interface Movie {
+export interface MovieApiResponse {
   id: number | null;
   details: MovieDetails | {};
   credits: MovieCredits | {};
+};
+
+export interface ActingMovie {
+  adult: boolean;
+  backdrop_path: string;
+  genre_ids: number[],
+  id: number;
+  media_type?: string;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  poster_path: string;
+  release_date: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+};
+
+export interface ActingMovieDetailed extends ActingMovie {
+  popularity: number;
+  character: string;
+  credit_id: string;
+  order: number;
+};
+
+export interface Person {
+  adult: false,
+  gender: 1,
+  id: 3194176,
+  known_for: ActingMovie[] | [];
+  known_for_department: string;
+  name: string;
+  popularity: number;
+  profile_path: string;
+};
+
+export interface PeopleApiResponse {
+  page: number | null;
+  results: Person[] | [],
+  total_pages: number | null;
+  total_results: number | null;
+  state: string;
+  query: string | null;
+};
+
+export interface PersonDetailsInitialState {
+  genres: [];
+};
+
+export interface PersonCreditsInitialState {
+  cast: [];
+  crew: [];
+};
+
+export interface PersonDetails {
+  adult: boolean;
+  also_known_as: string[] | [];
+  biography: string; birthday: string;
+  deathday: null;
+  gender: string;
+  homepage: string | null;
+  id: number;
+  imdb_id: string;
+  known_for_department: string;
+  name: string;
+  place_of_birth: string;
+  popularity: number;
+  profile_path: string;
+};
+
+export interface PersonCredits {
+  cast: ActingMovieDetailed[] | [];
+  crew: ActingMovieDetailed[] | [];
+  id: number;
+};
+
+export interface PersonApiResponse {
+  id: string | null;
+  details: PersonDetails | PersonDetailsInitialState;
+  credits: PersonCredits | PersonCreditsInitialState;
+  state: string;
 };

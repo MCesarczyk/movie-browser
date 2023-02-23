@@ -8,7 +8,7 @@ import {
     selectMovieId,
     setMovieState,
 } from "./movieSlice";
-import { Movie, MovieCredits } from "../../types";
+import { MovieApiResponse, MovieCredits } from "../../types";
 
 function* fetchMovieDetailsHandler() {
     try {
@@ -17,7 +17,7 @@ function* fetchMovieDetailsHandler() {
         const path = `movie/${id as string}`;
         const apiURL = buildRequestUrl(path);
         const details: unknown = yield call(getDataFromApi, apiURL);
-        yield put(setMovieDetails(details as Movie));
+        yield put(setMovieDetails(details as MovieApiResponse));
         yield call(fetchMovieCreditsHandler);
         yield delay(500);
         yield put(setMovieState("success"));
