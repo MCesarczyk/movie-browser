@@ -1,6 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from "../../store";
+import { MovieResult } from "../../types";
 
-const initialState = {
+interface InitialStateProps {
+    page: string;
+    results: MovieResult[],
+    total_pages: number | null;
+    total_results: number | null;
+    state: string;
+    query: string | null;
+};
+
+const initialState: InitialStateProps = {
     page: "1",
     results: [],
     total_pages: null,
@@ -40,13 +51,13 @@ export const {
     clearMoviesList,
 } = moviesSlice.actions;
 
-const selectMovies = state => state.movies;
+const selectMovies = (state: RootState) => state.movies;
 
-export const selectMoviesPage = state => selectMovies(state).page;
-export const selectMoviesQuery = state => selectMovies(state).query;
-export const selectMoviesState = state => selectMovies(state).state;
-export const selectMoviesResults = state => selectMovies(state).results;
-export const selectMoviesTotalPages = state => selectMovies(state).total_pages;
-export const selectMoviesTotalResults = state => selectMovies(state).total_results;
+export const selectMoviesPage = (state: RootState): string => selectMovies(state).page;
+export const selectMoviesQuery = (state: RootState): string | null => selectMovies(state).query;
+export const selectMoviesState = (state: RootState):string => selectMovies(state).state;
+export const selectMoviesResults = (state: RootState):MovieResult[] => selectMovies(state).results;
+export const selectMoviesTotalPages = (state: RootState):number | null => selectMovies(state).total_pages;
+export const selectMoviesTotalResults = (state: RootState):number | null => selectMovies(state).total_results;
 
 export default moviesSlice.reducer;

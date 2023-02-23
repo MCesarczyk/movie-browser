@@ -9,24 +9,26 @@ import {
     selectMoviesQuery,
     setMoviesState,
 } from "./moviesSlice";
+import { MoviesResultApiResponse } from "../../types";
 
 function* fetchMoviesListHandler() {
     try {
-        const currentpage = yield select(selectMoviesPage);
-        const query = yield select(selectMoviesQuery);
+        const currentpage: unknown = yield select(selectMoviesPage);
+        const queryString: unknown = yield select(selectMoviesQuery);
+        const query = queryString as string | null;
         yield put(setMoviesState("loading"));
         yield delay(query ? 500 : 0);
         const path = query ? "search/movie" : "movie/popular";
-        const page = currentpage || "1";
+        const page = currentpage as string || "1";
         const apiURL = buildRequestUrl(path, page, query);
-        const response = yield call(getDataFromApi, apiURL);
-        const { results, total_results, total_pages } = yield response;
+        const response: unknown = yield call(getDataFromApi, apiURL);
+        const { results, total_results, total_pages } = yield response as MoviesResultApiResponse;
         yield delay(500);
-        yield put(setMoviesList({ 
-            results, 
-            total_results: total_results <= 10000 || 10000, 
-            total_pages: total_pages <= 500 || 500, 
-            newState: total_results ? "success" : "noResults" 
+        yield put(setMoviesList({
+            results,
+            total_results: total_results <= 10000 || 10000,
+            total_pages: total_pages <= 500 || 500,
+            newState: total_results ? "success" : "noResults"
         }))
     } catch (error) {
         yield call(console.error, `fetchMoviesListHandler: ${error}`);

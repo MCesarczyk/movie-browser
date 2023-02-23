@@ -23,6 +23,7 @@ const Tile = ({
     mobile,
     oversize,
     person,
+    personId,
     oversizepersontile,
     detailsUrl,
     imageBaseUrl,

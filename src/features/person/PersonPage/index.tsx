@@ -18,21 +18,23 @@ import {
     selectPersonCast,
     selectPersonCrew,
 } from "../personSlice";
+import { ActingMovieDetailed, PersonDetails, PersonDetailsInitialState } from "../../../types";
 const Section = React.lazy(() => import('../../../common/Section'));
 
 const PersonPage = () => {
     const dispatch = useDispatch();
-    const { id } = useParams();
-    const personDetails = useSelector(selectPersonDetails);
-    const imgURL = useSelector(selectImagesBaseURL);
+    const { id }: any = useParams();
+    const personDetails: PersonDetailsInitialState | PersonDetails = useSelector(selectPersonDetails);
+    const imgURL:string = useSelector(selectImagesBaseURL);
     const posterSizes = useSelector(selectPosterSizes);
     const profileSizes = useSelector(selectProfileSizes);
-    const personCast = useSelector(selectPersonCast);
-    const personCrew = useSelector(selectPersonCrew);
+    const personCast: ActingMovieDetailed[] = useSelector(selectPersonCast);
+    const personCrew: ActingMovieDetailed[] = useSelector(selectPersonCrew);
 
     useEffect(() => {
-        dispatch(setPersonId(id));
-    }, [dispatch, id]);
+        dispatch(setPersonId(id as string));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [dispatch, id as string]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -61,13 +63,13 @@ const PersonPage = () => {
 
     const personTileWidths = ["100%", "228px", "286px", "286px", "324px"];
     const tileWidths = ["100%", "100%", "100%", "100%", "100%"];
-
     return (
         <CorePage
-            message="Loading person details..."
-            body={
-                <>
+        message="Loading person details..."
+        body={
+            <>
                     <Wrapper>
+             {/* @ts-ignore */}
                         <Tile
                             oversize="true"
                             oversizepersontile="true"
@@ -88,6 +90,7 @@ const PersonPage = () => {
                                 <Section
                                     title={`Cast (${personCast.length})`}
                                     itemsList={personCast && personCast.map((movie, index) => (
+                                        // @ts-ignore
                                         <Tile
                                             key={`cast:${personCast[index].credit_id}`}
                                             detailsUrl={`/movie/${personCast[index].id}`}
@@ -113,6 +116,7 @@ const PersonPage = () => {
                                 <Section
                                     title={`Crew (${personCrew.length})`}
                                     itemsList={personCrew && personCrew.map((movie, index) => (
+                                        // @ts-ignore
                                         <Tile
                                             key={`crew:${personCrew[index].credit_id}`}
                                             detailsUrl={`/movie/${personCrew[index].id}`}

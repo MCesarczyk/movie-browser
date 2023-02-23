@@ -7,8 +7,8 @@ function* fetchConfigurationHandler() {
     try {
         const path = "configuration";
         const apiURL = buildRequestUrl(path);
-        const configuration = yield call(getDataFromApi, apiURL);
-        yield put(setConfiguration(configuration.images));
+        const configuration: unknown = yield call(getDataFromApi, apiURL);
+        yield put(setConfiguration((configuration as any).images));
     } catch (error) {
         yield call(console.error, `fetchConfigurationHandler: ${error}`);
     }
@@ -18,8 +18,8 @@ function* fetchMovieGenresHandler() {
     try {
         const path = "genre/movie/list";
         const apiURL = buildRequestUrl(path);
-        const genres = yield call(getDataFromApi, apiURL);
-        yield put(setMovieGenres(genres.genres));
+        const genres: unknown = yield call(getDataFromApi, apiURL);
+        yield put(setMovieGenres((genres as any).genres));
     } catch (error) {
         yield call(console.error, `fetchMovieGenresHandler: ${error}`);
     }

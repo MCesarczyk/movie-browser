@@ -1,11 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from "../../store";
+import { PeopleApiResponse, Person } from "../../types";
 
-const initialState = {
+const initialState: PeopleApiResponse = {
     page: null,
     results: [],
     total_pages: null,
     total_results: null,
     state: "idle",
+    query: null
 };
 
 const peopleSlice = createSlice({
@@ -39,13 +42,13 @@ export const {
     clearPeopleList,
 } = peopleSlice.actions;
 
-const selectPeople = state => state.people;
+const selectPeople = (state: RootState) => state.people;
 
-export const selectPeoplePage = state => selectPeople(state).page;
-export const selectPeopleQuery = state => selectPeople(state).query;
-export const selectPeopleState = state => selectPeople(state).state;
-export const selectPeopleResults = state => selectPeople(state).results;
-export const selectPeopleTotalPages = state => selectPeople(state).total_pages;
-export const selectPeopleTotalResults = state => selectPeople(state).total_results;
+export const selectPeoplePage = (state: RootState): number | null => selectPeople(state).page;
+export const selectPeopleQuery = (state: RootState): string | null => selectPeople(state).query;
+export const selectPeopleState = (state: RootState): string => selectPeople(state).state;
+export const selectPeopleResults = (state: RootState): Person[] | [] => selectPeople(state).results;
+export const selectPeopleTotalPages = (state: RootState): number | null => selectPeople(state).total_pages;
+export const selectPeopleTotalResults = (state: RootState): number | null => selectPeople(state).total_results;
 
 export default peopleSlice.reducer;

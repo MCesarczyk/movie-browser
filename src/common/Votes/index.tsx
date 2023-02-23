@@ -1,7 +1,13 @@
 import { NoVotesText, Rating, RatingScale, StyledLogo, VotesWrapper, VotesCount, RatingWrapper } from "./styled";
 import { ReactComponent as RatingStarPicture } from "./ratingStar.svg";
 
-const Votes = ({ votes, rating, backdrop }) => (
+interface VotesProps {
+    votes: number;
+    rating: number;
+    backdrop: string;
+};
+
+const Votes = ({ votes, rating, backdrop }: VotesProps) => (
     <VotesWrapper backdrop={backdrop} >
         {votes === 0 ?
             <NoVotesText>No votes yet</NoVotesText>

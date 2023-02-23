@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
     animation:spin 1s linear infinite;
     @keyframes spin { 100% {transform:rotate(360deg);} };
 
-    @media(max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
+    @media(max-width: ${({ theme }) => theme.breakpoint.mobileMin}px) {
         width: 66px;
         height: 66px;
         margin: 66px auto;
@@ -21,7 +21,7 @@ export const Wrapper = styled.div`
 `;
 
 export const LoadingIcon = styled(Ellipse)`
-    @media(max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
+    @media(max-width: ${({ theme }) => theme.breakpoint.mobileMin}px) {
         width: 66px;
         height: 66px;
     }
