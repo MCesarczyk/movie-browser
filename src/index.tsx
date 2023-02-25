@@ -1,24 +1,31 @@
 import React from 'react';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { Normalize } from 'styled-normalize';
-import { GlobalStyle } from './GlobalStyle';
-import { ThemeProvider } from 'styled-components';
-import { theme } from './theme';
-import { Provider } from 'react-redux';
-import store from "./store";
-
 import { createRoot } from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { ThemeProvider } from 'styled-components';
+import { Normalize } from 'styled-normalize';
+
+import App from 'App';
+import reportWebVitals from 'reportWebVitals';
+import { GlobalStyle } from 'GlobalStyle';
+import { theme } from 'theme';
+import store from "store";
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+
+const queryClient = new QueryClient();
+
 const container = document.getElementById('root') as HTMLElement;
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <Normalize />
-        <GlobalStyle />
-        <App />
-      </ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={theme}>
+          <Normalize />
+          <GlobalStyle />
+          <App />
+        </ThemeProvider>
+      </QueryClientProvider>
     </Provider>
   </React.StrictMode>
 );
