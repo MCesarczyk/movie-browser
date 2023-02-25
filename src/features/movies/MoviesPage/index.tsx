@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useLocation, useParams } from "react-router-dom";
-import { useIsFetching, useQuery } from "react-query";
+import { useIsFetching, useQuery, useQueryClient } from "react-query";
 
 import { MovieResult } from "../interfaces";
 import Section from "common/Section";
@@ -41,7 +41,20 @@ export const MoviesPage = () => {
         return releaseDate && new Date(Date.parse(releaseDate)).getFullYear();
     };
 
-    const { status, error, data, isPreviousData } = useQuery(["movie/popular", { page }], () => moviesApiAdapter.getMoviesByPage(page));
+    const queryClient = useQueryClient();
+
+    const getQueryKey = (page: number) => [
+        "movie/popular",
+        {
+            page,
+        }
+    ];
+
+    useEffect(() => {
+        queryClient.prefetchQuery(getQueryKey(+page + 1));
+    }, [page, queryClient]);
+
+    const { status, error, data, isPreviousData } = useQuery(getQueryKey(page), () => moviesApiAdapter.getMoviesByPage(page));
 
     const movieList = data?.results || null;
     const totalPages = data?.total_pages || null;
