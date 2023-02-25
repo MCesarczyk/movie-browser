@@ -1,29 +1,22 @@
 {
   "files": {
-    "main.js": "/movie-browser/static/js/main.17e53a2c.chunk.js",
-    "main.js.map": "/movie-browser/static/js/main.17e53a2c.chunk.js.map",
-    "runtime-main.js": "/movie-browser/static/js/runtime-main.991a32a9.js",
-    "runtime-main.js.map": "/movie-browser/static/js/runtime-main.991a32a9.js.map",
-    "static/js/2.ec50fbf8.chunk.js": "/movie-browser/static/js/2.ec50fbf8.chunk.js",
-    "static/js/2.ec50fbf8.chunk.js.map": "/movie-browser/static/js/2.ec50fbf8.chunk.js.map",
-    "static/js/3.9ed95756.chunk.js": "/movie-browser/static/js/3.9ed95756.chunk.js",
-    "static/js/3.9ed95756.chunk.js.map": "/movie-browser/static/js/3.9ed95756.chunk.js.map",
+    "main.js": "/movie-browser/static/js/main.be9a5c52.js",
+    "static/js/787.1dc99f8e.chunk.js": "/movie-browser/static/js/787.1dc99f8e.chunk.js",
+    "static/media/noResults.svg": "/movie-browser/static/media/noResults.9082785253fd72c3d3ab5e1c5f75da93.svg",
+    "static/media/noPicture.svg": "/movie-browser/static/media/noPicture.8e177a034bb67b68dadf988fc6f78fd0.svg",
+    "static/media/ratingStar.svg": "/movie-browser/static/media/ratingStar.600fad79aaacd11414137f8d6fe0d7d7.svg",
+    "static/media/error.svg": "/movie-browser/static/media/error.75c809425f692d1d6ca7ffa943437f4b.svg",
     "index.html": "/movie-browser/index.html",
-    "static/js/2.ec50fbf8.chunk.js.LICENSE.txt": "/movie-browser/static/js/2.ec50fbf8.chunk.js.LICENSE.txt",
-    "static/media/camera.60b1f07f.svg": "/movie-browser/static/media/camera.60b1f07f.svg",
-    "static/media/ellipse.17b2cd24.svg": "/movie-browser/static/media/ellipse.17b2cd24.svg",
-    "static/media/error.75c80942.svg": "/movie-browser/static/media/error.75c80942.svg",
-    "static/media/next.be4ebc58.svg": "/movie-browser/static/media/next.be4ebc58.svg",
-    "static/media/noPicture.8e177a03.svg": "/movie-browser/static/media/noPicture.8e177a03.svg",
-    "static/media/noPoster.15d6585a.svg": "/movie-browser/static/media/noPoster.15d6585a.svg",
-    "static/media/noResults.90827852.svg": "/movie-browser/static/media/noResults.90827852.svg",
-    "static/media/prev.d4ddaa1d.svg": "/movie-browser/static/media/prev.d4ddaa1d.svg",
-    "static/media/ratingStar.600fad79.svg": "/movie-browser/static/media/ratingStar.600fad79.svg",
-    "static/media/search.ad04b1aa.svg": "/movie-browser/static/media/search.ad04b1aa.svg"
+    "static/media/noPoster.svg": "/movie-browser/static/media/noPoster.15d6585a0a4e546c2be6623c13ac76ab.svg",
+    "static/media/next.svg": "/movie-browser/static/media/next.be4ebc5886082bdde8aeff6189c65bc4.svg",
+    "static/media/camera.svg": "/movie-browser/static/media/camera.60b1f07faf4eb35d0860429c3849c852.svg",
+    "static/media/prev.svg": "/movie-browser/static/media/prev.d4ddaa1d80df925ef33150707775db4e.svg",
+    "static/media/search.svg": "/movie-browser/static/media/search.ad04b1aa1681e105e5253df05b333715.svg",
+    "static/media/ellipse.svg": "/movie-browser/static/media/ellipse.17b2cd246403596367f2437ec95272ba.svg",
+    "main.be9a5c52.js.map": "/movie-browser/static/js/main.be9a5c52.js.map",
+    "787.1dc99f8e.chunk.js.map": "/movie-browser/static/js/787.1dc99f8e.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.991a32a9.js",
-    "static/js/2.ec50fbf8.chunk.js",
-    "static/js/main.17e53a2c.chunk.js"
+    "static/js/main.be9a5c52.js"
   ]
 }
