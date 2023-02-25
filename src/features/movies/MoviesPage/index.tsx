@@ -1,23 +1,22 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useLocation } from "react-router-dom";
-import Section from "../../../common/Section";
-import Tile from "../../../core/Tile"
-import CorePage from "../../../core/CorePage";
-import searchQueryParamName from "../../search/searchQueryParamName";
-import {
-    selectImagesBaseURL,
-    selectPosterSizes,
-} from "../../../commonSlice";
+
+import { MovieResult } from "types";
+import Section from "common/Section";
+import { selectImagesBaseURL, selectPosterSizes } from "commonSlice";
+import Tile from "core/Tile"
+import Pager from "core/Pager";
+import CorePage from "core/CorePage";
+import searchQueryParamName from "features/search/searchQueryParamName";
 import {
     clearMoviesList,
     selectMoviesResults,
     setMoviesQuery,
     setMoviesPage,
     selectMoviesTotalResults
-} from "../moviesSlice";
-import Pager from "../../../core/Pager";
-import { MovieResult } from "../../../types";
+} from "features/movies/moviesSlice";
+
 
 const MoviesPage = () => {
     const dispatch = useDispatch();

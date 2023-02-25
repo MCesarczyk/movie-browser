@@ -1,6 +1,8 @@
 import { call, delay, put, select, takeLatest } from "redux-saga/effects";
-import { getDataFromApi } from "../../utils/getDataFromApi";
-import { buildRequestUrl } from "../../utils/buildRequestUrl";
+
+import { PeopleApiResponse } from "types";
+import { getDataFromApi } from "utils/getDataFromApi";
+import { buildRequestUrl } from "utils/buildRequestUrl";
 import {
     setPeopleList,
     selectPeoplePage,
@@ -8,8 +10,8 @@ import {
     setPeopleState,
     setPeoplePage,
     setPeopleQuery,
-} from "./peopleSlice";
-import { PeopleApiResponse } from "../../types";
+} from "features/people/peopleSlice";
+
 
 function* fetchPeopleListHandler() {
     try {

@@ -1,22 +1,21 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useParams } from "react-router";
-import Section from "../../../common/Section";
-import CorePage from "../../../core/CorePage";
-import Tile from "../../../core/Tile"
-import Pager from "../../../core/Pager";
-import searchQueryParamName from "../../search/searchQueryParamName";
-import {
-    selectImagesBaseURL,
-    selectProfileSizes,
-} from "../../../commonSlice";
+
+import Section from "common/Section";
+import { selectImagesBaseURL, selectProfileSizes } from "commonSlice";
+import CorePage from "core/CorePage";
+import Tile from "core/Tile"
+import Pager from "core/Pager";
+import searchQueryParamName from "features/search/searchQueryParamName";
 import {
     setPeoplePage,
     setPeopleQuery,
     clearPeopleList,
     selectPeopleResults,
     selectPeopleTotalResults,
-} from "../peopleSlice";
+} from "features/people/peopleSlice";
+
 
 const PeoplePage = () => {
     const dispatch = useDispatch();

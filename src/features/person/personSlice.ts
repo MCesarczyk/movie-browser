@@ -1,6 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../../store";
-import { ActingMovieDetailed, PersonApiResponse, PersonCredits, PersonCreditsInitialState, PersonDetails, PersonDetailsInitialState } from "../../types";
+
+import { RootState } from "store";
+import { 
+    ActingMovieDetailed, 
+    PersonApiResponse, 
+    PersonCredits, 
+    PersonCreditsInitialState, 
+    PersonDetails, 
+    PersonDetailsInitialState 
+} from "types";
+
 
 const initialState: PersonApiResponse = {
     id: null,

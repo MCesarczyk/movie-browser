@@ -1,6 +1,8 @@
 import { call, delay, put, select, takeLatest } from "redux-saga/effects";
-import { getDataFromApi } from "../../utils/getDataFromApi";
-import { buildRequestUrl } from "../../utils/buildRequestUrl";
+
+import { MoviesResultApiResponse } from "types";
+import { getDataFromApi } from "utils/getDataFromApi";
+import { buildRequestUrl } from "utils/buildRequestUrl";
 import {
     setMoviesList,
     setMoviesPage,
@@ -8,8 +10,8 @@ import {
     selectMoviesPage,
     selectMoviesQuery,
     setMoviesState,
-} from "./moviesSlice";
-import { MoviesResultApiResponse } from "../../types";
+} from "features/movies/moviesSlice";
+
 
 function* fetchMoviesListHandler() {
     try {
