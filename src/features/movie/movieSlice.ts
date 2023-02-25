@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../../store";
-import { Actor, Genre, MovieApiResponse, MovieCredits, MovieDetails, StaffMember } from "../../types";
+
+import { RootState } from "store";
+import { Actor, Genre, MovieApiResponse, MovieCredits, MovieDetails, StaffMember } from "types";
 
 interface MovieCreditsInitialState {
     cast: [];

@@ -1,31 +1,32 @@
-import React, { Suspense } from "react";
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Wrapper } from "../../../common/Wrapper";
-import CorePage from "../../../core/CorePage";
-import Tile from "../../../core/Tile"
-import LoadingCircle from "../../../common/LoadingCircle";
+
+import { ActingMovieDetailed, PersonDetails, PersonDetailsInitialState } from "types";
+import { Wrapper } from "common/Wrapper";
+import LoadingCircle from "common/LoadingCircle";
+import CorePage from "core/CorePage";
+import Tile from "core/Tile"
 import {
     selectImagesBaseURL,
     selectPosterSizes,
     selectProfileSizes,
-} from "../../../commonSlice";
+} from "commonSlice";
 import {
     setPersonId,
     clearPersonData,
     selectPersonDetails,
     selectPersonCast,
     selectPersonCrew,
-} from "../personSlice";
-import { ActingMovieDetailed, PersonDetails, PersonDetailsInitialState } from "../../../types";
-const Section = React.lazy(() => import('../../../common/Section'));
+} from "features/person/personSlice";
+const Section = lazy(() => import('common/Section'));
+
 
 const PersonPage = () => {
     const dispatch = useDispatch();
     const { id }: any = useParams();
     const personDetails: PersonDetailsInitialState | PersonDetails = useSelector(selectPersonDetails);
-    const imgURL:string = useSelector(selectImagesBaseURL);
+    const imgURL: string = useSelector(selectImagesBaseURL);
     const posterSizes = useSelector(selectPosterSizes);
     const profileSizes = useSelector(selectProfileSizes);
     const personCast: ActingMovieDetailed[] = useSelector(selectPersonCast);
@@ -65,11 +66,11 @@ const PersonPage = () => {
     const tileWidths = ["100%", "100%", "100%", "100%", "100%"];
     return (
         <CorePage
-        message="Loading person details..."
-        body={
-            <>
+            message="Loading person details..."
+            body={
+                <>
                     <Wrapper>
-             {/* @ts-ignore */}
+                        {/* @ts-ignore */}
                         <Tile
                             oversize="true"
                             oversizepersontile="true"

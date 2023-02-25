@@ -1,15 +1,21 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams, useLocation, useHistory } from "react-router-dom";
+
+import searchQueryParamName from "features/search/searchQueryParamName";
+import { selectMoviesTotalPages } from "features/movies/moviesSlice";
+import { selectPeopleTotalPages } from "features/people/peopleSlice";
 import { Wrapper, StyledLink, PagerText, PageNumberText } from "./styled";
 import NextIcon from "./NextIcon";
 import PreviousIcon from "./PreviousIcon";
-import searchQueryParamName from "../../features/search/searchQueryParamName";
-import { selectMoviesTotalPages } from "../../features/movies/moviesSlice";
-import { selectPeopleTotalPages } from "../../features/people/peopleSlice";
 
-const Pager = ({ property }) => {
-    const { page } = useParams();
+
+interface PagerProps {
+    property: string;
+};
+
+const Pager = ({ property }: PagerProps) => {
+    const { page } = useParams<{ page: string }>();
     let currentPage = (page ? page : 1);
 
     const moviesTotalPages = useSelector(selectMoviesTotalPages);
@@ -22,14 +28,14 @@ const Pager = ({ property }) => {
 
     const history = useHistory();
     const firstPageUrl = `${property}/1${query ? `?${searchQueryParamName}=${query}` : ""}`;
-    currentPage > totalPages && history.push(firstPageUrl);
+    totalPages && (currentPage > totalPages) && history.push(firstPageUrl);
 
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     window.onresize = () => setWindowWidth(window.innerWidth);
     const mobileMax = 767;
 
     const checkIfPreviousIsDisabled = () => +currentPage === 1 ? true : false;
-    const checkIfNextIsDisabled = () => +currentPage === +totalPages ? true : false;
+    const checkIfNextIsDisabled = () => (totalPages && +currentPage === +totalPages) ? true : false;
 
     return (
         <Wrapper>
@@ -60,7 +66,13 @@ const Pager = ({ property }) => {
 
             <StyledLink
                 to={
-                    `${property}/${+currentPage === +totalPages ? +currentPage : +currentPage + 1}${query ? `?${searchQueryParamName}=${query}` : ""}`
+                    `${property}/${(totalPages && +currentPage === +totalPages)
+                        ? +currentPage
+                        : +currentPage + 1
+                    }${query
+                        ? `?${searchQueryParamName}=${query}`
+                        : ""
+                    }`
                 }
                 disabled={checkIfNextIsDisabled()}
             >
@@ -83,5 +95,3 @@ const Pager = ({ property }) => {
 };
 
 export default Pager;
-
-

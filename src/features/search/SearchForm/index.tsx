@@ -1,8 +1,10 @@
 import { useLocation, useRouteMatch } from "react-router";
 import { useHistory } from "react-router-dom";
+
+import searchQueryParamName from "features/search/searchQueryParamName";
 import { SearchIcon, SearchInput, SearchWrapper } from "./styled";
 import search from "./search.svg";
-import searchQueryParamName from "../searchQueryParamName";
+
 
 const SearchForm = () => {
     const location = useLocation();

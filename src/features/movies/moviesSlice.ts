@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../../store";
-import { MovieResult } from "../../types";
+
+import { RootState } from "store";
+import { MovieResult } from "types";
+
 
 interface InitialStateProps {
     page: string;

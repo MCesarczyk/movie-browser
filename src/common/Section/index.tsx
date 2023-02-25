@@ -1,8 +1,9 @@
-import { Wrapper } from "../Wrapper";
-import { Header } from "../Header";
-import { SectionInnerContainer } from "./styled";
-import { MovieResult } from "../../types";
 import { ReactNode } from "react";
+
+import { Wrapper } from "common/Wrapper";
+import { Header } from "common/Header";
+import { SectionInnerContainer } from "./styled";
+
 
 interface SectionProps {
     title: string;

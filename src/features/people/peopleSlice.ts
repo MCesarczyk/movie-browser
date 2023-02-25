@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../../store";
-import { PeopleApiResponse, Person } from "../../types";
+
+import { RootState } from "store";
+import { PeopleApiResponse, Person } from "types";
+
 
 const initialState: PeopleApiResponse = {
     page: null,

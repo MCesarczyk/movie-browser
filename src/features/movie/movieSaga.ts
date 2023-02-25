@@ -1,14 +1,16 @@
 import { call, delay, put, select, takeLatest } from "redux-saga/effects";
-import { getDataFromApi } from "../../utils/getDataFromApi";
-import { buildRequestUrl } from "../../utils/buildRequestUrl";
+
+import { MovieApiResponse, MovieCredits } from "types";
+import { getDataFromApi } from "utils/getDataFromApi";
+import { buildRequestUrl } from "utils/buildRequestUrl";
 import {
     setMovieDetails,
     setMovieCredits,
     setMovieId,
     selectMovieId,
     setMovieState,
-} from "./movieSlice";
-import { MovieApiResponse, MovieCredits } from "../../types";
+} from "features/movie/movieSlice";
+
 
 function* fetchMovieDetailsHandler() {
     try {

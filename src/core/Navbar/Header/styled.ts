@@ -1,9 +1,10 @@
 import { NavLink } from "react-router-dom";
-import styled from "styled-components";
+import styled, { DefaultTheme } from "styled-components";
 
-const mediumScreen = ({ theme }) => theme.breakpoint.mediumScreen;
-const mobileMax = ({ theme }) => theme.breakpoint.mobileMax;
-const mobileMin = ({ theme }) => theme.breakpoint.mobileMin;
+
+const mediumScreen = ({ theme }: { theme: DefaultTheme }) => theme.breakpoint.mediumScreen;
+const mobileMax = ({ theme }: { theme: DefaultTheme }) => theme.breakpoint.mobileMax;
+const mobileMin = ({ theme }: { theme: DefaultTheme }) => theme.breakpoint.mobileMin;
 
 export const Wrapper = styled.div`
     display: flex;

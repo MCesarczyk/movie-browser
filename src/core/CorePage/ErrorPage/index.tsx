@@ -1,6 +1,7 @@
 import { ButtonLink, ErrorIcon, ErrorPageWrapper, Header, Section } from "./styled";
 import error from "./error.svg";
 
+
 const ErrorPage = () => (
     <ErrorPageWrapper>
         <ErrorIcon src={error} alt=""/>

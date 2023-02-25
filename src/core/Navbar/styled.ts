@@ -1,7 +1,8 @@
 import { NavLink } from "react-router-dom";
-import styled from "styled-components";
+import styled, { DefaultTheme } from "styled-components";
 
-const mediumScreen = ({ theme }) => theme.breakpoint.mediumScreen;
+
+const mediumScreen = ({ theme }: { theme: DefaultTheme }) => theme.breakpoint.mediumScreen;
 
 export const NavigationContainer = styled.div`
   color: ${({ theme }) => theme.color.white};
