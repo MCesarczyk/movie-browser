@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
+
 export const Wrapper = styled.div`
     display: flex;
     justify-content: center;
@@ -10,7 +11,7 @@ export const Wrapper = styled.div`
     }
 `;
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled(Link) <{ disabled: boolean }>`
     text-decoration: none;
     padding: 8px 16px;
     border-radius: 5px;

@@ -22,7 +22,7 @@ function* fetchMoviesListHandler() {
         yield delay(query ? 500 : 0);
         const path = query ? "search/movie" : "movie/popular";
         const page = currentpage as string || "1";
-        const apiURL = buildRequestUrl(path, page, query);
+        const apiURL = buildRequestUrl(path, page, query || undefined);
         const response: unknown = yield call(getDataFromApi, apiURL);
         const { results, total_results, total_pages } = yield response as MoviesResultApiResponse;
         yield delay(500);
