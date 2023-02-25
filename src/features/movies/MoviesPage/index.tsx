@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 
 import { MovieResult } from "../interfaces";
 import Section from "common/Section";
 import { selectImagesBaseURL, selectPosterSizes } from "commonSlice";
 import Tile from "core/Tile"
-import Pager from "core/Pager";
+import { Pager } from "core/Pager";
 import searchQueryParamName from "features/search/searchQueryParamName";
 import { moviesApiAdapter } from "features/movies/moviesApiAdapter";
 import LoadingPage from "core/CorePage/LoadingPage";
@@ -15,7 +15,7 @@ import { ErrorPage } from "core/CorePage/ErrorPage/ErrorPage";
 
 
 export const MoviesPage = () => {
-    // const { page }: any = useParams();
+    const { page }: any = useParams();
     const location = useLocation();
     const query = (new URLSearchParams(location.search)).get(searchQueryParamName);
 
@@ -41,7 +41,7 @@ export const MoviesPage = () => {
         return releaseDate && new Date(Date.parse(releaseDate)).getFullYear();
     };
 
-    const { status, error, data } = useQuery("movie/popular", moviesApiAdapter);
+    const { status, error, data } = useQuery(["movie/popular", { page }], () => moviesApiAdapter.getMoviesByPage(page));
 
     const movieList = data?.results || null;
     const totalPages = data?.total_pages || null;
@@ -81,7 +81,7 @@ export const MoviesPage = () => {
                         />
                     ))}
                 />
-                {totalPages && < Pager totalPages={totalPages} property={"/movies"} />}
+                {totalPages && < Pager totalPages={500} property={"/movies"} />}
             </>
         );
     };

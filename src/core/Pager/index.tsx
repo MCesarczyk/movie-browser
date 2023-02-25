@@ -1,10 +1,7 @@
 import { useState } from "react";
-// import { useSelector } from "react-redux";
 import { useParams, useLocation, useHistory } from "react-router-dom";
 
 import searchQueryParamName from "features/search/searchQueryParamName";
-// import { selectMoviesTotalPages } from "features/movies/moviesSlice";
-// import { selectPeopleTotalPages } from "features/people/peopleSlice";
 import { Wrapper, StyledLink, PagerText, PageNumberText } from "./styled";
 import NextIcon from "./NextIcon";
 import PreviousIcon from "./PreviousIcon";
@@ -15,13 +12,9 @@ interface PagerProps {
     totalPages: number;
 };
 
-const Pager = ({ property, totalPages }: PagerProps) => {
+export const Pager = ({ property, totalPages }: PagerProps) => {
     const { page } = useParams<{ page: string }>();
     let currentPage = (page ? page : 1);
-
-    // const moviesTotalPages = useSelector(selectMoviesTotalPages);
-    // const peopleTotalPages = useSelector(selectPeopleTotalPages);
-    // const totalPages = property === "/movies" ? moviesTotalPages : peopleTotalPages;
 
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
@@ -94,5 +87,3 @@ const Pager = ({ property, totalPages }: PagerProps) => {
         </Wrapper>
     );
 };
-
-export default Pager;

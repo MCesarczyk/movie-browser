@@ -13,6 +13,7 @@ export const ErrorPage = ({ error }: ErrorPageProps) => (
         <Section>
             Please, check your network connection <br />
             and try again
+            {error?.message}
         </Section>
         <ButtonLink to="/">Back to Home page</ButtonLink>
     </ErrorPageWrapper>

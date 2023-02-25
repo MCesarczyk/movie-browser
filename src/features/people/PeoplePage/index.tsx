@@ -6,7 +6,7 @@ import Section from "common/Section";
 import { selectImagesBaseURL, selectProfileSizes } from "commonSlice";
 import CorePage from "core/CorePage";
 import Tile from "core/Tile"
-import Pager from "core/Pager";
+import { Pager } from "core/Pager";
 import searchQueryParamName from "features/search/searchQueryParamName";
 import {
     setPeoplePage,
