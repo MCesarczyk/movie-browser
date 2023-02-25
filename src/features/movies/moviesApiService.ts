@@ -1,9 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useIsFetching, useQuery, useQueryClient } from "react-query";
 import { useLocation, useParams } from "react-router-dom";
 
 import searchQueryParamName from "features/search/searchQueryParamName";
 import { moviesApi } from "./moviesApiAdapter";
+import { MOVIE_LIST_PATH, MOVIE_SEARCH_PATH } from "./constants";
 
 
 export const useMoviesApiService = () => {
@@ -12,21 +13,21 @@ export const useMoviesApiService = () => {
 
   const location = useLocation();
   const query = (new URLSearchParams(location.search)).get(searchQueryParamName);
+  const path = query ? MOVIE_SEARCH_PATH : MOVIE_LIST_PATH;
 
-  const path = query ? "search/movie" : "movie/popular";
-
-  const getQueryKey = (page: number, query?: string) => [
-    path,
-    {
-      page,
-      query,
-    }
-  ];
+  const getQueryKey = useMemo(() => (
+    (page: number, query?: string) => [
+      path,
+      {
+        page,
+        query,
+      }
+    ]
+  ), [path]);
 
   useEffect(() => {
-    queryClient.prefetchQuery(getQueryKey(+page + 1));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, queryClient]);
+    queryClient.prefetchQuery(getQueryKey(+page + 1, query || undefined));
+  }, [page, query, queryClient, getQueryKey]);
 
   const { status, error, data, isPreviousData } = useQuery(
     getQueryKey(page, query || undefined),

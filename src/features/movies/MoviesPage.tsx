@@ -10,6 +10,7 @@ import LoadingPage from "core/CorePage/LoadingPage";
 import { ErrorPage } from "core/CorePage/ErrorPage/ErrorPage";
 import { useMoviesApiService } from "./moviesApiService";
 import NoResultsPage from "core/CorePage/NoResultsPage";
+import { API_TOTAL_PAGES_LIMIT, MOVIES_LIST_URL, MOVIE_DETAILS_URL } from "./constants";
 
 
 export const MoviesPage = () => {
@@ -68,7 +69,7 @@ export const MoviesPage = () => {
                             imageBaseUrl={imgURL}
                             imagePath={movie.poster_path}
                             imageWidth="100%"
-                            detailsUrl={`/movie/${movie.id}`}
+                            detailsUrl={`${MOVIE_DETAILS_URL}/${movie.id}`}
                             title={movie.title}
                             subtitle={getFullYearFromDate(movieList, index)}
                             genreIds={movie.genre_ids}
@@ -77,7 +78,16 @@ export const MoviesPage = () => {
                         />
                     ))}
                 />
-                {totalPages && < Pager totalPages={totalPages < 500 ? totalPages : 500} property={"/movies"} />}
+                {totalPages && (
+                    <Pager
+                        totalPages={
+                            totalPages < API_TOTAL_PAGES_LIMIT
+                                ? totalPages
+                                : API_TOTAL_PAGES_LIMIT
+                        }
+                        property={MOVIES_LIST_URL}
+                    />
+                )}
             </>
         );
     };
