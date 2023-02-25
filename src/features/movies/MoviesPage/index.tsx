@@ -41,7 +41,7 @@ export const MoviesPage = () => {
         return releaseDate && new Date(Date.parse(releaseDate)).getFullYear();
     };
 
-    const { status, error, data } = useQuery(["movie/popular", { page }], () => moviesApiAdapter.getMoviesByPage(page));
+    const { status, error, data, isPreviousData } = useQuery(["movie/popular", { page }], () => moviesApiAdapter.getMoviesByPage(page));
 
     const movieList = data?.results || null;
     const totalPages = data?.total_pages || null;
@@ -64,6 +64,7 @@ export const MoviesPage = () => {
             <>
                 <Section
                     isFetching={!!isFetching}
+                    isObsolete={isPreviousData}
                     // title={query ? `Search results for "${query}" (${totalResults})` : "Popular movies"}
                     title={"Popular movies"}
                     itemsList={movieList && movieList.map((movie: MovieResult, index: number) => (
