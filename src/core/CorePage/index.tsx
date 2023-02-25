@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import { useLocation, useRouteMatch } from "react-router";
 
-import { selectMoviesResults, selectMoviesState } from "features/movies/moviesSlice";
 import { selectPeopleResults, selectPeopleState } from "features/people/peopleSlice";
 import searchQueryParamName from "features/search/searchQueryParamName";
 import { selectMovieState } from "features/movie/movieSlice";
@@ -17,23 +16,18 @@ interface CorePageProps {
 };
 
 const CorePage = ({ message, body }: CorePageProps) => {
-    const moviesList = useSelector(selectMoviesResults);
-    const moviesState = useSelector(selectMoviesState);
     const peopleList = useSelector(selectPeopleResults);
     const peopleState = useSelector(selectPeopleState);
     const movieState = useSelector(selectMovieState);
     const personState = useSelector(selectPersonState);
 
-    const moviesMatch = useRouteMatch("/movies");
     const movieMatch = useRouteMatch("/movie");
     const peopleMatch = useRouteMatch("/people");
     const personMatch = useRouteMatch("/person");
-    const itemsList = moviesMatch ? moviesList : peopleList;
+    const itemsList =  peopleList;
 
     const matchAppState = () => {
-        if (moviesMatch) {
-            return moviesState;
-        } else if (movieMatch) {
+        if (movieMatch) {
             return movieState;
         } else if (peopleMatch) {
             return peopleState;
