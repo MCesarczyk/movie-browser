@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useLocation, useParams } from "react-router-dom";
 import { useIsFetching, useQuery, useQueryClient } from "react-query";
 
-import { MovieResult } from "../interfaces";
+import { MovieResult } from "./interfaces";
 import Section from "common/Section";
 import { selectImagesBaseURL, selectPosterSizes } from "commonSlice";
 import Tile from "core/Tile"
