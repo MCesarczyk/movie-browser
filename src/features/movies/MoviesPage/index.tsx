@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useLocation, useParams } from "react-router-dom";
-import { useQuery } from "react-query";
+import { useIsFetching, useQuery } from "react-query";
 
 import { MovieResult } from "../interfaces";
 import Section from "common/Section";
@@ -46,6 +46,8 @@ export const MoviesPage = () => {
     const movieList = data?.results || null;
     const totalPages = data?.total_pages || null;
 
+    const isFetching = useIsFetching();
+
     if (status === "loading") {
         return <LoadingPage
             message="Loading movies list..."
@@ -61,6 +63,7 @@ export const MoviesPage = () => {
         return (
             <>
                 <Section
+                    isFetching={!!isFetching}
                     // title={query ? `Search results for "${query}" (${totalResults})` : "Popular movies"}
                     title={"Popular movies"}
                     itemsList={movieList && movieList.map((movie: MovieResult, index: number) => (
