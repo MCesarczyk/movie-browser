@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useParams, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useQuery } from "react-query";
 
-import { MovieResult } from "types";
+import { MovieResult } from "../interfaces";
 import Section from "common/Section";
 import { selectImagesBaseURL, selectPosterSizes } from "commonSlice";
 import Tile from "core/Tile"
@@ -15,7 +15,7 @@ import { ErrorPage } from "core/CorePage/ErrorPage/ErrorPage";
 
 
 export const MoviesPage = () => {
-    const { page }: any = useParams();
+    // const { page }: any = useParams();
     const location = useLocation();
     const query = (new URLSearchParams(location.search)).get(searchQueryParamName);
 
@@ -44,10 +44,7 @@ export const MoviesPage = () => {
     const { status, error, data } = useQuery("movie/popular", moviesApiAdapter);
 
     const movieList = data?.results || null;
-
-    useEffect(() => {
-        console.log(movieList);
-    }, [movieList]);
+    const totalPages = data?.total_pages || null;
 
     if (status === "loading") {
         return <LoadingPage
@@ -84,7 +81,7 @@ export const MoviesPage = () => {
                         />
                     ))}
                 />
-                < Pager property={"/movies"} />
+                {totalPages && < Pager totalPages={totalPages} property={"/movies"} />}
             </>
         );
     };

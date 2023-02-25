@@ -3,29 +3,6 @@ export interface Genre {
   name: string;
 };
 
-export interface MovieResult {
-  adult: boolean;
-  backdrop_path: string;
-  genre_ids: number[];
-  id: number;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  popularity: number;
-  poster_path: string;
-  release_date: string;
-  title: string;
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
-};
-
-export interface MoviesResultApiResponse {
-  results: MovieResult[];
-  total_results: number | null;
-  total_pages: number | null;
-};
-
 export interface Company {
   id: number;
   logo_path: string | null,

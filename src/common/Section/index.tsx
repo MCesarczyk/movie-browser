@@ -7,7 +7,7 @@ import { SectionInnerContainer } from "./styled";
 
 interface SectionProps {
     title: string;
-    itemsList: ReactNode[];
+    itemsList: ReactNode[] | null;
 };
 
 const Section = ({ title, itemsList }: SectionProps) => {

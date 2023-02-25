@@ -1,6 +1,5 @@
 import { call, delay, put, select, takeLatest } from "redux-saga/effects";
 
-import { MoviesResultApiResponse } from "types";
 import { getDataFromApi } from "utils/getDataFromApi";
 import { buildRequestUrl } from "utils/buildRequestUrl";
 import {
@@ -11,6 +10,7 @@ import {
     selectMoviesQuery,
     setMoviesState,
 } from "features/movies/moviesSlice";
+import { MoviesListApiResponse } from "./interfaces";
 
 
 function* fetchMoviesListHandler() {
@@ -24,7 +24,7 @@ function* fetchMoviesListHandler() {
         const page = currentpage as string || "1";
         const apiURL = buildRequestUrl(path, page, query || undefined);
         const response: unknown = yield call(getDataFromApi, apiURL);
-        const { results, total_results, total_pages } = yield response as MoviesResultApiResponse;
+        const { results, total_results, total_pages } = yield response as MoviesListApiResponse;
         yield delay(500);
         yield put(setMoviesList({
             results,

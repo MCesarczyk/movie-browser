@@ -13,7 +13,13 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { App } from 'App';
 
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5_000,
+    }
+  }
+});
 
 const container = document.getElementById('root') as HTMLElement;
 const root = createRoot(container); // createRoot(container!) if you use TypeScript

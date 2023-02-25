@@ -78,7 +78,7 @@ const PeoplePage = () => {
                             />
                         ))}
                     />
-                    < Pager property={"/people"} />
+                    < Pager totalPages={1} property={"/people"} />
                 </>
             }
         />
