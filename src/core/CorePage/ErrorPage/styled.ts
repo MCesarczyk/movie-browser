@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const ErrorPageWrapper = styled.div`
     display: flex;
@@ -50,7 +50,7 @@ export const Section = styled.p`
     }
 `;
 
-export const ButtonLink = styled(NavLink)`
+const sharedButtonStyle = css`
     font-size: 14px;
     font-weight: bold;
     line-height: 19px;
@@ -80,4 +80,12 @@ export const ButtonLink = styled(NavLink)`
     &:active {
         transform: scale(1);
     }
+`;
+
+export const ButtonLink = styled(NavLink)`
+    ${sharedButtonStyle}
+`;
+
+export const Button = styled.button`
+    ${sharedButtonStyle}
 `;

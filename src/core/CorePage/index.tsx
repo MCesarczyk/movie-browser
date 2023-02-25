@@ -8,7 +8,7 @@ import { selectMovieState } from "features/movie/movieSlice";
 import { selectPersonState } from "features/person/personSlice";
 import LoadingPage from "./LoadingPage";
 import NoResultsPage from "./NoResultsPage";
-import ErrorPage from "./ErrorPage";
+import { ErrorPage } from "./ErrorPage/ErrorPage";
 
 
 interface CorePageProps {

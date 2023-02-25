@@ -4,12 +4,13 @@ import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import { Normalize } from 'styled-normalize';
 
-import App from 'App';
-import reportWebVitals from 'reportWebVitals';
 import { GlobalStyle } from 'GlobalStyle';
 import { theme } from 'theme';
 import store from "store";
+import reportWebVitals from 'reportWebVitals';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
+import { App } from 'App';
 
 
 const queryClient = new QueryClient();
@@ -20,6 +21,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools />
         <ThemeProvider theme={theme}>
           <Normalize />
           <GlobalStyle />

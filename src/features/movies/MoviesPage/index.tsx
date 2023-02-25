@@ -1,48 +1,28 @@
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams, useLocation } from "react-router-dom";
+import { useQuery } from "react-query";
 
 import { MovieResult } from "types";
 import Section from "common/Section";
 import { selectImagesBaseURL, selectPosterSizes } from "commonSlice";
 import Tile from "core/Tile"
 import Pager from "core/Pager";
-import CorePage from "core/CorePage";
 import searchQueryParamName from "features/search/searchQueryParamName";
-import {
-    clearMoviesList,
-    selectMoviesResults,
-    setMoviesQuery,
-    setMoviesPage,
-    selectMoviesTotalResults
-} from "features/movies/moviesSlice";
+import { moviesApiAdapter } from "features/movies/moviesApiAdapter";
+import LoadingPage from "core/CorePage/LoadingPage";
+import { ErrorPage } from "core/CorePage/ErrorPage/ErrorPage";
 
 
-const MoviesPage = () => {
-    const dispatch = useDispatch();
+export const MoviesPage = () => {
     const { page }: any = useParams();
     const location = useLocation();
     const query = (new URLSearchParams(location.search)).get(searchQueryParamName);
 
     useEffect(() => {
-        dispatch(setMoviesQuery(query));
-    }, [dispatch, query]);
-
-    useEffect(() => {
-        dispatch(setMoviesPage(page as string || "1"));
-    }, [dispatch, page]);
-
-    useEffect(() => {
         window.scrollTo(0, 0);
-
-        return () => {
-            dispatch(clearMoviesList());
-        }
-        // eslint-disable-next-line
     }, []);
 
-    const movieList = useSelector(selectMoviesResults);
-    const totalResults = useSelector(selectMoviesTotalResults);
     const imgURL = useSelector(selectImagesBaseURL);
     const posterSizes = useSelector(selectPosterSizes);
 
@@ -61,36 +41,53 @@ const MoviesPage = () => {
         return releaseDate && new Date(Date.parse(releaseDate)).getFullYear();
     };
 
-    return (
-        <CorePage
-            message="Loading movies list..."
-            body={
-                <>
-                    <Section
-                        title={query ? `Search results for "${query}" (${totalResults})` : "Popular movies"}
-                        itemsList={movieList && movieList.map((movie, index) => (
-                            // @ts-ignore
-                            <Tile
-                                key={movieList[index].id}
-                                sizes={posterSizesArray}
-                                widths={tileWidths}
-                                imageBaseUrl={imgURL}
-                                imagePath={movieList[index].poster_path}
-                                imageWidth="100%"
-                                detailsUrl={`/movie/${movieList[index].id}`}
-                                title={movieList[index].title}
-                                subtitle={getFullYearFromDate(movieList, index)}
-                                genreIds={movieList[index].genre_ids}
-                                rating={movieList[index].vote_average}
-                                votes={movieList[index].vote_count}
-                            />
-                        ))}
-                    />
-                    < Pager property={"/movies"} />
-                </>
-            }
-        />
-    )
-};
+    const { status, error, data } = useQuery("movie/popular", moviesApiAdapter);
 
-export default MoviesPage;
+    const movieList = data?.results || null;
+
+    useEffect(() => {
+        console.log(movieList);
+    }, [movieList]);
+
+    if (status === "loading") {
+        return <LoadingPage
+            message="Loading movies list..."
+            query={query}
+        />
+    };
+
+    if (status === "error") {
+        return <ErrorPage error={error as Error} />
+    }
+
+    if (status === "success") {
+        return (
+            <>
+                <Section
+                    // title={query ? `Search results for "${query}" (${totalResults})` : "Popular movies"}
+                    title={"Popular movies"}
+                    itemsList={movieList && movieList.map((movie: MovieResult, index: number) => (
+                        // @ts-ignore
+                        <Tile
+                            key={movie.id}
+                            sizes={posterSizesArray}
+                            widths={tileWidths}
+                            imageBaseUrl={imgURL}
+                            imagePath={movie.poster_path}
+                            imageWidth="100%"
+                            detailsUrl={`/movie/${movie.id}`}
+                            title={movie.title}
+                            subtitle={getFullYearFromDate(movieList, index)}
+                            genreIds={movie.genre_ids}
+                            rating={movie.vote_average}
+                            votes={movie.vote_count}
+                        />
+                    ))}
+                />
+                < Pager property={"/movies"} />
+            </>
+        );
+    };
+
+    return null;
+};

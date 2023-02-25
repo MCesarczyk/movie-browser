@@ -127,7 +127,7 @@ const Tile = ({
                             <Tag key={genreId}>
                                 {genres[genres.findIndex(
                                     ({ id }) => id === genreId
-                                )].name}
+                                )]?.name}
                             </Tag>
                         ))}
                     </Tags>
@@ -136,7 +136,7 @@ const Tile = ({
                     <Tags oversize >
                         {genresList.map((item, index) => (
                             <Tag oversize key={genresList[index].id}>
-                                {genresList[index].name}
+                                {genresList[index]?.name}
                             </Tag>
                         ))}
                     </Tags>
