@@ -1,24 +1,18 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useLocation, useParams } from "react-router-dom";
-import { useIsFetching, useQuery, useQueryClient } from "react-query";
 
-import { MovieResult } from "./interfaces";
 import Section from "common/Section";
 import { selectImagesBaseURL, selectPosterSizes } from "commonSlice";
+import { MovieResult } from "./interfaces";
 import Tile from "core/Tile"
 import { Pager } from "core/Pager";
-import searchQueryParamName from "features/search/searchQueryParamName";
-import { moviesApiAdapter } from "features/movies/moviesApiAdapter";
 import LoadingPage from "core/CorePage/LoadingPage";
 import { ErrorPage } from "core/CorePage/ErrorPage/ErrorPage";
+import { useMoviesApiService } from "./moviesApiService";
+import NoResultsPage from "core/CorePage/NoResultsPage";
 
 
 export const MoviesPage = () => {
-    const { page }: any = useParams();
-    const location = useLocation();
-    const query = (new URLSearchParams(location.search)).get(searchQueryParamName);
-
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -41,32 +35,18 @@ export const MoviesPage = () => {
         return releaseDate && new Date(Date.parse(releaseDate)).getFullYear();
     };
 
-    const queryClient = useQueryClient();
-
-    const getQueryKey = (page: number) => [
-        "movie/popular",
-        {
-            page,
-        }
-    ];
-
-    useEffect(() => {
-        queryClient.prefetchQuery(getQueryKey(+page + 1));
-    }, [page, queryClient]);
-
-    const { status, error, data, isPreviousData } = useQuery(getQueryKey(page), () => moviesApiAdapter.getMoviesByPage(page));
-
-    const movieList = data?.results || null;
-    const totalPages = data?.total_pages || null;
-
-    const isFetching = useIsFetching();
+    const { status, error, isPreviousData, isFetching, query, movieList, totalPages, totalResults } = useMoviesApiService();
 
     if (status === "loading") {
         return <LoadingPage
             message="Loading movies list..."
             query={query}
         />
-    };
+    }
+
+    if (query && !totalResults) {
+        return <NoResultsPage query={query} />
+    }
 
     if (status === "error") {
         return <ErrorPage error={error as Error} />
@@ -78,8 +58,7 @@ export const MoviesPage = () => {
                 <Section
                     isFetching={!!isFetching}
                     isObsolete={isPreviousData}
-                    // title={query ? `Search results for "${query}" (${totalResults})` : "Popular movies"}
-                    title={"Popular movies"}
+                    title={query ? `Search results for "${query}" (${totalResults})` : "Popular movies"}
                     itemsList={movieList && movieList.map((movie: MovieResult, index: number) => (
                         // @ts-ignore
                         <Tile
@@ -98,7 +77,7 @@ export const MoviesPage = () => {
                         />
                     ))}
                 />
-                {totalPages && < Pager totalPages={500} property={"/movies"} />}
+                {totalPages && < Pager totalPages={totalPages < 500 ? totalPages : 500} property={"/movies"} />}
             </>
         );
     };

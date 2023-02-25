@@ -23,7 +23,8 @@ const queryClient = new QueryClient({
 });
 
 const container = document.getElementById('root') as HTMLElement;
-const root = createRoot(container); // createRoot(container!) if you use TypeScript
+const root = createRoot(container);
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>
