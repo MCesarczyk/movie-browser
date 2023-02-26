@@ -5,10 +5,10 @@ import Section from "common/Section";
 import { selectImagesBaseURL, selectProfileSizes } from "commonSlice";
 import Tile from "core/Tile"
 import { Pager } from "core/Pager";
-import { usePeopleApiService } from "../peopleApiService";
+import { usePeopleApiService } from "./peopleApiService";
 import { ContentWrapper } from "core/CorePage/ContentWrapper";
-import { API_TOTAL_PAGES_LIMIT, PEOPLE_LIST_URL, PERSON_DETAILS_URL } from "../constants";
-import { Person } from "../interfaces";
+import { API_TOTAL_PAGES_LIMIT, PEOPLE_LIST_URL, PERSON_DETAILS_URL } from "./constants";
+import { Person } from "./interfaces";
 
 
 export const PeoplePage = () => {

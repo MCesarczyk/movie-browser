@@ -23,7 +23,7 @@ export const usePeopleApiService = () => {
         query,
       }
     ]
-  ), [path, query]);
+  ), [path]);
 
   useEffect(() => {
     page && queryClient.prefetchQuery(getQueryKey(+page + 1, query || undefined));
