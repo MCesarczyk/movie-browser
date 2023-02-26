@@ -1,6 +1,7 @@
 import { call, delay, put, select, takeLatest } from "redux-saga/effects";
-import { getDataFromApi } from "../../services/getDataFromApi";
+import { getDataFromApi } from "../../services/restApiService";
 import { buildRequestUrl } from "../../services/utils";
+import { PersonApiResponse, PersonCredits } from "./interfaces";
 import {
     setPersonDetails,
     setPersonCredits,
@@ -8,7 +9,6 @@ import {
     selectPersonId,
     setPersonState,
 } from "./personSlice";
-import { PersonApiResponse, PersonCredits } from "../../types";
 
 function* fetchPersonDetailsHandler() {
     try {

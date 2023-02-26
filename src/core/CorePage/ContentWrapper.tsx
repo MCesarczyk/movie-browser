@@ -5,20 +5,20 @@ import NoResultsPage from './NoResultsPage';
 
 interface ContentWrapperProps {
     status: string;
-    query: string | null;
     error: unknown;
-    totalResults: number | null;
     loadingMessage: string;
     children: ReactNode;
+    query?: string | null;
+    isDataPresent?: boolean;
 };
 
 export const ContentWrapper = ({
     status,
-    query,
     error,
-    totalResults,
-    children,
     loadingMessage,
+    children,
+    query = null,
+    isDataPresent = false,
 }: ContentWrapperProps) => {
     if (status === "loading") {
         return <LoadingPage
@@ -27,7 +27,7 @@ export const ContentWrapper = ({
         />
     }
 
-    if (query && !totalResults) {
+    if (query && isDataPresent) {
         return <NoResultsPage query={query} />
     }
 
@@ -35,7 +35,7 @@ export const ContentWrapper = ({
         return <ErrorPage error={error as Error} />
     }
 
-    if (status === "success" && totalResults) {
+    if (status === "success" && isDataPresent) {
         return <>{children}</>
     }
 

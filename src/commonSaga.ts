@@ -1,5 +1,5 @@
 import { call, all, put, takeLatest } from "redux-saga/effects";
-import { getDataFromApi } from "./services/getDataFromApi";
+import { getDataFromApi } from "./services/restApiService";
 import { fetchConfiguration, setConfiguration, setMovieGenres } from "./commonSlice";
 import { buildRequestUrl } from "./services/utils";
 

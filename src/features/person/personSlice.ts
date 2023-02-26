@@ -2,16 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { RootState } from "store";
 import { 
-    ActingMovieDetailed, 
-    PersonApiResponse, 
+    ActingMovieDetailed,
     PersonCredits, 
-    PersonCreditsInitialState, 
     PersonDetails, 
-    PersonDetailsInitialState 
-} from "types";
+} from "./interfaces";
 
 
-const initialState: PersonApiResponse = {
+const initialState: any = {
     id: null,
     details: {
         genres: [],
@@ -57,11 +54,11 @@ export const {
 } = personSlice.actions;
 
 const selectPerson = (state: RootState) => state.person;
-const selectPersonCredits = (state: RootState): PersonCredits | PersonCreditsInitialState => selectPerson(state).credits;
+const selectPersonCredits = (state: RootState): PersonCredits => selectPerson(state).credits;
 
 export const selectPersonId = (state: RootState): string | null => selectPerson(state).id;
 export const selectPersonState = (state: RootState): string => selectPerson(state).state;
-export const selectPersonDetails = (state: RootState): PersonDetails | PersonDetailsInitialState => selectPerson(state).details;
+export const selectPersonDetails = (state: RootState): PersonDetails => selectPerson(state).details;
 export const selectPersonCast = (state: RootState): ActingMovieDetailed[] | [] => selectPersonCredits(state).cast;
 export const selectPersonCrew = (state: RootState): ActingMovieDetailed[] | [] => selectPersonCredits(state).crew;
 

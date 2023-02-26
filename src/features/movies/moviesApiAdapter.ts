@@ -1,5 +1,5 @@
 import { buildRequestUrl } from 'services/utils';
-import { getDataFromApi } from 'services/getDataFromApi';
+import { getDataFromApi } from 'services/restApiService';
 import { MoviesListApiResponse } from './interfaces';
 
 export const moviesApi = {

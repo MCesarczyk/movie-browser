@@ -36,7 +36,7 @@ export const PeoplePage = () => {
             status={status}
             error={error}
             query={query}
-            totalResults={totalResults}
+            isDataPresent={!!totalResults}
             loadingMessage="Loading people list..."
         >
             <>

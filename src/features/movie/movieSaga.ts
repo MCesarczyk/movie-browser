@@ -1,7 +1,7 @@
 import { call, delay, put, select, takeLatest } from "redux-saga/effects";
 
 import { MovieApiResponse, MovieCredits } from "types";
-import { getDataFromApi } from "services/getDataFromApi";
+import { getDataFromApi } from "services/restApiService";
 import { buildRequestUrl } from "services/utils";
 import {
     setMovieDetails,

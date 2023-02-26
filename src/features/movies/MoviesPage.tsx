@@ -41,7 +41,7 @@ export const MoviesPage = () => {
             status={status}
             error={error}
             query={query}
-            totalResults={totalResults}
+            isDataPresent={!!totalResults}
             loadingMessage="Loading movies list..."
         >
 
