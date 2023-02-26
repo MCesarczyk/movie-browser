@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { ImagesConfiguration } from "types";
+import { ImagesConfiguration } from "./types";
 
 import { COMMON_CONFIGURATION_CACHE_TIME, COMMON_CONFIGURATION_STALE_TIME, IMAGES_CONFIGURATION_PATH } from "./constants";
 import { getDataFromApi } from "./restApiService";

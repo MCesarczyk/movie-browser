@@ -1,13 +1,11 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { ThemeProvider } from 'styled-components';
 import { Normalize } from 'styled-normalize';
 import { GlobalStyle } from 'GlobalStyle';
 
-import store from "store";
 import { theme } from 'theme';
 import reportWebVitals from 'reportWebVitals';
 import { ImagesConfigProvider } from 'services/ImagesConfigContext';
@@ -28,7 +26,6 @@ const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <ImagesConfigProvider>
           <ReactQueryDevtools />
@@ -39,7 +36,6 @@ root.render(
           </ThemeProvider>
         </ImagesConfigProvider>
       </QueryClientProvider>
-    </Provider>
   </React.StrictMode>
 );
 

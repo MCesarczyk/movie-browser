@@ -1,5 +1,5 @@
 import { createContext, ReactNode } from "react";
-import { ImagesConfiguration } from "types";
+import { ImagesConfiguration } from "./types";
 import { useImagesConfigService } from "./imagesConfigService";
 
 export const imagesConfigInitialValue = {
