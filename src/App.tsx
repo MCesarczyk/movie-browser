@@ -10,7 +10,6 @@ import { MoviesPage } from 'features/movies/MoviesPage';
 import { MoviePage } from 'features/movie/MoviePage';
 import { PeoplePage } from "features/people/PeoplePage";
 import { PersonPage } from "features/person/PersonPage";
-import { useImageSizesService } from "services/imageSizesService";
 
 
 export const App = () => {
@@ -21,8 +20,6 @@ export const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const { images } = useImageSizesService();
-
   return (
     <HashRouter>
       <Navbar
@@ -32,7 +29,7 @@ export const App = () => {
       <ErrorBoundary FallbackComponent={Fallback}>
         <Switch>
           <Route path="/movie/:id">
-            <MoviePage images={images} />
+            <MoviePage />
           </Route>
           <Route path="/movies/:page">
             <MoviesPage />

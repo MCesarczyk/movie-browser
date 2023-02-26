@@ -1,15 +1,16 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { ThemeProvider } from 'styled-components';
-import { Normalize } from 'styled-normalize';
-
-import { GlobalStyle } from 'GlobalStyle';
-import { theme } from 'theme';
-import store from "store";
-import reportWebVitals from 'reportWebVitals';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { ThemeProvider } from 'styled-components';
+import { Normalize } from 'styled-normalize';
+import { GlobalStyle } from 'GlobalStyle';
+
+import store from "store";
+import { theme } from 'theme';
+import reportWebVitals from 'reportWebVitals';
+import { ImagesConfigProvider } from 'services/ImagesConfigContext';
 import { App } from 'App';
 
 
@@ -29,12 +30,14 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools />
-        <ThemeProvider theme={theme}>
-          <Normalize />
-          <GlobalStyle />
-          <App />
-        </ThemeProvider>
+        <ImagesConfigProvider>
+          <ReactQueryDevtools />
+          <ThemeProvider theme={theme}>
+            <Normalize />
+            <GlobalStyle />
+            <App />
+          </ThemeProvider>
+        </ImagesConfigProvider>
       </QueryClientProvider>
     </Provider>
   </React.StrictMode>

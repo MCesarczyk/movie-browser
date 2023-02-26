@@ -1,22 +1,20 @@
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 import { Wrapper } from "common/Wrapper";
 import LoadingCircle from "common/LoadingCircle";
 import Tile from "core/Tile"
-import { selectImagesBaseURL, selectPosterSizes, selectProfileSizes } from "commonSlice";
 import { ContentWrapper } from "core/CorePage/ContentWrapper";
 import { ActingMovieDetailed } from "./interfaces";
 import { usePersonApiService } from "./personApiService";
+import { ImagesConfigContext } from "services/ImagesConfigContext";
 const Section = lazy(() => import('common/Section'));
 
 
 export const PersonPage = () => {
     const { id }: any = useParams();
-    const imgURL: string = useSelector(selectImagesBaseURL);
-    const posterSizes = useSelector(selectPosterSizes);
-    const profileSizes = useSelector(selectProfileSizes);
+
+    const { baseUrl, posterSizes, profileSizes } = useContext(ImagesConfigContext);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -62,7 +60,7 @@ export const PersonPage = () => {
                         imageWidth="312px"
                         widths={tileWidths}
                         detailsUrl={`/person/${id}`}
-                        imageBaseUrl={imgURL}
+                        imageBaseUrl={baseUrl}
                         imagePath={personDetails.profile_path}
                         title={personDetails.name}
                         birthday={personDetails.birthday}
@@ -80,7 +78,7 @@ export const PersonPage = () => {
                                         detailsUrl={`/movie/${movie.id}`}
                                         imageWidth="100%"
                                         widths={personTileWidths}
-                                        imageBaseUrl={imgURL}
+                                        imageBaseUrl={baseUrl}
                                         imagePath={movie.poster_path}
                                         sizes={profileSizesArray}
                                         title={movie.title}
@@ -105,7 +103,7 @@ export const PersonPage = () => {
                                         key={`crew:${movie.credit_id}`}
                                         detailsUrl={`/movie/${movie.id}`}
                                         widths={personTileWidths}
-                                        imageBaseUrl={imgURL}
+                                        imageBaseUrl={baseUrl}
                                         imagePath={movie.poster_path}
                                         sizes={profileSizesArray}
                                         title={movie.title}

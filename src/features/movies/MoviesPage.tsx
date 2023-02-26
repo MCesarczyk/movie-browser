@@ -1,14 +1,13 @@
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useContext, useEffect } from "react";
 
 import Section from "common/Section";
-import { selectImagesBaseURL, selectPosterSizes } from "commonSlice";
 import { MovieResult } from "./interfaces";
 import Tile from "core/Tile"
 import { Pager } from "core/Pager";
 import { useMoviesApiService } from "./moviesApiService";
 import { API_TOTAL_PAGES_LIMIT, MOVIES_LIST_URL, MOVIE_DETAILS_URL } from "./constants";
 import { ContentWrapper } from "core/CorePage/ContentWrapper";
+import { ImagesConfigContext } from "services/ImagesConfigContext";
 
 
 export const MoviesPage = () => {
@@ -16,8 +15,7 @@ export const MoviesPage = () => {
         window.scrollTo(0, 0);
     }, []);
 
-    const imgURL = useSelector(selectImagesBaseURL);
-    const posterSizes = useSelector(selectPosterSizes);
+    const { baseUrl, posterSizes } = useContext(ImagesConfigContext);
 
     const posterSizesArray = [
         posterSizes[1],
@@ -56,7 +54,7 @@ export const MoviesPage = () => {
                             key={movie.id}
                             sizes={posterSizesArray}
                             widths={tileWidths}
-                            imageBaseUrl={imgURL}
+                            imageBaseUrl={baseUrl}
                             imagePath={movie.poster_path}
                             imageWidth="100%"
                             detailsUrl={`${MOVIE_DETAILS_URL}/${movie.id}`}

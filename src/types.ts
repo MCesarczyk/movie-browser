@@ -1,5 +1,5 @@
 export interface ImagesConfiguration {
-  baseURL: string;
+  baseUrl: string;
   posterSizes: string[];
   profileSizes: string[];
   backdropSizes: string[];

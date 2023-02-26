@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import LoadingCircle from "common/LoadingCircle";
@@ -7,15 +7,11 @@ import Tile from "core/Tile"
 import { Backdrop } from "./Backdrop";
 import { useMovieApiService } from "./movieApiService";
 import { ContentWrapper } from "core/CorePage/ContentWrapper";
-import { ImagesConfiguration } from "types";
+import { ImagesConfigContext } from "services/ImagesConfigContext";
 const Section = React.lazy(() => import('common/Section'));
 
 
-interface MoviePageProps {
-    images: ImagesConfiguration | null;
-};
-
-export const MoviePage = ({ images }: MoviePageProps) => {
+export const MoviePage = () => {
     const { id }: any = useParams();
 
     useEffect(() => {
@@ -23,28 +19,30 @@ export const MoviePage = ({ images }: MoviePageProps) => {
         // eslint-disable-next-line
     }, []);
 
-    const backdropSizesArray = images ? [
-        images?.backdropSizes[1],
-        images?.backdropSizes[1],
-        images?.backdropSizes[2],
-        images?.backdropSizes[2],
-        images?.backdropSizes[3]
-    ] : undefined;
+    const { baseUrl, posterSizes, profileSizes, backdropSizes } = useContext(ImagesConfigContext);
+
+    const backdropSizesArray = [
+        backdropSizes[1],
+        backdropSizes[1],
+        backdropSizes[2],
+        backdropSizes[2],
+        backdropSizes[3]
+    ];
 
     const posterSizesArray = [
-        images?.posterSizes[1],
-        images?.posterSizes[2],
-        images?.posterSizes[3],
-        images?.posterSizes[4],
-        images?.posterSizes[5]
+        posterSizes[1],
+        posterSizes[2],
+        posterSizes[3],
+        posterSizes[4],
+        posterSizes[5]
     ];
 
     const profileSizesArray = [
-        images?.profileSizes[1],
-        images?.profileSizes[1],
-        images?.profileSizes[1],
-        images?.profileSizes[1],
-        images?.profileSizes[1]
+        profileSizes[1],
+        profileSizes[1],
+        profileSizes[1],
+        profileSizes[1],
+        profileSizes[1]
     ];
 
     const personTileWidths = ["136px", "160px", "184px", "208px", "208px"];
@@ -60,9 +58,9 @@ export const MoviePage = ({ images }: MoviePageProps) => {
             isDataPresent={!!movieDetails}
         >
             <>
-                {movieDetails && images && backdropSizesArray && movieDetails.backdrop_path !== null && (
+                {movieDetails && backdropSizesArray && movieDetails.backdrop_path !== null && (
                     <Backdrop
-                        imageBaseUrl={images.baseURL}
+                        imageBaseUrl={baseUrl}
                         imagePath={movieDetails.backdrop_path}
                         sizes={backdropSizesArray}
                         title={movieDetails.original_title}
@@ -80,7 +78,7 @@ export const MoviePage = ({ images }: MoviePageProps) => {
                             widths={tileWidths}
                             key={id as string}
                             sizes={posterSizesArray}
-                            imageBaseUrl={images?.baseURL}
+                            imageBaseUrl={baseUrl}
                             imagePath={movieDetails.poster_path}
                             detailsUrl={`/movie/${id as string}`}
                             title={movieDetails.title}
@@ -107,7 +105,7 @@ export const MoviePage = ({ images }: MoviePageProps) => {
                                             widths={personTileWidths}
                                             key={movieCast[index].credit_id}
                                             sizes={profileSizesArray}
-                                            imageBaseUrl={images?.baseURL}
+                                            imageBaseUrl={baseUrl}
                                             imagePath={movieCast[index].profile_path}
                                             detailsUrl={`/person/${movieCast[index].id}`}
                                             title={movieCast[index].name}
@@ -128,7 +126,7 @@ export const MoviePage = ({ images }: MoviePageProps) => {
                                             key={movieCrew[index].credit_id}
                                             sizes={profileSizesArray}
                                             detailsUrl={`/person/${movieCrew[index].id}`}
-                                            imageBaseUrl={images?.baseURL}
+                                            imageBaseUrl={baseUrl}
                                             imagePath={movieCrew[index].profile_path}
                                             title={movieCrew[index].name}
                                             subtitle={movieCrew[index].job}

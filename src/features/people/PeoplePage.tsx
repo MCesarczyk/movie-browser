@@ -1,14 +1,13 @@
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useContext, useEffect } from "react";
 
 import Section from "common/Section";
-import { selectImagesBaseURL, selectProfileSizes } from "commonSlice";
 import Tile from "core/Tile"
 import { Pager } from "core/Pager";
 import { usePeopleApiService } from "./peopleApiService";
 import { ContentWrapper } from "core/CorePage/ContentWrapper";
 import { API_TOTAL_PAGES_LIMIT, PEOPLE_LIST_URL, PERSON_DETAILS_URL } from "./constants";
 import { Person } from "./interfaces";
+import { ImagesConfigContext } from "services/ImagesConfigContext";
 
 
 export const PeoplePage = () => {
@@ -16,8 +15,7 @@ export const PeoplePage = () => {
         window.scrollTo(0, 0);
     }, []);
 
-    const imgURL = useSelector(selectImagesBaseURL);
-    const profileSizes = useSelector(selectProfileSizes);
+    const { baseUrl, profileSizes } = useContext(ImagesConfigContext);
 
     const profileSizesArray = [
         profileSizes[1],
@@ -53,7 +51,7 @@ export const PeoplePage = () => {
                             imageWidth="100%"
                             widths={personTileWidths}
                             sizes={profileSizesArray}
-                            imageBaseUrl={imgURL}
+                            imageBaseUrl={baseUrl}
                             imagePath={person.profile_path}
                             detailsUrl={`${PERSON_DETAILS_URL}/${person.id}`}
                             title={person.name}
