@@ -20,7 +20,7 @@ import {
     selectGenresList,
     clearMovieData,
     setMovieId,
-} from "../movieSlice";
+} from "./movieSlice";
 import { MovieDetails } from "types";
 const Section = React.lazy(() => import('common/Section'));
 
