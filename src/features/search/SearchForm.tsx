@@ -1,16 +1,16 @@
 import { useLocation, useRouteMatch } from "react-router";
 import { useHistory } from "react-router-dom";
 
-import searchQueryParamName from "features/search/searchQueryParamName";
 import { SearchIcon, SearchInput, SearchWrapper } from "./styled";
+import { SEARCH_QUERY_PARAM_NAME } from "./constants";
 import search from "./search.svg";
 
 
-const SearchForm = () => {
+export const SearchForm = () => {
     const location = useLocation();
     const history = useHistory();
     const searchParams: URLSearchParams = new URLSearchParams(location.search);
-    const query: string | null = searchParams.get(searchQueryParamName);
+    const query: string | null = searchParams.get(SEARCH_QUERY_PARAM_NAME);
 
     const moviesMatch = useRouteMatch("/movies");
     const movieMatch = useRouteMatch("/movie");
@@ -20,9 +20,9 @@ const SearchForm = () => {
 
     const onInputChange = ({ target }: { target: HTMLInputElement }) => {
         if (target.value.trim() === "") {
-            searchParams.delete(searchQueryParamName);
+            searchParams.delete(SEARCH_QUERY_PARAM_NAME);
         } else {
-            searchParams.set(searchQueryParamName, target.value);
+            searchParams.set(SEARCH_QUERY_PARAM_NAME, target.value);
         }
         const newSearchParams = searchParams.toString();
 
@@ -40,5 +40,3 @@ const SearchForm = () => {
         </SearchWrapper>
     )
 };
-
-export default SearchForm;

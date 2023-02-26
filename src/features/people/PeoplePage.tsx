@@ -3,8 +3,8 @@ import { useContext, useEffect } from "react";
 import Section from "common/Section";
 import Tile from "core/Tile"
 import { Pager } from "core/Pager";
+import { CorePage } from "core/CorePage";
 import { usePeopleApiService } from "./peopleApiService";
-import { ContentWrapper } from "core/CorePage/ContentWrapper";
 import { API_TOTAL_PAGES_LIMIT, PEOPLE_LIST_URL, PERSON_DETAILS_URL } from "./constants";
 import { Person } from "./interfaces";
 import { ImagesConfigContext } from "services/ImagesConfigContext";
@@ -30,7 +30,7 @@ export const PeoplePage = () => {
     const { status, error, isPreviousData, isFetching, query, peopleList, totalPages, totalResults } = usePeopleApiService();
 
     return (
-        <ContentWrapper
+        <CorePage
             status={status}
             error={error}
             query={query}
@@ -69,6 +69,6 @@ export const PeoplePage = () => {
                     />
                 )}
             </>
-        </ContentWrapper>
+        </CorePage>
     );
 };

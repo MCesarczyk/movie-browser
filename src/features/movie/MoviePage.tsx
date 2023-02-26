@@ -4,9 +4,9 @@ import { useParams } from "react-router-dom";
 import LoadingCircle from "common/LoadingCircle";
 import { Wrapper } from "common/Wrapper";
 import Tile from "core/Tile"
+import { CorePage } from "core/CorePage";
 import { Backdrop } from "./Backdrop";
 import { useMovieApiService } from "./movieApiService";
-import { ContentWrapper } from "core/CorePage/ContentWrapper";
 import { ImagesConfigContext } from "services/ImagesConfigContext";
 const Section = React.lazy(() => import('common/Section'));
 
@@ -51,7 +51,7 @@ export const MoviePage = () => {
     const { status, error, isFetching, movieDetails, cast: movieCast, crew: movieCrew } = useMovieApiService();
 
     return (
-        <ContentWrapper
+        <CorePage
             status={status}
             error={error}
             loadingMessage="Loading movie details..."
@@ -140,6 +140,6 @@ export const MoviePage = () => {
                     </Wrapper >
                 )}
             </>
-        </ContentWrapper >
+        </CorePage >
     );
 };

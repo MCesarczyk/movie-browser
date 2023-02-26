@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useParams, useLocation, useHistory } from "react-router-dom";
 
-import searchQueryParamName from "features/search/searchQueryParamName";
+import { SEARCH_QUERY_PARAM_NAME } from "features/search/constants";
 import { Wrapper, StyledLink, PagerText, PageNumberText } from "./styled";
-import NextIcon from "./NextIcon";
 import PreviousIcon from "./PreviousIcon";
+import NextIcon from "./NextIcon";
 
 
 interface PagerProps {
@@ -18,10 +18,10 @@ export const Pager = ({ property, totalPages }: PagerProps) => {
 
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
-    const query = searchParams.get(searchQueryParamName);
+    const query = searchParams.get(SEARCH_QUERY_PARAM_NAME);
 
     const history = useHistory();
-    const firstPageUrl = `${property}/1${query ? `?${searchQueryParamName}=${query}` : ""}`;
+    const firstPageUrl = `${property}/1${query ? `?${SEARCH_QUERY_PARAM_NAME}=${query}` : ""}`;
     totalPages && (currentPage > totalPages) && history.push(firstPageUrl);
 
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -45,7 +45,7 @@ export const Pager = ({ property, totalPages }: PagerProps) => {
             </StyledLink>
             <StyledLink
                 to={
-                    `${property}/${+currentPage === 1 ? 1 : +currentPage - 1}${query ? `?${searchQueryParamName}=${query}` : ""}`
+                    `${property}/${+currentPage === 1 ? 1 : +currentPage - 1}${query ? `?${SEARCH_QUERY_PARAM_NAME}=${query}` : ""}`
                 }
                 disabled={checkIfPreviousIsDisabled()}
             >
@@ -64,7 +64,7 @@ export const Pager = ({ property, totalPages }: PagerProps) => {
                         ? +currentPage
                         : +currentPage + 1
                     }${query
-                        ? `?${searchQueryParamName}=${query}`
+                        ? `?${SEARCH_QUERY_PARAM_NAME}=${query}`
                         : ""
                     }`
                 }
@@ -74,7 +74,7 @@ export const Pager = ({ property, totalPages }: PagerProps) => {
                 <NextIcon disabled={checkIfNextIsDisabled()} />
             </StyledLink>
             <StyledLink to={
-                `${property}/${totalPages}${query ? `?${searchQueryParamName}=${query}` : ""}`
+                `${property}/${totalPages}${query ? `?${SEARCH_QUERY_PARAM_NAME}=${query}` : ""}`
             }
                 disabled={checkIfNextIsDisabled()}
             >

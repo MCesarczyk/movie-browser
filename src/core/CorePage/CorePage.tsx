@@ -15,7 +15,7 @@ interface ContentWrapperProps {
     isFetching?: boolean;
 };
 
-export const ContentWrapper = ({
+export const CorePage = ({
     status,
     error,
     loadingMessage,

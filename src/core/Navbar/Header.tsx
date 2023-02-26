@@ -1,6 +1,14 @@
 import { NavLink } from "react-router-dom";
 import styled, { DefaultTheme } from "styled-components";
+import camera from "./camera.svg";
 
+
+export const Header = () => (
+    <Wrapper>
+        <Icon src={camera} alt="" />
+        <Title to="/" >Movies&nbsp;Browser</Title>
+    </Wrapper>
+);
 
 const mediumScreen = ({ theme }: { theme: DefaultTheme }) => theme.breakpoint.mediumScreen;
 const mobileMax = ({ theme }: { theme: DefaultTheme }) => theme.breakpoint.mobileMax;

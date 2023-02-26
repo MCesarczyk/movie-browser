@@ -1,4 +1,4 @@
-import SearchForm from "features/search/SearchForm";
+import { SearchForm } from "features/search/SearchForm";
 import { Header } from "./Header";
 import {
     StyledNavLink,

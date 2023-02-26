@@ -44,4 +44,3 @@ export const SearchInput = styled.input`
     height: 44px;
   }
 `;
-

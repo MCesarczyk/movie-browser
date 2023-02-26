@@ -4,9 +4,9 @@ import Section from "common/Section";
 import { MovieResult } from "./interfaces";
 import Tile from "core/Tile"
 import { Pager } from "core/Pager";
+import { CorePage } from "core/CorePage";
 import { useMoviesApiService } from "./moviesApiService";
 import { API_TOTAL_PAGES_LIMIT, MOVIES_LIST_URL, MOVIE_DETAILS_URL } from "./constants";
-import { ContentWrapper } from "core/CorePage/ContentWrapper";
 import { ImagesConfigContext } from "services/ImagesConfigContext";
 
 
@@ -35,7 +35,7 @@ export const MoviesPage = () => {
     const { status, error, isPreviousData, isFetching, query, movieList, totalPages, totalResults } = useMoviesApiService();
 
     return (
-        <ContentWrapper
+        <CorePage
             status={status}
             error={error}
             query={query}
@@ -77,6 +77,6 @@ export const MoviesPage = () => {
                     />
                 )}
             </>
-        </ContentWrapper>
+        </CorePage>
     );
 };

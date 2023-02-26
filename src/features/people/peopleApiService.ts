@@ -2,9 +2,9 @@ import { useEffect, useMemo } from "react";
 import { useIsFetching, useQuery, useQueryClient } from "react-query";
 import { useLocation, useParams } from "react-router-dom";
 
-import searchQueryParamName from "features/search/searchQueryParamName";
-import { peopleApi } from "./peopleApiAdapter";
+import { SEARCH_QUERY_PARAM_NAME } from "features/search/constants";
 import { PEOPLE_LIST_PATH, PEOPLE_SEARCH_PATH } from "./constants";
+import { peopleApi } from "./peopleApiAdapter";
 
 
 export const usePeopleApiService = () => {
@@ -12,7 +12,7 @@ export const usePeopleApiService = () => {
   const { page }: any = useParams();
 
   const location = useLocation();
-  const query = (new URLSearchParams(location.search)).get(searchQueryParamName);
+  const query = (new URLSearchParams(location.search)).get(SEARCH_QUERY_PARAM_NAME);
   const path = query ? PEOPLE_SEARCH_PATH : PEOPLE_LIST_PATH;
 
   const getQueryKey = useMemo(() => (

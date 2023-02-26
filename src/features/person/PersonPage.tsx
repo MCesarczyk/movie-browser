@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { Wrapper } from "common/Wrapper";
 import LoadingCircle from "common/LoadingCircle";
 import Tile from "core/Tile"
-import { ContentWrapper } from "core/CorePage/ContentWrapper";
+import { CorePage } from "core/CorePage";
 import { ActingMovieDetailed } from "./interfaces";
 import { usePersonApiService } from "./personApiService";
 import { ImagesConfigContext } from "services/ImagesConfigContext";
@@ -43,7 +43,7 @@ export const PersonPage = () => {
     const { status, error, isFetching, personDetails, personCast, personCrew } = usePersonApiService();
 
     return (
-        <ContentWrapper
+        <CorePage
             status={status}
             error={error}
             loadingMessage="Loading person details..."
@@ -123,6 +123,6 @@ export const PersonPage = () => {
                     </Suspense>
                 </Wrapper>
             )}
-        </ContentWrapper>
+        </CorePage>
     );
 };

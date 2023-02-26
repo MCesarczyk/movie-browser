@@ -2,9 +2,9 @@ import { useEffect, useMemo } from "react";
 import { useIsFetching, useQuery, useQueryClient } from "react-query";
 import { useLocation, useParams } from "react-router-dom";
 
-import searchQueryParamName from "features/search/searchQueryParamName";
-import { moviesApi } from "./moviesApiAdapter";
+import { SEARCH_QUERY_PARAM_NAME } from "features/search/constants";
 import { MOVIE_LIST_PATH, MOVIE_SEARCH_PATH } from "./constants";
+import { moviesApi } from "./moviesApiAdapter";
 
 
 export const useMoviesApiService = () => {
@@ -12,7 +12,7 @@ export const useMoviesApiService = () => {
   const { page }: any = useParams();
 
   const location = useLocation();
-  const query = (new URLSearchParams(location.search)).get(searchQueryParamName);
+  const query = (new URLSearchParams(location.search)).get(SEARCH_QUERY_PARAM_NAME);
   const path = query ? MOVIE_SEARCH_PATH : MOVIE_LIST_PATH;
 
   const getQueryKey = useMemo(() => (
