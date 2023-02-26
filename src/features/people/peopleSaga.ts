@@ -1,6 +1,6 @@
 import { call, delay, put, select, takeLatest } from "redux-saga/effects";
 
-import { PeopleApiResponse } from "types";
+import { PeopleApiResponse } from "./interfaces";
 import { getDataFromApi } from "utils/getDataFromApi";
 import { buildRequestUrl } from "utils/buildRequestUrl";
 import {

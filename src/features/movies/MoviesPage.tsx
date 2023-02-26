@@ -6,11 +6,9 @@ import { selectImagesBaseURL, selectPosterSizes } from "commonSlice";
 import { MovieResult } from "./interfaces";
 import Tile from "core/Tile"
 import { Pager } from "core/Pager";
-import LoadingPage from "core/CorePage/LoadingPage";
-import { ErrorPage } from "core/CorePage/ErrorPage/ErrorPage";
 import { useMoviesApiService } from "./moviesApiService";
-import NoResultsPage from "core/CorePage/NoResultsPage";
 import { API_TOTAL_PAGES_LIMIT, MOVIES_LIST_URL, MOVIE_DETAILS_URL } from "./constants";
+import { ContentWrapper } from "core/CorePage/ContentWrapper";
 
 
 export const MoviesPage = () => {
@@ -38,23 +36,15 @@ export const MoviesPage = () => {
 
     const { status, error, isPreviousData, isFetching, query, movieList, totalPages, totalResults } = useMoviesApiService();
 
-    if (status === "loading") {
-        return <LoadingPage
-            message="Loading movies list..."
+    return (
+        <ContentWrapper
+            status={status}
+            error={error}
             query={query}
-        />
-    }
+            totalResults={totalResults}
+            loadingMessage="Loading movies list..."
+        >
 
-    if (query && !totalResults) {
-        return <NoResultsPage query={query} />
-    }
-
-    if (status === "error") {
-        return <ErrorPage error={error as Error} />
-    }
-
-    if (status === "success") {
-        return (
             <>
                 <Section
                     isFetching={!!isFetching}
@@ -89,8 +79,6 @@ export const MoviesPage = () => {
                     />
                 )}
             </>
-        );
-    };
-
-    return null;
+        </ContentWrapper>
+    );
 };

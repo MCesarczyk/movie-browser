@@ -1,47 +1,21 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useParams } from "react-router";
+import { useSelector } from "react-redux";
 
 import Section from "common/Section";
 import { selectImagesBaseURL, selectProfileSizes } from "commonSlice";
-import CorePage from "core/CorePage";
 import Tile from "core/Tile"
 import { Pager } from "core/Pager";
-import searchQueryParamName from "features/search/searchQueryParamName";
-import {
-    setPeoplePage,
-    setPeopleQuery,
-    clearPeopleList,
-    selectPeopleResults,
-    selectPeopleTotalResults,
-} from "features/people/peopleSlice";
+import { usePeopleApiService } from "../peopleApiService";
+import { ContentWrapper } from "core/CorePage/ContentWrapper";
+import { API_TOTAL_PAGES_LIMIT, PEOPLE_LIST_URL, PERSON_DETAILS_URL } from "../constants";
+import { Person } from "../interfaces";
 
 
-const PeoplePage = () => {
-    const dispatch = useDispatch();
-    const { page }: any = useParams();
-    const location = useLocation();
-    const query = (new URLSearchParams(location.search)).get(searchQueryParamName);
-
-    useEffect(() => {
-        dispatch(setPeopleQuery(query));
-    }, [dispatch, query]);
-
-    useEffect(() => {
-        dispatch(setPeoplePage(page as string || "1"));
-    }, [dispatch, page]);
-
+export const PeoplePage = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
-
-        return () => {
-            dispatch(clearPeopleList());
-        };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const peopleList = useSelector(selectPeopleResults);
-    const totalResults = useSelector(selectPeopleTotalResults);
     const imgURL = useSelector(selectImagesBaseURL);
     const profileSizes = useSelector(selectProfileSizes);
 
@@ -55,34 +29,48 @@ const PeoplePage = () => {
 
     const personTileWidths = ["136px", "160px", "184px", "184px", "208px"];
 
-    return (
-        <CorePage
-            message="Loading people list..."
-            body={
-                <>
-                    <Section
-                        title={query ? `Search results for "${query}" (${totalResults})` : "Popular people"}
-                        itemsList={peopleList.map((person, index) => (
-                            // @ts-ignore
-                            <Tile
-                                person="true"
-                                key={peopleList[index].id}
-                                personId={peopleList[index].id}
-                                imageWidth="100%"
-                                widths={personTileWidths}
-                                sizes={profileSizesArray}
-                                imageBaseUrl={imgURL}
-                                imagePath={peopleList[index].profile_path}
-                                detailsUrl={`/person/${peopleList[index].id}`}
-                                title={peopleList[index].name}
-                            />
-                        ))}
-                    />
-                    < Pager totalPages={1} property={"/people"} />
-                </>
-            }
-        />
-    )
-};
+    const { status, error, isPreviousData, isFetching, query, peopleList, totalPages, totalResults } = usePeopleApiService();
 
-export default PeoplePage;
+    return (
+        <ContentWrapper
+            status={status}
+            error={error}
+            query={query}
+            totalResults={totalResults}
+            loadingMessage="Loading people list..."
+        >
+            <>
+                <Section
+                    isFetching={!!isFetching}
+                    isObsolete={isPreviousData}
+                    title={query ? `Search results for "${query}" (${totalResults})` : "Popular people"}
+                    itemsList={peopleList && peopleList.map((person: Person) => (
+                        // @ts-ignore
+                        <Tile
+                            person="true"
+                            key={person.id}
+                            personId={person.id}
+                            imageWidth="100%"
+                            widths={personTileWidths}
+                            sizes={profileSizesArray}
+                            imageBaseUrl={imgURL}
+                            imagePath={person.profile_path}
+                            detailsUrl={`${PERSON_DETAILS_URL}/${person.id}`}
+                            title={person.name}
+                        />
+                    ))}
+                />
+                {totalPages && (
+                    <Pager
+                        totalPages={
+                            totalPages < API_TOTAL_PAGES_LIMIT
+                                ? totalPages
+                                : API_TOTAL_PAGES_LIMIT
+                        }
+                        property={PEOPLE_LIST_URL}
+                    />
+                )}
+            </>
+        </ContentWrapper>
+    );
+};
