@@ -40,7 +40,7 @@ export const PersonPage = () => {
     const personTileWidths = ["100%", "228px", "286px", "286px", "324px"];
     const tileWidths = ["100%", "100%", "100%", "100%", "100%"];
 
-    const { status, error, personDetails, personCast, personCrew } = usePersonApiService();
+    const { status, error, isFetching, personDetails, personCast, personCrew } = usePersonApiService();
 
     return (
         <ContentWrapper
@@ -48,6 +48,7 @@ export const PersonPage = () => {
             error={error}
             loadingMessage="Loading person details..."
             isDataPresent={!!personDetails}
+            isFetching={isFetching}
         >
             {personDetails && (
                 <Wrapper>

@@ -48,7 +48,7 @@ export const MoviePage = () => {
     const personTileWidths = ["136px", "160px", "184px", "208px", "208px"];
     const tileWidths = ["100%", "100%", "100%", "100%", "100%"];
 
-    const { status, error, movieDetails, cast: movieCast, crew: movieCrew } = useMovieApiService();
+    const { status, error, isFetching, movieDetails, cast: movieCast, crew: movieCrew } = useMovieApiService();
 
     return (
         <ContentWrapper
@@ -56,6 +56,7 @@ export const MoviePage = () => {
             error={error}
             loadingMessage="Loading movie details..."
             isDataPresent={!!movieDetails}
+            isFetching={isFetching}
         >
             <>
                 {movieDetails && backdropSizesArray && movieDetails.backdrop_path !== null && (
@@ -98,18 +99,18 @@ export const MoviePage = () => {
                             {movieCast && movieCast.length > 0 &&
                                 <Section
                                     title="Cast"
-                                    itemsList={movieCast && movieCast.map((person, index) => (
+                                    itemsList={movieCast && movieCast.map(person => (
                                         // @ts-ignore
                                         <Tile
                                             person="true"
                                             widths={personTileWidths}
-                                            key={movieCast[index].credit_id}
+                                            key={person.credit_id}
                                             sizes={profileSizesArray}
                                             imageBaseUrl={baseUrl}
-                                            imagePath={movieCast[index].profile_path}
-                                            detailsUrl={`/person/${movieCast[index].id}`}
-                                            title={movieCast[index].name}
-                                            subtitle={movieCast[index].character}
+                                            imagePath={person.profile_path}
+                                            detailsUrl={`/person/${person.id}`}
+                                            title={person.name}
+                                            subtitle={person.character}
                                         />
                                     ))
                                     }
@@ -118,18 +119,18 @@ export const MoviePage = () => {
                             {movieCrew && movieCrew.length > 0 &&
                                 <Section
                                     title="Crew"
-                                    itemsList={movieCrew && movieCrew.map((person, index) => (
+                                    itemsList={movieCrew && movieCrew.map(person => (
                                         // @ts-ignore
                                         <Tile
                                             person="true"
                                             widths={personTileWidths}
-                                            key={movieCrew[index].credit_id}
+                                            key={person.credit_id}
                                             sizes={profileSizesArray}
-                                            detailsUrl={`/person/${movieCrew[index].id}`}
+                                            detailsUrl={`/person/${person.id}`}
                                             imageBaseUrl={baseUrl}
-                                            imagePath={movieCrew[index].profile_path}
-                                            title={movieCrew[index].name}
-                                            subtitle={movieCrew[index].job}
+                                            imagePath={person.profile_path}
+                                            title={person.name}
+                                            subtitle={person.job}
                                         />
                                     ))
                                     }

@@ -12,11 +12,11 @@ export const usePersonApiService = () => {
 
   const creditsPath = `person/${id as string}/movie_credits`;
 
-  const { status: creditsStatus, error: creditsError, data: movieCredits } = useQuery(creditsPath, () => personApi.getPersonCreditsById(creditsPath));
+  const { status: creditsStatus, error: creditsError, isFetching, data: movieCredits } = useQuery(creditsPath, () => personApi.getPersonCreditsById(creditsPath));
 
   const credits = (creditsStatus === "success" && !creditsError) ? movieCredits : null;
   const personCast = credits?.cast;
   const personCrew = credits?.crew;
 
-  return { status, error, personDetails, personCast, personCrew };
+  return { status, error, isFetching, personDetails, personCast, personCrew };
 };

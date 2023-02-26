@@ -1,4 +1,6 @@
 import { ReactNode } from 'react';
+
+import { LoadingBar } from 'common/LoadingBar';
 import { ErrorPage } from './ErrorPage/ErrorPage';
 import LoadingPage from './LoadingPage';
 import NoResultsPage from './NoResultsPage';
@@ -10,6 +12,7 @@ interface ContentWrapperProps {
     children: ReactNode;
     query?: string | null;
     isDataPresent?: boolean;
+    isFetching?: boolean;
 };
 
 export const ContentWrapper = ({
@@ -19,6 +22,7 @@ export const ContentWrapper = ({
     children,
     query = null,
     isDataPresent = false,
+    isFetching,
 }: ContentWrapperProps) => {
     if (status === "loading") {
         return <LoadingPage
@@ -36,7 +40,12 @@ export const ContentWrapper = ({
     }
 
     if (status === "success" && isDataPresent) {
-        return <>{children}</>
+        return (
+            <>
+                {isFetching && <LoadingBar />}
+                {children}
+            </>
+        );
     }
 
     return null;
