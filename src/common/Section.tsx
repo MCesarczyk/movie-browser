@@ -3,20 +3,17 @@ import styled from "styled-components";
 
 import { Wrapper } from "common/Wrapper";
 import { Header } from "common/Header";
-import { LoadingBar } from "common/LoadingBar";
 
 
 interface SectionProps {
     title: string;
     itemsList: ReactNode[] | null;
-    isFetching?: boolean;
     isObsolete?: boolean;
 };
 
-const Section = ({ title, itemsList, isFetching, isObsolete }: SectionProps) => {
+const Section = ({ title, itemsList, isObsolete }: SectionProps) => {
     return (
         <Wrapper>
-            {isFetching && <LoadingBar />}
             <Header>{title}</Header>
             <SectionInnerContainer isObsolete={!!isObsolete}>
                 {itemsList}

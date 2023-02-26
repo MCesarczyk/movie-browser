@@ -36,10 +36,10 @@ export const PeoplePage = () => {
             query={query}
             isDataPresent={!!totalResults}
             loadingMessage="Loading people list..."
+            isFetching={!!isFetching}
         >
             <>
                 <Section
-                    isFetching={!!isFetching}
                     isObsolete={isPreviousData}
                     title={query ? `Search results for "${query}" (${totalResults})` : "Popular people"}
                     itemsList={peopleList && peopleList.map((person: Person) => (

@@ -31,7 +31,7 @@ export const ContentWrapper = ({
         />
     }
 
-    if (query && isDataPresent) {
+    if (query && !isDataPresent) {
         return <NoResultsPage query={query} />
     }
 

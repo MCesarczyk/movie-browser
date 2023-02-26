@@ -41,11 +41,11 @@ export const MoviesPage = () => {
             query={query}
             isDataPresent={!!totalResults}
             loadingMessage="Loading movies list..."
+            isFetching={!!isFetching}
         >
 
             <>
                 <Section
-                    isFetching={!!isFetching}
                     isObsolete={isPreviousData}
                     title={query ? `Search results for "${query}" (${totalResults})` : "Popular movies"}
                     itemsList={movieList && movieList.map((movie: MovieResult, index: number) => (
