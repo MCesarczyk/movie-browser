@@ -1,5 +1,5 @@
-import { buildRequestUrl } from 'utils/buildRequestUrl';
-import { getDataFromApi } from 'utils/getDataFromApi';
+import { buildRequestUrl } from 'services/utils';
+import { getDataFromApi } from 'services/getDataFromApi';
 import { PeopleApiResponse } from './interfaces';
 
 

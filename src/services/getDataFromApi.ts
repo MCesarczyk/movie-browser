@@ -1,7 +1,8 @@
-import { delay } from "./delay";
+import { DEMO_DELAY } from "./constants";
+import { delay } from "./utils";
 
 export const getDataFromApi = async (apiURL: string) => {
-    await delay(1_000);
+    await delay(DEMO_DELAY);
     const response = await fetch(apiURL);
 
     if (!response.ok) {

@@ -1,7 +1,7 @@
 import { call, all, put, takeLatest } from "redux-saga/effects";
-import { getDataFromApi } from "./utils/getDataFromApi";
+import { getDataFromApi } from "./services/getDataFromApi";
 import { fetchConfiguration, setConfiguration, setMovieGenres } from "./commonSlice";
-import { buildRequestUrl } from "./utils/buildRequestUrl";
+import { buildRequestUrl } from "./services/utils";
 
 function* fetchConfigurationHandler() {
     try {
