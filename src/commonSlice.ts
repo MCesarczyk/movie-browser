@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "./store";
-import { Genre } from "./types";
+import { Genre } from "./features/movie/interfaces";
 
 interface CommonSliceProps {
     images: {

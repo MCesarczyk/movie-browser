@@ -73,18 +73,8 @@ export interface MovieDetails {
   vote_count: number;
 };
 
-export interface MovieDetailsInitialState {
-  backdrop_path: number;
-};
-
 export interface MovieCredits {
   id: number;
   cast: Actor[];
   crew: StaffMember[];
-};
-
-export interface MovieApiResponse {
-  id: number | null;
-  details: MovieDetails | {};
-  credits: MovieCredits | {};
 };
