@@ -1,25 +1,41 @@
 import React from 'react';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { Normalize } from 'styled-normalize';
-import { GlobalStyle } from './GlobalStyle';
-import { ThemeProvider } from 'styled-components';
-import { theme } from './theme';
-import { Provider } from 'react-redux';
-import store from "./store";
-
 import { createRoot } from 'react-dom/client';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
+import { ThemeProvider } from 'styled-components';
+import { Normalize } from 'styled-normalize';
+import { GlobalStyle } from 'GlobalStyle';
+
+import { theme } from 'theme';
+import reportWebVitals from 'reportWebVitals';
+import { ImagesConfigProvider } from 'services/ImagesConfigContext';
+import { App } from 'App';
+
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5_000,
+      keepPreviousData: true,
+    }
+  }
+});
+
 const container = document.getElementById('root') as HTMLElement;
-const root = createRoot(container); // createRoot(container!) if you use TypeScript
+const root = createRoot(container);
+
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <Normalize />
-        <GlobalStyle />
-        <App />
-      </ThemeProvider>
-    </Provider>
+      <QueryClientProvider client={queryClient}>
+        <ImagesConfigProvider>
+          <ReactQueryDevtools />
+          <ThemeProvider theme={theme}>
+            <Normalize />
+            <GlobalStyle />
+            <App />
+          </ThemeProvider>
+        </ImagesConfigProvider>
+      </QueryClientProvider>
   </React.StrictMode>
 );
 

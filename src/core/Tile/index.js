@@ -1,6 +1,5 @@
-import { useSelector } from "react-redux";
-import Votes from "../../common/Votes";
-import { selectMoviesGenres } from "../../commonSlice";
+import { useMovieGenresService } from "services/movieGenresService";
+import Votes from "common/Votes";
 import { ReactComponent as NoPictureImage } from "./noPicture.svg";
 import { ReactComponent as NoPosterImage } from "./noPoster.svg";
 import {
@@ -43,7 +42,7 @@ const Tile = ({
     votes,
     overview
 }) => {
-    const genres = useSelector(selectMoviesGenres);
+    const { genres } = useMovieGenresService();
 
     const convertDate = (input) => {
         const date = new Date(input).toLocaleDateString();
@@ -127,7 +126,7 @@ const Tile = ({
                             <Tag key={genreId}>
                                 {genres[genres.findIndex(
                                     ({ id }) => id === genreId
-                                )].name}
+                                )]?.name}
                             </Tag>
                         ))}
                     </Tags>
@@ -136,7 +135,7 @@ const Tile = ({
                     <Tags oversize >
                         {genresList.map((item, index) => (
                             <Tag oversize key={genresList[index].id}>
-                                {genresList[index].name}
+                                {genresList[index]?.name}
                             </Tag>
                         ))}
                     </Tags>

@@ -5,7 +5,7 @@ import LoadingCircle from "common/LoadingCircle";
 
 interface LoadingPageProps {
     message: string;
-    query: string | null;
+    query: string | null | undefined;
 };
 
 const LoadingPage = ({ message, query }: LoadingPageProps) => (

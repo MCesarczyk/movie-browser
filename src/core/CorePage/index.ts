@@ -1,0 +1,1 @@
+export { CorePage } from "./CorePage";

@@ -1,27 +1,21 @@
+import { ErrorBoundary } from "react-error-boundary";
 import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
-import { useDispatch } from 'react-redux';
-import { useEffect } from "react";
-import { fetchConfiguration } from './commonSlice';
-import Navbar from './core/Navbar';
-import MoviesPage from './features/movies/MoviesPage';
-import MoviePage from './features/movie/MoviePage';
-import PeoplePage from "./features/people/PeoplePage";
-import PersonPage from "./features/person/PersonPage";
 
-function App() {
-  const dispatch = useDispatch();
+import { Fallback } from "core/CorePage/ErrorPage/Fallback";
+import { Navbar } from 'core/Navbar';
+import { MoviesPage } from 'features/movies/MoviesPage';
+import { MoviePage } from 'features/movie/MoviePage';
+import { PeoplePage } from "features/people/PeoplePage";
+import { PersonPage } from "features/person/PersonPage";
 
-  useEffect(() => {
-    dispatch(fetchConfiguration());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
-  return (
-    <HashRouter>
-      <Navbar
-        moviesPath={"/movies"}
-        peoplePath={"/people"}
-      />
+export const App = () => (
+  <HashRouter>
+    <Navbar
+      moviesPath={"/movies"}
+      peoplePath={"/people"}
+    />
+    <ErrorBoundary FallbackComponent={Fallback}>
       <Switch>
         <Route path="/movie/:id">
           <MoviePage />
@@ -45,8 +39,6 @@ function App() {
           <Redirect to="/movies" />
         </Route>
       </Switch>
-    </HashRouter>
-  );
-};
-
-export default App;
+    </ErrorBoundary>
+  </HashRouter>
+);

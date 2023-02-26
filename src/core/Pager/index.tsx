@@ -1,33 +1,27 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import { useParams, useLocation, useHistory } from "react-router-dom";
 
-import searchQueryParamName from "features/search/searchQueryParamName";
-import { selectMoviesTotalPages } from "features/movies/moviesSlice";
-import { selectPeopleTotalPages } from "features/people/peopleSlice";
+import { SEARCH_QUERY_PARAM_NAME } from "features/search/constants";
 import { Wrapper, StyledLink, PagerText, PageNumberText } from "./styled";
-import NextIcon from "./NextIcon";
 import PreviousIcon from "./PreviousIcon";
+import NextIcon from "./NextIcon";
 
 
 interface PagerProps {
     property: string;
+    totalPages: number;
 };
 
-const Pager = ({ property }: PagerProps) => {
+export const Pager = ({ property, totalPages }: PagerProps) => {
     const { page } = useParams<{ page: string }>();
     let currentPage = (page ? page : 1);
 
-    const moviesTotalPages = useSelector(selectMoviesTotalPages);
-    const peopleTotalPages = useSelector(selectPeopleTotalPages);
-    const totalPages = property === "/movies" ? moviesTotalPages : peopleTotalPages;
-
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
-    const query = searchParams.get(searchQueryParamName);
+    const query = searchParams.get(SEARCH_QUERY_PARAM_NAME);
 
     const history = useHistory();
-    const firstPageUrl = `${property}/1${query ? `?${searchQueryParamName}=${query}` : ""}`;
+    const firstPageUrl = `${property}/1${query ? `?${SEARCH_QUERY_PARAM_NAME}=${query}` : ""}`;
     totalPages && (currentPage > totalPages) && history.push(firstPageUrl);
 
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -51,7 +45,7 @@ const Pager = ({ property }: PagerProps) => {
             </StyledLink>
             <StyledLink
                 to={
-                    `${property}/${+currentPage === 1 ? 1 : +currentPage - 1}${query ? `?${searchQueryParamName}=${query}` : ""}`
+                    `${property}/${+currentPage === 1 ? 1 : +currentPage - 1}${query ? `?${SEARCH_QUERY_PARAM_NAME}=${query}` : ""}`
                 }
                 disabled={checkIfPreviousIsDisabled()}
             >
@@ -70,7 +64,7 @@ const Pager = ({ property }: PagerProps) => {
                         ? +currentPage
                         : +currentPage + 1
                     }${query
-                        ? `?${searchQueryParamName}=${query}`
+                        ? `?${SEARCH_QUERY_PARAM_NAME}=${query}`
                         : ""
                     }`
                 }
@@ -80,7 +74,7 @@ const Pager = ({ property }: PagerProps) => {
                 <NextIcon disabled={checkIfNextIsDisabled()} />
             </StyledLink>
             <StyledLink to={
-                `${property}/${totalPages}${query ? `?${searchQueryParamName}=${query}` : ""}`
+                `${property}/${totalPages}${query ? `?${SEARCH_QUERY_PARAM_NAME}=${query}` : ""}`
             }
                 disabled={checkIfNextIsDisabled()}
             >
@@ -93,5 +87,3 @@ const Pager = ({ property }: PagerProps) => {
         </Wrapper>
     );
 };
-
-export default Pager;
