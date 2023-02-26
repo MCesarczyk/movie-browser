@@ -2,7 +2,6 @@ import { configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from "@redux-saga/core";
 import commonReducer from "./commonSlice";
 import movieReducer from "./features/movie/movieSlice";
-import personReducer from "./features/person/personSlice";
 import rootSaga from "./rootSaga";
 
 const sagaMiddleware = createSagaMiddleware();
@@ -11,7 +10,6 @@ const store = configureStore({
         reducer: {
                 common: commonReducer,
                 movie: movieReducer,
-                person: personReducer,
         },
         middleware: [sagaMiddleware],
 });

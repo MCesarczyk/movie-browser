@@ -40,10 +40,3 @@ export interface PersonCredits {
   crew: ActingMovieDetailed[] | [];
   id: number;
 };
-
-export interface PersonApiResponse {
-  id: string | null;
-  details: PersonDetails;
-  credits: PersonCredits;
-  state: string;
-};
