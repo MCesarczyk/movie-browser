@@ -1,6 +1,5 @@
-import { useSelector } from "react-redux";
-import Votes from "../../common/Votes";
-import { selectMoviesGenres } from "../../commonSlice";
+import { useMovieGenresService } from "services/movieGenresService";
+import Votes from "common/Votes";
 import { ReactComponent as NoPictureImage } from "./noPicture.svg";
 import { ReactComponent as NoPosterImage } from "./noPoster.svg";
 import {
@@ -43,7 +42,7 @@ const Tile = ({
     votes,
     overview
 }) => {
-    const genres = useSelector(selectMoviesGenres);
+    const { genres } = useMovieGenresService();
 
     const convertDate = (input) => {
         const date = new Date(input).toLocaleDateString();

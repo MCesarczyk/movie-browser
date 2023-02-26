@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "./store";
-import { Genre } from "./features/movie/interfaces";
 
 interface CommonSliceProps {
     images: {
@@ -9,7 +8,6 @@ interface CommonSliceProps {
         poster_sizes: string[];
         profile_sizes: string[];
     },
-    genres: Genre[];
 };
 
 const initialState: CommonSliceProps = {
@@ -19,7 +17,6 @@ const initialState: CommonSliceProps = {
         poster_sizes: [],
         profile_sizes: [],
     },
-    genres: [],
 };
 
 const commonSlice = createSlice({
@@ -40,18 +37,12 @@ const commonSlice = createSlice({
             state.images.poster_sizes = poster_sizes;
             state.images.profile_sizes = profile_sizes;
         },
-        fetchMovieGenres: () => { },
-        setMovieGenres: (state, { payload: genres }) => {
-            state.genres = genres;
-        },
     },
 });
 
 export const {
     fetchConfiguration,
     setConfiguration,
-    fetchMovieGenres,
-    setMovieGenres,
 } = commonSlice.actions;
 
 const selectCommon = (state: RootState) => state.common;
@@ -61,6 +52,5 @@ export const selectImagesBaseURL = (state: RootState): string => selectImages(st
 export const selectPosterSizes = (state: RootState): string[] => selectImages(state).poster_sizes;
 export const selectProfileSizes = (state: RootState): string[] => selectImages(state).profile_sizes;
 export const selectBackdropSizes = (state: RootState): string[] => selectImages(state).backdrop_sizes;
-export const selectMoviesGenres = (state: RootState): Genre[] => selectCommon(state).genres;
 
 export default commonSlice.reducer;
