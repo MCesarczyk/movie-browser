@@ -67,84 +67,84 @@ export const MoviePage = () => {
         >
             <>
                 {movieDetails && movieDetails.backdrop_path !== null && (
-                    <>
-                        <Backdrop
+                    <Backdrop
+                        imageBaseUrl={imgURL}
+                        imagePath={movieDetails.backdrop_path}
+                        sizes={backdropSizesArray}
+                        title={movieDetails.original_title}
+                        rating={movieDetails.vote_average}
+                        votes={movieDetails.vote_count}
+                    />
+                )}
+                {movieDetails && (
+                    < Wrapper >
+                        {/* @ts-ignore */}
+                        <Tile
+                            oversize="true"
+                            imageWidth="312px"
+                            mobile="177px"
+                            widths={tileWidths}
+                            key={id as string}
+                            sizes={posterSizesArray}
                             imageBaseUrl={imgURL}
-                            imagePath={movieDetails.backdrop_path}
-                            sizes={backdropSizesArray}
-                            title={movieDetails.original_title}
+                            imagePath={movieDetails.poster_path}
+                            detailsUrl={`/movie/${id as string}`}
+                            title={movieDetails.title}
+                            subtitle={
+                                movieDetails &&
+                                movieDetails.release_date &&
+                                new Date(Date.parse(movieDetails.release_date)).getFullYear().toString()
+                            }
+                            countries={movieDetails.production_countries}
+                            releaseDate={movieDetails.release_date}
+                            genresList={movieDetails.genres}
                             rating={movieDetails.vote_average}
                             votes={movieDetails.vote_count}
+                            overview={movieDetails.overview}
                         />
-                        < Wrapper >
-                            {/* @ts-ignore */}
-                            <Tile
-                                oversize="true"
-                                imageWidth="312px"
-                                mobile="177px"
-                                widths={tileWidths}
-                                key={id as string}
-                                sizes={posterSizesArray}
-                                imageBaseUrl={imgURL}
-                                imagePath={movieDetails.poster_path}
-                                detailsUrl={`/movie/${id as string}`}
-                                title={movieDetails.title}
-                                subtitle={
-                                    movieDetails &&
-                                    movieDetails.release_date &&
-                                    new Date(Date.parse(movieDetails.release_date)).getFullYear().toString()
-                                }
-                                countries={movieDetails.production_countries}
-                                releaseDate={movieDetails.release_date}
-                                genresList={movieDetails.genres}
-                                rating={movieDetails.vote_average}
-                                votes={movieDetails.vote_count}
-                                overview={movieDetails.overview}
-                            />
-                            <Suspense fallback={<LoadingCircle />}>
-                                {movieCast && movieCast.length > 0 &&
-                                    <Section
-                                        title="Cast"
-                                        itemsList={movieCast && movieCast.map((person, index) => (
-                                            // @ts-ignore
-                                            <Tile
-                                                person="true"
-                                                widths={personTileWidths}
-                                                key={movieCast[index].credit_id}
-                                                sizes={profileSizesArray}
-                                                imageBaseUrl={imgURL}
-                                                imagePath={movieCast[index].profile_path}
-                                                detailsUrl={`/person/${movieCast[index].id}`}
-                                                title={movieCast[index].name}
-                                                subtitle={movieCast[index].character}
-                                            />
-                                        ))
-                                        }
-                                    />
-                                }
-                                {movieCrew && movieCrew.length > 0 &&
-                                    <Section
-                                        title="Crew"
-                                        itemsList={movieCrew && movieCrew.map((person, index) => (
-                                            // @ts-ignore
-                                            <Tile
-                                                person="true"
-                                                widths={personTileWidths}
-                                                key={movieCrew[index].credit_id}
-                                                sizes={profileSizesArray}
-                                                detailsUrl={`/person/${movieCrew[index].id}`}
-                                                imageBaseUrl={imgURL}
-                                                imagePath={movieCrew[index].profile_path}
-                                                title={movieCrew[index].name}
-                                                subtitle={movieCrew[index].job}
-                                            />
-                                        ))
-                                        }
-                                    />
-                                }
-                            </Suspense>
-                        </Wrapper >
-                    </>
+                        <Suspense fallback={<LoadingCircle />}>
+                            {movieCast && movieCast.length > 0 &&
+                                <Section
+                                    title="Cast"
+                                    itemsList={movieCast && movieCast.map((person, index) => (
+                                        // @ts-ignore
+                                        <Tile
+                                            person="true"
+                                            widths={personTileWidths}
+                                            key={movieCast[index].credit_id}
+                                            sizes={profileSizesArray}
+                                            imageBaseUrl={imgURL}
+                                            imagePath={movieCast[index].profile_path}
+                                            detailsUrl={`/person/${movieCast[index].id}`}
+                                            title={movieCast[index].name}
+                                            subtitle={movieCast[index].character}
+                                        />
+                                    ))
+                                    }
+                                />
+                            }
+                            {movieCrew && movieCrew.length > 0 &&
+                                <Section
+                                    title="Crew"
+                                    itemsList={movieCrew && movieCrew.map((person, index) => (
+                                        // @ts-ignore
+                                        <Tile
+                                            person="true"
+                                            widths={personTileWidths}
+                                            key={movieCrew[index].credit_id}
+                                            sizes={profileSizesArray}
+                                            detailsUrl={`/person/${movieCrew[index].id}`}
+                                            imageBaseUrl={imgURL}
+                                            imagePath={movieCrew[index].profile_path}
+                                            title={movieCrew[index].name}
+                                            subtitle={movieCrew[index].job}
+                                        />
+                                    ))
+                                    }
+                                />
+                            }
+                        </Suspense>
+                    </Wrapper >
                 )}
             </>
         </ContentWrapper>
