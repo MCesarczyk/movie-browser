@@ -1,4 +1,4 @@
-
+import Votes from "common/Votes";
 import {
     BackdropPoster,
     WrapperBackdrop,
@@ -6,16 +6,25 @@ import {
     WrapperContent,
     BackdropContainer,
 } from "./styled";
-import Votes from "../../../../common/Votes";
 
-const Backdrop = ({
+
+interface BackdropProps {
+    sizes: string[];
+    imageBaseUrl: string;
+    imagePath: string;
+    title: string;
+    rating: number;
+    votes: number;
+};
+
+export const Backdrop = ({
     sizes,
     imageBaseUrl,
     imagePath,
     title,
     rating,
     votes
-}) => {
+}: BackdropProps) => {
     return (
         <BackdropContainer>
             <BackdropPoster
@@ -27,7 +36,7 @@ const Backdrop = ({
                     <WrapperContent>
                         <Title>{title}</Title>
                         <Votes
-                            backdrop
+                            backdrop={'true'}
                             votes={votes}
                             rating={rating}
                         />
@@ -37,5 +46,3 @@ const Backdrop = ({
         </BackdropContainer>
     );
 };
-
-export default Backdrop;

@@ -15,7 +15,7 @@ interface NavbarProps {
     peoplePath: string;
 };
 
-const Navbar = ({ moviesPath, peoplePath }: NavbarProps) => {
+export const Navbar = ({ moviesPath, peoplePath }: NavbarProps) => {
     return (
         <NavigationContainer>
             <NavigationWrapper>
@@ -39,5 +39,3 @@ const Navbar = ({ moviesPath, peoplePath }: NavbarProps) => {
         </NavigationContainer>
     );
 };
-
-export default Navbar;

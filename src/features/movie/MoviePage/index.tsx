@@ -1,17 +1,18 @@
 import React, { Suspense, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Wrapper } from "../../../common/Wrapper";
-import CorePage from "../../../core/CorePage";
-import Tile from "../../../core/Tile"
-import Backdrop from "./Backdrop";
-import LoadingCircle from "../../../common/LoadingCircle";
+
+import LoadingCircle from "common/LoadingCircle";
+import { Wrapper } from "common/Wrapper";
+import CorePage from "core/CorePage";
+import Tile from "core/Tile"
+import { Backdrop } from "./Backdrop";
 import {
     selectImagesBaseURL,
     selectBackdropSizes,
     selectPosterSizes,
     selectProfileSizes,
-} from "../../../commonSlice";
+} from "commonSlice";
 import {
     selectMovieDetails,
     selectMovieCast,
@@ -20,12 +21,15 @@ import {
     clearMovieData,
     setMovieId,
 } from "../movieSlice";
-const Section = React.lazy(() => import('../../../common/Section'));
+import { MovieDetails } from "types";
+const Section = React.lazy(() => import('common/Section'));
 
-const MoviePage = () => {
+
+export const MoviePage = () => {
     const dispatch = useDispatch();
-    const { id } = useParams();
-    const movieDetails = useSelector(selectMovieDetails);
+    const { id }: any = useParams();
+    // @ts-ignore
+    const movieDetails: MovieDetails = useSelector(selectMovieDetails);
     const imgURL = useSelector(selectImagesBaseURL);
     const posterSizes = useSelector(selectPosterSizes);
     const backdropSizes = useSelector(selectBackdropSizes);
@@ -35,7 +39,7 @@ const MoviePage = () => {
     const genresList = useSelector(selectGenresList);
 
     useEffect(() => {
-        dispatch(setMovieId(id));
+        dispatch(setMovieId(id as string));
     }, [dispatch, id]);
 
     useEffect(() => {
@@ -79,7 +83,7 @@ const MoviePage = () => {
             message="Loading movie details..."
             body={
                 <>
-                    {movieDetails.backdrop_path !== null &&
+                    {movieDetails && movieDetails.backdrop_path !== null &&
                         <Backdrop
                             imageBaseUrl={imgURL}
                             imagePath={movieDetails.backdrop_path}
@@ -90,16 +94,17 @@ const MoviePage = () => {
                         />
                     }
                     < Wrapper >
+                        {/* @ts-ignore */}
                         <Tile
                             oversize="true"
                             imageWidth="312px"
                             mobile="177px"
                             widths={tileWidths}
-                            key={id}
+                            key={id as string}
                             sizes={posterSizesArray}
                             imageBaseUrl={imgURL}
                             imagePath={movieDetails.poster_path}
-                            detailsUrl={`/movie/${id}`}
+                            detailsUrl={`/movie/${id as string}`}
                             title={movieDetails.title}
                             subtitle={
                                 movieDetails &&
@@ -118,6 +123,7 @@ const MoviePage = () => {
                                 <Section
                                     title="Cast"
                                     itemsList={movieCast && movieCast.map((person, index) => (
+                                        // @ts-ignore
                                         <Tile
                                             person="true"
                                             widths={personTileWidths}
@@ -137,6 +143,7 @@ const MoviePage = () => {
                                 <Section
                                     title="Crew"
                                     itemsList={movieCrew && movieCrew.map((person, index) => (
+                                        // @ts-ignore
                                         <Tile
                                             person="true"
                                             widths={personTileWidths}
@@ -159,5 +166,3 @@ const MoviePage = () => {
         />
     );
 };
-
-export default MoviePage;

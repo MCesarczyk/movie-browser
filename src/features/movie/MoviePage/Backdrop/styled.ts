@@ -5,8 +5,8 @@ export const BackdropContainer = styled.div`
     width: 100%;
 `;
 
-export const BackdropPoster = styled.div`
-    background-image: url("${props => props.baseUrl}${props => props.sizes[4]}${props => props.path}");
+export const BackdropPoster = styled.div<{ baseUrl: string, sizes: string[], path: string }>`
+    background-image: url("${({ baseUrl }) => baseUrl}${({ sizes }) => sizes[4]}${({ path }) => path}");
     background-repeat: no-repeat; 
     background-position: center;
     background-size: cover;
@@ -15,16 +15,16 @@ export const BackdropPoster = styled.div`
     width: 100%;
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}) {
-        background-image: url("${props => props.baseUrl}${props => props.sizes[3]}${props => props.path}");
+        background-image: url("${({ baseUrl }) => baseUrl}${props => props.sizes[3]}${({ path }) => path}");
     }
     @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}) {
-        background-image: url("${props => props.baseUrl}${props => props.sizes[2]}${props => props.path}");
+        background-image: url("${({ baseUrl }) => baseUrl}${props => props.sizes[2]}${({ path }) => path}");
     }
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}) {
-        background-image: url("${props => props.baseUrl}${props => props.sizes[1]}${props => props.path}");
+        background-image: url("${({ baseUrl }) => baseUrl}${props => props.sizes[1]}${({ path }) => path}");
     }
     @media (max-width: ${({ theme }) => theme.breakpoint.oldIphone}) {
-        background-image: url("${props => props.baseUrl}${props => props.sizes[0]}${props => props.path}");
+        background-image: url("${({ baseUrl }) => baseUrl}${props => props.sizes[0]}${({ path }) => path}");
     }
 `;
 
@@ -128,4 +128,3 @@ export const Title = styled.h1`
         }
     }
 `;
-
