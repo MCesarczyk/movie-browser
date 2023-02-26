@@ -9,7 +9,7 @@ import Navbar from './core/Navbar';
 import { MoviesPage } from './features/movies/MoviesPage';
 import MoviePage from './features/movie/MoviePage';
 import { PeoplePage } from "./features/people/PeoplePage";
-import PersonPage from "./features/person/PersonPage";
+import { PersonPage } from "./features/person/PersonPage";
 
 export const App = () => {
   const dispatch = useDispatch();

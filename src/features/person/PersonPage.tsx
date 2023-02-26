@@ -7,12 +7,12 @@ import LoadingCircle from "common/LoadingCircle";
 import Tile from "core/Tile"
 import { selectImagesBaseURL, selectPosterSizes, selectProfileSizes } from "commonSlice";
 import { ContentWrapper } from "core/CorePage/ContentWrapper";
-import { ActingMovieDetailed } from "../interfaces";
-import { usePersonApiService } from "../personApiService";
+import { ActingMovieDetailed } from "./interfaces";
+import { usePersonApiService } from "./personApiService";
 const Section = lazy(() => import('common/Section'));
 
 
-const PersonPage = () => {
+export const PersonPage = () => {
     const { id }: any = useParams();
     const imgURL: string = useSelector(selectImagesBaseURL);
     const posterSizes = useSelector(selectPosterSizes);
@@ -127,5 +127,3 @@ const PersonPage = () => {
         </ContentWrapper>
     );
 };
-
-export default PersonPage;
