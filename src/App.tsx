@@ -1,5 +1,5 @@
 import { ErrorBoundary } from "react-error-boundary";
-import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
+import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import { Fallback } from "core/CorePage/ErrorPage/Fallback";
 import { Navbar } from 'core/Navbar';
@@ -16,29 +16,15 @@ export const App = () => (
       peoplePath={"/people"}
     />
     <ErrorBoundary FallbackComponent={Fallback}>
-      <Switch>
-        <Route path="/movie/:id">
-          <MoviePage />
-        </Route>
-        <Route path="/movies/:page">
-          <MoviesPage />
-        </Route>
-        <Route path="/movies">
-          <MoviesPage />
-        </Route>
-        <Route path="/person/:id">
-          <PersonPage />
-        </Route>
-        <Route path="/people/:page">
-          <PeoplePage />
-        </Route>
-        <Route path="/people">
-          <PeoplePage />
-        </Route>
-        <Route path="/">
-          <Redirect to="/movies" />
-        </Route>
-      </Switch>
+      <Routes>
+        <Route path="/movie/:id" element={<MoviePage />} />
+        <Route path="/movies/:page" element={<MoviesPage />} />
+        <Route path="/movies" element={<MoviesPage />} />
+        <Route path="/person/:id" element={<PersonPage />} />
+        <Route path="/people/:page" element={<PeoplePage />} />
+        <Route path="/people" element={<PeoplePage />} />
+        <Route path="/" element={<Navigate to="/movies" />} />
+      </Routes>
     </ErrorBoundary>
-  </HashRouter>
+  </HashRouter >
 );
