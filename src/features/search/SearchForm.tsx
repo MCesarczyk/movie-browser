@@ -1,5 +1,4 @@
-import { useLocation, useRouteMatch } from "react-router";
-import { useHistory } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router";
 
 import { SearchIcon, SearchInput, SearchWrapper } from "./styled";
 import { SEARCH_QUERY_PARAM_NAME } from "./constants";
@@ -7,16 +6,30 @@ import search from "./search.svg";
 
 
 export const SearchForm = () => {
+    const navigate = useNavigate();
     const location = useLocation();
-    const history = useHistory();
+    const pathname = location.pathname;
     const searchParams: URLSearchParams = new URLSearchParams(location.search);
     const query: string | null = searchParams.get(SEARCH_QUERY_PARAM_NAME);
 
-    const moviesMatch = useRouteMatch("/movies");
-    const movieMatch = useRouteMatch("/movie");
-    const peopleMatch = useRouteMatch("/people");
-    const personMatch = useRouteMatch("/person");
-    const property: string | null = ((moviesMatch || movieMatch) && "/movies") || ((peopleMatch || personMatch) && "/people");
+    const moviesMatch = pathname.includes("/movies");
+    const movieMatch = pathname.includes("/movie");
+    const peopleMatch = pathname.includes("/people");
+    const personMatch = pathname.includes("/person");
+
+    const getProperty = (): string | null => {
+        if (moviesMatch || movieMatch) {
+            return "/movies";
+        }
+
+        if (peopleMatch || personMatch) {
+            return "/people";
+        }
+
+        return null;
+    };
+
+    const property = getProperty();
 
     const onInputChange = ({ target }: { target: HTMLInputElement }) => {
         if (target.value.trim() === "") {
@@ -26,7 +39,7 @@ export const SearchForm = () => {
         }
         const newSearchParams = searchParams.toString();
 
-        history.push(`${property}/1?${newSearchParams}`);
+        navigate(`${property}/1?${newSearchParams}`);
     };
 
     return (

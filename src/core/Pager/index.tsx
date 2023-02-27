@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams, useLocation, useHistory } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 
 import { SEARCH_QUERY_PARAM_NAME } from "features/search/constants";
 import { Wrapper, StyledLink, PagerText, PageNumberText } from "./styled";
@@ -20,9 +20,9 @@ export const Pager = ({ property, totalPages }: PagerProps) => {
     const searchParams = new URLSearchParams(location.search);
     const query = searchParams.get(SEARCH_QUERY_PARAM_NAME);
 
-    const history = useHistory();
+    const navigate = useNavigate();
     const firstPageUrl = `${property}/1${query ? `?${SEARCH_QUERY_PARAM_NAME}=${query}` : ""}`;
-    totalPages && (currentPage > totalPages) && history.push(firstPageUrl);
+    totalPages && (currentPage > totalPages) && navigate(firstPageUrl);
 
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     window.onresize = () => setWindowWidth(window.innerWidth);
