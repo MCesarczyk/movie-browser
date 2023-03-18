@@ -4,6 +4,8 @@
   "private": true,
   "homepage": "https://mcesarczyk.github.io/movie-browser/",
   "dependencies": {
+    "@tanstack/react-query": "^4.27.0",
+    "@tanstack/react-query-devtools": "^4.27.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
@@ -12,7 +14,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-error-boundary": "^3.1.4",
-    "react-query": "^3.39.3",
     "react-router-dom": "^6.8.1",
     "react-scripts": "^5.0.1",
     "styled-components": "^5.3.0",

@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from "react";
-import { useIsFetching, useQuery, useQueryClient } from "react-query";
+import { useIsFetching, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useLocation, useParams } from "react-router-dom";
 
 import { SEARCH_QUERY_PARAM_NAME } from "features/search/constants";
