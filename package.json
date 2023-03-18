@@ -5,6 +5,7 @@
   "homepage": "https://mcesarczyk.github.io/movie-browser/",
   "dependencies": {
     "@tanstack/react-query": "^4.27.0",
+    "@tanstack/react-query-devtools": "^4.27.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
