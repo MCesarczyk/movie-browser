@@ -4,9 +4,11 @@
   "private": true,
   "homepage": "https://mcesarczyk.github.io/movie-browser/",
   "dependencies": {
+    "@tanstack/react-query": "^4.27.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
+    "commitizen": "^4.3.0",
     "gh-pages": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -19,6 +21,7 @@
     "web-vitals": "^3.1.1"
   },
   "scripts": {
+    "commit": "cz",
     "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -51,6 +54,12 @@
     "@types/react-dom": "^18.0.11",
     "@types/react-router-dom": "^5.3.3",
     "@types/styled-components": "^5.1.26",
+    "cz-conventional-changelog": "^3.3.0",
     "typescript": "^4.9.5"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
